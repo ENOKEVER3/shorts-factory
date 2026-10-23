@@ -1,5 +1,5 @@
 {
-  "channel_name": "Future Signal",
+  "channel_name": "Seunenoch",
   "campaign_days": 30,
   "max_posts_per_day": 2,
   "slots_utc": [
@@ -17,7 +17,8 @@
   },
   "video": { "width": 1080, "height": 1920, "fps": 30, "max_seconds": 58 },
   "music": true,
+  "illustrations": true,
   "gemini_model": "gemini-2.5-flash",
   "default_tags": ["AI", "artificial intelligence", "technology", "future tech", "inventions", "science", "shorts"],
-  "description_footer": "New AI, tech and future-invention Shorts every day.\nNarration uses an AI voice. Visuals are computer-generated animations.\nFacts are simplified for a 60-second format - always check primary sources."
+  "description_footer": "New AI, tech and future-invention Shorts every day.\nNarration uses an AI voice. Illustrations are AI-generated.\nFacts are simplified for a 60-second format - always check primary sources."
 }

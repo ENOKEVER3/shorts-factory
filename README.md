@@ -8,6 +8,7 @@ GitHub Actions (4 runs/day, UTC)
    -> pick next script (62 pre-written, optional Gemini free tier after that)
    -> AI voice (edge-tts, falls back to offline Piper voice)
    -> animated background (ffmpeg, 5 styles x 6 palettes, nothing downloaded)
+   -> one AI illustration per sentence (Pollinations.ai free tier, no key)
    -> big word-by-word captions + title + progress bar + soft music bed
    -> YouTube Data API upload (resumable, retries)
    -> log the video in state/posted.json (so nothing is ever posted twice)
@@ -23,10 +24,11 @@ GitHub Actions (4 runs/day, UTC)
 | YouTube API quota | 10,000 units/day. One upload = 1,600 units (+1 for the channel check). | Max ~6 uploads/day. This system uses 2 (about 3,200 units). |
 | Unverified-channel upload cap | Channels that aren't phone-verified have lower daily upload limits. | Verify your channel by phone at youtube.com/verify. |
 | OAuth refresh token | Expires after **7 days** if the Google app is left in "Testing". | You **must** switch it to "In production" (step 3). Then it lasts until you revoke it, change your password, or leave it unused for 6 months. |
-| GitHub Actions minutes | Public repo: unlimited. Private repo: 2,000 min/month. | Each run is ~2-4 min to make a video, ~30 s when there's nothing to do. ~250 min/month in total. Fits either way. |
+| GitHub Actions minutes | Public repo: unlimited. Private repo: 2,000 min/month. | Each run is ~2-4 min to make a video, ~30 s when there's nothing to do. ~650 min/month in total (with illustrations). Fits either way. |
 | GitHub scheduled runs | Can start 5-60+ min late at busy times. Turned off after 60 days without repo activity. | Every window has a built-in retry run. Each post commits to the repo, so it stays active. |
 | edge-tts voice | Free, no key, but an **unofficial** Microsoft endpoint. It can break or be blocked without warning. | The system automatically falls back to Piper, a free offline voice. It sounds a bit less natural. |
 | Gemini API (optional) | Free tier with per-minute and per-day request limits. Google changes these often. | Only used after the 62 built-in scripts run out. One request per video is far below the limits. |
+| Pollinations.ai images | Free, no key, **1 image every 45 s**. Unofficial service that can change or stop. | One picture per sentence, so each video takes ~6-7 extra minutes (~420 min/month extra, still under GitHub's private-repo limit). If a picture fails, the previous one stays on screen; if all fail, the video still posts with just the animated background. Turn off with `"illustrations": false` in config.json. |
 | Artifacts | Rendered videos are kept for 7 days. | Download any video from the run page if you want a copy. |
 
 **Money reality check.** To earn ad money from Shorts you need the YouTube Partner Program: 1,000 subscribers plus
