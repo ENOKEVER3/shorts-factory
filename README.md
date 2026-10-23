@@ -1,0 +1,152 @@
+# Shorts Factory: automatic AI & future-tech YouTube Shorts
+
+Makes and publishes **2 original YouTube Shorts a day for 30 days** using only free tools.
+After setup it runs on GitHub's servers. Your computer can stay off.
+
+```
+GitHub Actions (4 runs/day, UTC)
+   -> pick next script (62 pre-written, optional Gemini free tier after that)
+   -> AI voice (edge-tts, falls back to offline Piper voice)
+   -> animated background (ffmpeg, 5 styles x 6 palettes, nothing downloaded)
+   -> big word-by-word captions + title + progress bar + soft music bed
+   -> YouTube Data API upload (resumable, retries)
+   -> log the video in state/posted.json (so nothing is ever posted twice)
+```
+
+---
+
+## 1. Honest limits (read this first)
+
+| Thing | Free limit | What it means for you |
+|---|---|---|
+| **YouTube API "unverified app" lock** | Apps created after July 2020 that have not passed Google's free API audit have every uploaded video **locked to Private**. | **This is the big one.** Until Google approves your audit (step 6), uploads work but nobody else can see them. Approval usually takes days to a few weeks and is not guaranteed. |
+| YouTube API quota | 10,000 units/day. One upload = 1,600 units (+1 for the channel check). | Max ~6 uploads/day. This system uses 2 (about 3,200 units). |
+| Unverified-channel upload cap | Channels that aren't phone-verified have lower daily upload limits. | Verify your channel by phone at youtube.com/verify. |
+| OAuth refresh token | Expires after **7 days** if the Google app is left in "Testing". | You **must** switch it to "In production" (step 3). Then it lasts until you revoke it, change your password, or leave it unused for 6 months. |
+| GitHub Actions minutes | Public repo: unlimited. Private repo: 2,000 min/month. | Each run is ~2-4 min to make a video, ~30 s when there's nothing to do. ~250 min/month in total. Fits either way. |
+| GitHub scheduled runs | Can start 5-60+ min late at busy times. Turned off after 60 days without repo activity. | Every window has a built-in retry run. Each post commits to the repo, so it stays active. |
+| edge-tts voice | Free, no key, but an **unofficial** Microsoft endpoint. It can break or be blocked without warning. | The system automatically falls back to Piper, a free offline voice. It sounds a bit less natural. |
+| Gemini API (optional) | Free tier with per-minute and per-day request limits. Google changes these often. | Only used after the 62 built-in scripts run out. One request per video is far below the limits. |
+| Artifacts | Rendered videos are kept for 7 days. | Download any video from the run page if you want a copy. |
+
+**Money reality check.** To earn ad money from Shorts you need the YouTube Partner Program: 1,000 subscribers plus
+10 million Shorts views in 90 days. Shorts pay far less per view than long videos, often cents per 1,000 views.
+YouTube also demonetises "inauthentic" content (mass-produced, repetitive videos). That's why every script here is
+unique and every video is labelled as AI-narrated. Growth is not guaranteed. Watch the analytics when you're back.
+
+**Why this doesn't re-upload other people's videos.** Clipping and reposting other channels' content gets copyright
+strikes (3 strikes = channel deleted) and is never monetised. This system only makes original videos.
+
+---
+
+## 2. Put the code on GitHub (5 min)
+
+1. Create a free account at github.com.
+2. Click **New repository** and name it `shorts-factory`. Choose **Public** (unlimited minutes; your secrets stay hidden either way) or Private.
+3. On the empty repo page, click **uploading an existing file**. Drag in **everything inside** this folder, including the
+   hidden `.github` folder. On Mac press `Cmd+Shift+.` in Finder to see it. Then click **Commit**.
+   - Or with git: `git init && git add . && git commit -m init && git branch -M main && git remote add origin https://github.com/YOU/shorts-factory.git && git push -u origin main`
+4. Check that `.github/workflows/shorts.yml` appears in the repo.
+
+## 3. Create the Google app (10 min)
+
+1. Go to **console.cloud.google.com**, sign in with the Google account that owns the YouTube channel, and create a project called `shorts-factory`.
+2. **APIs & Services -> Library**: search **YouTube Data API v3**, then click **Enable**.
+3. **Google Auth Platform** (formerly "OAuth consent screen"):
+   - **Branding**: app name `Shorts Factory`, plus your email for support and developer contact.
+   - **Audience**: User type **External**. Then click **Publish app** so the status says **In production**.
+     (In "Testing", your token dies after 7 days.) Google will say the app is "unverified". That's fine for personal use.
+   - **Data Access**: add the scopes `.../auth/youtube.upload` and `.../auth/youtube.readonly`.
+4. **Clients -> Create client -> Application type: Desktop app**. Click **Download JSON** and save it as `client_secret.json`.
+   **Never upload this file to GitHub.**
+
+## 4. Get your refresh token (once, on your computer)
+
+Install Python 3.10+ from python.org, then in a terminal inside this folder:
+
+```bash
+pip install google-auth-oauthlib google-api-python-client
+python scripts/get_refresh_token.py /path/to/client_secret.json
+```
+
+A browser opens. Pick the account, then **pick the channel**. Brand channels are listed separately.
+You'll see "Google hasn't verified this app": click **Advanced -> Go to Shorts Factory (unsafe)**. It's your own app.
+Then allow access. The terminal prints the authorised channel name and three values.
+
+In GitHub: **repo -> Settings -> Secrets and variables -> Actions -> New repository secret**, then add:
+
+| Name | Value |
+|---|---|
+| `YT_CLIENT_ID` | printed value |
+| `YT_CLIENT_SECRET` | printed value |
+| `YT_REFRESH_TOKEN` | printed value |
+| `GEMINI_API_KEY` | *(optional)* free key from aistudio.google.com. Only needed past 62 videos. |
+
+Delete `client_secret.json` from your Downloads folder afterwards.
+
+## 5. Test it (5 min)
+
+1. Repo -> **Actions** tab -> if asked, click **I understand my workflows, go ahead and enable them**.
+2. **Shorts Factory -> Run workflow**, leave **dry run** ticked, then click **Run**. After ~3 min, open the run. Under
+   **Artifacts**, download the video and watch it.
+3. Run it again with **dry run unticked** and **force ticked**. This publishes video #1 now and starts the 30-day campaign.
+   Check that it appears in YouTube Studio.
+
+## 6. Make the videos public: the API audit (do it before you leave)
+
+Without this, YouTube keeps all API uploads private.
+
+1. Fill in the **YouTube API Services Audit and Quota Extension Form**: https://support.google.com/youtube/contact/yt_api_form
+2. Say it's an internal tool that uploads **your own original videos to your own channel**. Give your Google Cloud project number and channel link, and explain there are no other users.
+3. Google may email follow-up questions. **Check your inbox** or they'll close the request.
+4. Once approved, new uploads go public. Videos uploaded **before** approval stay private, and only you can change them
+   in YouTube Studio. Google won't change them for you.
+
+If you can't wait for approval, a fallback is to set `"privacy_status": "private"` in `config.json`. The videos pile up,
+and you publish them by hand when you're back.
+
+## 7. Leave
+
+That's it. The schedule (UTC) is in `.github/workflows/shorts.yml`:
+
+| Run | UTC | Lagos (WAT) | New York (EST) | Purpose |
+|---|---|---|---|---|
+| 1 | 13:07 | 14:07 | 08:07 | Afternoon Short |
+| 2 | 16:07 | 17:07 | 11:07 | Retry if run 1 failed |
+| 3 | 19:07 | 20:07 | 14:07 | Evening Short |
+| 4 | 22:07 | 23:07 | 17:07 | Retry if run 3 failed |
+
+After 30 days from the first upload, it stops by itself.
+To get failure emails, open GitHub **Settings -> Notifications -> Actions** and choose **Only notify for failed workflows**.
+
+---
+
+## Retries and safety built in
+
+- Voice: 3 tries per sentence, then an automatic switch to the offline Piper voice.
+- Upload: resumable upload with up to 8 retries and exponential backoff for network errors and Google 5xx errors.
+- Quota or daily-limit errors: the run stops cleanly, and the next scheduled run tries again.
+- Missed window: the second cron run in each window posts it. If both fail, that slot is skipped (never doubled).
+- No duplicates: each upload is written to `state/posted.json` **immediately** and committed with 5 push retries.
+- Credentials are checked **before** rendering, so a bad token fails fast with a clear message.
+- Videos are flagged `containsSyntheticMedia` (AI disclosure) and `madeForKids: false`.
+
+## Customise
+
+`config.json`: channel name (shown on every video), posting windows, voice (`edge-tts --list-voices`), privacy,
+music on/off, campaign length. Scripts: `content/scripts.json`. Each script has a title, 6-9 sentences and tags.
+Run tests with `python -m unittest discover tests`.
+
+## Troubleshooting
+
+| Error in the Actions log | Fix |
+|---|---|
+| `invalid_grant` | The app is still in Testing, or the token was revoked. Publish the app (step 3), redo step 4, and update `YT_REFRESH_TOKEN`. |
+| `quotaExceeded` | Wait for the daily reset at midnight Pacific time. It retries automatically. |
+| `uploadLimitExceeded` | Verify the channel by phone at youtube.com/verify. |
+| Videos all private | The API audit isn't approved yet (step 6). |
+| Nothing runs | Check that the Actions tab is enabled, and that the workflow file is at `.github/workflows/shorts.yml` on the default branch. |
+| `Script bank is empty` | Add more scripts or a `GEMINI_API_KEY`. |
+
+All tools used are free and open source (ffmpeg, Piper, edge-tts, Google API client).
+The caption font, Anton, uses the SIL Open Font License (`assets/fonts/OFL.txt`).
