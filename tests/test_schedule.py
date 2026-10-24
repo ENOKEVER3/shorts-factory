@@ -55,7 +55,7 @@ class ScheduleTests(unittest.TestCase):
 
     def test_searchable_scripts_come_first_and_alternate(self):
         scripts = content.all_scripts()
-        self.assertTrue(scripts[0]["id"].startswith("v2-"))
+        self.assertTrue(scripts[0]["id"].startswith("v3-"))
         kinds = [s["kind"] for s in scripts[:6]]
         self.assertEqual(len(set(kinds[:2])), 2)  # the 2 Shorts of a day are different kinds
         titles = [s["title"].lower() for s in scripts]
