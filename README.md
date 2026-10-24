@@ -8,7 +8,7 @@ GitHub Actions (4 runs/day, UTC)
    -> pick next script (62 pre-written, optional Gemini free tier after that)
    -> AI voice (edge-tts, falls back to offline Piper voice)
    -> animated background (ffmpeg, 5 styles x 6 palettes, nothing downloaded)
-   -> one AI illustration per sentence (Pollinations.ai free tier, no key)
+   -> one AI illustration per sentence (studio-made scenes if uploaded, else Pollinations.ai free tier)
    -> big word-by-word captions + title + progress bar + soft music bed
    -> YouTube Data API upload (resumable, retries)
    -> log the video in state/posted.json (so nothing is ever posted twice)
@@ -28,7 +28,8 @@ GitHub Actions (4 runs/day, UTC)
 | GitHub scheduled runs | Can start 5-60+ min late at busy times. Turned off after 60 days without repo activity. | Every window has a built-in retry run. Each post commits to the repo, so it stays active. |
 | edge-tts voice | Free, no key, but an **unofficial** Microsoft endpoint. It can break or be blocked without warning. | The system automatically falls back to Piper, a free offline voice. It sounds a bit less natural. |
 | Gemini API (optional) | Free tier with per-minute and per-day request limits. Google changes these often. | Only used after the 62 built-in scripts run out. One request per video is far below the limits. |
-| Pollinations.ai images | Free, no key, **1 image every 45 s**. Unofficial service that can change or stop. | One picture per sentence, so each video takes ~6-7 extra minutes (~420 min/month extra, still under GitHub's private-repo limit). If a picture fails, the previous one stays on screen; if all fail, the video still posts with just the animated background. Turn off with `"illustrations": false` in config.json. |
+| Pollinations.ai images | Free, no key, **1 image every 45 s**. Unofficial service that can change or stop, and shared GitHub runners are often throttled. | One picture per sentence, so each video takes ~6-7 extra minutes (~420 min/month extra, still under GitHub's private-repo limit). If the online picture fails, a locally drawn scene card (retro-futuristic grid + constellation art, different for every sentence) is used instead, so every video always has illustrations. Turn off with `"illustrations": false` in config.json. |
+| Illustration Studio scenes (optional) | Made on the guide site with Lovable AI; uses workspace credits, not free-tier. | Best-looking option. Generate one scene per sentence on the site's Illustration Studio page, download the ZIP, and upload the images to `content/scenes/<script_id>/` (named `scene_01.png`, `scene_02.png`, ...). The pipeline uses them as-is and skips the online/local fallbacks for those sentences. |
 | Artifacts | Rendered videos are kept for 7 days. | Download any video from the run page if you want a copy. |
 
 **Money reality check.** To earn ad money from Shorts you need the YouTube Partner Program: 1,000 subscribers plus
