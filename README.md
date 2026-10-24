@@ -4,7 +4,7 @@ Makes and publishes **2 original YouTube Shorts a day for 30 days** using only f
 After setup it runs on GitHub's servers. Your computer can stay off.
 
 ```
-GitHub Actions (4 runs/day, UTC)
+GitHub Actions (8 short check-ins/day, UTC; 2 of them post)
    -> pick next script (62 pre-written, optional Gemini free tier after that)
    -> AI voice (edge-tts, falls back to offline Piper voice)
    -> animated background (ffmpeg, 5 styles x 6 palettes, nothing downloaded)
@@ -25,7 +25,7 @@ GitHub Actions (4 runs/day, UTC)
 | Unverified-channel upload cap | Channels that aren't phone-verified have lower daily upload limits. | Verify your channel by phone at youtube.com/verify. |
 | OAuth refresh token | Expires after **7 days** if the Google app is left in "Testing". | You **must** switch it to "In production" (step 3). Then it lasts until you revoke it, change your password, or leave it unused for 6 months. |
 | GitHub Actions minutes | Public repo: unlimited. Private repo: 2,000 min/month. | Each run is ~2-4 min to make a video, ~30 s when there's nothing to do. ~650 min/month in total (with illustrations). Fits either way. |
-| GitHub scheduled runs | Can start 5-60+ min late at busy times. Turned off after 60 days without repo activity. | Every window has a built-in retry run. Each post commits to the repo, so it stays active. |
+| GitHub scheduled runs | Can start 5-60+ min late at busy times, and are sometimes skipped entirely. Turned off after 60 days without repo activity. | Every window has several runs, and a later run catches up on a missed Short. Each post commits to the repo, so it stays active. |
 | edge-tts voice | Free, no key, but an **unofficial** Microsoft endpoint. It can break or be blocked without warning. | The system automatically falls back to Piper, a free offline voice. It sounds a bit less natural. |
 | Gemini API (optional) | Free tier with per-minute and per-day request limits. Google changes these often. | Only used after the 62 built-in scripts run out. One request per video is far below the limits. |
 | Pollinations.ai images | Free, no key, **1 image every 45 s**. Unofficial service that can change or stop, and shared GitHub runners are often throttled. | One picture per sentence, so each video takes ~6-7 extra minutes (~420 min/month extra, still under GitHub's private-repo limit). If the online picture fails, a locally drawn scene card (retro-futuristic grid + constellation art, different for every sentence) is used instead, so every video always has illustrations. Turn off with `"illustrations": false` in config.json. |
@@ -112,12 +112,14 @@ and you publish them by hand when you're back.
 
 That's it. The schedule (UTC) is in `.github/workflows/shorts.yml`:
 
-| Run | UTC | Lagos (WAT) | New York (EST) | Purpose |
-|---|---|---|---|---|
-| 1 | 13:07 | 14:07 | 08:07 | Afternoon Short |
-| 2 | 16:07 | 17:07 | 11:07 | Retry if run 1 failed |
-| 3 | 19:07 | 20:07 | 14:07 | Evening Short |
-| 4 | 22:07 | 23:07 | 17:07 | Retry if run 3 failed |
+| Window | UTC | Lagos (WAT) | Runs (UTC) |
+|---|---|---|---|
+| Afternoon Short (peak) | 16:00-21:00 | 17:00-22:00 | 17:07, 17:52, 18:37, 19:37 |
+| Evening Short (peak) | 21:00-24:00 | 22:00-01:00 | 22:07, 22:37, 23:07, 23:37 |
+
+GitHub often starts scheduled runs late or skips them at busy times, so each window has several runs. Runs with
+nothing to do finish in ~30 s. If every afternoon run was dropped, an evening run posts the missed Short too
+(at least 45 min apart). Manual test uploads (`force`) never count toward the 2-a-day schedule.
 
 After 30 days from the first upload, it stops by itself.
 To get failure emails, open GitHub **Settings -> Notifications -> Actions** and choose **Only notify for failed workflows**.
@@ -129,7 +131,7 @@ To get failure emails, open GitHub **Settings -> Notifications -> Actions** and 
 - Voice: 3 tries per sentence, then an automatic switch to the offline Piper voice.
 - Upload: resumable upload with up to 8 retries and exponential backoff for network errors and Google 5xx errors.
 - Quota or daily-limit errors: the run stops cleanly, and the next scheduled run tries again.
-- Missed window: the second cron run in each window posts it. If both fail, that slot is skipped (never doubled).
+- Missed window: a later run in the same window posts it; if the whole afternoon window was dropped, the evening runs catch up. Never more than 2 scheduled Shorts a day.
 - No duplicates: each upload is written to `state/posted.json` **immediately** and committed with 5 push retries.
 - Credentials are checked **before** rendering, so a bad token fails fast with a clear message.
 - Videos are flagged `containsSyntheticMedia` (AI disclosure) and `madeForKids: false`.

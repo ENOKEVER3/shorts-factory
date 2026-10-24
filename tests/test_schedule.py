@@ -53,6 +53,14 @@ class ScheduleTests(unittest.TestCase):
         used = {s["id"] for s in content.all_scripts()[:5]}
         self.assertNotIn(content.next_script(used, CFG)["id"], used)
 
+    def test_searchable_scripts_come_first_and_alternate(self):
+        scripts = content.all_scripts()
+        self.assertTrue(scripts[0]["id"].startswith("v2-"))
+        kinds = [s["kind"] for s in scripts[:6]]
+        self.assertEqual(len(set(kinds[:2])), 2)  # the 2 Shorts of a day are different kinds
+        titles = [s["title"].lower() for s in scripts]
+        self.assertEqual(len(set(titles)), len(titles))  # no repeated content
+
     def test_bank_covers_full_campaign(self):
         scripts = content.all_scripts()
         self.assertGreaterEqual(len(scripts), CFG["campaign_days"] * CFG["max_posts_per_day"])
