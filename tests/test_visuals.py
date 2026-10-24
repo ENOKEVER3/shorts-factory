@@ -40,5 +40,29 @@ class LocalCardTest(unittest.TestCase):
             self.assertEqual(a.read_bytes(), b.read_bytes())
 
 
+class PregeneratedScenesTest(unittest.TestCase):
+    def test_studio_scene_is_preferred_over_online_and_local(self):
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as tmp:
+            scenes = Path(tmp) / "scenes" / "s1"
+            scenes.mkdir(parents=True)
+            studio_img = scenes / "scene_01.png"
+            visuals.local_card("x", studio_img, seed=1)  # a valid image standing in for a studio scene
+
+            old_dir, old_fetch = visuals.SCENES_DIR, visuals._fetch
+            visuals.SCENES_DIR = Path(tmp) / "scenes"
+            visuals._fetch = lambda *a, **k: (_ for _ in ()).throw(RuntimeError("no network in tests"))
+            try:
+                script = {"id": "s1", "title": "T", "sentences": ["One.", "Two."]}
+                out = visuals.illustrate(script, Path(tmp), seed_base=0)
+            finally:
+                visuals.SCENES_DIR, visuals._fetch = old_dir, old_fetch
+
+            self.assertEqual(out[0], studio_img)  # sentence 1 uses the uploaded studio scene
+            self.assertIsNotNone(out[1])  # sentence 2 falls back to a local card, never crashes
+            self.assertNotEqual(out[1], studio_img)
+
+
 if __name__ == "__main__":
     unittest.main()
