@@ -11,7 +11,7 @@ import shutil
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
-from . import captions, content, render, tts, youtube
+from . import captions, content, render, tts, visuals, youtube
 from .util import ROOT, fail, load_json, log, save_json
 
 STATE = ROOT / "state" / "posted.json"
@@ -50,8 +50,12 @@ def produce(s: dict, index: int, cfg: dict) -> Path:
     ass = captions.build_ass(
         timeline, total, cfg["channel_name"], work / "captions.ass", v["width"], v["height"], s["title"]
     )
+    segs = []
+    if cfg.get("illustrations", True):
+        images = visuals.illustrate(s, work, seed_base=index * 100)
+        segs = visuals.segments(images, timeline, total)
     out = OUT / f"{s['id']}.mp4"
-    render.render(narration, ass, out, index, cfg, total)
+    render.render(narration, ass, out, index, cfg, total, segs)
     return out
 
 

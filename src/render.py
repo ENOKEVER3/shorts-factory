@@ -1,7 +1,7 @@
 """Compose the final vertical Short with ffmpeg only (no paid APIs).
 
 Background: procedurally generated animation (5 styles x 6 palettes, rotated).
-Overlay: progress bar + burned-in captions. Audio: narration + generated ambient pad.
+Overlay: per-sentence illustrations, progress bar + burned-in captions. Audio: narration + generated ambient pad.
 """
 from __future__ import annotations
 
@@ -52,7 +52,32 @@ def background_filter(style: int, pal: tuple[str, ...], d: float, w: int, h: int
     )
 
 
-def render(narration: Path, ass: Path, out: Path, index: int, cfg: dict, total: float) -> Path:
+CARD = 820          # illustration size (px)
+CARD_Y = 600        # top of the illustration card
+
+
+def illustration_chain(segs, pal: tuple[str, ...], fps: int, first_input: int = 1) -> tuple[str, str]:
+    """Filters that slide each illustration in with a slow zoom. Returns (filters, last label)."""
+    parts, last = [], "bg"
+    border = 10
+    for n, (_p, start, end) in enumerate(segs):
+        dur = end - start
+        frames = max(int(dur * fps), 2)
+        fade = min(0.3, dur / 4)
+        parts.append(
+            f"[{first_input + n}:v]scale=1024:1024:force_original_aspect_ratio=increase,crop=1024:1024,crop=900:900:62:62,"
+            f"zoompan=z='min(1.0+0.10*on/{frames},1.10)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':"
+            f"d={frames}:s={CARD}x{CARD}:fps={fps},pad={CARD + 2 * border}:{CARD + 2 * border}:{border}:{border}:{pal[2]},"
+            f"format=yuva420p,fade=t=in:st=0:d={fade:.2f}:alpha=1,fade=t=out:st={dur - fade:.2f}:d={fade:.2f}:alpha=1,"
+            f"setpts=PTS-STARTPTS+{start:.3f}/TB[im{n}]"
+        )
+        nxt = f"ov{n}"
+        parts.append(f"[{last}][im{n}]overlay=x=(W-w)/2:y={CARD_Y - border}:eof_action=pass[{nxt}]")
+        last = nxt
+    return ";".join(parts), last
+
+
+def render(narration: Path, ass: Path, out: Path, index: int, cfg: dict, total: float, segs=()) -> Path:
     v = cfg["video"]
     w, h, fps = v["width"], v["height"], v["fps"]
     pal = PALETTES[index % len(PALETTES)]
@@ -62,9 +87,10 @@ def render(narration: Path, ass: Path, out: Path, index: int, cfg: dict, total: 
         shutil.copytree(ROOT / "assets" / "fonts", fonts)
 
     bg = background_filter(index, pal, total, w, h, fps)
+    ill, base = illustration_chain(list(segs), pal, fps)
     vf = (
-        f"{bg}[bg];color=c={pal[2]}:s={w}x14:r={fps}:d={total:.2f}[bar];"
-        f"[bg][bar]overlay=x='-w+w*t/{total:.2f}':y=H-14:shortest=1,ass={ass.name}:fontsdir=fonts[v]"
+        f"{bg}[bg];{ill + ';' if ill else ''}color=c={pal[2]}:s={w}x14:r={fps}:d={total:.2f}[bar];"
+        f"[{base}][bar]overlay=x='-w+w*t/{total:.2f}':y=H-14:shortest=1,ass={ass.name}:fontsdir=fonts[v]"
     )
     if cfg.get("music", True):
         f1, f2, f3 = CHORDS[index % len(CHORDS)]
@@ -82,6 +108,7 @@ def render(narration: Path, ass: Path, out: Path, index: int, cfg: dict, total: 
     run(
         [
             "ffmpeg", "-y", "-v", "error", "-i", str(narration.resolve()),
+            *[a for p, _s, _e in segs for a in ("-i", str(Path(p).resolve()))],
             "-filter_complex", f"{vf};{pad}",
             "-map", "[v]", "-map", "[a]", "-t", f"{total:.2f}",
             "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p", "-r", str(fps),
