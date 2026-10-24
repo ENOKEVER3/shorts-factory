@@ -10,6 +10,10 @@ background).
 
 A script may include an optional "visuals" list (one short scene description per sentence).
 Otherwise the prompt is built from the title + sentence.
+
+Best quality: pre-generated scenes. If content/scenes/<script_id>/scene_01.png, scene_02.png, ...
+exist (made in the Illustration Studio on the guide site), they are used as-is and no online or
+local fallback runs for those sentences.
 """
 from __future__ import annotations
 
@@ -33,6 +37,21 @@ STYLE = (
 API = "https://image.pollinations.ai/prompt/"
 FREE_GAP = 47  # free tier: 1 image every 45 s per IP
 _last = [0.0]
+
+# Pre-generated scenes from the Illustration Studio (content/scenes/<script_id>/scene_01.png ...).
+SCENES_DIR = Path(__file__).resolve().parent.parent / "content" / "scenes"
+
+
+def _pregenerated(script_id: str, index: int) -> Path | None:
+    """Return the studio-made scene image for sentence `index`, if one was uploaded."""
+    if not script_id:
+        return None
+    folder = SCENES_DIR / script_id
+    for ext in ("png", "jpg", "jpeg", "webp"):
+        candidate = folder / f"scene_{index + 1:02d}.{ext}"
+        if candidate.exists():
+            return candidate
+    return None
 
 
 def build_prompt(title: str, sentence: str, visual: str | None = None) -> str:
@@ -139,10 +158,15 @@ def illustrate(script: dict, work: Path, seed_base: int) -> list[Path | None]:
     """Return one image path (or None on failure) per sentence."""
     visuals = script.get("visuals") or []
     out: list[Path | None] = []
-    ok = local = 0
+    ok = local = pre = 0
     for i, sentence in enumerate(script["sentences"]):
         visual = visuals[i] if i < len(visuals) else None
         dst = work / f"img_{i:02d}.jpg"
+        studio = _pregenerated(script.get("id", ""), i)
+        if studio and _valid_image(studio):
+            out.append(studio)
+            pre += 1
+            continue
         try:
             retry(lambda: _fetch(build_prompt(script["title"], sentence, visual), dst, seed_base + i),
                   attempts=3, base_delay=1, label=f"Illustration {i + 1}")
@@ -156,7 +180,7 @@ def illustrate(script: dict, work: Path, seed_base: int) -> list[Path | None]:
             except Exception as exc2:  # noqa: BLE001 - visuals are optional, never block a post
                 log(f"Illustration {i + 1} skipped: {exc2}")
                 out.append(None)
-    log(f"Illustrations: {ok}/{len(out)} online, {local} local scene cards")
+    log(f"Illustrations: {pre} studio scenes, {ok}/{len(out)} online, {local} local scene cards")
     return out
 
 
