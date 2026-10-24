@@ -1,6 +1,7 @@
 """Where scripts come from.
 
-1. content/scripts_v2.json - 59 searchable, evergreen scripts (AI tools how-to, AI explained, tech fixes), used first
+1. content/scripts_v3.json - 60 curiosity science/AI explainers + narrated AI fixes, used first
+   content/scripts_v2.json - 59 searchable, evergreen scripts (AI tools how-to, AI explained, tech fixes), used first
    content/scripts.json    - 62 original future-tech scripts, used after v2 runs out
 2. content/generated/    - scripts written by Gemini's free tier once the bank runs out (optional)
 """
@@ -13,6 +14,7 @@ import urllib.request
 
 from .util import ROOT, load_json, log, retry, save_json
 
+BANK_V3 = ROOT / "content" / "scripts_v3.json"
 BANK_V2 = ROOT / "content" / "scripts_v2.json"
 BANK = ROOT / "content" / "scripts.json"
 GENERATED = ROOT / "content" / "generated"
@@ -30,7 +32,7 @@ def _valid(s: dict) -> bool:
 
 
 def all_scripts() -> list[dict]:
-    scripts = list(load_json(BANK_V2, [])) + list(load_json(BANK, []))
+    scripts = list(load_json(BANK_V3, [])) + list(load_json(BANK_V2, [])) + list(load_json(BANK, []))
     for p in sorted(GENERATED.glob("*.json")):
         scripts.append(load_json(p))
     return scripts
