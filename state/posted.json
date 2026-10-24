@@ -1,4 +1,19 @@
 {
-  "campaign_start": null,
-  "posts": []
+  "campaign_start": "2026-10-24",
+  "posts": [
+    {
+      "date": "2026-10-24",
+      "slot": "manual",
+      "script_id": "s001-the-ai-that-solved-biology-s-50-year-puz",
+      "video_id": "Kg5e4yMXOWg",
+      "title": "The AI That Solved Biology's 50-Year Puzzle #Shorts"
+    },
+    {
+      "date": "2026-10-24",
+      "slot": "manual",
+      "script_id": "s001-the-ai-that-solved-biology-s-50-year-puz",
+      "video_id": "fA26sc5_MFs",
+      "title": "The AI That Solved Biology's 50-Year Puzzle #Shorts"
+    }
+  ]
 }
