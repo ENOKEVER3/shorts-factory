@@ -22,5 +22,23 @@ class SegmentsTest(unittest.TestCase):
         self.assertIn("no text", visuals.build_prompt("T", "A robot walks."))
 
 
+class LocalCardTest(unittest.TestCase):
+    def test_local_card_produces_valid_image(self):
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as tmp:
+            dst = Path(tmp) / "card.jpg"
+            visuals.local_card("A robot walks.", dst, seed=3)
+            self.assertTrue(visuals._valid_image(dst))
+
+    def test_local_card_is_deterministic_per_sentence(self):
+        import tempfile
+
+        with tempfile.TemporaryDirectory() as tmp:
+            a = visuals.local_card("Same sentence.", Path(tmp) / "a.jpg", seed=1)
+            b = visuals.local_card("Same sentence.", Path(tmp) / "b.jpg", seed=1)
+            self.assertEqual(a.read_bytes(), b.read_bytes())
+
+
 if __name__ == "__main__":
     unittest.main()
