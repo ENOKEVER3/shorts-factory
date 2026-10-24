@@ -18,13 +18,12 @@ def post(slot: str, when: datetime) -> dict:
 
 
 class ScheduleTests(unittest.TestCase):
-    def test_two_posting_windows(self):
-        self.assertEqual(main.current_slot(CFG, at(13))["name"], "afternoon")
-        self.assertEqual(main.current_slot(CFG, at(16))["name"], "afternoon")
-        self.assertEqual(main.current_slot(CFG, at(18, 44))["name"], "afternoon")  # late GitHub run
-        self.assertEqual(main.current_slot(CFG, at(19))["name"], "evening")
+    def test_two_peak_windows(self):
+        self.assertEqual(main.current_slot(CFG, at(17))["name"], "afternoon")
+        self.assertEqual(main.current_slot(CFG, at(19, 44))["name"], "afternoon")  # late GitHub run
         self.assertEqual(main.current_slot(CFG, at(22))["name"], "evening")
-        self.assertIsNone(main.current_slot(CFG, at(9)))
+        self.assertEqual(main.current_slot(CFG, at(23, 37))["name"], "evening")
+        self.assertIsNone(main.current_slot(CFG, at(13)))
 
     def test_two_per_day_for_30_days(self):
         self.assertEqual(CFG["max_posts_per_day"], 2)
@@ -32,26 +31,27 @@ class ScheduleTests(unittest.TestCase):
 
     def test_manual_test_uploads_do_not_block_schedule(self):
         posts = [{"date": "2026-01-01", "slot": "manual"}, {"date": "2026-01-01", "slot": "manual"}]
-        self.assertEqual(main.plan_post(CFG, posts, at(16))[0], "afternoon")
+        self.assertEqual(main.plan_post(CFG, posts, at(17))[0], "afternoon")
 
     def test_one_post_per_window(self):
-        posts = [post("afternoon", at(13, 20))]
-        self.assertIsNone(main.plan_post(CFG, posts, at(16))[0])
-        self.assertEqual(main.plan_post(CFG, posts, at(19))[0], "evening")
+        posts = [post("afternoon", at(17, 20))]
+        self.assertIsNone(main.plan_post(CFG, posts, at(18, 37))[0])
+        self.assertEqual(main.plan_post(CFG, posts, at(22))[0], "evening")
 
     def test_never_more_than_two_scheduled_per_day(self):
-        posts = [post("afternoon", at(13, 20)), post("evening", at(19, 20))]
-        self.assertIsNone(main.plan_post(CFG, posts, at(22))[0])
+        posts = [post("afternoon", at(17, 20)), post("evening", at(22, 20))]
+        self.assertIsNone(main.plan_post(CFG, posts, at(23, 37))[0])
 
     def test_catch_up_when_afternoon_run_was_dropped(self):
-        first = main.plan_post(CFG, [], at(20, 37))[0]
+        first = main.plan_post(CFG, [], at(22, 7))[0]
         self.assertIsNotNone(first)
-        posts = [post(first, at(20, 45))]
-        self.assertIsNone(main.plan_post(CFG, posts, at(21, 0))[0])  # too soon after the last one
-        self.assertIsNotNone(main.plan_post(CFG, posts, at(22, 7))[0])
+        posts = [post(first, at(22, 15))]
+        self.assertIsNone(main.plan_post(CFG, posts, at(22, 37))[0])  # too soon after the last one
+        self.assertIsNotNone(main.plan_post(CFG, posts, at(23, 7))[0])
 
-    def test_skips_outside_windows(self):
-        self.assertIsNone(main.plan_post(CFG, [], at(9))[0])
+    def test_never_same_script_twice(self):
+        used = {s["id"] for s in content.all_scripts()[:5]}
+        self.assertNotIn(content.next_script(used, CFG)["id"], used)
 
     def test_bank_covers_full_campaign(self):
         scripts = content.all_scripts()

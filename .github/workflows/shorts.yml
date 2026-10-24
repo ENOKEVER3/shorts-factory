@@ -6,14 +6,16 @@ on:
     # GitHub often starts scheduled runs late or drops them, so each window gets
     # several runs. Extra runs exit in ~30 s if nothing is due, and a later run
     # catches up on a Short that an earlier dropped run missed.
-    - cron: "7 13 * * *"   # afternoon slot
-    - cron: "37 14 * * *"  # afternoon retry
-    - cron: "7 16 * * *"   # afternoon retry
-    - cron: "37 17 * * *"  # afternoon retry
-    - cron: "7 19 * * *"   # evening slot
-    - cron: "37 20 * * *"  # evening retry / catch-up
-    - cron: "7 22 * * *"   # evening retry / catch-up
-    - cron: "17 23 * * *"  # last retry / catch-up
+    # Peak hours for an English AI/tech audience (mostly US + Europe):
+    # ~1 p.m. and ~6 p.m. New York = 6 p.m. and 11 p.m. Lagos.
+    - cron: "7 17 * * *"   # afternoon peak slot
+    - cron: "52 17 * * *"  # afternoon retry
+    - cron: "37 18 * * *"  # afternoon retry
+    - cron: "37 19 * * *"  # afternoon retry
+    - cron: "7 22 * * *"   # evening peak slot
+    - cron: "37 22 * * *"  # evening retry / catch-up
+    - cron: "7 23 * * *"   # evening retry / catch-up
+    - cron: "37 23 * * *"  # last retry / catch-up
   workflow_dispatch:
     inputs:
       dry_run:

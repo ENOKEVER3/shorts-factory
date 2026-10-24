@@ -3,8 +3,8 @@
   "campaign_days": 30,
   "max_posts_per_day": 2,
   "slots_utc": [
-    { "name": "afternoon", "start_hour": 12, "end_hour": 19 },
-    { "name": "evening", "start_hour": 19, "end_hour": 24 }
+    { "name": "afternoon", "start_hour": 16, "end_hour": 21 },
+    { "name": "evening", "start_hour": 21, "end_hour": 24 }
   ],
   "min_gap_minutes": 45,
   "privacy_status": "public",
