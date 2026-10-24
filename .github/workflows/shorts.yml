@@ -3,12 +3,17 @@ name: Shorts Factory
 on:
   schedule:
     # Times are UTC. Two posting windows (see config.json "slots_utc").
-    # Each window gets two runs: the second one is an automatic retry and
-    # exits in seconds if the first one already published.
+    # GitHub often starts scheduled runs late or drops them, so each window gets
+    # several runs. Extra runs exit in ~30 s if nothing is due, and a later run
+    # catches up on a Short that an earlier dropped run missed.
     - cron: "7 13 * * *"   # afternoon slot
+    - cron: "37 14 * * *"  # afternoon retry
     - cron: "7 16 * * *"   # afternoon retry
+    - cron: "37 17 * * *"  # afternoon retry
     - cron: "7 19 * * *"   # evening slot
-    - cron: "7 22 * * *"   # evening retry
+    - cron: "37 20 * * *"  # evening retry / catch-up
+    - cron: "7 22 * * *"   # evening retry / catch-up
+    - cron: "17 23 * * *"  # last retry / catch-up
   workflow_dispatch:
     inputs:
       dry_run:

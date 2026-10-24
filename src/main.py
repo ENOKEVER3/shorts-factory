@@ -33,6 +33,42 @@ def current_slot(cfg: dict, now: datetime) -> dict | None:
     return None
 
 
+def _uploaded_at(p: dict) -> datetime | None:
+    try:
+        return datetime.fromisoformat(p["uploaded_at"])
+    except (KeyError, TypeError, ValueError):
+        return None
+
+
+def plan_post(cfg: dict, posts: list[dict], now: datetime) -> tuple[str | None, str]:
+    """Decide whether a scheduled run should post. Returns (slot_name, reason); slot_name None = skip.
+
+    - Only scheduled posts count toward the daily limit. Manual/forced test uploads ("manual") never
+      block the schedule.
+    - Catch-up: if GitHub dropped or delayed an earlier window's run, a later run the same day posts
+      the missed Short, so one missed run never costs a day's post.
+    - Posts are kept at least `min_gap_minutes` apart so catch-ups don't land back to back.
+    """
+    today = now.date().isoformat()
+    scheduled = [p for p in posts if p.get("date") == today and p.get("slot") != "manual"]
+    slots = cfg["slots_utc"]
+    if current_slot(cfg, now) is None:
+        return None, f"{now:%H:%M} UTC is outside the posting windows. Skipping."
+    if len(scheduled) >= cfg["max_posts_per_day"]:
+        return None, f"Daily limit of {cfg['max_posts_per_day']} reached. Skipping."
+    due = sum(1 for s in slots if s["start_hour"] <= now.hour)
+    if len(scheduled) >= due:
+        return None, "This window's Short is already live today. Skipping."
+    gap = cfg.get("min_gap_minutes", 45)
+    times = [t for t in (_uploaded_at(p) for p in scheduled) if t]
+    if times and (now - max(times)).total_seconds() < gap * 60:
+        return None, f"Last Short went up less than {gap} min ago. The next run will post the catch-up."
+    taken = {p["slot"] for p in scheduled}
+    name = next((s["name"] for s in slots if s["start_hour"] <= now.hour and s["name"] not in taken),
+                slots[len(scheduled)]["name"])
+    return name, f"Posting the '{name}' Short."
+
+
 def build_description(s: dict, cfg: dict) -> str:
     hashtags = " ".join(dict.fromkeys(["#Shorts", *s.get("hashtags", [])]))
     return f"{' '.join(s['sentences'])}\n\n{cfg['description_footer']}\n\n{hashtags}"
@@ -73,20 +109,14 @@ def main() -> None:
             summary(f"Campaign finished ({cfg['campaign_days']} days from {state['campaign_start']}). Nothing to do.")
             return
 
-    # 2. Posting window + daily cap (the extra cron runs act as automatic retries)
-    posted_today = [p for p in state["posts"] if p["date"] == today]
-    slot = current_slot(cfg, now)
-    slot_name = slot["name"] if slot else "manual"
+    # 2. Posting window + daily cap + catch-up (the extra cron runs act as automatic retries)
+    slot_name = "manual"
     if not force and not dry:
-        if slot is None:
-            summary(f"{now:%H:%M} UTC is outside the posting windows. Skipping.")
+        slot_name, reason = plan_post(cfg, state["posts"], now)
+        if slot_name is None:
+            summary(reason)
             return
-        if any(p["slot"] == slot_name for p in posted_today):
-            summary(f"The '{slot_name}' Short is already live today. Skipping.")
-            return
-    if len(posted_today) >= cfg["max_posts_per_day"] and not dry:
-        summary(f"Daily limit of {cfg['max_posts_per_day']} reached. Skipping.")
-        return
+        log(reason)
 
     # 3. Pick a script
     used = {p["script_id"] for p in state["posts"]}
