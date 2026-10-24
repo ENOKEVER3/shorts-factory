@@ -5,7 +5,7 @@ After setup it runs on GitHub's servers. Your computer can stay off.
 
 ```
 GitHub Actions (8 short check-ins/day, UTC; 2 of them post)
-   -> pick next script (62 pre-written, optional Gemini free tier after that)
+   -> pick next script (121 pre-written: searchable how-tos, explainers and tech fixes first; optional Gemini free tier after that)
    -> AI voice (edge-tts, falls back to offline Piper voice)
    -> animated background (ffmpeg, 5 styles x 6 palettes, nothing downloaded)
    -> one AI illustration per sentence (studio-made scenes if uploaded, else Pollinations.ai free tier)
@@ -27,7 +27,7 @@ GitHub Actions (8 short check-ins/day, UTC; 2 of them post)
 | GitHub Actions minutes | Public repo: unlimited. Private repo: 2,000 min/month. | Each run is ~2-4 min to make a video, ~30 s when there's nothing to do. ~650 min/month in total (with illustrations). Fits either way. |
 | GitHub scheduled runs | Can start 5-60+ min late at busy times, and are sometimes skipped entirely. Turned off after 60 days without repo activity. | Every window has several runs, and a later run catches up on a missed Short. Each post commits to the repo, so it stays active. |
 | edge-tts voice | Free, no key, but an **unofficial** Microsoft endpoint. It can break or be blocked without warning. | The system automatically falls back to Piper, a free offline voice. It sounds a bit less natural. |
-| Gemini API (optional) | Free tier with per-minute and per-day request limits. Google changes these often. | Only used after the 62 built-in scripts run out. One request per video is far below the limits. |
+| Gemini API (optional) | Free tier with per-minute and per-day request limits. Google changes these often. | Only used after the 121 built-in scripts run out. One request per video is far below the limits. |
 | Pollinations.ai images | Free, no key, **1 image every 45 s**. Unofficial service that can change or stop, and shared GitHub runners are often throttled. | One picture per sentence, so each video takes ~6-7 extra minutes (~420 min/month extra, still under GitHub's private-repo limit). If the online picture fails, a locally drawn scene card (retro-futuristic grid + constellation art, different for every sentence) is used instead, so every video always has illustrations. Turn off with `"illustrations": false` in config.json. |
 | Illustration Studio scenes (optional) | Made on the guide site with Lovable AI; uses workspace credits, not free-tier. | Best-looking option. Generate one scene per sentence on the site's Illustration Studio page, download the ZIP, and upload the images to `content/scenes/<script_id>/` (named `scene_01.png`, `scene_02.png`, ...). The pipeline uses them as-is and skips the online/local fallbacks for those sentences. |
 | Artifacts | Rendered videos are kept for 7 days. | Download any video from the run page if you want a copy. |
@@ -83,7 +83,7 @@ In GitHub: **repo -> Settings -> Secrets and variables -> Actions -> New reposit
 | `YT_CLIENT_ID` | printed value |
 | `YT_CLIENT_SECRET` | printed value |
 | `YT_REFRESH_TOKEN` | printed value |
-| `GEMINI_API_KEY` | *(optional)* free key from aistudio.google.com. Only needed past 62 videos. |
+| `GEMINI_API_KEY` | *(optional)* free key from aistudio.google.com. Only needed past 121 videos. |
 
 Delete `client_secret.json` from your Downloads folder afterwards.
 
