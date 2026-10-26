@@ -18,7 +18,9 @@ local fallback runs for those sentences.
 from __future__ import annotations
 
 import hashlib
+import json
 import math
+import os
 import random
 import re
 import subprocess
@@ -154,19 +156,163 @@ def local_card(sentence: str, dst: Path, seed: int, size: int = 1024) -> Path:
     return dst
 
 
-def illustrate(script: dict, work: Path, seed_base: int) -> list[Path | None]:
-    """Return one image path (or None on failure) per sentence."""
-    visuals = script.get("visuals") or []
+# --- Scene plan: what to show for each sentence ---
+
+PLAN_PROMPT = (
+    "You plan the on-screen picture for each sentence of a YouTube Short narration. For EVERY sentence, in "
+    'order, return {"visual": 15-35 words describing exactly what the viewer should SEE (specific object, place, '
+    "action and framing that matches the sentence's meaning; concrete metaphor if abstract; never text, words, "
+    'numbers, logos or UI labels), "photo": "nasa" for space/planets/rockets/astronauts, "stock" for ordinary '
+    'real-world things a stock photo library has, or "none" when only an illustration can show it, "query": 2-4 '
+    'plain search words or "" when photo is "none"}. Return ONLY JSON {"scenes": [...]} with one item per sentence.'
+)
+
+
+def _gemini_plan(script: dict, cfg: dict | None) -> list[dict] | None:
+    key = os.environ.get("GEMINI_API_KEY")
+    if not key:
+        return None
+    model = (cfg or {}).get("gemini_model", "gemini-2.5-flash")
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
+    text = PLAN_PROMPT + "\n" + json.dumps({"title": script["title"], "sentences": script["sentences"]})
+    payload = {"contents": [{"parts": [{"text": text}]}], "generationConfig": {"responseMimeType": "application/json"}}
+    req = urllib.request.Request(url, json.dumps(payload).encode(),
+                                 {"Content-Type": "application/json", "x-goog-api-key": key})
+    try:
+        with urllib.request.urlopen(req, timeout=60) as r:
+            data = json.loads(r.read())
+        scenes = json.loads(data["candidates"][0]["content"]["parts"][0]["text"])["scenes"]
+        if len(scenes) != len(script["sentences"]):
+            raise ValueError("wrong number of scenes")
+        return scenes
+    except Exception as exc:  # noqa: BLE001 - planning is best-effort
+        log(f"Scene plan from Gemini failed ({exc}); using sentence text for pictures")
+        return None
+
+
+def scene_plan(script: dict, cfg: dict | None = None) -> list[tuple[str | None, dict | None]]:
+    """(visual description, photo search) for every sentence. Uses the plan stored in the script
+    (written for the built-in bank), else asks Gemini's free tier if GEMINI_API_KEY is set."""
+    n = len(script["sentences"])
+    visuals, photos = script.get("visuals") or [], script.get("photos") or []
+    if not visuals:
+        scenes = _gemini_plan(script, cfg)
+        if scenes:
+            visuals = [str(s.get("visual", "")).strip() or None for s in scenes]
+            photos = [{"source": s.get("photo"), "query": str(s.get("query", "")).strip()}
+                      if s.get("photo") in ("nasa", "stock") and str(s.get("query", "")).strip() else None
+                      for s in scenes]
+    return [(visuals[i] if i < len(visuals) else None, photos[i] if i < len(photos) else None) for i in range(n)]
+
+
+# --- Free, licence-safe real photos ---
+# NASA: public-domain space imagery, no key. Pexels / Pixabay: free licences (commercial use OK,
+# no attribution required, we credit anyway), need a free API key as a GitHub secret.
+# Never Google Images or Shutterstock results: those are copyrighted or paid.
+
+UA = {"User-Agent": "shorts-factory/1.0 (+https://github.com)"}
+
+
+def _get_json(url: str, headers: dict | None = None) -> dict:
+    req = urllib.request.Request(url, headers={**UA, **(headers or {})})
+    with urllib.request.urlopen(req, timeout=30) as r:
+        return json.loads(r.read())
+
+
+NASA_SKIP = re.compile(
+    r"logo|patch|insignia|poster|chart|graph|diagram|model|plot|spectrum|event|prize|ceremony|award|meeting|"
+    r"briefing|conference|team|portrait|official|visit|students?|workshop|exhibit|signing|press|tour|"
+    r"practice|training|finds|rhythm|virtual|mockup|testing|hearing|data", re.I)
+_STOP = {"in", "of", "the", "a", "an", "and", "on", "from", "with", "to", "at", "for"}
+
+
+def _nasa(query: str) -> list[tuple[str, str]]:
+    """Public-domain NASA images whose title matches the query; skips charts, events and logos."""
+    data = _get_json("https://images-api.nasa.gov/search?" + urllib.parse.urlencode({"q": query, "media_type": "image"}))
+    words = [w for w in re.findall(r"[a-z]+", query.lower()) if w not in _STOP]
+    scored = []
+    for item in data["collection"]["items"][:40]:
+        meta, links = item["data"][0], item.get("links") or []
+        title = meta.get("title", "")
+        text = (title + " " + " ".join(meta.get("keywords") or [])).lower()
+        if not links or NASA_SKIP.search(title + " " + " ".join(meta.get("keywords") or [])):
+            continue
+        hits = sum(1 for w in words if w in text)
+        if hits == 0:
+            continue
+        href = links[0]["href"].replace("~thumb", "~medium").replace("~small", "~medium")
+        scored.append((hits, href, f"\"{title[:80]}\" - NASA (public domain)"))
+    scored.sort(key=lambda x: -x[0])
+    return [(h, c) for _n, h, c in scored]
+
+
+def _pexels(query: str) -> list[tuple[str, str]]:
+    key = os.environ.get("PEXELS_API_KEY")
+    if not key:
+        return []
+    data = _get_json("https://api.pexels.com/v1/search?" + urllib.parse.urlencode(
+        {"query": query, "per_page": 10, "orientation": "square"}), {"Authorization": key})
+    return [(p["src"]["large"], f"Photo by {p['photographer']} on Pexels") for p in data.get("photos", [])]
+
+
+def _pixabay(query: str) -> list[tuple[str, str]]:
+    key = os.environ.get("PIXABAY_API_KEY")
+    if not key:
+        return []
+    data = _get_json("https://pixabay.com/api/?" + urllib.parse.urlencode(
+        {"key": key, "q": query, "image_type": "photo", "safesearch": "true", "per_page": 10}))
+    return [(h["largeImageURL"], f"Image by {h['user']} on Pixabay") for h in data.get("hits", [])]
+
+
+def find_photo(photo: dict, dst: Path, used: set[str]) -> str | None:
+    """Download the best free photo for this sentence. Returns the credit line, or None."""
+    sources = [_nasa] if photo.get("source") == "nasa" else []
+    sources += [_pexels, _pixabay]
+    for source in sources:
+        try:
+            results = source(photo["query"])
+        except Exception as exc:  # noqa: BLE001
+            log(f"Photo search {source.__name__} failed ({exc})")
+            continue
+        for url, credit in results:
+            if url in used:
+                continue  # never show the same photo twice in one video
+            try:
+                with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=45) as r:
+                    dst.write_bytes(r.read())
+            except Exception:  # noqa: BLE001
+                continue
+            if _valid_image(dst):
+                used.add(url)
+                return credit
+            dst.unlink(missing_ok=True)
+    return None
+
+
+def illustrate(script: dict, work: Path, seed_base: int, cfg: dict | None = None) -> list[Path | None]:
+    """Return one image path (or None on failure) per sentence. Order of preference:
+    studio scene -> real free photo (when the plan says a photo fits) -> AI illustration of the
+    planned scene -> local scene card. Photo credits are stored in script["_credits"]."""
+    plan = scene_plan(script, cfg)
     out: list[Path | None] = []
-    ok = local = pre = 0
+    credits: list[str] = []
+    used: set[str] = set()
+    ok = local = pre = photos = 0
     for i, sentence in enumerate(script["sentences"]):
-        visual = visuals[i] if i < len(visuals) else None
+        visual, photo = plan[i]
         dst = work / f"img_{i:02d}.jpg"
         studio = _pregenerated(script.get("id", ""), i)
         if studio and _valid_image(studio):
             out.append(studio)
             pre += 1
             continue
+        if photo and photo.get("query"):
+            credit = find_photo(photo, dst, used)
+            if credit:
+                out.append(dst)
+                credits.append(credit)
+                photos += 1
+                continue
         try:
             retry(lambda: _fetch(build_prompt(script["title"], sentence, visual), dst, seed_base + i),
                   attempts=3, base_delay=1, label=f"Illustration {i + 1}")
@@ -180,7 +326,9 @@ def illustrate(script: dict, work: Path, seed_base: int) -> list[Path | None]:
             except Exception as exc2:  # noqa: BLE001 - visuals are optional, never block a post
                 log(f"Illustration {i + 1} skipped: {exc2}")
                 out.append(None)
-    log(f"Illustrations: {pre} studio scenes, {ok}/{len(out)} online, {local} local scene cards")
+    script["_credits"] = list(dict.fromkeys(credits))
+    log(f"Pictures: {pre} studio scenes, {photos} real photos, {ok} AI illustrations, {local} local cards "
+        f"(scene plan: {'yes' if any(v for v, _ in plan) else 'no'})")
     return out
 
 
