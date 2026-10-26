@@ -26,9 +26,23 @@ def summary(md: str) -> None:
     log(md.replace("\n", " "))
 
 
+def posting_day(cfg: dict, now: datetime) -> tuple[str, float]:
+    """Return (posting-day date, hour within that day).
+
+    GitHub often starts scheduled runs 1-3 hours late, so the evening window runs past midnight UTC.
+    Runs before `day_rollover_hour_utc` still belong to the previous posting day, and their hour is
+    reported as 24+ (e.g. 01:30 UTC -> 25.5) so slots like 21-28 work.
+    """
+    rollover = int(cfg.get("day_rollover_hour_utc", 0))
+    shifted = now - timedelta(hours=rollover)
+    hour = shifted.hour + shifted.minute / 60 + rollover
+    return shifted.date().isoformat(), hour
+
+
 def current_slot(cfg: dict, now: datetime) -> dict | None:
+    _, hour = posting_day(cfg, now)
     for slot in cfg["slots_utc"]:
-        if slot["start_hour"] <= now.hour < slot["end_hour"]:
+        if slot["start_hour"] <= hour < slot["end_hour"]:
             return slot
     return None
 
@@ -49,14 +63,14 @@ def plan_post(cfg: dict, posts: list[dict], now: datetime) -> tuple[str | None, 
       the missed Short, so one missed run never costs a day's post.
     - Posts are kept at least `min_gap_minutes` apart so catch-ups don't land back to back.
     """
-    today = now.date().isoformat()
+    today, hour = posting_day(cfg, now)
     scheduled = [p for p in posts if p.get("date") == today and p.get("slot") != "manual"]
     slots = cfg["slots_utc"]
     if current_slot(cfg, now) is None:
         return None, f"{now:%H:%M} UTC is outside the posting windows. Skipping."
     if len(scheduled) >= cfg["max_posts_per_day"]:
         return None, f"Daily limit of {cfg['max_posts_per_day']} reached. Skipping."
-    due = sum(1 for s in slots if s["start_hour"] <= now.hour)
+    due = sum(1 for s in slots if s["start_hour"] <= hour)
     if len(scheduled) >= due:
         return None, "This window's Short is already live today. Skipping."
     gap = cfg.get("min_gap_minutes", 45)
@@ -64,7 +78,7 @@ def plan_post(cfg: dict, posts: list[dict], now: datetime) -> tuple[str | None, 
     if times and (now - max(times)).total_seconds() < gap * 60:
         return None, f"Last Short went up less than {gap} min ago. The next run will post the catch-up."
     taken = {p["slot"] for p in scheduled}
-    name = next((s["name"] for s in slots if s["start_hour"] <= now.hour and s["name"] not in taken),
+    name = next((s["name"] for s in slots if s["start_hour"] <= hour and s["name"] not in taken),
                 slots[len(scheduled)]["name"])
     return name, f"Posting the '{name}' Short."
 
@@ -100,12 +114,12 @@ def main() -> None:
     state = load_json(STATE, {"campaign_start": None, "posts": []})
     dry, force = os.environ.get("DRY_RUN") == "1", os.environ.get("FORCE") == "1"
     now = datetime.now(timezone.utc)
-    today = now.date().isoformat()
+    today, _ = posting_day(cfg, now)
 
     # 1. Campaign window (starts on the first successful upload)
     if state["campaign_start"] and not dry:
         end = date.fromisoformat(state["campaign_start"]) + timedelta(days=cfg["campaign_days"])
-        if now.date() >= end:
+        if date.fromisoformat(today) >= end:
             summary(f"Campaign finished ({cfg['campaign_days']} days from {state['campaign_start']}). Nothing to do.")
             return
 
