@@ -85,7 +85,9 @@ def plan_post(cfg: dict, posts: list[dict], now: datetime) -> tuple[str | None, 
 
 def build_description(s: dict, cfg: dict) -> str:
     hashtags = " ".join(dict.fromkeys(["#Shorts", *s.get("hashtags", [])]))
-    return f"{' '.join(s['sentences'])}\n\n{cfg['description_footer']}\n\n{hashtags}"
+    credits = s.get("_credits") or []
+    credit_block = ("\n\nPhoto credits:\n" + "\n".join(f"- {c}" for c in credits)) if credits else ""
+    return f"{' '.join(s['sentences'])}\n\n{cfg['description_footer']}{credit_block}\n\n{hashtags}"
 
 
 def produce(s: dict, index: int, cfg: dict) -> Path:
@@ -102,7 +104,7 @@ def produce(s: dict, index: int, cfg: dict) -> Path:
     )
     segs = []
     if cfg.get("illustrations", True):
-        images = visuals.illustrate(s, work, seed_base=index * 100)
+        images = visuals.illustrate(s, work, seed_base=index * 100, cfg=cfg)
         segs = visuals.segments(images, timeline, total)
     out = OUT / f"{s['id']}.mp4"
     render.render(narration, ass, out, index, cfg, total, segs)
