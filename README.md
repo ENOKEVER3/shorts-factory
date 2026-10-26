@@ -4,7 +4,7 @@ Makes and publishes **2 original YouTube Shorts a day for 30 days** using only f
 After setup it runs on GitHub's servers. Your computer can stay off.
 
 ```
-GitHub Actions (8 short check-ins/day, UTC; 2 of them post)
+GitHub Actions (15 short check-ins/day, UTC; 2 of them post)
    -> pick next script (121 pre-written: searchable how-tos, explainers and tech fixes first; optional Gemini free tier after that)
    -> AI voice (edge-tts, falls back to offline Piper voice)
    -> animated background (ffmpeg, 5 styles x 6 palettes, nothing downloaded)
@@ -24,7 +24,7 @@ GitHub Actions (8 short check-ins/day, UTC; 2 of them post)
 | YouTube API quota | 10,000 units/day. One upload = 1,600 units (+1 for the channel check). | Max ~6 uploads/day. This system uses 2 (about 3,200 units). |
 | Unverified-channel upload cap | Channels that aren't phone-verified have lower daily upload limits. | Verify your channel by phone at youtube.com/verify. |
 | OAuth refresh token | Expires after **7 days** if the Google app is left in "Testing". | You **must** switch it to "In production" (step 3). Then it lasts until you revoke it, change your password, or leave it unused for 6 months. |
-| GitHub Actions minutes | Public repo: unlimited. Private repo: 2,000 min/month. | Each run is ~2-4 min to make a video, ~30 s when there's nothing to do. ~650 min/month in total (with illustrations). Fits either way. |
+| GitHub Actions minutes | Public repo: unlimited. Private repo: 2,000 min/month. | Each run is ~2-4 min to make a video, ~30 s when there's nothing to do. ~700 min/month in total (with illustrations). Fits either way. |
 | GitHub scheduled runs | Can start 5-60+ min late at busy times, and are sometimes skipped entirely. Turned off after 60 days without repo activity. | Every window has several runs, and a later run catches up on a missed Short. Each post commits to the repo, so it stays active. |
 | edge-tts voice | Free, no key, but an **unofficial** Microsoft endpoint. It can break or be blocked without warning. | The system automatically falls back to Piper, a free offline voice. It sounds a bit less natural. |
 | Gemini API (optional) | Free tier with per-minute and per-day request limits. Google changes these often. | Only used after the 121 built-in scripts run out. One request per video is far below the limits. |
@@ -114,12 +114,14 @@ That's it. The schedule (UTC) is in `.github/workflows/shorts.yml`:
 
 | Window | UTC | Lagos (WAT) | Runs (UTC) |
 |---|---|---|---|
-| Afternoon Short (peak) | 16:00-21:00 | 17:00-22:00 | 17:07, 17:52, 18:37, 19:37 |
-| Evening Short (peak) | 21:00-24:00 | 22:00-01:00 | 22:07, 22:37, 23:07, 23:37 |
+| Afternoon Short (peak) | 16:00-21:00 | 17:00-22:00 | 14:37, 15:37 (early, in case GitHub is late), 16:17, 17:07, 17:52, 18:37, 19:37 |
+| Evening Short (peak) | 21:00-04:00 next day | 22:00-05:00 | 20:07 (early), 21:07, 21:52, 22:37, 23:22, 00:17, 01:17, 02:17 |
 
-GitHub often starts scheduled runs late or skips them at busy times, so each window has several runs. Runs with
-nothing to do finish in ~30 s. If every afternoon run was dropped, an evening run posts the missed Short too
-(at least 45 min apart). Manual test uploads (`force`) never count toward the 2-a-day schedule.
+GitHub often starts scheduled runs 1-3 hours late or skips them at busy times, so each window has many runs.
+Runs that arrive before a window opens, or when nothing is due, finish in ~30 s. The evening window stays open until
+04:00 UTC, so evening runs GitHub delays past midnight still post that day's Short (`day_rollover_hour_utc` in
+`config.json`). If every afternoon run was dropped, the evening runs post the missed Short too (at least 45 min
+apart). Manual test uploads (`force`) never count toward the 2-a-day schedule.
 
 After 30 days from the first upload, it stops by itself.
 To get failure emails, open GitHub **Settings -> Notifications -> Actions** and choose **Only notify for failed workflows**.
@@ -131,7 +133,7 @@ To get failure emails, open GitHub **Settings -> Notifications -> Actions** and 
 - Voice: 3 tries per sentence, then an automatic switch to the offline Piper voice.
 - Upload: resumable upload with up to 8 retries and exponential backoff for network errors and Google 5xx errors.
 - Quota or daily-limit errors: the run stops cleanly, and the next scheduled run tries again.
-- Missed window: a later run in the same window posts it; if the whole afternoon window was dropped, the evening runs catch up. Never more than 2 scheduled Shorts a day.
+- Missed window: a later run in the same window posts it; if the whole afternoon window was dropped, the evening runs catch up, even when GitHub delays them past midnight. Never more than 2 scheduled Shorts a day.
 - No duplicates: each upload is written to `state/posted.json` **immediately** and committed with 5 push retries.
 - Credentials are checked **before** rendering, so a bad token fails fast with a clear message.
 - Videos are flagged `containsSyntheticMedia` (AI disclosure) and `madeForKids: false`.
