@@ -22,6 +22,32 @@ class SegmentsTest(unittest.TestCase):
         self.assertIn("no text", visuals.build_prompt("T", "A robot walks."))
 
 
+class ScenePlanTest(unittest.TestCase):
+    def test_stored_plan_is_used_per_sentence(self):
+        script = {"title": "T", "sentences": ["A.", "B."], "visuals": ["a black hole"],
+                  "photos": [{"source": "nasa", "query": "black hole"}]}
+        plan = visuals.scene_plan(script)
+        self.assertEqual(plan[0], ("a black hole", {"source": "nasa", "query": "black hole"}))
+        self.assertEqual(plan[1], (None, None))
+
+    def test_planned_visual_drives_ai_prompt(self):
+        self.assertTrue(visuals.build_prompt("T", "It does not suck things in.", "Earth orbiting a black hole")
+                        .startswith("Earth orbiting a black hole"))
+
+    def test_photo_credits_reach_description(self):
+        from src import main
+        cfg = {"description_footer": "F"}
+        s = {"sentences": ["A."], "hashtags": [], "_credits": ["Photo by X on Pexels"]}
+        self.assertIn("Photo by X on Pexels", main.build_description(s, cfg))
+
+    def test_no_stock_keys_means_no_stock_photo(self):
+        import os
+        for k in ("PEXELS_API_KEY", "PIXABAY_API_KEY"):
+            os.environ.pop(k, None)
+        self.assertEqual(visuals._pexels("cat"), [])
+        self.assertEqual(visuals._pixabay("cat"), [])
+
+
 class LocalCardTest(unittest.TestCase):
     def test_local_card_produces_valid_image(self):
         import tempfile
