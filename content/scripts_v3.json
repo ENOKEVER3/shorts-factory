@@ -23,6 +23,38 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
+    ],
+    "visuals": [
+      "A dramatic split space scene showing a dark gravitational sphere pulling light, contrasted against the distant blue sphere of planet Earth suspended in deep cosmic void.",
+      "A wide solar system perspective showing a compact black singularity resting at the center where the glowing sun normally resides, surrounded by distant planets.",
+      "A 3D orbital plane visualization showing a curved blue trajectory line where planet Earth continues its smooth elliptical loop around a small central black hole.",
+      "High-resolution view of planet Earth floating peacefully against a dense field of distant shining stars in deep space, slowly rotating on its axis.",
+      "Satellite perspective of Earth's surface rapidly freezing over, with deep blue oceans turning into jagged sheets of white pack ice under dim, starlit skies.",
+      "High-detail telescope view of a swirling luminous accretion disk bending brilliant orange and red light around the pitch-black shadow of an event horizon.",
+      "Extreme close-up telescopic photograph of the boiling yellow surface of the Sun, with fiery magnetic plasma loops and glowing solar flares erupting outward.",
+      "A male astronomer standing beside a giant optical telescope inside a domed observatory at night, looking up through the open roof toward starry skies."
+    ],
+    "photos": [
+      null,
+      null,
+      null,
+      {
+        "source": "nasa",
+        "query": "earth in space"
+      },
+      null,
+      {
+        "source": "nasa",
+        "query": "black hole accretion"
+      },
+      {
+        "source": "nasa",
+        "query": "sun solar flares"
+      },
+      {
+        "source": "stock",
+        "query": "astronomer telescope observatory"
+      }
     ]
   },
   {
@@ -49,6 +81,50 @@
       "#AI",
       "#AITips",
       "#Seunenoch"
+    ],
+    "visuals": [
+      "A person sitting at a modern desk staring with wide eyes and hesitation at an open laptop displaying a glowing generic interface.",
+      "Close-up of a person's hands tapping on a smartphone screen resting on a clean minimalist desk next to a paper notebook.",
+      "Overhead view of a wooden workspace featuring an organized paper folder on one side and a glowing tablet computer on the other.",
+      "A person carefully plugging a silver USB flash drive into the side port of a modern laptop while pausing over the keyboard.",
+      "A professional wearing glasses sitting at a brightly lit workspace, looking closely at a tablet screen while resting their chin on their hand.",
+      "A person neatly sliding a clean document folder into an organized metallic filing cabinet drawer beneath a modern wooden desk.",
+      "Close-up shot of a human finger hovering cautiously over a small red mechanical button on a sleek desk without pressing down.",
+      "A young content creator in a casual shirt sitting in front of a warm studio desk setup, smiling directly toward the camera."
+    ],
+    "photos": [
+      {
+        "source": "stock",
+        "query": "person staring laptop"
+      },
+      {
+        "source": "stock",
+        "query": "hands tapping smartphone"
+      },
+      {
+        "source": "stock",
+        "query": "desk paper tablet"
+      },
+      {
+        "source": "stock",
+        "query": "inserting usb laptop"
+      },
+      {
+        "source": "stock",
+        "query": "person studying tablet"
+      },
+      {
+        "source": "stock",
+        "query": "filing document cabinet"
+      },
+      {
+        "source": "stock",
+        "query": "finger hovering button"
+      },
+      {
+        "source": "stock",
+        "query": "creator speaking camera"
+      }
     ]
   },
   {
