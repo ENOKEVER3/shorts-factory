@@ -49,6 +49,29 @@ class ScheduleTests(unittest.TestCase):
         self.assertIsNone(main.plan_post(CFG, posts, at(22, 37))[0])  # too soon after the last one
         self.assertIsNotNone(main.plan_post(CFG, posts, at(23, 7))[0])
 
+    def test_late_runs_after_midnight_count_for_previous_day(self):
+        # GitHub ran the evening check-ins ~2 h late (after 00:00 UTC): they must still post.
+        afternoon = post("afternoon", at(19, 30))
+        late = datetime(2026, 1, 2, 1, 17, tzinfo=timezone.utc)
+        self.assertEqual(main.posting_day(CFG, late)[0], "2026-01-01")
+        self.assertEqual(main.plan_post(CFG, [afternoon], late)[0], "evening")
+        # ...and never a third Short that day.
+        evening = {"date": "2026-01-01", "slot": "evening", "uploaded_at": late.isoformat()}
+        later = datetime(2026, 1, 2, 2, 17, tzinfo=timezone.utc)
+        self.assertIsNone(main.plan_post(CFG, [afternoon, evening], later)[0])
+
+    def test_whole_day_dropped_until_late_night_still_gets_two(self):
+        late = datetime(2026, 1, 2, 0, 17, tzinfo=timezone.utc)
+        first = main.plan_post(CFG, [], late)[0]
+        self.assertIsNotNone(first)
+        posts = [{"date": "2026-01-01", "slot": first, "uploaded_at": late.isoformat()}]
+        later = datetime(2026, 1, 2, 1, 17, tzinfo=timezone.utc)
+        self.assertIsNotNone(main.plan_post(CFG, posts, later)[0])
+
+    def test_window_closes_at_rollover(self):
+        self.assertIsNone(main.current_slot(CFG, datetime(2026, 1, 2, 4, 30, tzinfo=timezone.utc)))
+        self.assertIsNone(main.current_slot(CFG, at(15, 37)))  # early check-in, before the window
+
     def test_never_same_script_twice(self):
         used = {s["id"] for s in content.all_scripts()[:5]}
         self.assertNotIn(content.next_script(used, CFG)["id"], used)
