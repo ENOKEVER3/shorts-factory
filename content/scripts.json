@@ -22,7 +22,8 @@
       "#AI",
       "#Science",
       "#AlphaFold"
-    ]
+    ],
+    "theme": "biology"
   },
   {
     "id": "s002-why-your-next-phone-battery-could-be-sol",
@@ -47,7 +48,8 @@
       "#Battery",
       "#EV",
       "#FutureTech"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "s003-people-are-controlling-computers-with-th",
@@ -72,7 +74,8 @@
       "#Neurotech",
       "#AI",
       "#Future"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "s004-the-day-fusion-made-more-energy-than-it-",
@@ -97,7 +100,8 @@
       "#Fusion",
       "#Energy",
       "#Science"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "s005-meat-grown-without-animals",
@@ -122,7 +126,8 @@
       "#FoodTech",
       "#Future",
       "#Science"
-    ]
+    ],
+    "theme": "biology"
   },
   {
     "id": "s006-the-crystal-that-could-beat-silicon-sola",
@@ -147,7 +152,8 @@
       "#Solar",
       "#CleanEnergy",
       "#Tech"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "s007-why-quantum-computers-are-so-hard-to-bui",
@@ -172,7 +178,8 @@
       "#Quantum",
       "#Tech",
       "#Future"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "s008-ai-is-now-writing-code-for-programmers",
@@ -197,7 +204,8 @@
       "#AI",
       "#Coding",
       "#Tech"
-    ]
+    ],
+    "theme": "ai"
   },
   {
     "id": "s009-riding-in-a-car-with-no-driver",
@@ -222,7 +230,8 @@
       "#SelfDriving",
       "#AI",
       "#Tech"
-    ]
+    ],
+    "theme": "ai"
   },
   {
     "id": "s010-beaming-solar-power-from-space",
@@ -247,7 +256,8 @@
       "#Space",
       "#Energy",
       "#Future"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "s011-the-first-approved-crispr-cure",
@@ -272,7 +282,8 @@
       "#CRISPR",
       "#Science",
       "#Health"
-    ]
+    ],
+    "theme": "biology"
   },
   {
     "id": "s012-humanoid-robots-are-getting-jobs",
@@ -297,7 +308,8 @@
       "#Robots",
       "#AI",
       "#Future"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "s013-pulling-drinking-water-out-of-thin-air",
@@ -322,7 +334,8 @@
       "#Science",
       "#Invention",
       "#Future"
-    ]
+    ],
+    "theme": "planet"
   },
   {
     "id": "s014-how-to-spot-a-deepfake",
@@ -347,7 +360,8 @@
       "#Deepfake",
       "#AI",
       "#Tech"
-    ]
+    ],
+    "theme": "ai"
   },
   {
     "id": "s015-ai-can-now-predict-the-weather",
@@ -372,7 +386,8 @@
       "#AI",
       "#Weather",
       "#Science"
-    ]
+    ],
+    "theme": "ai"
   },
   {
     "id": "s016-houses-printed-by-giant-robots",
@@ -397,7 +412,8 @@
       "#3DPrinting",
       "#Tech",
       "#Future"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "s017-farms-that-grow-upward",
@@ -422,7 +438,8 @@
       "#Farming",
       "#FoodTech",
       "#Future"
-    ]
+    ],
+    "theme": "planet"
   },
   {
     "id": "s018-glasses-that-put-a-screen-in-front-of-yo",
@@ -447,7 +464,8 @@
       "#AR",
       "#Wearables",
       "#Tech"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "s019-digital-twins-copying-the-real-world-int",
@@ -472,7 +490,8 @@
       "#Tech",
       "#Engineering",
       "#Future"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "s020-machines-that-suck-carbon-out-of-the-sky",
@@ -497,7 +516,8 @@
       "#Climate",
       "#Tech",
       "#Future"
-    ]
+    ],
+    "theme": "planet"
   },
   {
     "id": "s021-the-wonder-material-made-from-pencil-lea",
@@ -522,7 +542,8 @@
       "#Graphene",
       "#Science",
       "#Tech"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "s022-robotic-suits-that-make-you-stronger",
@@ -547,7 +568,8 @@
       "#Robotics",
       "#Tech",
       "#Future"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "s023-mrna-vaccines-might-fight-cancer-next",
@@ -572,7 +594,8 @@
       "#mRNA",
       "#Health",
       "#Science"
-    ]
+    ],
+    "theme": "biology"
   },
   {
     "id": "s024-why-the-hyperloop-never-happened",
@@ -597,7 +620,8 @@
       "#Hyperloop",
       "#Tech",
       "#Engineering"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "s025-flying-taxis-are-almost-here",
@@ -622,7 +646,8 @@
       "#FlyingCar",
       "#Aviation",
       "#Future"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "s026-computer-chips-that-work-like-a-brain",
@@ -647,7 +672,8 @@
       "#Chips",
       "#AI",
       "#Tech"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "s027-storing-the-internet-in-dna",
@@ -672,7 +698,8 @@
       "#DNA",
       "#Data",
       "#Science"
-    ]
+    ],
+    "theme": "biology"
   },
   {
     "id": "s028-a-battery-made-of-sand",
@@ -697,7 +724,8 @@
       "#Energy",
       "#Invention",
       "#Future"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "s029-using-ai-to-understand-whales",
@@ -722,7 +750,8 @@
       "#AI",
       "#Whales",
       "#Science"
-    ]
+    ],
+    "theme": "ai"
   },
   {
     "id": "s030-rockets-that-land-themselves",
@@ -747,7 +776,8 @@
       "#Space",
       "#SpaceX",
       "#Tech"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "s031-diamonds-made-in-a-lab",
@@ -772,7 +802,8 @@
       "#Science",
       "#Diamonds",
       "#Tech"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "s032-concrete-that-heals-its-own-cracks",
@@ -797,7 +828,8 @@
       "#Engineering",
       "#Science",
       "#Invention"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "s033-roads-that-charge-your-car-while-you-dri",
@@ -822,7 +854,8 @@
       "#EV",
       "#Tech",
       "#Future"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "s034-robots-in-the-operating-room",
@@ -847,7 +880,8 @@
       "#Robotics",
       "#Health",
       "#Tech"
-    ]
+    ],
+    "theme": "biology"
   },
   {
     "id": "s035-implants-that-restore-some-vision",
@@ -872,7 +906,8 @@
       "#Health",
       "#Tech",
       "#Science"
-    ]
+    ],
+    "theme": "biology"
   },
   {
     "id": "s036-mining-asteroids-for-treasure",
@@ -897,7 +932,8 @@
       "#Space",
       "#Future",
       "#Science"
-    ]
+    ],
+    "theme": "planet"
   },
   {
     "id": "s037-how-chatgpt-actually-works",
@@ -922,7 +958,8 @@
       "#AI",
       "#ChatGPT",
       "#Tech"
-    ]
+    ],
+    "theme": "ai"
   },
   {
     "id": "s038-why-ai-makes-things-up",
@@ -947,7 +984,8 @@
       "#AI",
       "#Tech",
       "#Tips"
-    ]
+    ],
+    "theme": "ai"
   },
   {
     "id": "s039-chips-so-small-they-are-measured-in-atom",
@@ -972,7 +1010,8 @@
       "#Chips",
       "#Tech",
       "#Future"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "s040-nuclear-reactors-small-enough-to-ship",
@@ -997,7 +1036,8 @@
       "#Nuclear",
       "#Energy",
       "#Future"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "s041-enzymes-that-eat-plastic",
@@ -1022,7 +1062,8 @@
       "#Science",
       "#Recycling",
       "#Future"
-    ]
+    ],
+    "theme": "biology"
   },
   {
     "id": "s042-real-holograms-are-coming",
@@ -1047,7 +1088,8 @@
       "#Hologram",
       "#Tech",
       "#Future"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "s043-ai-running-inside-your-phone",
@@ -1072,7 +1114,8 @@
       "#AI",
       "#Smartphone",
       "#Tech"
-    ]
+    ],
+    "theme": "ai"
   },
   {
     "id": "s044-pig-kidneys-in-human-patients",
@@ -1097,7 +1140,8 @@
       "#Health",
       "#Science",
       "#Biotech"
-    ]
+    ],
+    "theme": "biology"
   },
   {
     "id": "s045-machines-cleaning-the-ocean",
@@ -1122,7 +1166,8 @@
       "#Ocean",
       "#Climate",
       "#Tech"
-    ]
+    ],
+    "theme": "planet"
   },
   {
     "id": "s046-making-oxygen-on-mars",
@@ -1147,7 +1192,8 @@
       "#Mars",
       "#Space",
       "#NASA"
-    ]
+    ],
+    "theme": "planet"
   },
   {
     "id": "s047-ai-is-designing-new-medicines",
@@ -1172,7 +1218,8 @@
       "#AI",
       "#Health",
       "#Science"
-    ]
+    ],
+    "theme": "biology"
   },
   {
     "id": "s048-internet-from-thousands-of-satellites",
@@ -1197,7 +1244,8 @@
       "#Space",
       "#Internet",
       "#Tech"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "s049-paying-with-the-palm-of-your-hand",
@@ -1222,7 +1270,8 @@
       "#Fintech",
       "#Tech",
       "#Future"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "s050-computers-built-from-brain-cells",
@@ -1247,7 +1296,8 @@
       "#Science",
       "#AI",
       "#Future"
-    ]
+    ],
+    "theme": "biology"
   },
   {
     "id": "s051-the-superconductor-hype-that-fooled-the-",
@@ -1272,7 +1322,8 @@
       "#Science",
       "#Physics",
       "#Tech"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "s052-robot-dogs-are-doing-real-jobs",
@@ -1297,7 +1348,8 @@
       "#Robots",
       "#Tech",
       "#AI"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "s053-ai-can-now-make-music",
@@ -1322,7 +1374,8 @@
       "#AI",
       "#Music",
       "#Tech"
-    ]
+    ],
+    "theme": "ai"
   },
   {
     "id": "s054-windows-that-make-electricity",
@@ -1347,7 +1400,8 @@
       "#Solar",
       "#Energy",
       "#Future"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "s055-planes-that-run-on-hydrogen",
@@ -1372,7 +1426,8 @@
       "#Hydrogen",
       "#Aviation",
       "#Future"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "s056-prosthetic-hands-that-can-feel",
@@ -1397,7 +1452,8 @@
       "#Bionics",
       "#Health",
       "#Tech"
-    ]
+    ],
+    "theme": "biology"
   },
   {
     "id": "s057-humans-are-going-back-to-the-moon",
@@ -1422,7 +1478,8 @@
       "#Moon",
       "#Space",
       "#NASA"
-    ]
+    ],
+    "theme": "planet"
   },
   {
     "id": "s058-ai-agents-that-do-tasks-for-you",
@@ -1447,7 +1504,8 @@
       "#AI",
       "#Tech",
       "#Future"
-    ]
+    ],
+    "theme": "ai"
   },
   {
     "id": "s059-will-ai-take-your-job",
@@ -1472,7 +1530,8 @@
       "#AI",
       "#Jobs",
       "#Future"
-    ]
+    ],
+    "theme": "ai"
   },
   {
     "id": "s060-batteries-that-store-the-sun-for-night",
@@ -1497,7 +1556,8 @@
       "#Energy",
       "#Battery",
       "#CleanEnergy"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "s061-tiny-robots-that-could-swim-inside-you",
@@ -1522,7 +1582,8 @@
       "#Robotics",
       "#Health",
       "#Future"
-    ]
+    ],
+    "theme": "biology"
   },
   {
     "id": "s062-the-telescope-looking-back-in-time",
