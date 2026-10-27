@@ -151,7 +151,8 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "planet"
   },
   {
     "id": "v3-004-webb-found-the-home-of-a-distant-radio-flash",
@@ -229,7 +230,8 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "planet"
   },
   {
     "id": "v3-007-what-if-you-drilled-through-earth",
@@ -255,7 +257,8 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "planet"
   },
   {
     "id": "v3-008-ai-privacy-training-controls-are-not-deletion",
@@ -307,7 +310,50 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "future-tech",
+    "visuals": [
+      "A massive metallic rocket booster falling through a blue sky alongside a simple rubber ball dropping vertically. Medium shot, clear bright atmosphere, contrasting controlled descent against simple gravity drop.",
+      "A tall silver rocket booster descending vertically through wispy cloud layers and dynamic atmospheric turbulence. Wide shot, dramatic high-altitude sky background, centered rocket maintaining upright orientation.",
+      "A close-up view of the base of a metallic rocket booster firing bright orange engine flames downward while small grid fins adjust on the sides. Dark atmospheric sky background.",
+      "A detailed cutaway view of a rocket internal fuel tank showing nearly empty propellant liquid glowing, with the vehicle tilting slightly off balance during descent. Minimal dark background.",
+      "A wide shot of a giant steel launch tower extending large mechanical catch arms outward, as a massive silver rocket booster hovers precisely between the arms. Daytime sky background.",
+      "A medium shot of a stainless steel rocket booster resting securely suspended inside metal tower arms, surrounded by rising white steam against a vibrant sunset sky background.",
+      "A close-up shot of a technician in blue protective workwear inspecting the scorched metallic surface and heat tiles of a landed rocket booster using a handheld light. Bright hangar background.",
+      "A centered wide shot of a sleek metallic rocket booster balancing precisely above a concrete landing circle on a coastal pad. Bright clear sky background, calm ocean behind."
+    ],
+    "photos": [
+      {
+        "source": "nasa",
+        "query": "rocket booster landing"
+      },
+      {
+        "source": "nasa",
+        "query": "rocket descent clouds"
+      },
+      {
+        "source": "nasa",
+        "query": "rocket engine plume"
+      },
+      null,
+      {
+        "source": "nasa",
+        "query": "rocket launch tower catch"
+      },
+      {
+        "source": "nasa",
+        "query": "rocket caught tower"
+      },
+      {
+        "source": "stock",
+        "query": "engineer inspecting rocket"
+      },
+      {
+        "source": "stock",
+        "query": "rocket landing pad"
+      }
+    ],
+    "planned_by": "gemini"
   },
   {
     "id": "v3-010-can-a-protein-carry-a-watermark",
@@ -333,7 +379,38 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "biology",
+    "visuals": [
+      "A close-up shot of a 3D ribbon model of a protein molecule floating in a dark laboratory, with a subtle iridescent metallic stamp glowing inside its central molecular fold.",
+      "A medium close-up of a scientist in a modern blue-lit biotechnology laboratory, carefully examining a glowing 3D protein model floating above a clean work surface.",
+      "A cross-section shot of a complex protein sequence, featuring a highlighted glowing golden segment seamlessly integrated into the molecular chain against a simple dark background.",
+      "A close-up view of a watermarked protein binder molecule smoothly fitting into a cell receptor site like a puzzle piece, emitting a soft green glow in a dark microscopic setting.",
+      "A close-up shot of a single glass petri dish containing biological samples resting under a bright laboratory light on a clean white table in a medical research facility.",
+      "A close-up shot of a protein molecule surrounded by a protective translucent sphere, with test beams analyzing its structural integrity inside a high-tech research chamber.",
+      "A wide shot of a small glowing digital origin marker attached to a protein molecule, resting on a clean background to represent a tool for tracing biological provenance.",
+      "A medium shot of a scientist wearing a lab coat in a bright modern laboratory, thoughtfully contemplating a floating protein model centered against a clean background."
+    ],
+    "photos": [
+      null,
+      {
+        "source": "stock",
+        "query": "scientist lab molecular model"
+      },
+      null,
+      null,
+      {
+        "source": "stock",
+        "query": "petri dish research lab"
+      },
+      null,
+      null,
+      {
+        "source": "stock",
+        "query": "scientist thoughtful modern laboratory"
+      }
+    ],
+    "planned_by": "gemini"
   },
   {
     "id": "v3-011-gemini-privacy-ask-these-questions-first",
@@ -385,7 +462,8 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "planet"
   },
   {
     "id": "v3-013-fusion-gain-is-not-the-same-as-a-power-station",
@@ -411,7 +489,8 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "v3-014-deleting-gemini-history-is-only-one-privacy-task",
@@ -463,7 +542,53 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "ai",
+    "visuals": [
+      "Medium close-up shot of a sleek metallic robotic arm holding a crumpled blue towel above a plain workbench, appearing awkward and paused, in a bright laboratory background.",
+      "Close-up shot of the sleek metallic robotic arm lifting a heavy, shiny steel block straight up off a plain white surface, maintaining precise control in a bright white laboratory.",
+      "Close-up shot of a robotic metallic gripper pinching a soft blue towel on a flat table, making the fabric bunch up, stretch out, and hide its corner edges.",
+      "Wide shot of a modern robotic arm with camera sensors mounted above it, hovering over a blue towel spread out on a clean white table in a bright laboratory setting.",
+      "Wide shot of a robotic arm surrounded by an assortment of different fabric items, messy clothes, and varying overhead lights on a busy laboratory workbench.",
+      "Wide shot of a robotic arm standing next to a pile of dropped, messy towels on a hardwood floor inside a cozy modern home living room with soft daylight.",
+      "Medium shot of a robotic arm successfully folding a clean blue towel on a wooden table inside a real residential dining room setting.",
+      "Close-up shot of a heavy wet blue towel dripping water onto a wooden table next to scattered clothing items, lit brightly on a simple dark background."
+    ],
+    "photos": [
+      {
+        "source": "stock",
+        "query": "robot arm holding towel"
+      },
+      {
+        "source": "stock",
+        "query": "robotic arm metal cube"
+      },
+      {
+        "source": "stock",
+        "query": "robotic gripper touching fabric"
+      },
+      {
+        "source": "stock",
+        "query": "robot camera fabric laboratory"
+      },
+      {
+        "source": "stock",
+        "query": "robotic arm cluttered table"
+      },
+      {
+        "source": "stock",
+        "query": "robot home living room"
+      },
+      {
+        "source": "stock",
+        "query": "robot folding towel kitchen"
+      },
+      {
+        "source": "stock",
+        "query": "wet towel laundry pile"
+      }
+    ],
+    "planned_by": "gemini"
   },
   {
     "id": "v3-016-a-robot-tested-in-unfamiliar-homes-what-counts",
@@ -489,7 +614,50 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "ai",
+    "visuals": [
+      "A sleek metallic humanoid robot stands hesitantly in the doorway of a sunlit, unfamiliar living room filled with furniture. Medium shot, clear focus on the robot entering the new environment, soft blurred background.",
+      "The sleek metallic humanoid robot walks carefully through a cozy suburban living room with wooden floors and a sofa. Wide shot, highlighting the robot navigating between a coffee table and an armchair.",
+      "Close-up shot of the sleek metallic humanoid robot's hand carefully folding a clean white towel on a wooden tabletop in a bright laundry area, focusing on precise mechanical finger movement.",
+      "A sleek metallic humanoid robot stands motionless next to an unexpected pile of scattered toys and shoes on a living room rug. Medium shot, simple domestic background, showing a difficult physical obstacle.",
+      "A visual metaphor showing the sleek metallic humanoid robot reaching towards an unusual, oddly-shaped ceramic object in a bright room. Medium shot, simple clean setting, focusing on the challenge of novel objects.",
+      "A technician in a lab coat observes the sleek metallic humanoid robot in a bright, neutral evaluation facility. Wide shot, centered subject, focusing on formal safety testing and careful objective observation.",
+      "Medium shot of the sleek metallic humanoid robot standing calmly in a sunlit kitchen beside a seated person, demonstrating gentle and steady posture. Warm lighting, simple indoor home background.",
+      "Close-up shot of a playful golden retriever puppy sitting directly in front of the sleek metallic humanoid robot in a hallway, posing an everyday obstacle. Simple domestic background, natural indoor lighting."
+    ],
+    "photos": [
+      {
+        "source": "stock",
+        "query": "humanoid robot living room"
+      },
+      {
+        "source": "stock",
+        "query": "robot walking inside home"
+      },
+      {
+        "source": "stock",
+        "query": "robot folding towel"
+      },
+      {
+        "source": "stock",
+        "query": "robot in messy room"
+      },
+      null,
+      {
+        "source": "stock",
+        "query": "engineer testing robot"
+      },
+      {
+        "source": "stock",
+        "query": "robot in kitchen family"
+      },
+      {
+        "source": "stock",
+        "query": "dog standing in hallway"
+      }
+    ],
+    "planned_by": "gemini"
   },
   {
     "id": "v3-017-stretch-an-ai-usage-allowance-without-guessing-its-limits",
@@ -541,7 +709,8 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "planet"
   },
   {
     "id": "v3-019-crispr-is-not-a-universal-undo-button",
@@ -567,7 +736,8 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "biology"
   },
   {
     "id": "v3-020-repair-a-drifting-ai-conversation",
@@ -619,7 +789,8 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "biology"
   },
   {
     "id": "v3-022-how-a-brain-implant-reads-a-movement-intention",
@@ -645,7 +816,8 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "biology"
   },
   {
     "id": "v3-023-a-project-folder-is-not-magic-ai-memory",
@@ -697,7 +869,8 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "v3-025-why-a-quantum-computer-is-not-faster-at-everything",
@@ -723,7 +896,8 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "v3-026-reusable-ai-instructions-without-the-hype",
@@ -801,7 +975,8 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "planet"
   },
   {
     "id": "v3-029-choose-an-ai-model-by-the-task-not-the-name",
@@ -853,7 +1028,8 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "planet"
   },
   {
     "id": "v3-031-why-ai-invents-believable-references",
@@ -879,7 +1055,8 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "ai"
   },
   {
     "id": "v3-032-compare-two-ai-email-writers-fairly",
@@ -931,7 +1108,8 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "biology"
   },
   {
     "id": "v3-034-why-a-battery-breakthrough-needs-more-than-capacity",
@@ -957,7 +1135,8 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "v3-035-ask-an-ai-for-a-smaller-coding-fix",
@@ -1009,7 +1188,8 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "biology"
   },
   {
     "id": "v3-037-young-planets-leave-clues-in-cosmic-debris",
@@ -1035,7 +1215,8 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "planet"
   },
   {
     "id": "v3-038-give-an-image-model-a-scene-not-a-wish",
@@ -1087,7 +1268,8 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "planet"
   },
   {
     "id": "v3-040-what-if-you-fell-toward-a-black-hole",
@@ -1165,7 +1347,8 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "biology"
   },
   {
     "id": "v3-043-little-red-dots-mystery-is-not-proof-of-broken-physics",
@@ -1243,7 +1426,8 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "planet"
   },
   {
     "id": "v3-046-what-if-we-tried-to-terraform-mars",
@@ -1269,7 +1453,8 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "planet"
   },
   {
     "id": "v3-047-get-a-shorter-ai-answer-without-losing-the-point",
@@ -1321,7 +1506,8 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "ai"
   },
   {
     "id": "v3-049-what-if-we-built-a-space-elevator",
@@ -1347,7 +1533,8 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "v3-050-make-ai-admit-what-information-is-missing",
@@ -1399,7 +1586,8 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "biology"
   },
   {
     "id": "v3-052-a-galaxy-cluster-can-act-like-a-cosmic-lens",
@@ -1477,7 +1665,8 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "ai"
   },
   {
     "id": "v3-055-what-if-we-sent-a-probe-to-another-star",
@@ -1503,7 +1692,8 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "future-tech"
   },
   {
     "id": "v3-056-an-ai-table-needs-a-missing-data-rule",
@@ -1555,7 +1745,8 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "planet"
   },
   {
     "id": "v3-058-webb-sees-stars-hidden-inside-dusty-clouds",
@@ -1633,6 +1824,7 @@
       "#Science",
       "#Technology",
       "#Seunenoch"
-    ]
+    ],
+    "theme": "future-tech"
   }
 ]
