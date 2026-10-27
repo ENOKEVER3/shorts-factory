@@ -1,15 +1,17 @@
-# Shorts Factory: automatic AI & future-tech YouTube Shorts
+# Shorts Factory: automatic Shorts on AI, the planet, biology and future tech
 
 Makes and publishes **2 original YouTube Shorts a day for 30 days** using only free tools.
 After setup it runs on GitHub's servers. Your computer can stay off.
 
 ```
 GitHub Actions (15 short check-ins/day, UTC; 2 of them post)
-   -> pick next script (121 pre-written: searchable how-tos, explainers and tech fixes first; optional Gemini free tier after that)
+   -> pick next script (112 pre-written on 4 subjects - AI in technology, the planet, biology, future technology -
+      rotated so two Shorts in a row are never the same subject; optional Gemini free tier after that)
    -> AI voice (edge-tts, falls back to offline Piper voice)
    -> animated background (ffmpeg, 5 styles x 6 palettes, nothing downloaded)
    -> one picture per sentence that matches what is said: studio scenes if uploaded, else a real free photo
-      (NASA for space; Pexels/Pixabay if you add a free key), else an AI illustration of a written scene plan
+      (NASA for space/planets), else a Gemini image (only if your Google project has billing), else a free
+      stock photo (Pexels/Pixabay key) or free AI illustration - all drawn from a written scene plan
    -> big word-by-word captions + title + progress bar + soft music bed
    -> YouTube Data API upload (resumable, retries)
    -> log the video in state/posted.json (so nothing is ever posted twice)
@@ -28,7 +30,7 @@ GitHub Actions (15 short check-ins/day, UTC; 2 of them post)
 | GitHub Actions minutes | Public repo: unlimited. Private repo: 2,000 min/month. | Each run is ~2-4 min to make a video, ~30 s when there's nothing to do. ~700 min/month in total (with illustrations). Fits either way. |
 | GitHub scheduled runs | Can start 5-60+ min late at busy times, and are sometimes skipped entirely. Turned off after 60 days without repo activity. | Every window has several runs, and a later run catches up on a missed Short. Each post commits to the repo, so it stays active. |
 | edge-tts voice | Free, no key, but an **unofficial** Microsoft endpoint. It can break or be blocked without warning. | The system automatically falls back to Piper, a free offline voice. It sounds a bit less natural. |
-| Gemini API (optional) | Free tier with per-minute and per-day request limits. Google changes these often. | Only used after the 121 built-in scripts run out. One request per video is far below the limits. |
+| Gemini API (`GEMINI_API_KEY`) | **Text** (scene plans, new scripts): free tier with per-minute and per-day limits that Google changes often; it sometimes answers "high demand, try later". **Images**: Google's free tier currently allows **0** images - you need billing on the Google Cloud project (paid per image, a few US cents each, check Google's pricing page). Older model names such as `gemini-2.5-flash` are no longer available to new keys, so the config uses `gemini-3.5-flash`. | One plan request per video is far below the free text limits. Without billing, the pipeline tries one Gemini image, sees there is no quota, and switches to the free picture sources for the rest of the video, so nothing breaks and nothing is charged. Set `"gemini_images": false` in config.json to skip even that one try. |
 | Pollinations.ai images | Free, no key, **1 image every 45 s**. Unofficial service that can change or stop, and shared GitHub runners are often throttled. | One picture per sentence, so each video takes ~6-7 extra minutes (~420 min/month extra, still under GitHub's private-repo limit). If the online picture fails, a locally drawn scene card (retro-futuristic grid + constellation art, different for every sentence) is used instead, so every video always has illustrations. Turn off with `"illustrations": false` in config.json. |
 | Matching pictures | Every built-in script can carry a written scene plan per sentence (what to show + a photo search). Space sentences use real NASA photos (public domain, no key). Optional free `PEXELS_API_KEY` / `PIXABAY_API_KEY` secrets add real stock photos for everyday things. Optional free `GEMINI_API_KEY` writes the plan at run time for scripts that don't have one yet. | Without a plan, the AI picture is drawn from the sentence text, which matches less well. Photo credits are added to each video description. Google Images and Shutterstock pictures are **not** used: they are copyrighted or paid and can get the channel struck. |
 | Illustration Studio scenes (optional) | Made on the guide site with Lovable AI; uses workspace credits, not free-tier. | Best-looking option. Generate one scene per sentence on the site's Illustration Studio page, download the ZIP, and upload the images to `content/scenes/<script_id>/` (named `scene_01.png`, `scene_02.png`, ...). The pipeline uses them as-is and skips the online/local fallbacks for those sentences. |
@@ -85,7 +87,7 @@ In GitHub: **repo -> Settings -> Secrets and variables -> Actions -> New reposit
 | `YT_CLIENT_ID` | printed value |
 | `YT_CLIENT_SECRET` | printed value |
 | `YT_REFRESH_TOKEN` | printed value |
-| `GEMINI_API_KEY` | *(optional)* free key from aistudio.google.com. Writes picture plans for scripts without one, and new scripts after the built-in ones run out. |
+| `GEMINI_API_KEY` | *(optional, already added for you)* key from aistudio.google.com. Writes picture plans for scripts without one, new scripts after the built-in ones run out, and Gemini images if the Google project has billing. |
 | `PEXELS_API_KEY` | *(optional)* free key from pexels.com/api. Real stock photos for everyday things. |
 | `PIXABAY_API_KEY` | *(optional)* free key from pixabay.com/api/docs. Backup stock photos. |
 
