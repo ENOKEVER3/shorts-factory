@@ -136,7 +136,9 @@ def main() -> None:
 
     # 3. Pick a script
     used = {p["script_id"] for p in state["posts"]}
-    s = content.next_script(used, cfg)
+    by_id = {x["id"]: x for x in content.all_scripts()}
+    last = by_id.get(state["posts"][-1]["script_id"], {}) if state["posts"] else {}
+    s = content.next_script(used, cfg, last.get("theme"))
     if s is None:
         print("::warning::Script bank is empty and no GEMINI_API_KEY is set. Add scripts or a key to continue.")
         summary("No scripts left. Add more to content/scripts.json or set GEMINI_API_KEY.")
