@@ -4,8 +4,16 @@
   "max_posts_per_day": 2,
   "day_rollover_hour_utc": 4,
   "slots_utc": [
-    { "name": "afternoon", "start_hour": 16, "end_hour": 21 },
-    { "name": "evening", "start_hour": 21, "end_hour": 28 }
+    {
+      "name": "afternoon",
+      "start_hour": 16,
+      "end_hour": 21
+    },
+    {
+      "name": "evening",
+      "start_hour": 21,
+      "end_hour": 28
+    }
   ],
   "min_gap_minutes": 45,
   "privacy_status": "public",
@@ -17,10 +25,32 @@
     "piper_voice": "en_US-ryan-high",
     "piper_speed": 1.08
   },
-  "video": { "width": 1080, "height": 1920, "fps": 30, "max_seconds": 58 },
+  "video": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "max_seconds": 58
+  },
   "music": true,
   "illustrations": true,
-  "gemini_model": "gemini-2.5-flash",
-  "default_tags": ["AI", "artificial intelligence", "technology", "future tech", "inventions", "science", "shorts"],
-  "description_footer": "New AI, tech and future-invention Shorts every day.\nNarration uses an AI voice. Illustrations are AI-generated.\nFacts are simplified for a 60-second format - always check primary sources."
+  "gemini_model": "gemini-3.5-flash",
+  "default_tags": [
+    "AI",
+    "artificial intelligence",
+    "technology",
+    "future tech",
+    "biology",
+    "planet Earth",
+    "science",
+    "shorts"
+  ],
+  "description_footer": "New Shorts every day on AI, our planet, biology and future technology.\nNarration uses an AI voice. Pictures are AI-generated or credited free photos.\nFacts are simplified for a 60-second format - always check primary sources.",
+  "gemini_image_model": "gemini-3.1-flash-image",
+  "gemini_images": true,
+  "themes": [
+    "ai",
+    "planet",
+    "biology",
+    "future-tech"
+  ]
 }
