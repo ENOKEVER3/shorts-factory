@@ -1,7 +1,11 @@
 import unittest
 from pathlib import Path
 
-from src import visuals
+import os
+
+from src import gemini, visuals
+
+os.environ.pop("GEMINI_API_KEY", None)  # tests never call the real Gemini API
 
 
 class SegmentsTest(unittest.TestCase):
@@ -88,6 +92,66 @@ class PregeneratedScenesTest(unittest.TestCase):
             self.assertEqual(out[0], studio_img)  # sentence 1 uses the uploaded studio scene
             self.assertIsNotNone(out[1])  # sentence 2 falls back to a local card, never crashes
             self.assertNotEqual(out[1], studio_img)
+
+
+class GeminiTest(unittest.TestCase):
+    def test_no_image_quota_switches_gemini_off_after_one_try(self):
+        import tempfile
+
+        calls = []
+
+        def blocked(cfg, prompt):
+            calls.append(prompt)
+            raise gemini.QuotaBlocked("limit 0")
+
+        old = (gemini.image, visuals._fetch, gemini.key)
+        gemini.image, gemini.key = blocked, (lambda: "k")
+        visuals._fetch = lambda *a, **k: (_ for _ in ()).throw(RuntimeError("offline"))
+        try:
+            with tempfile.TemporaryDirectory() as tmp:
+                script = {"id": "x", "title": "T", "sentences": ["One.", "Two.", "Three."],
+                          "visuals": ["a red cell", "a blue cell", "a green cell"]}
+                out = visuals.illustrate(script, Path(tmp), seed_base=0, cfg={"gemini_images": True})
+        finally:
+            gemini.image, visuals._fetch, gemini.key = old
+        self.assertEqual(len(calls), 1)  # tried once, then free sources for the rest
+        self.assertTrue(calls[0].startswith("a red cell"))  # Gemini draws the planned scene
+        self.assertTrue(all(p is not None for p in out))
+
+    def test_gemini_image_used_when_quota_exists(self):
+        import tempfile
+
+        def fake_image(cfg, prompt):
+            with tempfile.TemporaryDirectory() as t2:
+                p = visuals.local_card(prompt, Path(t2) / "g.jpg", seed=2)
+                return p.read_bytes()
+
+        old = (gemini.image, gemini.key)
+        gemini.image, gemini.key = fake_image, (lambda: "k")
+        try:
+            with tempfile.TemporaryDirectory() as tmp:
+                script = {"id": "x", "title": "T", "sentences": ["One.", "Two."], "visuals": ["a", "b"]}
+                out = visuals.illustrate(script, Path(tmp), seed_base=0, cfg={})
+                self.assertEqual([p.name for p in out], ["img_00.jpg", "img_01.jpg"])
+        finally:
+            gemini.image, gemini.key = old
+
+    def test_retired_text_model_falls_back(self):
+        tried = []
+
+        def fake_post(model, payload, timeout):
+            tried.append(model)
+            if model == "old-model":
+                raise RuntimeError("old-model: HTTP 404 no longer available")
+            return {"candidates": [{"content": {"parts": [{"text": '{"ok": true}'}]}}]}
+
+        old = gemini._post
+        gemini._post = fake_post
+        try:
+            self.assertEqual(gemini.text_json({"gemini_model": "old-model"}, "x"), {"ok": True})
+        finally:
+            gemini._post = old
+        self.assertEqual(tried, ["old-model", "gemini-3.5-flash"])
 
 
 if __name__ == "__main__":
