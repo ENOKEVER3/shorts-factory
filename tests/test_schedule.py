@@ -73,25 +73,37 @@ class ScheduleTests(unittest.TestCase):
         self.assertIsNone(main.current_slot(CFG, at(15, 37)))  # early check-in, before the window
 
     def test_never_same_script_twice(self):
-        used = {s["id"] for s in content.all_scripts()[:5]}
+        used = {s["id"] for s in content.allowed_scripts(CFG)[:5]}
         self.assertNotIn(content.next_script(used, CFG)["id"], used)
 
-    def test_searchable_scripts_come_first_and_alternate(self):
-        scripts = content.all_scripts()
-        self.assertTrue(scripts[0]["id"].startswith("v3-"))
-        kinds = [s["kind"] for s in scripts[:6]]
-        self.assertEqual(len(set(kinds[:2])), 2)  # the 2 Shorts of a day are different kinds
-        titles = [s["title"].lower() for s in scripts]
-        self.assertEqual(len(set(titles)), len(titles))  # no repeated content
+    def test_only_the_four_chosen_subjects_are_posted(self):
+        self.assertEqual(set(CFG["themes"]), {"ai", "planet", "biology", "future-tech"})
+        scripts = content.allowed_scripts(CFG)
+        self.assertTrue(all(s.get("theme") in CFG["themes"] for s in scripts))
+        ids = {s["id"] for s in scripts}
+        # phone fixes, AI how-to tips and deep-space topics are out
+        self.assertNotIn("v2-003-why-is-my-phone-battery-draining-so-fast-quick-fixes", ids)
+        self.assertFalse(any(s.get("kind") in ("ai-fix", "tool", "fix") for s in scripts))
+
+    def test_two_shorts_in_a_row_are_different_subjects(self):
+        scripts = content.allowed_scripts(CFG)
+        for a, b in zip(scripts[:20], scripts[1:21]):
+            self.assertNotEqual(a["theme"], b["theme"])
+        first = content.next_script(set(), CFG, last_theme=scripts[0]["theme"])
+        self.assertNotEqual(first["theme"], scripts[0]["theme"])
+
+    def test_no_repeated_content(self):
+        titles = [s["title"].lower() for s in content.all_scripts()]
+        self.assertEqual(len(set(titles)), len(titles))
 
     def test_bank_covers_full_campaign(self):
-        scripts = content.all_scripts()
+        scripts = content.allowed_scripts(CFG)
         self.assertGreaterEqual(len(scripts), CFG["campaign_days"] * CFG["max_posts_per_day"])
         self.assertEqual(len({s["id"] for s in scripts}), len(scripts))
         self.assertTrue(all(content._valid(s) for s in scripts))
 
     def test_next_script_skips_used(self):
-        first = content.all_scripts()[0]
+        first = content.allowed_scripts(CFG)[0]
         self.assertNotEqual(content.next_script({first["id"]}, CFG)["id"], first["id"])
 
 
