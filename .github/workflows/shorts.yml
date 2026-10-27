@@ -61,7 +61,7 @@ jobs:
       - name: Install ffmpeg (with retries)
         run: |
           for i in 1 2 3; do
-            sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg && break
+            timeout 240 sudo apt-get update -qq && timeout 300 sudo apt-get install -y -qq ffmpeg && break
             echo "apt failed, retrying in 20s"; sleep 20
           done
           ffmpeg -version | head -1
