@@ -58,13 +58,23 @@ jobs:
           python-version: "3.12"
           cache: pip
 
-      - name: Install ffmpeg (with retries)
+      - name: Install ffmpeg (fast static build, apt as backup)
         run: |
           for i in 1 2 3; do
-            timeout 240 sudo apt-get update -qq && timeout 300 sudo apt-get install -y -qq ffmpeg && break
-            echo "apt failed, retrying in 20s"; sleep 20
+            curl -fsSL --max-time 180 -o /tmp/ff.tar.xz \
+              https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz \
+              && mkdir -p /tmp/ff && tar -xJf /tmp/ff.tar.xz -C /tmp/ff --strip-components=1 \
+              && sudo cp /tmp/ff/bin/ffmpeg /tmp/ff/bin/ffprobe /usr/local/bin/ && break
+            echo "static download failed, retrying in 10s"; sleep 10
           done
+          if ! command -v ffmpeg >/dev/null; then
+            for i in 1 2; do
+              timeout 240 sudo apt-get update -qq && timeout 300 sudo apt-get install -y -qq ffmpeg && break
+              sleep 20
+            done
+          fi
           ffmpeg -version | head -1
+          command -v ffprobe
 
       - name: Install Python packages (with retries)
         run: |
