@@ -1,19 +1,16 @@
-"""One illustration per sentence, so viewers see what the narration is talking about.
+"""One picture per sentence, so viewers see what the narration is talking about.
 
-Primary source: Pollinations.ai (free, no key, open-source image models). Every picture is
-newly generated, so there is no copyright problem. Free tier allows 1 image every 45 s, so
-~6-7 min per video. It is an unofficial free service and shared GitHub runners often get
-throttled, so every sentence also has a LOCAL fallback: a procedural "scene card" drawn with
-Pillow (gradient sky, glowing horizon, orbiting nodes), seeded by the sentence so each card
-looks different. If both fail, the previous picture stays on screen (or the plain animated
-background).
+Order of preference for every sentence:
+1. Studio scene: content/scenes/<script_id>/scene_01.png ... made in the Illustration Studio.
+2. Real NASA photo (public domain) when the scene plan says the sentence is about space/planets.
+3. Gemini image of the planned scene (needs GEMINI_API_KEY with image quota; Google's free tier
+   currently has none, so this switches itself off after one try unless billing is enabled).
+4. Free stock photo (Pexels/Pixabay, only with their free keys) when the plan says one fits.
+5. Pollinations.ai illustration of the planned scene (free, no key, ~1 image per 45 s).
+6. Local procedural scene card (never fails).
 
-A script may include an optional "visuals" list (one short scene description per sentence).
-Otherwise the prompt is built from the title + sentence.
-
-Best quality: pre-generated scenes. If content/scenes/<script_id>/scene_01.png, scene_02.png, ...
-exist (made in the Illustration Studio on the guide site), they are used as-is and no online or
-local fallback runs for those sentences.
+The scene plan ("visuals"/"photos" on each script, or written by Gemini's free text tier at run
+time) describes exactly what to show for each sentence - that is what makes pictures match.
 """
 from __future__ import annotations
 
@@ -30,6 +27,7 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
+from . import gemini
 from .util import log, retry
 
 STYLE = (
@@ -159,35 +157,44 @@ def local_card(sentence: str, dst: Path, seed: int, size: int = 1024) -> Path:
 # --- Scene plan: what to show for each sentence ---
 
 PLAN_PROMPT = (
-    "You plan the on-screen picture for each sentence of a YouTube Short narration. For EVERY sentence, in "
-    'order, return {"visual": 15-35 words describing exactly what the viewer should SEE (specific object, place, '
-    "action and framing that matches the sentence's meaning; concrete metaphor if abstract; never text, words, "
-    'numbers, logos or UI labels), "photo": "nasa" for space/planets/rockets/astronauts, "stock" for ordinary '
-    'real-world things a stock photo library has, or "none" when only an illustration can show it, "query": 2-4 '
-    'plain search words or "" when photo is "none"}. Return ONLY JSON {"scenes": [...]} with one item per sentence.'
+    "You are the picture editor for a YouTube Short. The narration is read one sentence at a time and ONE "
+    "picture is shown while each sentence is spoken, so each picture must show exactly what that sentence is "
+    "about, so a viewer who mutes the video can still follow the story.\n"
+    "For EVERY sentence, in order, return an object:\n"
+    '- "visual": 20-40 words. Name the concrete main subject of THIS sentence (resolve words like "it" or '
+    '"this" using the earlier sentences), what it is doing, the setting, and the camera framing (close-up, '
+    "wide shot, cross-section, cutaway). If the idea is abstract, show a clear physical metaphor. One focal "
+    "subject, centred, simple background. Keep the same main subject looking the same from picture to picture. "
+    "Never ask for text, words, numbers, labels, charts, logos or user interfaces.\n"
+    '- "photo": "nasa" when a real NASA photo would show it (planets, Earth from space, rockets, astronauts, the '
+    'Moon, Mars), "stock" for an ordinary real-world object or place a stock photo site has, or "none" when '
+    "only an illustration can show it (most future, hypothetical or microscopic ideas).\n"
+    '- "query": 2-4 plain search words for that photo, or "" when photo is "none".\n'
+    'Return ONLY JSON {"scenes": [...]} with exactly one item per sentence.'
 )
 
 
 def _gemini_plan(script: dict, cfg: dict | None) -> list[dict] | None:
-    key = os.environ.get("GEMINI_API_KEY")
-    if not key:
+    if not gemini.key():
         return None
-    model = (cfg or {}).get("gemini_model", "gemini-2.5-flash")
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
-    text = PLAN_PROMPT + "\n" + json.dumps({"title": script["title"], "sentences": script["sentences"]})
-    payload = {"contents": [{"parts": [{"text": text}]}], "generationConfig": {"responseMimeType": "application/json"}}
-    req = urllib.request.Request(url, json.dumps(payload).encode(),
-                                 {"Content-Type": "application/json", "x-goog-api-key": key})
+    prompt = PLAN_PROMPT + "\n" + json.dumps({"title": script["title"], "sentences": script["sentences"]})
     try:
-        with urllib.request.urlopen(req, timeout=60) as r:
-            data = json.loads(r.read())
-        scenes = json.loads(data["candidates"][0]["content"]["parts"][0]["text"])["scenes"]
+        scenes = retry(lambda: gemini.text_json(cfg, prompt)["scenes"], attempts=3, base_delay=8,
+                       label="Gemini scene plan")
         if len(scenes) != len(script["sentences"]):
             raise ValueError("wrong number of scenes")
         return scenes
     except Exception as exc:  # noqa: BLE001 - planning is best-effort
         log(f"Scene plan from Gemini failed ({exc}); using sentence text for pictures")
         return None
+
+
+def plan_to_fields(scenes: list[dict]) -> tuple[list[str | None], list[dict | None]]:
+    visuals = [str(s.get("visual", "")).strip() or None for s in scenes]
+    photos = [{"source": s.get("photo"), "query": str(s.get("query", "")).strip()}
+              if s.get("photo") in ("nasa", "stock") and str(s.get("query", "")).strip() else None
+              for s in scenes]
+    return visuals, photos
 
 
 def scene_plan(script: dict, cfg: dict | None = None) -> list[tuple[str | None, dict | None]]:
@@ -198,10 +205,7 @@ def scene_plan(script: dict, cfg: dict | None = None) -> list[tuple[str | None, 
     if not visuals:
         scenes = _gemini_plan(script, cfg)
         if scenes:
-            visuals = [str(s.get("visual", "")).strip() or None for s in scenes]
-            photos = [{"source": s.get("photo"), "query": str(s.get("query", "")).strip()}
-                      if s.get("photo") in ("nasa", "stock") and str(s.get("query", "")).strip() else None
-                      for s in scenes]
+            visuals, photos = plan_to_fields(scenes)
     return [(visuals[i] if i < len(visuals) else None, photos[i] if i < len(photos) else None) for i in range(n)]
 
 
@@ -289,6 +293,14 @@ def find_photo(photo: dict, dst: Path, used: set[str]) -> str | None:
     return None
 
 
+def _gemini_image(prompt: str, dst: Path, cfg: dict | None) -> Path:
+    dst.write_bytes(gemini.image(cfg, prompt))
+    if not _valid_image(dst):
+        dst.unlink(missing_ok=True)
+        raise RuntimeError("Gemini returned an invalid image")
+    return dst
+
+
 def illustrate(script: dict, work: Path, seed_base: int, cfg: dict | None = None) -> list[Path | None]:
     """Return one image path (or None on failure) per sentence. Order of preference:
     studio scene -> real free photo (when the plan says a photo fits) -> AI illustration of the
@@ -297,7 +309,8 @@ def illustrate(script: dict, work: Path, seed_base: int, cfg: dict | None = None
     out: list[Path | None] = []
     credits: list[str] = []
     used: set[str] = set()
-    ok = local = pre = photos = 0
+    ok = local = pre = photos = gem = 0
+    use_gemini = bool(gemini.key()) and (cfg or {}).get("gemini_images", True)
     for i, sentence in enumerate(script["sentences"]):
         visual, photo = plan[i]
         dst = work / f"img_{i:02d}.jpg"
@@ -306,7 +319,25 @@ def illustrate(script: dict, work: Path, seed_base: int, cfg: dict | None = None
             out.append(studio)
             pre += 1
             continue
-        if photo and photo.get("query"):
+        if photo and photo.get("source") == "nasa" and photo.get("query"):
+            credit = find_photo(photo, dst, used)  # a real NASA photo beats any drawing of space
+            if credit:
+                out.append(dst)
+                credits.append(credit)
+                photos += 1
+                continue
+        prompt = build_prompt(script["title"], sentence, visual)
+        if use_gemini:
+            try:
+                out.append(_gemini_image(prompt, dst, cfg))
+                gem += 1
+                continue
+            except gemini.QuotaBlocked as exc:
+                use_gemini = False  # no image quota on this key: do not waste time on every sentence
+                log(f"Gemini images unavailable ({exc}); using free illustrations instead")
+            except Exception as exc:  # noqa: BLE001
+                log(f"Gemini image {i + 1} failed ({exc}); trying the next picture source")
+        if photo and photo.get("source") == "stock" and photo.get("query"):
             credit = find_photo(photo, dst, used)
             if credit:
                 out.append(dst)
@@ -314,7 +345,7 @@ def illustrate(script: dict, work: Path, seed_base: int, cfg: dict | None = None
                 photos += 1
                 continue
         try:
-            retry(lambda: _fetch(build_prompt(script["title"], sentence, visual), dst, seed_base + i),
+            retry(lambda: _fetch(prompt, dst, seed_base + i),
                   attempts=3, base_delay=1, label=f"Illustration {i + 1}")
             out.append(dst)
             ok += 1
@@ -327,7 +358,8 @@ def illustrate(script: dict, work: Path, seed_base: int, cfg: dict | None = None
                 log(f"Illustration {i + 1} skipped: {exc2}")
                 out.append(None)
     script["_credits"] = list(dict.fromkeys(credits))
-    log(f"Pictures: {pre} studio scenes, {photos} real photos, {ok} AI illustrations, {local} local cards "
+    log(f"Pictures: {pre} studio scenes, {photos} real photos, {gem} Gemini images, {ok} free AI illustrations, "
+        f"{local} local cards "
         f"(scene plan: {'yes' if any(v for v, _ in plan) else 'no'})")
     return out
 
