@@ -46,7 +46,7 @@ concurrency:
 jobs:
   produce:
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 50
     env:
       DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '1' || '0' }}
       FORCE: ${{ github.event_name == 'workflow_dispatch' && inputs.force && '1' || '0' }}
