@@ -1,23 +1,33 @@
 """Where scripts come from.
 
-1. content/scripts_v3.json - 60 curiosity science/AI explainers + narrated AI fixes, used first
-   content/scripts_v2.json - 59 searchable, evergreen scripts (AI tools how-to, AI explained, tech fixes), used first
-   content/scripts.json    - 62 original future-tech scripts, used after v2 runs out
+1. content/scripts_v3.json - curiosity science/AI explainers, used first
+   content/scripts_v2.json - simple AI explainers
+   content/scripts.json    - original future-tech scripts
 2. content/generated/    - scripts written by Gemini's free tier once the bank runs out (optional)
+
+Only scripts whose "theme" is listed in config "themes" are posted (AI in technology, the planet,
+biology, future technology). Allowed scripts are rotated by theme so the two Shorts of a day are
+about different subjects.
 """
 from __future__ import annotations
 
 import json
-import os
 import re
-import urllib.request
 
+from . import gemini
 from .util import ROOT, load_json, log, retry, save_json
 
 BANK_V3 = ROOT / "content" / "scripts_v3.json"
 BANK_V2 = ROOT / "content" / "scripts_v2.json"
 BANK = ROOT / "content" / "scripts.json"
 GENERATED = ROOT / "content" / "generated"
+
+THEME_TEXT = {
+    "ai": "AI in technology (how AI systems work, what they can and cannot do, real AI uses)",
+    "planet": "the planet (Earth, the Moon, Mars and other planets, climate, oceans, natural forces)",
+    "biology": "biology (the human body, DNA, medicine, animals, life)",
+    "future-tech": "future technology (energy, robots, rockets, materials, computing, inventions)",
+}
 
 
 def _valid(s: dict) -> bool:
@@ -38,53 +48,60 @@ def all_scripts() -> list[dict]:
     return scripts
 
 
-def next_script(used_ids: set[str], cfg: dict) -> dict | None:
-    for s in all_scripts():
-        if s["id"] not in used_ids:
+def allowed_scripts(cfg: dict) -> list[dict]:
+    """Scripts in the allowed themes, interleaved theme by theme (bank order kept inside a theme)."""
+    themes = cfg.get("themes") or list(THEME_TEXT)
+    queues = {t: [s for s in all_scripts() if s.get("theme") == t] for t in themes}
+    out: list[dict] = []
+    while any(queues.values()):
+        for t in themes:
+            if queues[t]:
+                out.append(queues[t].pop(0))
+    return out
+
+
+def next_script(used_ids: set[str], cfg: dict, last_theme: str | None = None) -> dict | None:
+    fresh = [s for s in allowed_scripts(cfg) if s["id"] not in used_ids]
+    for s in fresh:
+        if s.get("theme") != last_theme:  # never two Shorts in a row on the same subject
             return s
-    if os.environ.get("GEMINI_API_KEY"):
+    if fresh:
+        return fresh[0]
+    if gemini.key():
         return _generate(cfg, [s["title"] for s in all_scripts()])
     return None
 
 
 def _generate(cfg: dict, past_titles: list[str]) -> dict:
-    key = os.environ["GEMINI_API_KEY"]
-    model = cfg.get("gemini_model", "gemini-2.5-flash")
+    themes = cfg.get("themes") or list(THEME_TEXT)
+    n = len(list(GENERATED.glob("*.json"))) + 1
+    theme = themes[n % len(themes)]
     prompt = (
-        "Write ONE original, evergreen YouTube Shorts narration script that solves a problem people search for. "
-        "Pick one format: a free AI tool how-to, a simple 'what is X' AI/tech explainer, or a quick phone/laptop/"
-        "internet fix. Title must read like a real search query.\n"
-        "Rules: 85-120 words total; 6-9 short spoken sentences; first sentence is a curiosity hook; "
-        "last sentence asks viewers to comment a question and follow for more. Only include facts that are well "
-        "established; say 'researchers are testing' for anything unproven. No made-up statistics, no "
-        "medical or financial advice, no emojis.\n"
+        f"Write ONE original, evergreen YouTube Shorts narration script about {THEME_TEXT.get(theme, theme)}. "
+        "Pick one format: a surprising 'why/how does X work' explainer, a 'what if' thought experiment "
+        "(clearly hypothetical), or a real recent discovery explained simply. Title must read like something "
+        "people search for.\n"
+        "Rules: 85-120 words total; 6-9 short spoken sentences; first sentence is a curiosity hook; each "
+        "sentence describes one concrete thing a viewer could picture; last sentence asks viewers to comment "
+        "and follow for more. Only include well established facts; say 'researchers are testing' for anything "
+        "unproven. No made-up statistics, no medical or financial advice, no emojis.\n"
         f"Do NOT repeat any of these topics: {json.dumps(past_titles[-80:])}\n"
         'Return JSON: {"title": "max 70 chars, no hashtags", "sentences": ["..."], '
-        '"tags": ["5-8 short tags"], "hashtags": ["#AI", "..."]}'
+        '"tags": ["5-8 short tags"], "hashtags": ["#Science", "..."]}'
     )
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
-    payload = {
-        "contents": [{"parts": [{"text": prompt}]}],
-        "generationConfig": {"responseMimeType": "application/json", "temperature": 0.9},
-    }
 
     def call() -> dict:
-        req = urllib.request.Request(
-            url, json.dumps(payload).encode(), {"Content-Type": "application/json", "x-goog-api-key": key}
-        )
-        with urllib.request.urlopen(req, timeout=60) as r:
-            data = json.loads(r.read())
-        s = json.loads(data["candidates"][0]["content"]["parts"][0]["text"])
+        s = gemini.text_json(cfg, prompt, temperature=0.9)
         if not _valid(s):
             raise ValueError("Gemini script failed validation")
         return s
 
     s = retry(call, attempts=4, base_delay=10, label="Gemini script")
-    n = len(list(GENERATED.glob("*.json"))) + 1
     slug = re.sub(r"[^a-z0-9]+", "-", s["title"].lower()).strip("-")[:40]
     s["id"] = f"gen-{n:03d}-{slug}"
+    s["theme"] = theme
     s.setdefault("tags", [])
-    s.setdefault("hashtags", ["#AI", "#Tech", "#Future"])
+    s.setdefault("hashtags", ["#Science", "#Tech", "#Future"])
     save_json(GENERATED / f"{s['id']}.json", s)  # saved first so a retry reuses the same script
-    log(f"Generated new script with Gemini: {s['title']}")
+    log(f"Generated new {theme} script with Gemini: {s['title']}")
     return s
