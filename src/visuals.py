@@ -268,10 +268,28 @@ def _pixabay(query: str) -> list[tuple[str, str]]:
     return [(h["largeImageURL"], f"Image by {h['user']} on Pixabay") for h in data.get("hits", [])]
 
 
+def _unsplash(query: str) -> list[tuple[str, str]]:
+    key = os.environ.get("UNSPLASH_ACCESS_KEY")
+    if not key:
+        return []
+    data = _get_json("https://api.unsplash.com/search/photos?" + urllib.parse.urlencode(
+        {"query": query, "per_page": 10, "content_filter": "high"}), {"Authorization": f"Client-ID {key}"})
+    out = []
+    for p in data.get("results", []):
+        try:  # Unsplash API rule: report each photo we use as a download
+            _get_json(p["links"]["download_location"], {"Authorization": f"Client-ID {key}"})
+        except Exception:  # noqa: BLE001
+            pass
+        out.append((p["urls"]["regular"], f"Photo by {p['user']['name']} on Unsplash"))
+        if len(out) >= 3:
+            break
+    return out
+
+
 def find_photo(photo: dict, dst: Path, used: set[str]) -> str | None:
     """Download the best free photo for this sentence. Returns the credit line, or None."""
     sources = [_nasa] if photo.get("source") == "nasa" else []
-    sources += [_pexels, _pixabay]
+    sources += [_pexels, _unsplash, _pixabay]
     for source in sources:
         try:
             results = source(photo["query"])
