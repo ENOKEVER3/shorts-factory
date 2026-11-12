@@ -45,10 +45,11 @@
     "science",
     "shorts"
   ],
-  "description_footer": "New Shorts every day on AI, our planet, biology and future technology.\nNarration uses an AI voice. Pictures are AI-generated or credited free photos.\nFacts are simplified for a 60-second format - always check primary sources.",
+  "description_footer": "New Shorts every day on gaming, AI, our planet, biology and future technology.\nNarration uses an AI voice. Pictures are AI-generated or credited free photos.\nFacts are simplified for a 60-second format - always check primary sources.",
   "gemini_image_model": "gemini-3.1-flash-image",
   "gemini_images": true,
   "themes": [
+    "gaming",
     "ai",
     "planet",
     "biology",
