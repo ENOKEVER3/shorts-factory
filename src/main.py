@@ -11,7 +11,7 @@ import shutil
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
-from . import captions, content, render, tts, visuals, youtube
+from . import captions, content, metadata, render, tts, visuals, youtube
 from .util import ROOT, fail, load_json, log, save_json
 
 STATE = ROOT / "state" / "posted.json"
@@ -84,7 +84,7 @@ def plan_post(cfg: dict, posts: list[dict], now: datetime) -> tuple[str | None, 
 
 
 def build_description(s: dict, cfg: dict) -> str:
-    hashtags = " ".join(dict.fromkeys(["#Shorts", *s.get("hashtags", [])]))
+    hashtags = " ".join(metadata.hashtags(s))
     credits = s.get("_credits") or []
     credit_block = ("\n\nPhoto credits:\n" + "\n".join(f"- {c}" for c in credits)) if credits else ""
     return f"{' '.join(s['sentences'])}\n\n{cfg['description_footer']}{credit_block}\n\n{hashtags}"
@@ -150,7 +150,7 @@ def main() -> None:
     yt = None
     if not dry:
         yt = youtube.client()
-        log(f"Authorised for channel: {youtube.channel_title(yt)}")
+        log(f"Authorised for channel: {youtube.verify_channel(yt, cfg.get('expected_channel_id', ''))}")
 
     # 5. Render
     video = produce(s, index, cfg)
