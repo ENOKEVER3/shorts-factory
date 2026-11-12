@@ -46,7 +46,7 @@ class ScenePlanTest(unittest.TestCase):
 
     def test_no_stock_keys_means_no_stock_photo(self):
         import os
-        for k in ("PEXELS_API_KEY", "PIXABAY_API_KEY"):
+        for k in ("PEXELS_API_KEY", "PIXABAY_API_KEY", "UNSPLASH_ACCESS_KEY"):
             os.environ.pop(k, None)
         self.assertEqual(visuals._pexels("cat"), [])
         self.assertEqual(visuals._pixabay("cat"), [])
