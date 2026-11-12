@@ -32,7 +32,7 @@ GitHub Actions (15 short check-ins/day, UTC; 2 of them post)
 | edge-tts voice | Free, no key, but an **unofficial** Microsoft endpoint. It can break or be blocked without warning. | The system automatically falls back to Piper, a free offline voice. It sounds a bit less natural. |
 | Gemini API (`GEMINI_API_KEY`) | **Text** (scene plans, new scripts): free tier with per-minute and per-day limits that Google changes often; it sometimes answers "high demand, try later". **Images**: Google's free tier currently allows **0** images - you need billing on the Google Cloud project (paid per image, a few US cents each, check Google's pricing page). Older model names such as `gemini-2.5-flash` are no longer available to new keys, so the config uses `gemini-3.5-flash`. | One plan request per video is far below the free text limits. Without billing, the pipeline tries one Gemini image, sees there is no quota, and switches to the free picture sources for the rest of the video, so nothing breaks and nothing is charged. Set `"gemini_images": false` in config.json to skip even that one try. |
 | Pollinations.ai images | Free, no key, **1 image every 45 s**. Unofficial service that can change or stop, and shared GitHub runners are often throttled. | One picture per sentence, so each video takes ~6-7 extra minutes (~420 min/month extra, still under GitHub's private-repo limit). If the online picture fails, a locally drawn scene card (retro-futuristic grid + constellation art, different for every sentence) is used instead, so every video always has illustrations. Turn off with `"illustrations": false` in config.json. |
-| Matching pictures | Every built-in script can carry a written scene plan per sentence (what to show + a photo search). Space sentences use real NASA photos (public domain, no key). Optional free `PEXELS_API_KEY` / `PIXABAY_API_KEY` secrets add real stock photos for everyday things. Optional free `GEMINI_API_KEY` writes the plan at run time for scripts that don't have one yet. | Without a plan, the AI picture is drawn from the sentence text, which matches less well. Photo credits are added to each video description. Google Images and Shutterstock pictures are **not** used: they are copyrighted or paid and can get the channel struck. |
+| Matching pictures | Every built-in script can carry a written scene plan per sentence (what to show + a photo search). Space sentences use real NASA photos (public domain, no key). Optional free `PEXELS_API_KEY` / `UNSPLASH_ACCESS_KEY` / `PIXABAY_API_KEY` secrets add real stock photos for everyday things. Optional free `GEMINI_API_KEY` writes the plan at run time for scripts that don't have one yet. | Without a plan, the AI picture is drawn from the sentence text, which matches less well. Photo credits are added to each video description. Google Images and Shutterstock pictures are **not** used: they are copyrighted or paid and can get the channel struck. |
 | Illustration Studio scenes (optional) | Made on the guide site with Lovable AI; uses workspace credits, not free-tier. | Best-looking option. Generate one scene per sentence on the site's Illustration Studio page, download the ZIP, and upload the images to `content/scenes/<script_id>/` (named `scene_01.png`, `scene_02.png`, ...). The pipeline uses them as-is and skips the online/local fallbacks for those sentences. |
 | Artifacts | Rendered videos are kept for 7 days. | Download any video from the run page if you want a copy. |
 
@@ -69,6 +69,17 @@ strikes (3 strikes = channel deleted) and is never monetised. This system only m
 
 ## 4. Get your refresh token (once, on your computer)
 
+### Switching away from a compromised channel
+
+Keep the workflow disabled until fresh authorization is verified. The configured target is
+`UCA5IqyxUWCJxz-ibknXuZbA`. A channel URL alone cannot authorize uploads.
+Secure the Google account first: change its password, remove unknown sessions/apps and enable two-step verification.
+Run the helper below while signed into the new channel's owner account. It refuses to print credentials for
+the wrong channel. Replace `YT_REFRESH_TOKEN` in GitHub Secrets; if using a new Google OAuth app, replace
+`YT_CLIENT_ID` and `YT_CLIENT_SECRET` too. Never send credentials in chat.
+The uploader checks `expected_channel_id` before rendering and again before upload. Preserve posting history
+to avoid script reuse; do not erase the old posting log when switching channels.
+
 Install Python 3.10+ from python.org, then in a terminal inside this folder:
 
 ```bash
@@ -90,6 +101,7 @@ In GitHub: **repo -> Settings -> Secrets and variables -> Actions -> New reposit
 | `GEMINI_API_KEY` | *(optional, already added for you)* key from aistudio.google.com. Writes picture plans for scripts without one, new scripts after the built-in ones run out, and Gemini images if the Google project has billing. |
 | `PEXELS_API_KEY` | *(optional)* free key from pexels.com/api. Real stock photos for everyday things. |
 | `PIXABAY_API_KEY` | *(optional)* free key from pixabay.com/api/docs. Backup stock photos. |
+| `UNSPLASH_ACCESS_KEY` | *(optional)* free Access Key from unsplash.com/developers (demo apps: 50 searches/hour). Extra stock photos. |
 
 Delete `client_secret.json` from your Downloads folder afterwards.
 
