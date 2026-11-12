@@ -20,9 +20,12 @@ TOPICS = (
     (r"\b(solar)\b", "#SolarEnergy"),
     (r"\b(fusion)\b", "#FusionEnergy"),
     (r"\b(quantum)\b", "#QuantumScience"),
+    (r"\b(gta|grand theft auto)\b", "#GTA6"),
+    (r"\b(rockstar)\b", "#RockstarGames"),
+    (r"\b(mod|mods|modders)\b", "#GameMods"),
 )
 THEMES = {"ai": "#ArtificialIntelligence", "planet": "#EarthScience",
-          "biology": "#Biology", "future-tech": "#FutureTechnology"}
+          "biology": "#Biology", "future-tech": "#FutureTechnology", "gaming": "#Gaming"}
 
 
 def hashtags(script: dict) -> list[str]:
