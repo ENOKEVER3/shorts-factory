@@ -77,7 +77,7 @@ class ScheduleTests(unittest.TestCase):
         self.assertNotIn(content.next_script(used, CFG)["id"], used)
 
     def test_only_the_four_chosen_subjects_are_posted(self):
-        self.assertEqual(set(CFG["themes"]), {"ai", "planet", "biology", "future-tech"})
+        self.assertEqual(set(CFG["themes"]), {"gaming", "ai", "planet", "biology", "future-tech"})
         scripts = content.allowed_scripts(CFG)
         self.assertTrue(all(s.get("theme") in CFG["themes"] for s in scripts))
         ids = {s["id"] for s in scripts}
