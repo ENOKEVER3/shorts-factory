@@ -1,0 +1,94 @@
+name: Long Video
+
+on:
+  schedule:
+    # Saturdays 16:30 UTC (17:30 Lagos), plus a late retry. One long video per week.
+    - cron: "30 16 * * 6"
+    - cron: "30 19 * * 6"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Render only - do NOT upload (download the video from Artifacts)"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: shorts-factory
+  cancel-in-progress: false
+
+jobs:
+  produce:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '1' || '0' }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install ffmpeg (fast static build, apt as backup)
+        run: |
+          for i in 1 2 3; do
+            curl -fsSL --max-time 180 -o /tmp/ff.tar.xz \
+              https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-linux64-gpl.tar.xz \
+              && mkdir -p /tmp/ff && tar -xJf /tmp/ff.tar.xz -C /tmp/ff --strip-components=1 \
+              && sudo cp /tmp/ff/bin/ffmpeg /tmp/ff/bin/ffprobe /usr/local/bin/ && break
+            echo "static download failed, retrying in 10s"; sleep 10
+          done
+          if ! command -v ffmpeg >/dev/null; then
+            for i in 1 2; do
+              timeout 240 sudo apt-get update -qq && timeout 300 sudo apt-get install -y -qq ffmpeg && break
+              sleep 20
+            done
+          fi
+          ffmpeg -version | head -1
+          command -v ffprobe
+
+      - name: Install Python packages (with retries)
+        run: |
+          for i in 1 2 3; do pip install -q -r requirements.txt && break; sleep 15; done
+
+      - name: Self-test
+        run: python -m unittest discover tests
+
+      - name: Produce and publish
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+        run: python -m src.longform
+
+      - name: Save progress to the repo
+        if: always() && env.DRY_RUN != '1'
+        run: |
+          mkdir -p state content/generated
+          git config user.name "shorts-factory-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state content/generated
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "Update posting log [skip ci]"
+          for i in 1 2 3 4 5; do
+            git pull --rebase -q && git push -q && exit 0
+            echo "Push failed, retrying in $((i*10))s"; sleep $((i*10))
+          done
+          exit 1
+
+      - name: Keep the rendered video for 7 days
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: long-${{ github.run_number }}
+          path: out/*.mp4
+          retention-days: 7
+          if-no-files-found: ignore
