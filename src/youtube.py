@@ -53,7 +53,18 @@ def channel_title(yt) -> str:
     return items[0]["snippet"]["title"]
 
 
+def verify_channel(yt, expected_id: str) -> str:
+    """Fail closed if OAuth authorizes a channel other than the configured target."""
+    if not expected_id:
+        raise RuntimeError("Set expected_channel_id before enabling uploads.")
+    items = yt.channels().list(part="snippet", mine=True).execute().get("items", [])
+    if len(items) != 1 or items[0].get("id") != expected_id:
+        raise RuntimeError("Wrong YouTube channel authorized. Posting blocked; replace YT_REFRESH_TOKEN using the new channel.")
+    return items[0]["snippet"]["title"]
+
+
 def upload(yt, path: Path, title: str, description: str, tags: list[str], cfg: dict) -> str:
+    verify_channel(yt, cfg.get("expected_channel_id", ""))
     import httplib2
     from googleapiclient.errors import HttpError
     from googleapiclient.http import MediaFileUpload
