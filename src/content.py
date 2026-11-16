@@ -17,6 +17,7 @@ import re
 from . import gemini
 from .util import ROOT, load_json, log, retry, save_json
 
+BANK_SPACE = ROOT / "content" / "scripts_space.json"
 BANK_GAMING = ROOT / "content" / "scripts_gaming.json"
 BANK_V3 = ROOT / "content" / "scripts_v3.json"
 BANK_V2 = ROOT / "content" / "scripts_v2.json"
@@ -25,6 +26,7 @@ GENERATED = ROOT / "content" / "generated"
 
 THEME_TEXT = {
     "ai": "AI in technology (how AI systems work, what they can and cannot do, real AI uses)",
+    "space": "space and planets (the Sun, every planet, eclipses, asteroid impacts, NASA missions and space exploration history), told cinematically",
     "planet": "the planet (Earth, the Moon, Mars and other planets, climate, oceans, natural forces)",
     "biology": "biology (the human body, DNA, medicine, animals, life)",
     "gaming": "video games (how games are made, game companies, cheat codes, mods, consoles, gaming news labelled as rumour or fact; never use game footage)",
@@ -44,7 +46,7 @@ def _valid(s: dict) -> bool:
 
 
 def all_scripts() -> list[dict]:
-    scripts = list(load_json(BANK_GAMING, [])) + list(load_json(BANK_V3, [])) + list(load_json(BANK_V2, [])) + list(load_json(BANK, []))
+    scripts = list(load_json(BANK_SPACE, [])) + list(load_json(BANK_GAMING, [])) + list(load_json(BANK_V3, [])) + list(load_json(BANK_V2, [])) + list(load_json(BANK, []))
     for p in sorted(GENERATED.glob("*.json")):
         scripts.append(load_json(p))
     return scripts
