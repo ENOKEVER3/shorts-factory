@@ -21,10 +21,10 @@
   "category_id": "28",
   "language": "en",
   "voice": {
-    "edge_voice": "en-US-AndrewNeural",
-    "edge_rate": "+8%",
+    "edge_voice": "en-US-ChristopherNeural",
+    "edge_rate": "-4%",
     "piper_voice": "en_US-ryan-high",
-    "piper_speed": 1.08
+    "piper_speed": 1.0
   },
   "video": {
     "width": 1080,
@@ -36,22 +36,23 @@
   "illustrations": true,
   "gemini_model": "gemini-3.5-flash",
   "default_tags": [
-    "AI",
-    "artificial intelligence",
-    "technology",
-    "future tech",
-    "biology",
-    "planet Earth",
+    "space",
+    "planets",
+    "NASA",
+    "the Sun",
     "science",
+    "AI",
+    "technology",
     "shorts"
   ],
   "description_footer": "New Shorts every day on gaming, AI, our planet, biology and future technology.\nNarration uses an AI voice. Pictures are AI-generated or credited free photos.\nFacts are simplified for a 60-second format - always check primary sources.",
   "gemini_image_model": "gemini-3.1-flash-image",
   "gemini_images": true,
   "themes": [
+    "space",
     "gaming",
-    "ai",
     "planet",
+    "ai",
     "biology",
     "future-tech"
   ]
