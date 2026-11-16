@@ -94,12 +94,18 @@ def render(narration: Path, ass: Path, out: Path, index: int, cfg: dict, total: 
     )
     if cfg.get("music", True):
         f1, f2, f3 = CHORDS[index % len(CHORDS)]
+        # Cinematic bed: sub-bass drone + slow-swelling chord pad + airy shimmer, then the music
+        # ducks under the narrator (sidechain) and blooms in the pauses.
         pad = (
-            f"aevalsrc='0.30*sin(2*PI*{f1}*t)*(0.7+0.3*sin(2*PI*0.13*t))+0.22*sin(2*PI*{f2}*t)"
-            f"+0.18*sin(2*PI*{f3}*t+0.8*sin(2*PI*0.21*t))':s=44100:d={total:.2f},lowpass=f=900,"
-            f"afade=t=in:d=1.5,afade=t=out:st={max(total - 1.5, 0):.2f}:d=1.5,volume=0.10[pad];"
-            f"[0:a]apad=whole_dur={total:.2f},volume=1.0[nar];[nar][pad]amix=inputs=2:duration=first:normalize=0,"
-            f"alimiter=limit=0.95[a]"
+            f"aevalsrc='0.35*sin(2*PI*{f1 / 2}*t)+0.22*sin(2*PI*{f1}*t)*(0.6+0.4*sin(2*PI*0.05*t))"
+            f"+0.18*sin(2*PI*{f2}*t)*(0.5+0.5*sin(2*PI*0.07*t+1))+0.15*sin(2*PI*{f3}*t)*(0.5+0.5*sin(2*PI*0.09*t+2))"
+            f"+0.05*sin(2*PI*{f3 * 2}*t)*(0.5+0.5*sin(2*PI*0.31*t))':s=44100:d={total:.2f},"
+            f"lowpass=f=1400,aecho=0.8:0.7:420|780:0.35|0.22,"
+            f"afade=t=in:d=2.5,afade=t=out:st={max(total - 2.5, 0):.2f}:d=2.5,volume=0.22[pad];"
+            f"[0:a]apad=whole_dur={total:.2f},highpass=f=70,acompressor=threshold=0.12:ratio=3:attack=5:release=120,"
+            f"volume=1.15,asplit=2[nar][key];"
+            f"[pad][key]sidechaincompress=threshold=0.03:ratio=8:attack=20:release=450[duck];"
+            f"[nar][duck]amix=inputs=2:duration=first:normalize=0,alimiter=limit=0.95[a]"
         )
     else:
         pad = f"[0:a]apad=whole_dur={total:.2f}[a]"
