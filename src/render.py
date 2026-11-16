@@ -28,7 +28,7 @@ def _hex_rgb(h: str) -> tuple[int, int, int]:
 
 def background_filter(style: int, pal: tuple[str, ...], d: float, w: int, h: int, fps: int) -> str:
     c0, c1, c2, c3 = pal
-    finish = f"scale={w}:{h}:flags=bicubic,format=yuv420p"
+    finish = f"scale={w}:{h}:flags=lanczos,format=yuv420p"
     kind = style % 5
     if kind in (0, 1, 2):
         gtype = ["spiral", "radial", "linear"][kind]
@@ -65,9 +65,9 @@ def illustration_chain(segs, pal: tuple[str, ...], fps: int, first_input: int = 
         frames = max(int(dur * fps), 2)
         fade = min(0.3, dur / 4)
         parts.append(
-            f"[{first_input + n}:v]scale=1024:1024:force_original_aspect_ratio=increase,crop=1024:1024,crop=900:900:62:62,"
+            f"[{first_input + n}:v]scale=2048:2048:force_original_aspect_ratio=increase:flags=lanczos,crop=2048:2048,crop=1800:1800:124:124,"
             f"zoompan=z='min(1.0+0.10*on/{frames},1.10)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':"
-            f"d={frames}:s={CARD}x{CARD}:fps={fps},pad={CARD + 2 * border}:{CARD + 2 * border}:{border}:{border}:{pal[2]},"
+            f"d={frames}:s={CARD}x{CARD}:fps={fps},unsharp=5:5:0.6,pad={CARD + 2 * border}:{CARD + 2 * border}:{border}:{border}:{pal[2]},"
             f"format=yuva420p,fade=t=in:st=0:d={fade:.2f}:alpha=1,fade=t=out:st={dur - fade:.2f}:d={fade:.2f}:alpha=1,"
             f"setpts=PTS-STARTPTS+{start:.3f}/TB[im{n}]"
         )
@@ -105,10 +105,10 @@ def render(narration: Path, ass: Path, out: Path, index: int, cfg: dict, total: 
             f"[0:a]apad=whole_dur={total:.2f},highpass=f=70,acompressor=threshold=0.12:ratio=3:attack=5:release=120,"
             f"volume=1.15,asplit=2[nar][key];"
             f"[pad][key]sidechaincompress=threshold=0.03:ratio=8:attack=20:release=450[duck];"
-            f"[nar][duck]amix=inputs=2:duration=first:normalize=0,alimiter=limit=0.95[a]"
+            f"[nar][duck]amix=inputs=2:duration=first:normalize=0,loudnorm=I=-14:TP=-1.0:LRA=9,alimiter=limit=0.95[a]"
         )
     else:
-        pad = f"[0:a]apad=whole_dur={total:.2f}[a]"
+        pad = f"[0:a]apad=whole_dur={total:.2f},highpass=f=70,loudnorm=I=-14:TP=-1.0:LRA=9[a]"
 
     log(f"Rendering {total:.1f}s video (background style {index % 5}, palette {index % len(PALETTES)})")
     run(
@@ -117,8 +117,10 @@ def render(narration: Path, ass: Path, out: Path, index: int, cfg: dict, total: 
             *[a for p, _s, _e in segs for a in ("-i", str(Path(p).resolve()))],
             "-filter_complex", f"{vf};{pad}",
             "-map", "[v]", "-map", "[a]", "-t", f"{total:.2f}",
-            "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p", "-r", str(fps),
-            "-c:a", "aac", "-b:a", "192k", "-ar", "44100", "-movflags", "+faststart", str(out.resolve()),
+            "-c:v", "libx264", "-preset", "medium", "-crf", "16", "-profile:v", "high", "-level", "4.2",
+            "-tune", "film", "-maxrate", "16M", "-bufsize", "32M", "-g", str(fps * 2), "-pix_fmt", "yuv420p", "-r", str(fps),
+            "-colorspace", "bt709", "-color_primaries", "bt709", "-color_trc", "bt709",
+            "-c:a", "aac", "-b:a", "320k", "-ar", "48000", "-movflags", "+faststart", str(out.resolve()),
         ],
         cwd=work,
     )
