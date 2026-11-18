@@ -8,6 +8,7 @@ Each sentence is synthesised separately so caption timing is exact per sentence.
 from __future__ import annotations
 
 import asyncio
+import os
 import subprocess
 import sys
 import time
@@ -15,6 +16,7 @@ import urllib.request
 import wave
 from pathlib import Path
 
+from . import providers
 from .util import log, media_duration, retry, run
 
 RATE = 44100
@@ -87,15 +89,52 @@ def _synth_piper(sentences: list[str], work: Path, voice_cfg: dict) -> list[Path
     return out
 
 
+# ---------- ElevenLabs (optional, paid, off by default) ----------
+def _synth_eleven(sentences: list[str], work: Path, voice_cfg: dict) -> list[Path]:
+    import json as _json
+    key = os.environ["ELEVENLABS_API_KEY"]
+    vid = voice_cfg.get("elevenlabs_voice", "JBFqnCBsd6RMkjVDRZzb")
+    out = []
+    for i, s in enumerate(sentences):
+        mp3, wav = work / f"el_{i}.mp3", work / f"s_{i}.wav"
+        req = urllib.request.Request(
+            f"https://api.elevenlabs.io/v1/text-to-speech/{vid}?output_format=mp3_44100_128",
+            data=_json.dumps({"text": s, "model_id": "eleven_multilingual_v2"}).encode(),
+            headers={"xi-api-key": key, "Content-Type": "application/json"}, method="POST")
+        with urllib.request.urlopen(req, timeout=120) as r:
+            mp3.write_bytes(r.read())
+        _to_wav(mp3, wav)
+        out.append(wav)
+    return out
+
+
 # ---------- public ----------
-def synthesize(sentences: list[str], work: Path, voice_cfg: dict) -> tuple[Path, list[tuple[float, float, str]], str]:
-    """Return (narration.wav, [(start, end, sentence)], engine_name)."""
+class NoVoice(RuntimeError):
+    """No voice engine worked: never render a silent Short."""
+
+
+def synthesize(sentences: list[str], work: Path, voice_cfg: dict, cfg: dict | None = None,
+               ) -> tuple[Path, list[tuple[float, float, str]], str]:
+    """Return (narration.wav, [(start, end, sentence)], engine_name).
+    Order: ElevenLabs (only if enabled + key + budget) -> edge-tts (free) -> Piper (free, offline)."""
     work.mkdir(parents=True, exist_ok=True)
-    try:
-        parts, engine = _synth_edge(sentences, work, voice_cfg), "edge-tts"
-    except Exception as exc:  # noqa: BLE001
-        log(f"edge-tts unavailable ({exc}); switching to offline Piper voice")
-        parts, engine = _synth_piper(sentences, work, voice_cfg), "piper"
+    parts, engine, errors = None, "", []
+    budget = providers.Budget(cfg, "voice")
+    engines = []
+    if budget.allow("elevenlabs"):
+        engines.append(("elevenlabs", _synth_eleven))
+    engines += [("edge-tts", _synth_edge), ("piper", _synth_piper)]
+    for name, fn in engines:
+        try:
+            parts, engine = fn(sentences, work, voice_cfg), name
+            if name == "elevenlabs":
+                budget.record("elevenlabs")
+            break
+        except Exception as exc:  # noqa: BLE001
+            errors.append(f"{name}: {exc}")
+            log(f"Voice engine {name} failed ({exc}); trying the next free engine")
+    if parts is None:
+        raise NoVoice("No voice engine is available. Check network access for edge-tts or Piper. " + "; ".join(errors))
 
     narration = work / "narration.wav"
     gap = b"\x00\x00" * int(RATE * GAP_SECONDS)
