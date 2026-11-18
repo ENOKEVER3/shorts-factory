@@ -27,7 +27,7 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
-from . import gemini
+from . import gemini, quality
 from .util import log, retry
 
 STYLE = (
@@ -319,6 +319,14 @@ def _gemini_image(prompt: str, dst: Path, cfg: dict | None) -> Path:
     return dst
 
 
+def _accept(path: Path, seen: list[int], label: str) -> bool:
+    ok, why = quality.check_image(path, seen)
+    if not ok:
+        log(f"{label} rejected by quality check: {why}; trying the next source")
+        path.unlink(missing_ok=True)
+    return ok
+
+
 def illustrate(script: dict, work: Path, seed_base: int, cfg: dict | None = None) -> list[Path | None]:
     """Return one image path (or None on failure) per sentence. Order of preference:
     studio scene -> real free photo (when the plan says a photo fits) -> AI illustration of the
@@ -327,19 +335,20 @@ def illustrate(script: dict, work: Path, seed_base: int, cfg: dict | None = None
     out: list[Path | None] = []
     credits: list[str] = []
     used: set[str] = set()
+    seen: list[int] = []
     ok = local = pre = photos = gem = 0
     use_gemini = bool(gemini.key()) and (cfg or {}).get("gemini_images", True)
     for i, sentence in enumerate(script["sentences"]):
         visual, photo = plan[i]
         dst = work / f"img_{i:02d}.jpg"
         studio = _pregenerated(script.get("id", ""), i)
-        if studio and _valid_image(studio):
+        if studio and _valid_image(studio) and quality.check_image(studio, seen, min_side=256)[0]:
             out.append(studio)
             pre += 1
             continue
         if photo and photo.get("source") == "nasa" and photo.get("query"):
             credit = find_photo(photo, dst, used)  # a real NASA photo beats any drawing of space
-            if credit:
+            if credit and _accept(dst, seen, f"Photo {i + 1}"):
                 out.append(dst)
                 credits.append(credit)
                 photos += 1
@@ -347,9 +356,11 @@ def illustrate(script: dict, work: Path, seed_base: int, cfg: dict | None = None
         prompt = build_prompt(script["title"], sentence, visual)
         if use_gemini:
             try:
-                out.append(_gemini_image(prompt, dst, cfg))
-                gem += 1
-                continue
+                _gemini_image(prompt, dst, cfg)
+                if _accept(dst, seen, f"Gemini image {i + 1}"):
+                    out.append(dst)
+                    gem += 1
+                    continue
             except gemini.QuotaBlocked as exc:
                 use_gemini = False  # no image quota on this key: do not waste time on every sentence
                 log(f"Gemini images unavailable ({exc}); using free illustrations instead")
@@ -357,7 +368,7 @@ def illustrate(script: dict, work: Path, seed_base: int, cfg: dict | None = None
                 log(f"Gemini image {i + 1} failed ({exc}); trying the next picture source")
         if photo and photo.get("source") == "stock" and photo.get("query"):
             credit = find_photo(photo, dst, used)
-            if credit:
+            if credit and _accept(dst, seen, f"Photo {i + 1}"):
                 out.append(dst)
                 credits.append(credit)
                 photos += 1
@@ -365,6 +376,8 @@ def illustrate(script: dict, work: Path, seed_base: int, cfg: dict | None = None
         try:
             retry(lambda: _fetch(prompt, dst, seed_base + i),
                   attempts=3, base_delay=1, label=f"Illustration {i + 1}")
+            if not _accept(dst, seen, f"Illustration {i + 1}"):
+                raise RuntimeError("failed quality check")
             out.append(dst)
             ok += 1
         except Exception as exc:  # noqa: BLE001 - the online service is best-effort only
