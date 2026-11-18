@@ -56,6 +56,26 @@ CARD = 820          # illustration size (px)
 CARD_Y = 600        # top of the illustration card
 
 
+CAMERA_MOVES = ("push-in", "pull-out", "pan-right", "pan-left", "drift-up")
+
+
+def camera_move(n: int, frames: int) -> str:
+    """Zoompan expression for scene n: rotating Ken Burns moves so consecutive scenes never move alike."""
+    t = f"(on/{frames})"
+    ease = f"(0.5-0.5*cos(PI*{t}))"  # smooth start and stop
+    cx, cy = "iw/2-(iw/zoom/2)", "ih/2-(ih/zoom/2)"
+    move = CAMERA_MOVES[n % len(CAMERA_MOVES)]
+    if move == "push-in":
+        return f"z='1.0+0.14*{ease}':x='{cx}':y='{cy}'"
+    if move == "pull-out":
+        return f"z='1.14-0.14*{ease}':x='{cx}':y='{cy}'"
+    if move == "pan-right":
+        return f"z='1.12':x='(iw-iw/zoom)*{ease}':y='{cy}'"
+    if move == "pan-left":
+        return f"z='1.12':x='(iw-iw/zoom)*(1-{ease})':y='{cy}'"
+    return f"z='1.12':x='{cx}':y='(ih-ih/zoom)*(1-{ease})'"
+
+
 def illustration_chain(segs, pal: tuple[str, ...], fps: int, first_input: int = 1) -> tuple[str, str]:
     """Filters that slide each illustration in with a slow zoom. Returns (filters, last label)."""
     parts, last = [], "bg"
@@ -66,8 +86,7 @@ def illustration_chain(segs, pal: tuple[str, ...], fps: int, first_input: int = 
         fade = min(0.3, dur / 4)
         parts.append(
             f"[{first_input + n}:v]scale=2048:2048:force_original_aspect_ratio=increase:flags=lanczos,crop=2048:2048,crop=1800:1800:124:124,"
-            f"zoompan=z='min(1.0+0.10*on/{frames},1.10)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':"
-            f"d={frames}:s={CARD}x{CARD}:fps={fps},unsharp=5:5:0.6,pad={CARD + 2 * border}:{CARD + 2 * border}:{border}:{border}:{pal[2]},"
+            f"zoompan={camera_move(n, frames)}:d={frames}:s={CARD}x{CARD}:fps={fps},unsharp=5:5:0.6,pad={CARD + 2 * border}:{CARD + 2 * border}:{border}:{border}:{pal[2]},"
             f"format=yuva420p,fade=t=in:st=0:d={fade:.2f}:alpha=1,fade=t=out:st={dur - fade:.2f}:d={fade:.2f}:alpha=1,"
             f"setpts=PTS-STARTPTS+{start:.3f}/TB[im{n}]"
         )
