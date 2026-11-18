@@ -11,7 +11,7 @@ import shutil
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
-from . import captions, content, metadata, quality, render, tts, visuals, youtube
+from . import providers, captions, content, metadata, quality, render, tts, visuals, youtube
 from .util import ROOT, fail, load_json, log, save_json
 
 STATE = ROOT / "state" / "posted.json"
@@ -90,11 +90,18 @@ def build_description(s: dict, cfg: dict) -> str:
     return f"{' '.join(s['sentences'])}\n\n{cfg['description_footer']}{credit_block}\n\n{hashtags}"
 
 
+def scene_report_md(s: dict) -> str:
+    rows = "\n".join(f"| {i + 1} | {src} |" for i, src in enumerate(s.get("_sources") or []))
+    note = "No scene uses AI-generated video; motion is FFmpeg pan/zoom animation of still pictures."
+    return f"### Scenes (voice: {s.get('_voice', '?')})\n{note}\n\n| Scene | Source |\n|---|---|\n{rows}"
+
+
 def produce(s: dict, index: int, cfg: dict) -> Path:
     work = OUT / "work"
     shutil.rmtree(work, ignore_errors=True)
     work.mkdir(parents=True)
-    narration, timeline, _engine = tts.synthesize(s["sentences"], work, cfg["voice"])
+    narration, timeline, engine = tts.synthesize(s["sentences"], work, cfg["voice"], cfg)
+    s["_voice"] = engine
     v = cfg["video"]
     if timeline[-1][1] > v["max_seconds"]:
         log("Warning: narration longer than max_seconds; video will be trimmed")
@@ -156,6 +163,8 @@ def main() -> None:
     video = produce(s, index, cfg)
     qc = quality.inspect_video(video, cfg)
     summary(quality.report_md(qc))
+    summary(scene_report_md(s))
+    summary(providers.report_md(cfg))
     if not qc["passed"]:
         fail("Quality check blocked this Short; nothing was uploaded. The next run will try again.")
     if dry:
