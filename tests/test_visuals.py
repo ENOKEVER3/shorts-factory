@@ -1,3 +1,6 @@
+import os
+from unittest import mock
+from src import providers
 import unittest
 from pathlib import Path
 
@@ -111,7 +114,12 @@ class GeminiTest(unittest.TestCase):
             with tempfile.TemporaryDirectory() as tmp:
                 script = {"id": "x", "title": "T", "sentences": ["One.", "Two.", "Three."],
                           "visuals": ["a red cell", "a blue cell", "a green cell"]}
-                out = visuals.illustrate(script, Path(tmp), seed_base=0, cfg={"gemini_images": True})
+                with mock.patch.dict(os.environ, {"GEMINI_API_KEY": "k"}), \
+                        mock.patch.object(providers, "spent", return_value=0.0), \
+                        mock.patch.object(providers, "save_json"):
+                  out = visuals.illustrate(script, Path(tmp), seed_base=0, cfg={"gemini_images": True, "providers": {
+                    "enabled_paid": ["gemini_image"], "daily_limit_usd": 1, "monthly_limit_usd": 5,
+                    "max_paid_calls_per_video": 5}})
         finally:
             gemini.image, visuals._fetch, gemini.key = old
         self.assertEqual(len(calls), 1)  # tried once, then free sources for the rest
