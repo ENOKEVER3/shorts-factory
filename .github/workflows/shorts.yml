@@ -92,6 +92,9 @@ jobs:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
           UNSPLASH_ACCESS_KEY: ${{ secrets.UNSPLASH_ACCESS_KEY }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
+          KLING_API_KEY: ${{ secrets.KLING_API_KEY }}
+          VEO_API_KEY: ${{ secrets.VEO_API_KEY }}
         run: python -m src.main
 
       - name: Save progress to the repo
