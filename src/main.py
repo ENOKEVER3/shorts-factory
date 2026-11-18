@@ -11,7 +11,7 @@ import shutil
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
-from . import captions, content, metadata, render, tts, visuals, youtube
+from . import captions, content, metadata, quality, render, tts, visuals, youtube
 from .util import ROOT, fail, load_json, log, save_json
 
 STATE = ROOT / "state" / "posted.json"
@@ -154,6 +154,10 @@ def main() -> None:
 
     # 5. Render
     video = produce(s, index, cfg)
+    qc = quality.inspect_video(video, cfg)
+    summary(quality.report_md(qc))
+    if not qc["passed"]:
+        fail("Quality check blocked this Short; nothing was uploaded. The next run will try again.")
     if dry:
         summary(f"Dry run OK: rendered `{video.name}` (download it from the run's Artifacts).")
         return
