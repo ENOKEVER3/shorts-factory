@@ -175,3 +175,6 @@ Run tests with `python -m unittest discover tests`.
 
 All tools used are free and open source (ffmpeg, Piper, edge-tts, Google API client).
 The caption font, Anton, uses the SIL Open Font License (`assets/fonts/OFL.txt`).
+
+## Providers and spending limits (free-first)
+All Shorts are made with free services by default. Paid services (Gemini images, ElevenLabs voice) are only used when their key is a GitHub secret, they are listed in `config.json -> providers.enabled_paid`, and `daily_limit_usd`, `monthly_limit_usd` and `max_paid_calls_per_video` allow it (all 0 by default). Kling and Veo have slots but no adapter yet, so they always show "unavailable". Every paid call is logged with its estimated cost in `state/usage.json`. Each run's summary lists the source of every scene; scene motion is FFmpeg pan/zoom of still pictures, not AI video. If no voice engine works the run fails with a clear message instead of making a silent video.
