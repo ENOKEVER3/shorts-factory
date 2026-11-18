@@ -27,7 +27,7 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
-from . import gemini, quality
+from . import providers, gemini, quality
 from .util import log, retry
 
 STYLE = (
@@ -337,13 +337,16 @@ def illustrate(script: dict, work: Path, seed_base: int, cfg: dict | None = None
     used: set[str] = set()
     seen: list[int] = []
     ok = local = pre = photos = gem = 0
-    use_gemini = bool(gemini.key()) and (cfg or {}).get("gemini_images", True)
+    budget = providers.Budget(cfg, script.get("id", ""))
+    sources: list[str] = []
+    use_gemini = bool(gemini.key()) and (cfg or {}).get("gemini_images", True) and budget.allow("gemini_image")
     for i, sentence in enumerate(script["sentences"]):
         visual, photo = plan[i]
         dst = work / f"img_{i:02d}.jpg"
         studio = _pregenerated(script.get("id", ""), i)
         if studio and _valid_image(studio) and quality.check_image(studio, seen, min_side=256)[0]:
             out.append(studio)
+            sources.append("studio scene (still, animated)")
             pre += 1
             continue
         if photo and photo.get("source") == "nasa" and photo.get("query"):
@@ -351,14 +354,18 @@ def illustrate(script: dict, work: Path, seed_base: int, cfg: dict | None = None
             if credit and _accept(dst, seen, f"Photo {i + 1}"):
                 out.append(dst)
                 credits.append(credit)
+                sources.append("licensed photo (still, animated)")
                 photos += 1
                 continue
         prompt = build_prompt(script["title"], sentence, visual)
         if use_gemini:
             try:
                 _gemini_image(prompt, dst, cfg)
+                budget.record("gemini_image")
+                use_gemini = budget.allow("gemini_image")
                 if _accept(dst, seen, f"Gemini image {i + 1}"):
                     out.append(dst)
+                    sources.append("AI image (still, animated)")
                     gem += 1
                     continue
             except gemini.QuotaBlocked as exc:
@@ -371,6 +378,7 @@ def illustrate(script: dict, work: Path, seed_base: int, cfg: dict | None = None
             if credit and _accept(dst, seen, f"Photo {i + 1}"):
                 out.append(dst)
                 credits.append(credit)
+                sources.append("licensed photo (still, animated)")
                 photos += 1
                 continue
         try:
@@ -379,15 +387,19 @@ def illustrate(script: dict, work: Path, seed_base: int, cfg: dict | None = None
             if not _accept(dst, seen, f"Illustration {i + 1}"):
                 raise RuntimeError("failed quality check")
             out.append(dst)
+            sources.append("free AI illustration (still, animated)")
             ok += 1
         except Exception as exc:  # noqa: BLE001 - the online service is best-effort only
             log(f"Illustration {i + 1} online failed ({exc}); drawing local scene card")
             try:
                 out.append(local_card(sentence, dst, seed_base + i))
+                sources.append("motion graphic card")
                 local += 1
             except Exception as exc2:  # noqa: BLE001 - visuals are optional, never block a post
                 log(f"Illustration {i + 1} skipped: {exc2}")
                 out.append(None)
+                sources.append("none")
+    script["_sources"] = sources
     script["_credits"] = list(dict.fromkeys(credits))
     log(f"Pictures: {pre} studio scenes, {photos} real photos, {gem} Gemini images, {ok} free AI illustrations, "
         f"{local} local cards "
