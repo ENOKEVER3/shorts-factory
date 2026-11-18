@@ -19,14 +19,32 @@ class QuotaBlocked(RuntimeError):
     """The key's plan does not allow this model (free tier limit 0, or billing required)."""
 
 
+def keys() -> list[str]:
+    """GEMINI_API_KEY first, then GEMINI_API_KEY_2 as a backup when the first is out of quota."""
+    found = [os.environ.get(n) for n in ("GEMINI_API_KEY", "GEMINI_API_KEY_2")]
+    return list(dict.fromkeys(k for k in found if k))
+
+
 def key() -> str | None:
-    return os.environ.get("GEMINI_API_KEY") or None
+    return (keys() or [None])[0]
 
 
 def _post(model: str, payload: dict, timeout: int) -> dict:
+    ks = keys() or [""]
+    for i, k in enumerate(ks):
+        try:
+            return _post_one(model, payload, timeout, k)
+        except (QuotaBlocked, RuntimeError) as exc:
+            busy = isinstance(exc, QuotaBlocked) or "HTTP 429" in str(exc) or "HTTP 403" in str(exc)
+            if not busy or i == len(ks) - 1:
+                raise
+    raise RuntimeError("unreachable")
+
+
+def _post_one(model: str, payload: dict, timeout: int, api_key: str) -> dict:
     req = urllib.request.Request(
         API + f"{model}:generateContent", json.dumps(payload).encode(),
-        {"Content-Type": "application/json", "x-goog-api-key": key() or ""},
+        {"Content-Type": "application/json", "x-goog-api-key": api_key},
     )
     try:
         with urllib.request.urlopen(req, timeout=timeout) as r:
