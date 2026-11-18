@@ -55,5 +55,11 @@
     "ai",
     "biology",
     "future-tech"
-  ]
+  ],
+  "providers": {
+    "enabled_paid": [],
+    "daily_limit_usd": 0,
+    "monthly_limit_usd": 0,
+    "max_paid_calls_per_video": 0
+  }
 }
