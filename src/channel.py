@@ -40,7 +40,9 @@ def suggestion(v, bank, cfg):
 
 
 def snapshot(yt, cfg):
-    c = yt.channels().list(part='snippet,contentDetails', mine=True).execute()['items'][0]
+    c = yt.channels().list(part='snippet,contentDetails,statistics', mine=True).execute()['items'][0]
+    stats = c.get('statistics', {})
+    subscribers = None if stats.get('hiddenSubscriberCount') else int(stats.get('subscriberCount', 0))
     posts = {p['video_id']: p for p in load_json(ROOT/'state/posted.json', {'posts': []})['posts']}
     ids, token = [], None
     while True:
@@ -69,7 +71,7 @@ def snapshot(yt, cfg):
         print('Analytics request failed:',str(exc))
     bank = {s['id']:s for s in content.all_scripts()}
     for v in videos: v['suggested'] = suggestion(v,bank,cfg)
-    return {'channel_id':c['id'],'channel_name':c['snippet']['title'],'synced_at':datetime.now(timezone.utc).isoformat(),'period_start':start.isoformat(),'period_end':end.isoformat(),'analytics_error':error,'swipe_note':'Swipe-away rate is not exposed by the YouTube Analytics API; use Viewed vs swiped away in YouTube Studio.','videos':videos,'queue':load_json(ROOT/'state/queue.json',{'items':[]})}
+    return {'channel_id':c['id'],'channel_name':c['snippet']['title'],'subscribers':subscribers,'synced_at':datetime.now(timezone.utc).isoformat(),'period_start':start.isoformat(),'period_end':end.isoformat(),'analytics_error':error,'swipe_note':'Swipe-away rate is not exposed by the YouTube Analytics API; use Viewed vs swiped away in YouTube Studio.','videos':videos,'queue':load_json(ROOT/'state/queue.json',{'items':[]})}
 
 
 def main():
