@@ -1,3 +1,49 @@
 {
-  "items": []
+  "items": [
+    {
+      "script_id": "v3-048-why-ai-needs-more-than-a-giant-memory",
+      "run_id": "44903786441",
+      "created_at": "2026-11-21T12:26:46+00:00",
+      "script": {
+        "id": "v3-048-why-ai-needs-more-than-a-giant-memory",
+        "kind": "explainer",
+        "title": "Why AI needs more than a giant memory",
+        "sentences": [
+          "If an AI can accept a huge document, does that mean it understands every line perfectly?",
+          "A context window describes how much input a model can process in a particular interaction, not guaranteed comprehension.",
+          "Important details can still be overlooked, confused, or mixed with information from another part of the material.",
+          "The task, document structure, and location of relevant evidence can all affect the usefulness of the answer.",
+          "For careful work, ask focused questions and require quotations that can be checked against the original text.",
+          "You can also divide the job into smaller sections before combining the findings with human review.",
+          "More available context is useful capacity, but capacity and reliable use of evidence are different things.",
+          "Would you test an assistant with one long question or several focused ones?"
+        ],
+        "tags": [
+          "AI context window",
+          "long context limitations",
+          "language model memory",
+          "AI document analysis"
+        ],
+        "hashtags": [
+          "#Science",
+          "#Technology",
+          "#Seunenoch"
+        ],
+        "theme": "ai",
+        "_voice": "kokoro",
+        "_captions": "whisper word timing",
+        "_sources": [
+          "free AI illustration (still, animated)",
+          "free AI illustration (still, animated)",
+          "motion graphic card",
+          "free AI illustration (still, animated)",
+          "free AI illustration (still, animated)",
+          "free AI illustration (still, animated)",
+          "free AI illustration (still, animated)",
+          "free AI illustration (still, animated)"
+        ],
+        "_credits": []
+      }
+    }
+  ]
 }
