@@ -66,13 +66,13 @@ Style: Title,Anton,74,{WHITE},{WHITE},&H00000000,&H64000000,0,0,0,0,100,100,1,0,
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 """
     lines = [
-        f"Dialogue: 1,{_ts(0)},{_ts(total)},Kicker,,0,0,0,,{{\\pos({w // 2},{int(h * 0.11)})\\fad(300,300)}}{_clean(kicker.upper())}"
+        f"Dialogue: 1,{_ts(0)},{_ts(min(total, 3.2))},Kicker,,0,0,0,,{{\\pos({w // 2},{int(h * 0.22)})\\fad(200,400)}}{_clean(kicker.upper())}"
     ]
     if title:
         lines.append(
-            f"Dialogue: 1,{_ts(0)},{_ts(total)},Title,,0,0,0,,{{\\pos({w // 2},{int(h * 0.16)})\\fad(400,300)}}{_wrap(_clean(title.upper()))}"
+            f"Dialogue: 1,{_ts(0)},{_ts(min(total, 3.2))},Title,,0,0,0,,{{\\pos({w // 2},{int(h * 0.27)})\\fad(200,400)}}{_wrap(_clean(title.upper()))}"
         )
-    cy = int(h * 0.80)  # below the illustration card
+    cy = int(h * 0.55)  # centre safe zone, clear of YouTube's title/subscribe overlay
     for idx, (start, end, sentence) in enumerate(timeline):
         parts = _chunks(sentence)
         weights = [len(p) + 2 for p in parts]
