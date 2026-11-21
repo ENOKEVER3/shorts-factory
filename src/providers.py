@@ -28,6 +28,8 @@ REGISTRY: dict[str, dict] = {
     "kling": {"kind": "video", "paid": True, "env": "KLING_API_KEY", "cost": 0.35, "adapter": False},
     "veo": {"kind": "video", "paid": True, "env": "VEO_API_KEY", "cost": 0.50, "adapter": False},
     "edge_tts": {"kind": "voice", "paid": False, "env": None, "cost": 0.0},
+    "kokoro": {"kind": "voice", "paid": False, "env": None, "cost": 0.0},
+    "whisper_captions": {"kind": "voice", "paid": False, "env": None, "cost": 0.0},
     "piper": {"kind": "voice", "paid": False, "env": None, "cost": 0.0},
     "elevenlabs": {"kind": "voice", "paid": True, "env": "ELEVENLABS_API_KEY", "cost": 0.03},
 }

@@ -24,7 +24,10 @@
     "edge_voice": "en-US-ChristopherNeural",
     "edge_rate": "+6%",
     "piper_voice": "en_US-ryan-high",
-    "piper_speed": 1.0
+    "piper_speed": 1.0,
+    "kokoro": true,
+    "kokoro_voice": "am_michael",
+    "kokoro_speed": 1.05
   },
   "video": {
     "width": 1080,
@@ -61,5 +64,11 @@
     "daily_limit_usd": 0,
     "monthly_limit_usd": 0,
     "max_paid_calls_per_video": 0
+  },
+  "whisper_captions": true,
+  "whisper_model": "base.en",
+  "queue": {
+    "target_ready": 2,
+    "max_age_days": 10
   }
 }

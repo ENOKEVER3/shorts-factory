@@ -38,6 +38,7 @@ on:
 
 permissions:
   contents: write
+  actions: read
 
 concurrency:
   group: shorts-factory
@@ -80,8 +81,22 @@ jobs:
         run: |
           for i in 1 2 3; do pip install -q -r requirements.txt && break; sleep 15; done
 
+      - name: Cache voice + caption models (Kokoro, Whisper, Piper)
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/kokoro
+            ~/.cache/huggingface
+            ~/.cache/piper
+          key: voice-models-v1
+
       - name: Self-test
         run: python -m unittest discover tests
+
+      - name: Fetch a Short prepared ahead (ready queue)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python -m src.queue fetch
 
       - name: Produce and publish
         env:

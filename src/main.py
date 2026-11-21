@@ -3,6 +3,7 @@
 Env flags:
   DRY_RUN=1  render the Short into out/ but do not upload
   FORCE=1    ignore posting windows / daily limits (still respects the 30-day campaign)
+  MODE=prepare  render + check the next Short ahead of time into the ready queue (no upload)
 """
 from __future__ import annotations
 
@@ -11,7 +12,7 @@ import shutil
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
-from . import providers, captions, content, metadata, quality, render, tts, visuals, youtube
+from . import align, providers, queue, captions, content, metadata, quality, render, tts, visuals, youtube
 from .util import ROOT, fail, load_json, log, save_json
 
 STATE = ROOT / "state" / "posted.json"
@@ -93,7 +94,7 @@ def build_description(s: dict, cfg: dict) -> str:
 def scene_report_md(s: dict) -> str:
     rows = "\n".join(f"| {i + 1} | {src} |" for i, src in enumerate(s.get("_sources") or []))
     note = "No scene uses AI-generated video; motion is FFmpeg pan/zoom animation of still pictures."
-    return f"### Scenes (voice: {s.get('_voice', '?')})\n{note}\n\n| Scene | Source |\n|---|---|\n{rows}"
+    return f"### Scenes (voice: {s.get('_voice', '?')}, captions: {s.get('_captions', '?')})\n{note}\n\n| Scene | Source |\n|---|---|\n{rows}"
 
 
 def produce(s: dict, index: int, cfg: dict) -> Path:
@@ -106,8 +107,11 @@ def produce(s: dict, index: int, cfg: dict) -> Path:
     if timeline[-1][1] > v["max_seconds"]:
         log("Warning: narration longer than max_seconds; video will be trimmed")
     total = min(timeline[-1][1] + 0.8, float(v["max_seconds"]))
+    words = align.word_timings(narration, timeline, cfg.get("whisper_model", "base.en")) \
+        if cfg.get("whisper_captions", True) else None
+    s["_captions"] = "whisper word timing" if words else "sentence timing"
     ass = captions.build_ass(
-        timeline, total, cfg["channel_name"], work / "captions.ass", v["width"], v["height"], s["title"]
+        timeline, total, cfg["channel_name"], work / "captions.ass", v["width"], v["height"], s["title"], words
     )
     segs = []
     if cfg.get("illustrations", True):
@@ -118,12 +122,51 @@ def produce(s: dict, index: int, cfg: dict) -> Path:
     return out
 
 
+def pick_script(state: dict, cfg: dict, exclude: set[str]) -> dict | None:
+    used = {p["script_id"] for p in state["posts"]} | exclude
+    by_id = {x["id"]: x for x in content.all_scripts()}
+    last = by_id.get(state["posts"][-1]["script_id"], {}) if state["posts"] else {}
+    return content.next_script(used, cfg, last.get("theme"))
+
+
+def prepare(cfg: dict, state: dict, now: datetime) -> None:
+    q = queue.prune(queue.load(), {p["script_id"] for p in state["posts"]}, cfg, now)
+    if not queue.needs_more(q, cfg):
+        queue.save(q)
+        summary(f"Queue already has {len(q['items'])} ready Shorts. Nothing to prepare.")
+        return
+    queued = {it["script_id"] for it in q["items"]}
+    last_theme = q["items"][-1]["script"].get("theme") if q["items"] else None
+    used = {p["script_id"] for p in state["posts"]} | queued
+    s = content.next_script(used, cfg, last_theme)
+    if s is None:
+        summary("No scripts left to prepare.")
+        return
+    video = produce(s, len(state["posts"]) + len(q["items"]), cfg)
+    qc = quality.inspect_video(video, cfg)
+    summary(quality.report_md(qc))
+    summary(scene_report_md(s))
+    summary(providers.report_md(cfg))
+    if not qc["passed"]:
+        fail("Quality check blocked this Short; it was not added to the queue.")
+    queue.DIR.mkdir(parents=True, exist_ok=True)
+    shutil.move(str(video), queue.DIR / f"{s['id']}.mp4")
+    q["items"].append({"script_id": s["id"], "run_id": os.environ.get("GITHUB_RUN_ID", "local"),
+                       "created_at": now.isoformat(timespec="seconds"),
+                       "script": {k: v for k, v in s.items()}})
+    queue.save(q)
+    summary(f"Prepared and queued: **{s['title']}** ({len(q['items'])} ready)")
+
+
 def main() -> None:
     cfg = load_json(ROOT / "config.json")
     state = load_json(STATE, {"campaign_start": None, "posts": []})
     dry, force = os.environ.get("DRY_RUN") == "1", os.environ.get("FORCE") == "1"
     now = datetime.now(timezone.utc)
     today, _ = posting_day(cfg, now)
+    if os.environ.get("MODE") == "prepare":
+        prepare(cfg, state, now)
+        return
 
     # 1. Campaign window (starts on the first successful upload)
     if state["campaign_start"] and not dry:
@@ -141,11 +184,10 @@ def main() -> None:
             return
         log(reason)
 
-    # 3. Pick a script
-    used = {p["script_id"] for p in state["posts"]}
-    by_id = {x["id"]: x for x in content.all_scripts()}
-    last = by_id.get(state["posts"][-1]["script_id"], {}) if state["posts"] else {}
-    s = content.next_script(used, cfg, last.get("theme"))
+    # 3. Use a ready Short from the queue, else pick a script to render now
+    q = queue.prune(queue.load(), {p["script_id"] for p in state["posts"]}, cfg, now)
+    item = next((it for it in q["items"] if queue.ready_file(it).exists()), None) if not dry else None
+    s = dict(item["script"]) if item else pick_script(state, cfg, {it["script_id"] for it in q["items"]})
     if s is None:
         print("::warning::Script bank is empty and no GEMINI_API_KEY is set. Add scripts or a key to continue.")
         summary("No scripts left. Add more to content/scripts.json or set GEMINI_API_KEY.")
@@ -159,8 +201,12 @@ def main() -> None:
         yt = youtube.client()
         log(f"Authorised for channel: {youtube.verify_channel(yt, cfg.get('expected_channel_id', ''))}")
 
-    # 5. Render
-    video = produce(s, index, cfg)
+    # 5. Render (skipped when the Short was prepared ahead)
+    if item:
+        video = queue.ready_file(item)
+        summary(f"Using queued Short prepared at {item['created_at']} (no rendering in this slot).")
+    else:
+        video = produce(s, index, cfg)
     qc = quality.inspect_video(video, cfg)
     summary(quality.report_md(qc))
     summary(scene_report_md(s))
@@ -183,6 +229,9 @@ def main() -> None:
          "title": title, "uploaded_at": now.isoformat(timespec="seconds")}
     )
     save_json(STATE, state)
+    if item:
+        q["items"] = [it for it in q["items"] if it["script_id"] != s["id"]]
+    queue.save(q)
     summary(f"Published: [{title}](https://youtube.com/shorts/{video_id}) - post #{len(state['posts'])}")
 
 

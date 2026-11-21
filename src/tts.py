@@ -1,5 +1,6 @@
 """Text-to-speech with two free engines.
 
+0. Kokoro (open-source neural voice, offline, smoothest free option) - preferred
 1. edge-tts (Microsoft Edge online voices, free, no key, unofficial endpoint)
 2. Piper (open-source, runs offline on the runner) - automatic fallback
 
@@ -89,6 +90,39 @@ def _synth_piper(sentences: list[str], work: Path, voice_cfg: dict) -> list[Path
     return out
 
 
+# ---------- Kokoro (open-source, smooth natural voice, free, runs on the runner) ----------
+KOKORO_BASE = "https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0"
+
+
+def _synth_kokoro(sentences: list[str], work: Path, voice_cfg: dict) -> list[Path]:
+    try:
+        from kokoro_onnx import Kokoro
+    except ImportError:
+        log("Installing Kokoro (free open-source voice)...")
+        subprocess.run([sys.executable, "-m", "pip", "install", "-q", "kokoro-onnx", "soundfile"], check=True)
+        from kokoro_onnx import Kokoro
+    import soundfile as sf
+
+    cache = Path.home() / ".cache" / "kokoro"
+    cache.mkdir(parents=True, exist_ok=True)
+    for name in ("kokoro-v1.0.onnx", "voices-v1.0.bin"):
+        target = cache / name
+        if not target.exists() or target.stat().st_size < 1_000_000:
+            retry(lambda: urllib.request.urlretrieve(f"{KOKORO_BASE}/{name}", target), label="kokoro model download")
+    k = Kokoro(str(cache / "kokoro-v1.0.onnx"), str(cache / "voices-v1.0.bin"))
+    voice, speed = voice_cfg.get("kokoro_voice", "am_michael"), float(voice_cfg.get("kokoro_speed", 1.0))
+    out = []
+    for i, s in enumerate(sentences):
+        raw, wav = work / f"kokoro_{i}.wav", work / f"s_{i}.wav"
+        samples, sr = k.create(s, voice=voice, speed=speed, lang="en-us")
+        if len(samples) < sr * 0.3:
+            raise RuntimeError("Kokoro returned empty audio")
+        sf.write(str(raw), samples, sr)
+        _to_wav(raw, wav)
+        out.append(wav)
+    return out
+
+
 # ---------- ElevenLabs (optional, paid, off by default) ----------
 def _synth_eleven(sentences: list[str], work: Path, voice_cfg: dict) -> list[Path]:
     import json as _json
@@ -116,13 +150,15 @@ class NoVoice(RuntimeError):
 def synthesize(sentences: list[str], work: Path, voice_cfg: dict, cfg: dict | None = None,
                ) -> tuple[Path, list[tuple[float, float, str]], str]:
     """Return (narration.wav, [(start, end, sentence)], engine_name).
-    Order: ElevenLabs (only if enabled + key + budget) -> edge-tts (free) -> Piper (free, offline)."""
+    Order: ElevenLabs (only if enabled + key + budget) -> Kokoro (free) -> edge-tts (free) -> Piper (free, offline)."""
     work.mkdir(parents=True, exist_ok=True)
     parts, engine, errors = None, "", []
     budget = providers.Budget(cfg, "voice")
     engines = []
     if budget.allow("elevenlabs"):
         engines.append(("elevenlabs", _synth_eleven))
+    if voice_cfg.get("kokoro", True):
+        engines.append(("kokoro", _synth_kokoro))
     engines += [("edge-tts", _synth_edge), ("piper", _synth_piper)]
     for name, fn in engines:
         try:
