@@ -22,7 +22,7 @@
   "language": "en",
   "voice": {
     "edge_voice": "en-US-ChristopherNeural",
-    "edge_rate": "-4%",
+    "edge_rate": "+6%",
     "piper_voice": "en_US-ryan-high",
     "piper_speed": 1.0
   },
