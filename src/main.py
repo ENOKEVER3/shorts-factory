@@ -85,10 +85,7 @@ def plan_post(cfg: dict, posts: list[dict], now: datetime) -> tuple[str | None, 
 
 
 def build_description(s: dict, cfg: dict) -> str:
-    hashtags = " ".join(metadata.hashtags(s))
-    credits = s.get("_credits") or []
-    credit_block = ("\n\nPhoto credits:\n" + "\n".join(f"- {c}" for c in credits)) if credits else ""
-    return f"{' '.join(s['sentences'])}\n\n{cfg['description_footer']}{credit_block}\n\n{hashtags}"
+    return metadata.description(s, cfg)
 
 
 def scene_report_md(s: dict) -> str:
@@ -165,6 +162,7 @@ def main() -> None:
     now = datetime.now(timezone.utc)
     today, _ = posting_day(cfg, now)
     if os.environ.get("MODE") == "prepare":
+        youtube.verify_channel(youtube.client(), cfg.get("expected_channel_id", ""))
         prepare(cfg, state, now)
         return
 
@@ -218,8 +216,8 @@ def main() -> None:
         return
 
     # 6. Upload
-    title = f"{s['title']} #Shorts"
-    tags = list(dict.fromkeys([*s.get("tags", []), *cfg["default_tags"]]))
+    title = metadata.title(s)
+    tags = metadata.tags(s)
     video_id = youtube.upload(yt, video, title, build_description(s, cfg), tags, cfg)
 
     # 7. Record immediately so a later failure never causes a duplicate upload

@@ -1,9 +1,26 @@
 import unittest
-from src.metadata import hashtags
+from src.metadata import hashtags, tags, title
 from src.main import build_description
 
 
 class HashtagTest(unittest.TestCase):
+    def test_moon_has_no_unrelated_earth_or_ai_tags(self):
+        s = {"title": "What if the Moon disappeared? #Shorts", "theme": "space"}
+        self.assertEqual(title(s), "What if the Moon disappeared?")
+        self.assertIn("#Moon", hashtags(s))
+        self.assertNotIn("AI", tags(s))
+        self.assertNotIn("#PlanetEarth", hashtags(s))
+
+    def test_lunar_eclipse_is_not_solar_energy(self):
+        h = hashtags({"title": "Why a lunar eclipse turns red", "theme": "space"})
+        self.assertIn("#LunarEclipse", h)
+        self.assertNotIn("#SolarEnergy", h)
+        self.assertNotIn("#SolarEclipse", h)
+
+    def test_gta5_is_not_gta6(self):
+        h = hashtags({"title": "GTA 5 mods explained", "theme": "gaming"})
+        self.assertIn("#GTA5", h)
+        self.assertNotIn("#GTA6", h)
     def test_protein_topic_not_generic_ai(self):
         result = hashtags({"title": "Can a protein carry a watermark?", "theme": "biology"})
         self.assertEqual(result, ["#ProteinScience", "#Biology", "#Shorts", "#MAKOKOGW"])

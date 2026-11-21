@@ -7,12 +7,13 @@ After setup it runs on GitHub's servers. Your computer can stay off.
 GitHub Actions (15 short check-ins/day, UTC; 2 of them post)
    -> pick next script (112 pre-written on 4 subjects - AI in technology, the planet, biology, future technology -
       rotated so two Shorts in a row are never the same subject; optional Gemini free tier after that)
-   -> AI voice (edge-tts, falls back to offline Piper voice)
+   -> Kokoro voice (free/offline), falling back to edge-tts and Piper
    -> animated background (ffmpeg, 5 styles x 6 palettes, nothing downloaded)
    -> one picture per sentence that matches what is said: studio scenes if uploaded, else a real free photo
       (NASA for space/planets), else a Gemini image (only if your Google project has billing), else a free
       stock photo (Pexels/Pixabay key) or free AI illustration - all drawn from a written scene plan
    -> big word-by-word captions + title + progress bar + soft music bed
+      (Whisper word timing, with sentence timing if transcription fails)
    -> YouTube Data API upload (resumable, retries)
    -> log the video in state/posted.json (so nothing is ever posted twice)
 ```
@@ -178,3 +179,15 @@ The caption font, Anton, uses the SIL Open Font License (`assets/fonts/OFL.txt`)
 
 ## Providers and spending limits (free-first)
 All Shorts are made with free services by default. Paid services (Gemini images, ElevenLabs voice) are only used when their key is a GitHub secret, they are listed in `config.json -> providers.enabled_paid`, and `daily_limit_usd`, `monthly_limit_usd` and `max_paid_calls_per_video` allow it (all 0 by default). Kling and Veo have slots but no adapter yet, so they always show "unavailable". Every paid call is logged with its estimated cost in `state/usage.json`. Each run's summary lists the source of every scene; scene motion is FFmpeg pan/zoom of still pictures, not AI video. If no voice engine works the run fails with a clear message instead of making a silent video.
+
+## Ready queue and word-timed captions
+
+`prepare.yml` renders and quality-checks one Short per run, up to 2 ready Shorts, with three scheduled checks daily. Posting downloads a prepared artifact instead of rendering when available. An empty queue falls back to live rendering; this is not a guarantee against service outages. Kokoro and Whisper run locally with no API fee, but model downloads and CPU inference consume runner time. The pinned PyAV dependency avoids the `metadata_errors` incompatibility. The Scenes summary records which engines actually ran.
+
+## Channel optimization and analytics
+
+The guide site's Optimization and Performance pages are restricted to the approved channel account. `channel.yml` reads the channel daily and on request; private Actions artifacts hold snapshots and pre-edit backups for 14 days. Analytics are never committed to the public repository. Edits preserve category, language, privacy and video footage, and verify channel ownership and YouTube read-back. Future uploads use topic-matched tags instead of unrelated channel-wide defaults.
+
+Editing existing videos requires a newly authorized token including `youtube.force-ssl`. Watch time requires enabling **YouTube Analytics API** in Google Cloud and authorizing `yt-analytics.readonly`. Re-run the updated OAuth helper and replace the GitHub `YT_REFRESH_TOKEN` secret; old tokens do not gain scopes automatically. Until then, sync can show available public counts while clearly marking unavailable analytics and update failures.
+
+Views/likes/comments are lifetime counts; watch time and average duration cover a labeled 28-day window ending two days ago to allow reporting delay. The API does not expose Shorts' **Viewed vs swiped away** rate: see it in YouTube Studio, not an invented estimate here. Thumbnails shown are current YouTube thumbnails; select Shorts thumbnails through YouTube's supported app/Studio controls. The web workspace uses Lovable Cloud sign-in and saved edits, subject to its free allowance; ongoing $0 cost is not guaranteed if that allowance is exceeded. No keyword volume, ranking, reach or revenue is guaranteed.

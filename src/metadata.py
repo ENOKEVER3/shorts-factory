@@ -9,7 +9,8 @@ TOPICS = (
     (r"\b(robot|robots|robotics)\b", "#Robotics"),
     (r"\b(rocket|rockets|spacecraft)\b", "#RocketScience"),
     (r"\b(mars)\b", "#Mars"),
-    (r"\b(earth|planet|planets)\b", "#PlanetEarth"),
+    (r"\b(earth)\b", "#PlanetEarth"),
+    (r"\b(moon|lunar)\b", "#Moon"),
     (r"\b(black hole|black holes)\b", "#BlackHoles"),
     (r"\b(ocean|oceans)\b", "#OceanScience"),
     (r"\b(climate)\b", "#ClimateScience"),
@@ -17,14 +18,16 @@ TOPICS = (
     (r"\b(protein|proteins|alphafold)\b", "#ProteinScience"),
     (r"\b(brain|neuron|neurons)\b", "#Neuroscience"),
     (r"\b(battery|batteries)\b", "#BatteryTechnology"),
-    (r"\b(solar)\b", "#SolarEnergy"),
+    (r"\b(solar panel|solar panels|solar power|solar energy)\b", "#SolarEnergy"),
     (r"\b(fusion)\b", "#FusionEnergy"),
     (r"\b(quantum)\b", "#QuantumScience"),
     (r"\b(nasa|apollo|voyager|webb)\b", "#NASA"),
     (r"\b(the sun|solar flare|solar storm)\b", "#TheSun"),
-    (r"\b(eclipse|eclipses)\b", "#SolarEclipse"),
+    (r"\b(solar eclipse)\b", "#SolarEclipse"),
+    (r"\b(lunar eclipse)\b", "#LunarEclipse"),
     (r"\b(saturn|jupiter|venus)\b", "#SolarSystem"),
-    (r"\b(gta|grand theft auto)\b", "#GTA6"),
+    (r"\b(gta 6|gta vi|grand theft auto vi|grand theft auto 6)\b", "#GTA6"),
+    (r"\b(gta 5|gta v|grand theft auto v|grand theft auto 5)\b", "#GTA5"),
     (r"\b(rockstar)\b", "#RockstarGames"),
     (r"\b(mod|mods|modders)\b", "#GameMods"),
 )
@@ -43,3 +46,29 @@ def hashtags(script: dict) -> list[str]:
     if theme not in selected:
         selected.append(theme)
     return [*selected[:3], "#Shorts", "#MAKOKOGW"]
+
+
+def title(script: dict) -> str:
+    """Keep the factual promise; remove clutter rather than invent clickbait."""
+    text = re.sub(r"#\w+", "", script.get("title", "")).strip()
+    text = re.sub(r"\s+", " ", text)
+    return text[:100].rstrip()
+
+
+def tags(script: dict) -> list[str]:
+    """Replace unrelated channel-wide defaults with a small topic-specific set."""
+    chosen = [title(script).rstrip("?!.")]
+    chosen += [re.sub(r"(?<=[a-z])(?=[A-Z])", " ", h[1:]) for h in hashtags(script)]
+    result = []
+    for tag in chosen:
+        if tag and tag.casefold() not in {t.casefold() for t in result}:
+            if sum(len(t) + 3 for t in result) + len(tag) + 3 <= 500:
+                result.append(tag)
+    return result
+
+
+def description(script: dict, cfg: dict) -> str:
+    """Lead with the video's actual subject and preserve attribution/disclosure."""
+    credits = script.get("_credits") or []
+    credit_block = ("\n\nPhoto credits:\n" + "\n".join(f"- {c}" for c in credits)) if credits else ""
+    return f"{title(script)}\n\n{' '.join(script.get('sentences', []))}\n\n{cfg['description_footer']}{credit_block}\n\n{' '.join(hashtags(script))}"[:4900]

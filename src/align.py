@@ -65,7 +65,7 @@ def word_timings(narration: Path, timeline, model: str = "base.en") -> list[list
             from faster_whisper import WhisperModel
         except ImportError:
             log("Installing faster-whisper (free word-timed captions)...")
-            subprocess.run([sys.executable, "-m", "pip", "install", "-q", "faster-whisper"], check=True)
+            subprocess.run([sys.executable, "-m", "pip", "install", "-q", "faster-whisper==1.2.1", "av>=11,<19"], check=True)
             from faster_whisper import WhisperModel
         m = WhisperModel(model, device="cpu", compute_type="int8")
         segs, _ = m.transcribe(str(narration), language="en", word_timestamps=True, beam_size=5)

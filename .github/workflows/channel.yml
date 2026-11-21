@@ -1,0 +1,44 @@
+name: Channel Optimization
+on:
+  schedule:
+    - cron: '43 8 * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        type: choice
+        options: [sync, apply, optimize]
+        default: sync
+      edits:
+        type: string
+        default: '[]'
+permissions:
+  contents: read
+concurrency:
+  group: channel-metadata
+  cancel-in-progress: false
+jobs:
+  sync:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: pip install google-api-python-client google-auth
+      - name: Sync or update owned videos
+        env:
+          CHANNEL_MODE: ${{ inputs.mode || 'sync' }}
+          VIDEO_EDITS: ${{ inputs.edits || '[]' }}
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets.YT_REFRESH_TOKEN }}
+        run: python -m src.channel
+      - name: Save private channel snapshot and backup
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: channel-snapshot
+          path: out/channel*.json
+          retention-days: 14
+          if-no-files-found: warn
