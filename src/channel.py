@@ -82,6 +82,9 @@ def main():
             try: report['updated'].append(update_video(yt,cfg,e)['id'])
             except Exception as exc:
                 report['errors'].append({'id':e.get('id'),'error':str(exc)}); print('Metadata update failed:',str(exc))
+                if 'insufficient' in str(exc).lower():
+                    report['errors'].extend({'id':pending.get('id'),'error':'Not attempted: YouTube authorization lacks video editing permission.'} for pending in edits[len(report['updated'])+len(report['errors']):])
+                    break
         snap = snapshot(yt,cfg)
     snap['update_report'] = report; save_json(ROOT/'out/channel.json',snap)
     if os.environ.get('GITHUB_STEP_SUMMARY'):
