@@ -52,8 +52,7 @@ def background_filter(style: int, pal: tuple[str, ...], d: float, w: int, h: int
     )
 
 
-CARD = 820          # illustration size (px)
-CARD_Y = 600        # top of the illustration card
+FULL_W, FULL_H = 1080, 1920  # pictures fill the whole vertical screen (no floating square card)
 
 
 CAMERA_MOVES = ("push-in", "pull-out", "pan-right", "pan-left", "drift-up")
@@ -79,19 +78,19 @@ def camera_move(n: int, frames: int) -> str:
 def illustration_chain(segs, pal: tuple[str, ...], fps: int, first_input: int = 1) -> tuple[str, str]:
     """Filters that slide each illustration in with a slow zoom. Returns (filters, last label)."""
     parts, last = [], "bg"
-    border = 10
     for n, (_p, start, end) in enumerate(segs):
         dur = end - start
         frames = max(int(dur * fps), 2)
         fade = min(0.3, dur / 4)
         parts.append(
-            f"[{first_input + n}:v]scale=2048:2048:force_original_aspect_ratio=increase:flags=lanczos,crop=2048:2048,crop=1800:1800:124:124,"
-            f"zoompan={camera_move(n, frames)}:d={frames}:s={CARD}x{CARD}:fps={fps},unsharp=5:5:0.6,pad={CARD + 2 * border}:{CARD + 2 * border}:{border}:{border}:{pal[2]},"
+            f"[{first_input + n}:v]scale=1620:2880:force_original_aspect_ratio=increase:flags=lanczos,crop=1620:2880,"
+            f"zoompan={camera_move(n, frames)}:d={frames}:s={FULL_W}x{FULL_H}:fps={fps},unsharp=5:5:0.6,"
+            f"eq=brightness=-0.04:contrast=1.06:saturation=1.12,vignette=PI/5,"
             f"format=yuva420p,fade=t=in:st=0:d={fade:.2f}:alpha=1,fade=t=out:st={dur - fade:.2f}:d={fade:.2f}:alpha=1,"
             f"setpts=PTS-STARTPTS+{start:.3f}/TB[im{n}]"
         )
         nxt = f"ov{n}"
-        parts.append(f"[{last}][im{n}]overlay=x=(W-w)/2:y={CARD_Y - border}:eof_action=pass[{nxt}]")
+        parts.append(f"[{last}][im{n}]overlay=x=0:y=0:eof_action=pass[{nxt}]")
         last = nxt
     return ";".join(parts), last
 
