@@ -86,8 +86,8 @@ def _generate(cfg: dict, past_titles: list[str]) -> dict:
         "(clearly hypothetical), or a real recent discovery explained simply. Title must read like something "
         "people search for.\n"
         "Rules: 85-120 words total; 6-9 short spoken sentences; first sentence is a curiosity hook; each "
-        "sentence describes one concrete thing a viewer could picture; last sentence asks viewers to comment "
-        "and follow for more. Only include well established facts; say 'researchers are testing' for anything "
+        "sentence describes one concrete thing a viewer could picture; last sentence is a surprising payoff fact or a short question that invites comments; "
+        "never end with follow/subscribe requests. Only include well established facts; say 'researchers are testing' for anything "
         "unproven. No made-up statistics, no medical or financial advice, no emojis.\n"
         f"Do NOT repeat any of these topics: {json.dumps(past_titles[-80:])}\n"
         'Return JSON: {"title": "max 70 chars, no hashtags", "sentences": ["..."], '
