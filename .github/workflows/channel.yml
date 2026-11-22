@@ -37,6 +37,11 @@ jobs:
             gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$artifact/zip" > /tmp/history.zip
             unzip -o /tmp/history.zip -d out
           fi
+          snapshot=$(gh api "repos/$GITHUB_REPOSITORY/actions/artifacts?name=channel-snapshot&per_page=5" --jq '[.artifacts[] | select(.expired == false)][0].id // empty')
+          if [ -n "$snapshot" ]; then
+            gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$snapshot/zip" > /tmp/previous-channel.zip
+            unzip -p /tmp/previous-channel.zip channel.json > out/previous-channel.json
+          fi
       - name: Sync or update owned videos
         env:
           CHANNEL_MODE: ${{ inputs.mode || 'sync' }}

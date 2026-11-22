@@ -20,3 +20,9 @@ class OptimizationTest(unittest.TestCase):
         update_video(yt,{'expected_channel_id':'target'},{'id':'8t2BHhbWjKE','title':'New','description':'New description','tags':['Moon']})
         body=yt.videos().update.call_args.kwargs['body']
         self.assertEqual(body['snippet']['categoryId'],'28'); self.assertEqual(body['snippet']['defaultLanguage'],'en'); self.assertNotIn('status',body)
+    def test_tags_must_read_back_exactly(self):
+        yt=MagicMock();yt.channels().list().execute.return_value={'items':[{'id':'target','snippet':{'title':'Makoko'}}]}
+        old={'channelId':'target','categoryId':'28','title':'New','description':'New description','tags':['wrong']}
+        yt.videos().list().execute.return_value={'items':[{'snippet':old}]}
+        with self.assertRaisesRegex(RuntimeError,'Read-back mismatch'):
+            update_video(yt,{'expected_channel_id':'target'},{'id':'8t2BHhbWjKE','title':'New','description':'New description','tags':['Moon']})

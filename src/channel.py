@@ -82,6 +82,10 @@ def snapshot(yt, cfg):
 def main():
     cfg = load_json(ROOT/'config.json'); yt = youtube.client(); youtube.verify_channel(yt,cfg['expected_channel_id'])
     mode = os.environ.get('CHANNEL_MODE','sync'); snap = snapshot(yt,cfg); report = {'updated':[],'errors':[]}
+    if mode == 'sync':
+        previous = load_json(ROOT/'out/previous-channel.json', {})
+        if previous.get('channel_id') == cfg['expected_channel_id']:
+            report = previous.get('update_report', report)
     if mode in ('apply','optimize'):
         edits = json.loads(os.environ.get('VIDEO_EDITS','[]')) if mode == 'apply' else [v['suggested'] for v in snap['videos']]
         save_json(ROOT/'out/channel-backup.json',snap)
@@ -99,6 +103,6 @@ def main():
             f.write(f"## Channel sync\n{len(snap['videos'])} Shorts synced. {len(report['updated'])} updated; {len(report['errors'])} failed.\n")
             if snap['analytics_error']: f.write(snap['analytics_error']+'\n')
             f.write(snap['swipe_note']+'\n')
-    if report['errors']: raise RuntimeError('Metadata updates failed; see channel artifact')
+    if mode != 'sync' and report['errors']: raise RuntimeError('Metadata updates failed; see channel artifact')
 
 if __name__ == '__main__': main()
