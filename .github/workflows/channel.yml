@@ -32,12 +32,12 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           mkdir -p out
-          artifact=$(gh api "repos/$GITHUB_REPOSITORY/actions/artifacts?name=subscriber-history&per_page=5" --jq '[.artifacts[] | select(.expired == false)][0].id // empty')
+          artifact=$(gh api "repos/$GITHUB_REPOSITORY/actions/artifacts?name=subscriber-history&per_page=100" --jq '[.artifacts[] | select(.expired == false)] | sort_by(.created_at) | reverse | .[0].id // empty')
           if [ -n "$artifact" ]; then
             gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$artifact/zip" > /tmp/history.zip
             unzip -o /tmp/history.zip -d out
           fi
-          snapshot=$(gh api "repos/$GITHUB_REPOSITORY/actions/artifacts?name=channel-snapshot&per_page=5" --jq '[.artifacts[] | select(.expired == false)][0].id // empty')
+          snapshot=$(gh api "repos/$GITHUB_REPOSITORY/actions/artifacts?name=channel-snapshot&per_page=100" --jq '[.artifacts[] | select(.expired == false)] | sort_by(.created_at) | reverse | .[0].id // empty')
           if [ -n "$snapshot" ]; then
             gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$snapshot/zip" > /tmp/previous-channel.zip
             unzip -p /tmp/previous-channel.zip channel.json > out/previous-channel.json
