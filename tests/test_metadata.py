@@ -17,10 +17,10 @@ class HashtagTest(unittest.TestCase):
         self.assertNotIn("#SolarEnergy", h)
         self.assertNotIn("#SolarEclipse", h)
 
-    def test_gta5_is_not_gta6(self):
-        h = hashtags({"title": "GTA 5 mods explained", "theme": "gaming"})
-        self.assertIn("#GTA5", h)
+    def test_no_gaming_hashtags(self):
+        h = hashtags({"title": "GTA 6 mods explained", "theme": "curiosity"})
         self.assertNotIn("#GTA6", h)
+        self.assertNotIn("#Gaming", h)
     def test_protein_topic_not_generic_ai(self):
         result = hashtags({"title": "Can a protein carry a watermark?", "theme": "biology"})
         self.assertEqual(result, ["#ProteinScience", "#Biology", "#Shorts", "#MAKOKOGW"])

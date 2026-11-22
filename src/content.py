@@ -1,6 +1,8 @@
 """Where scripts come from.
 
-1. content/scripts_v3.json - curiosity science/AI explainers, used first
+1. content/scripts_curiosity.json - high-intent curiosity questions, used first
+   content/scripts_space.json - cinematic space
+   content/scripts_v3.json - curiosity science/AI explainers, used first
    content/scripts_v2.json - simple AI explainers
    content/scripts.json    - original future-tech scripts
 2. content/generated/    - scripts written by Gemini's free tier once the bank runs out (optional)
@@ -18,7 +20,7 @@ from . import gemini
 from .util import ROOT, load_json, log, retry, save_json
 
 BANK_SPACE = ROOT / "content" / "scripts_space.json"
-BANK_GAMING = ROOT / "content" / "scripts_gaming.json"
+BANK_CURIOSITY = ROOT / "content" / "scripts_curiosity.json"
 BANK_V3 = ROOT / "content" / "scripts_v3.json"
 BANK_V2 = ROOT / "content" / "scripts_v2.json"
 BANK = ROOT / "content" / "scripts.json"
@@ -29,7 +31,7 @@ THEME_TEXT = {
     "space": "space and planets (the Sun, every planet, eclipses, asteroid impacts, NASA missions and space exploration history), told cinematically",
     "planet": "the planet (Earth, the Moon, Mars and other planets, climate, oceans, natural forces)",
     "biology": "biology (the human body, DNA, medicine, animals, life)",
-    "gaming": "video games (how games are made, game companies, cheat codes, mods, consoles, gaming news labelled as rumour or fact; never use game footage)",
+    "curiosity": "high-intent curiosity (forbidden or inaccessible places, what-happens-if science, hidden infrastructure, everyday engineering, human body limits), answered accurately with a clear payoff",
     "future-tech": "future technology (energy, robots, rockets, materials, computing, inventions)",
 }
 
@@ -46,7 +48,7 @@ def _valid(s: dict) -> bool:
 
 
 def all_scripts() -> list[dict]:
-    scripts = list(load_json(BANK_SPACE, [])) + list(load_json(BANK_GAMING, [])) + list(load_json(BANK_V3, [])) + list(load_json(BANK_V2, [])) + list(load_json(BANK, []))
+    scripts = list(load_json(BANK_CURIOSITY, [])) + list(load_json(BANK_SPACE, [])) + list(load_json(BANK_V3, [])) + list(load_json(BANK_V2, [])) + list(load_json(BANK, []))
     for p in sorted(GENERATED.glob("*.json")):
         scripts.append(load_json(p))
     return scripts

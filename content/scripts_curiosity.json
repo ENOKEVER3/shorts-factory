@@ -1,0 +1,886 @@
+[
+ {
+  "id": "c-001-point-nemo",
+  "kind": "curiosity",
+  "title": "Why spacecraft go to die at Point Nemo",
+  "theme": "curiosity",
+  "sentences": [
+   "There is a spot in the Pacific Ocean so remote, the nearest humans are often in space.",
+   "It is called Point Nemo, about 2,700 kilometres from the closest land.",
+   "When the International Space Station passes overhead, its crew is closer than anyone on Earth.",
+   "That loneliness makes it perfect for one job: a graveyard for spacecraft.",
+   "Since 1971, hundreds of old satellites and cargo ships have been steered down here.",
+   "The Russian space station Mir broke apart and sank in this region in 2001.",
+   "One day, the International Space Station itself is planned to fall here too.",
+   "Would you sail out to the loneliest place on the planet?"
+  ],
+  "visuals": [
+   "a vast empty dark blue ocean under a grey sky",
+   "a map of the Pacific with one tiny red dot far from land",
+   "the International Space Station glowing above Earth at night",
+   "rusted metal debris resting on a deep sea floor",
+   "a cargo spacecraft burning up as a fiery streak in the sky",
+   "an old space station breaking apart in flames over the ocean",
+   "the space station silhouetted against the curve of the Earth",
+   "a small sailboat alone on a huge ocean at sunset"
+  ],
+  "photos": [
+   {
+    "source": "stock",
+    "query": "open ocean waves"
+   },
+   {
+    "source": "nasa",
+    "query": "pacific ocean from space"
+   },
+   {
+    "source": "nasa",
+    "query": "international space station"
+   },
+   null,
+   {
+    "source": "nasa",
+    "query": "reentry fireball"
+   },
+   {
+    "source": "nasa",
+    "query": "mir space station"
+   },
+   {
+    "source": "nasa",
+    "query": "space station earth limb"
+   },
+   {
+    "source": "stock",
+    "query": "sailboat ocean sunset"
+   }
+  ],
+  "tags": [
+   "Point Nemo",
+   "spacecraft cemetery",
+   "Pacific Ocean",
+   "space station"
+  ]
+ },
+ {
+  "id": "c-002-kola-borehole",
+  "kind": "curiosity",
+  "title": "Why humans can't dig deeper than 12 kilometres",
+  "theme": "curiosity",
+  "sentences": [
+   "The deepest hole humans ever dug is narrower than a dinner plate.",
+   "It is the Kola Superdeep Borehole in Russia, about 12.2 kilometres deep.",
+   "Scientists expected cool rock, but at the bottom it reached around 180 degrees Celsius.",
+   "At that heat and pressure, rock behaved almost like thick plastic and kept closing the hole.",
+   "They also found water locked inside the crystals, far deeper than anyone predicted.",
+   "After nearly twenty years of drilling, the project stopped in 1992.",
+   "Even this record only scratched about a third of the way through the crust.",
+   "How deep do you think we will ever really go?"
+  ],
+  "visuals": [
+   "a tiny rusted metal cap sealing a hole in concrete",
+   "a tall drilling rig in a snowy Arctic landscape",
+   "a glowing red cutaway of hot rock deep underground",
+   "molten looking rock slowly squeezing a narrow tunnel shut",
+   "wet sparkling crystals inside dark granite",
+   "an abandoned industrial building in the snow",
+   "a cross section of Earth showing thin crust over the mantle",
+   "a drill bit pointing down into darkness"
+  ],
+  "photos": [
+   null,
+   {
+    "source": "stock",
+    "query": "drilling rig snow"
+   },
+   {
+    "source": "stock",
+    "query": "volcanic rock lava"
+   },
+   null,
+   {
+    "source": "stock",
+    "query": "granite crystals"
+   },
+   {
+    "source": "stock",
+    "query": "abandoned factory snow"
+   },
+   null,
+   {
+    "source": "stock",
+    "query": "drill bit"
+   }
+  ],
+  "tags": [
+   "Kola Superdeep Borehole",
+   "deepest hole",
+   "geology",
+   "Earth's crust"
+  ]
+ },
+ {
+  "id": "c-003-space-cold-sun-hot",
+  "kind": "curiosity",
+  "title": "Why space is freezing if the Sun is so hot",
+  "theme": "curiosity",
+  "sentences": [
+   "The Sun's surface is about 5,500 degrees Celsius, yet space is brutally cold.",
+   "The secret is that heat needs something to travel through.",
+   "On Earth, air and water carry heat from atom to atom.",
+   "Space is almost a perfect vacuum, with nearly nothing to carry it.",
+   "So sunlight only heats what it hits directly.",
+   "That's why the sunny side of the space station can pass 120 degrees, while the shade drops far below freezing.",
+   "Astronauts survive with suits that reflect light and carefully move heat around.",
+   "Hot and freezing at the same time. Which side would you pick?"
+  ],
+  "visuals": [
+   "the blazing Sun filling the frame",
+   "glowing heat waves rising from a hot surface",
+   "steam rising from a cup of coffee",
+   "the black empty void of space with distant stars",
+   "sunlight striking one side of a satellite",
+   "a space station half in bright sunlight half in shadow",
+   "an astronaut in a white suit during a spacewalk",
+   "the Earth split between day and night"
+  ],
+  "photos": [
+   {
+    "source": "nasa",
+    "query": "sun"
+   },
+   {
+    "source": "stock",
+    "query": "heat haze"
+   },
+   {
+    "source": "stock",
+    "query": "steaming coffee"
+   },
+   {
+    "source": "nasa",
+    "query": "deep field stars"
+   },
+   {
+    "source": "nasa",
+    "query": "satellite sunlight"
+   },
+   {
+    "source": "nasa",
+    "query": "space station"
+   },
+   {
+    "source": "nasa",
+    "query": "spacewalk"
+   },
+   {
+    "source": "nasa",
+    "query": "earth terminator"
+   }
+  ],
+  "tags": [
+   "space",
+   "the Sun",
+   "heat",
+   "vacuum",
+   "astronauts"
+  ]
+ },
+ {
+  "id": "c-004-delete-data",
+  "kind": "curiosity",
+  "title": "Where your files really go when you press delete",
+  "theme": "curiosity",
+  "sentences": [
+   "When you delete a file, it usually isn't gone.",
+   "Your computer mostly erases the label that says where the file lives.",
+   "The actual data stays on the drive, marked as space that can be reused.",
+   "Until something new is written on top, recovery tools can often bring it back.",
+   "That's how investigators rescue photos from old memory cards.",
+   "Modern solid state drives can clean up deleted blocks on their own, so recovery is harder there.",
+   "To truly wipe a device, use its full reset or encryption before you sell it.",
+   "Did you know your old phone might still remember?"
+  ],
+  "visuals": [
+   "a hand pressing a delete key on a keyboard",
+   "a library catalogue card being torn up while the book stays on the shelf",
+   "rows of glowing data blocks on a hard drive",
+   "a magnifying glass revealing faded files",
+   "a memory card in a camera on a desk",
+   "a close up of a solid state drive circuit board",
+   "a phone showing a factory reset screen",
+   "an old phone in a drawer"
+  ],
+  "photos": [
+   {
+    "source": "stock",
+    "query": "keyboard delete key"
+   },
+   {
+    "source": "stock",
+    "query": "library shelves"
+   },
+   {
+    "source": "stock",
+    "query": "hard drive"
+   },
+   {
+    "source": "stock",
+    "query": "magnifying glass"
+   },
+   {
+    "source": "stock",
+    "query": "memory card camera"
+   },
+   {
+    "source": "stock",
+    "query": "ssd circuit board"
+   },
+   {
+    "source": "stock",
+    "query": "smartphone settings"
+   },
+   {
+    "source": "stock",
+    "query": "old smartphone"
+   }
+  ],
+  "tags": [
+   "data recovery",
+   "computers",
+   "privacy",
+   "storage"
+  ]
+ },
+ {
+  "id": "c-005-undersea-cables",
+  "kind": "curiosity",
+  "title": "How the internet crosses the ocean floor",
+  "theme": "curiosity",
+  "sentences": [
+   "Your messages to another continent most likely don't go through space.",
+   "They travel through cables lying on the ocean floor.",
+   "Undersea cables carry the vast majority of international internet traffic.",
+   "Inside, hair thin glass fibres carry pulses of light across thousands of kilometres.",
+   "Near the shore, cables are wrapped in steel and buried to resist anchors and fishing nets.",
+   "In the deep sea, they can be about as thick as a garden hose.",
+   "Repair ships with grappling hooks fix breaks, sometimes in water kilometres deep.",
+   "Next time a video loads, remember it may have crossed an ocean floor."
+  ],
+  "visuals": [
+   "a phone sending a message with a glowing line across a world map",
+   "a cable snaking across a dark sandy sea floor",
+   "a glowing world map covered with lines between continents",
+   "bright light pulsing through thin glass fibres",
+   "a thick steel armoured cable on a beach",
+   "a slim cable resting in the deep ocean",
+   "a cable repair ship at sea",
+   "a video loading on a phone screen"
+  ],
+  "photos": [
+   {
+    "source": "stock",
+    "query": "smartphone message"
+   },
+   {
+    "source": "stock",
+    "query": "underwater cable"
+   },
+   {
+    "source": "nasa",
+    "query": "earth at night city lights"
+   },
+   {
+    "source": "stock",
+    "query": "fiber optic light"
+   },
+   {
+    "source": "stock",
+    "query": "cable ship"
+   },
+   {
+    "source": "stock",
+    "query": "deep sea"
+   },
+   {
+    "source": "stock",
+    "query": "ship at sea"
+   },
+   {
+    "source": "stock",
+    "query": "smartphone video"
+   }
+  ],
+  "tags": [
+   "undersea cables",
+   "internet",
+   "fiber optics",
+   "technology"
+  ]
+ },
+ {
+  "id": "c-006-vacuum-body",
+  "kind": "curiosity",
+  "title": "What really happens to a human body in space without a suit",
+  "theme": "curiosity",
+  "sentences": [
+   "In movies, people in space explode. That is not what happens.",
+   "Your skin is strong enough to hold your body together.",
+   "But with no air pressure, the moisture on your tongue and eyes would begin to boil.",
+   "The air in your lungs would rush out, so you should never hold your breath.",
+   "Your body would swell, but not burst.",
+   "Within about fifteen seconds, you would lose consciousness from lack of oxygen.",
+   "In a 1966 NASA test accident, a man exposed to near vacuum survived because pressure returned fast.",
+   "Knowing this, would you still take a spacewalk?"
+  ],
+  "visuals": [
+   "an astronaut floating against a black sky",
+   "a close up of human skin",
+   "water droplets boiling in a glass chamber",
+   "air bubbles rushing out into darkness",
+   "a slightly swollen spacesuit glove",
+   "an astronaut's helmet visor reflecting Earth",
+   "a vintage vacuum chamber test facility",
+   "an astronaut on a spacewalk above Earth"
+  ],
+  "photos": [
+   {
+    "source": "nasa",
+    "query": "astronaut"
+   },
+   {
+    "source": "stock",
+    "query": "human skin closeup"
+   },
+   {
+    "source": "stock",
+    "query": "boiling water bubbles"
+   },
+   {
+    "source": "stock",
+    "query": "bubbles underwater"
+   },
+   {
+    "source": "nasa",
+    "query": "spacesuit glove"
+   },
+   {
+    "source": "nasa",
+    "query": "astronaut helmet"
+   },
+   {
+    "source": "nasa",
+    "query": "vacuum chamber"
+   },
+   {
+    "source": "nasa",
+    "query": "spacewalk earth"
+   }
+  ],
+  "tags": [
+   "space",
+   "human body",
+   "vacuum",
+   "astronauts",
+   "NASA"
+  ]
+ },
+ {
+  "id": "c-007-seawater",
+  "kind": "curiosity",
+  "title": "Why drinking seawater makes you thirstier",
+  "theme": "curiosity",
+  "sentences": [
+   "You could be surrounded by ocean and still die of thirst.",
+   "Seawater is roughly three and a half percent salt.",
+   "That is much saltier than your blood.",
+   "Your kidneys can only make urine that's less salty than seawater.",
+   "So to flush out the salt from one cup, your body has to spend more water than you drank.",
+   "Every sip makes you more dehydrated, not less.",
+   "That's why sailors carried fresh water, and lifeboats now carry desalination kits.",
+   "Would you trust a survival plan that relied on rain?"
+  ],
+  "visuals": [
+   "a lone life raft drifting on an endless ocean",
+   "salt crystals on a dark surface",
+   "a drop of blood under a microscope",
+   "an illustrated cutaway of human kidneys",
+   "a glass of seawater beside a smaller empty glass",
+   "a cracked dry desert floor",
+   "an old sailing ship with wooden water barrels",
+   "rain falling onto the ocean"
+  ],
+  "photos": [
+   {
+    "source": "stock",
+    "query": "life raft ocean"
+   },
+   {
+    "source": "stock",
+    "query": "sea salt crystals"
+   },
+   {
+    "source": "stock",
+    "query": "blood cells microscope"
+   },
+   null,
+   {
+    "source": "stock",
+    "query": "glass of water"
+   },
+   {
+    "source": "stock",
+    "query": "cracked dry earth"
+   },
+   {
+    "source": "stock",
+    "query": "tall ship"
+   },
+   {
+    "source": "stock",
+    "query": "rain on ocean"
+   }
+  ],
+  "tags": [
+   "seawater",
+   "survival",
+   "human body",
+   "dehydration"
+  ]
+ },
+ {
+  "id": "c-008-hypnic-jerk",
+  "kind": "curiosity",
+  "title": "Why you jerk awake just as you fall asleep",
+  "theme": "curiosity",
+  "sentences": [
+   "You're drifting off, then suddenly your body jolts like you fell off a cliff.",
+   "That is called a hypnic jerk, and most people have felt it.",
+   "As you fall asleep, your muscles relax and your brain begins switching off.",
+   "Sometimes the brain misreads that sudden relaxation as falling.",
+   "It fires a quick burst to the muscles, and you wake with a start.",
+   "Caffeine, stress and tiredness can make it happen more often.",
+   "One popular idea says it's an old reflex from ancestors sleeping in trees, but that's still unproven.",
+   "When was the last time it happened to you?"
+  ],
+  "visuals": [
+   "a person lying in bed in a dark blue bedroom",
+   "a person falling through clouds in a dream",
+   "glowing neurons slowly dimming",
+   "a figure stepping off a ledge in mist",
+   "electric sparks along muscle fibres",
+   "a coffee cup on a nightstand at night",
+   "a primate sleeping on a tree branch",
+   "a clock on a bedside table at midnight"
+  ],
+  "photos": [
+   {
+    "source": "stock",
+    "query": "person sleeping bed night"
+   },
+   {
+    "source": "stock",
+    "query": "clouds from above"
+   },
+   {
+    "source": "stock",
+    "query": "neurons"
+   },
+   {
+    "source": "stock",
+    "query": "foggy cliff"
+   },
+   null,
+   {
+    "source": "stock",
+    "query": "coffee cup night"
+   },
+   {
+    "source": "stock",
+    "query": "monkey sleeping tree"
+   },
+   {
+    "source": "stock",
+    "query": "bedside clock night"
+   }
+  ],
+  "tags": [
+   "sleep",
+   "brain",
+   "hypnic jerk",
+   "human body"
+  ]
+ },
+ {
+  "id": "c-009-jupiter-fall",
+  "kind": "curiosity",
+  "title": "What happens if you fall into Jupiter?",
+  "theme": "curiosity",
+  "sentences": [
+   "Jupiter has no solid surface to land on.",
+   "Falling in, you'd first drop through ammonia clouds at hundreds of kilometres per hour.",
+   "Winds there can blow faster than any hurricane on Earth.",
+   "As you sink, the pressure rises and the air thickens into a hot, crushing soup.",
+   "Deeper still, hydrogen is squeezed until it behaves like a liquid metal.",
+   "No probe has ever survived the trip. Galileo's probe lasted under an hour.",
+   "Jupiter is less a planet you stand on, and more a giant you dissolve into.",
+   "Would you rather fall into Jupiter or a black hole?"
+  ],
+  "visuals": [
+   "Jupiter's swirling striped clouds filling the frame",
+   "a view diving into creamy ammonia cloud bands",
+   "the Great Red Spot storm swirling",
+   "deep orange haze getting darker and denser",
+   "a glowing metallic ocean deep inside a planet",
+   "a small probe descending under a parachute into clouds",
+   "Jupiter beside tiny Earth for scale",
+   "a black hole beside Jupiter"
+  ],
+  "photos": [
+   {
+    "source": "nasa",
+    "query": "jupiter"
+   },
+   {
+    "source": "nasa",
+    "query": "jupiter clouds juno"
+   },
+   {
+    "source": "nasa",
+    "query": "great red spot"
+   },
+   {
+    "source": "nasa",
+    "query": "jupiter atmosphere"
+   },
+   null,
+   {
+    "source": "nasa",
+    "query": "galileo probe"
+   },
+   {
+    "source": "nasa",
+    "query": "jupiter earth comparison"
+   },
+   null
+  ],
+  "tags": [
+   "Jupiter",
+   "space",
+   "planets",
+   "NASA"
+  ]
+ },
+ {
+  "id": "c-010-fast-charging-80",
+  "kind": "curiosity",
+  "title": "Why fast charging slows down after 80 percent",
+  "theme": "curiosity",
+  "sentences": [
+   "Your phone races to 80 percent, then crawls to 100. That's on purpose.",
+   "Charging pushes lithium ions into the battery, like filling seats in a stadium.",
+   "When most seats are empty, ions can rush in fast.",
+   "As it fills up, the last ions have to squeeze into the few seats left.",
+   "Forcing them in fast would heat the battery and wear it out.",
+   "So the charger slows down to protect it.",
+   "Many phones now offer settings that stop around 80 percent to extend battery life.",
+   "Do you charge to 100 every night?"
+  ],
+  "visuals": [
+   "a phone battery icon racing up to 80 percent",
+   "glowing particles flowing into a battery cell",
+   "an empty stadium filling quickly with people",
+   "a nearly full stadium with a few empty seats",
+   "a hot glowing battery with a warning symbol",
+   "a charging cable plugged into a phone",
+   "a phone battery settings screen",
+   "a phone charging on a nightstand at night"
+  ],
+  "photos": [
+   {
+    "source": "stock",
+    "query": "phone charging"
+   },
+   {
+    "source": "stock",
+    "query": "battery cell"
+   },
+   {
+    "source": "stock",
+    "query": "stadium crowd"
+   },
+   {
+    "source": "stock",
+    "query": "stadium seats"
+   },
+   {
+    "source": "stock",
+    "query": "battery"
+   },
+   {
+    "source": "stock",
+    "query": "charging cable"
+   },
+   {
+    "source": "stock",
+    "query": "smartphone settings"
+   },
+   {
+    "source": "stock",
+    "query": "phone charging night"
+   }
+  ],
+  "tags": [
+   "battery",
+   "fast charging",
+   "smartphone",
+   "technology"
+  ]
+ },
+ {
+  "id": "c-011-lake-vostok",
+  "kind": "curiosity",
+  "title": "The lake hidden under 4 kilometres of Antarctic ice",
+  "theme": "curiosity",
+  "sentences": [
+   "Under the Antarctic ice lies a lake bigger than many countries' largest lakes.",
+   "It's called Lake Vostok, buried under about four kilometres of ice.",
+   "It has been sealed off from sunlight and air for possibly millions of years.",
+   "Heat from the Earth below and the weight of the ice keep it liquid.",
+   "In 2012, Russian scientists finally drilled down to touch its surface.",
+   "Researchers are looking for microbes that may have lived there in total isolation.",
+   "Places like this help scientists imagine life under the ice of Jupiter's moon Europa.",
+   "Should we open sealed places like this, or leave them untouched?"
+  ],
+  "visuals": [
+   "a flat endless white Antarctic ice sheet",
+   "a glowing blue lake beneath thick layers of ice",
+   "dark still water in total blackness",
+   "a cutaway showing warm rock under heavy ice",
+   "a research station in Antarctica",
+   "microbes glowing under a microscope",
+   "Europa's cracked icy surface",
+   "a scientist standing on the ice at dusk"
+  ],
+  "photos": [
+   {
+    "source": "nasa",
+    "query": "antarctica ice sheet"
+   },
+   null,
+   {
+    "source": "stock",
+    "query": "dark water"
+   },
+   null,
+   {
+    "source": "stock",
+    "query": "antarctica research station"
+   },
+   {
+    "source": "stock",
+    "query": "microbes microscope"
+   },
+   {
+    "source": "nasa",
+    "query": "europa"
+   },
+   {
+    "source": "stock",
+    "query": "antarctica"
+   }
+  ],
+  "tags": [
+   "Lake Vostok",
+   "Antarctica",
+   "science",
+   "Europa"
+  ]
+ },
+ {
+  "id": "c-012-never-touch",
+  "kind": "curiosity",
+  "title": "Why you never actually touch anything",
+  "theme": "curiosity",
+  "sentences": [
+   "Right now you think you're touching your phone. In a way, you're not.",
+   "Everything is made of atoms, wrapped in clouds of electrons.",
+   "Electrons carry negative charge, and like charges push each other away.",
+   "When your finger meets the screen, those electron clouds repel.",
+   "What you feel as touch is that electric push, not atoms crashing together.",
+   "Physicists add that 'touch' only means atoms getting close enough to interact.",
+   "So you're always resting a tiny distance above the chair you sit on.",
+   "Does that make you feel any different about touching things?"
+  ],
+  "visuals": [
+   "a finger about to touch a phone screen",
+   "a glowing atom with orbiting electrons",
+   "two glowing spheres pushing apart",
+   "a macro shot of a fingertip on glass",
+   "sparks of energy between two surfaces",
+   "a physicist writing equations on a chalkboard",
+   "a person sitting on a chair in soft light",
+   "a hand reaching toward another hand"
+  ],
+  "photos": [
+   {
+    "source": "stock",
+    "query": "finger touching phone"
+   },
+   null,
+   null,
+   {
+    "source": "stock",
+    "query": "fingertip macro"
+   },
+   {
+    "source": "stock",
+    "query": "electric sparks"
+   },
+   {
+    "source": "stock",
+    "query": "chalkboard equations"
+   },
+   {
+    "source": "stock",
+    "query": "person sitting chair"
+   },
+   {
+    "source": "stock",
+    "query": "hands reaching"
+   }
+  ],
+  "tags": [
+   "physics",
+   "atoms",
+   "science",
+   "electrons"
+  ]
+ },
+ {
+  "id": "c-013-airplane-boneyard",
+  "kind": "curiosity",
+  "title": "Where old airplanes go when they retire",
+  "theme": "curiosity",
+  "sentences": [
+   "When airlines retire a plane, many end up in the desert.",
+   "Places like the Mojave in California hold hundreds of parked jets.",
+   "Dry air means less rust, so the planes stay in good condition for years.",
+   "Some are stored to fly again when demand returns.",
+   "Others are stripped for engines, seats and parts worth millions.",
+   "The rest are cut up, and the aluminium is recycled.",
+   "Next to Tucson, the US military's boneyard holds thousands of aircraft.",
+   "Would you visit a desert full of sleeping jets?"
+  ],
+  "visuals": [
+   "rows of white airliners parked in a desert",
+   "an aerial view of hundreds of jets lined up on sand",
+   "a shiny aircraft under a hot dry sky",
+   "a jet being prepared on a runway",
+   "mechanics removing a jet engine",
+   "an aircraft being cut apart for scrap",
+   "military aircraft parked in neat desert rows",
+   "a sunset over parked airplanes"
+  ],
+  "photos": [
+   {
+    "source": "stock",
+    "query": "aircraft boneyard"
+   },
+   {
+    "source": "stock",
+    "query": "airplanes desert aerial"
+   },
+   {
+    "source": "stock",
+    "query": "airplane desert"
+   },
+   {
+    "source": "stock",
+    "query": "airplane runway"
+   },
+   {
+    "source": "stock",
+    "query": "jet engine maintenance"
+   },
+   {
+    "source": "stock",
+    "query": "aircraft scrap"
+   },
+   {
+    "source": "stock",
+    "query": "military aircraft desert"
+   },
+   {
+    "source": "stock",
+    "query": "airplane sunset"
+   }
+  ],
+  "tags": [
+   "airplanes",
+   "aviation",
+   "engineering",
+   "boneyard"
+  ]
+ },
+ {
+  "id": "c-014-time-mountain",
+  "kind": "curiosity",
+  "title": "Why time runs faster on a mountain",
+  "theme": "curiosity",
+  "sentences": [
+   "Your head is aging slightly faster than your feet.",
+   "Einstein predicted that gravity slows down time.",
+   "The closer you are to Earth's mass, the slower your clock ticks.",
+   "Atomic clocks have measured this difference over a height of just one foot.",
+   "On a mountain top, you would age a few billionths of a second faster each day.",
+   "GPS satellites have to correct for this, or maps would drift by kilometres every day.",
+   "Time isn't the same everywhere. It depends on where you stand.",
+   "Would you live on a mountain to age faster, or the beach to age slower?"
+  ],
+  "visuals": [
+   "a person standing with a clock face overlay",
+   "Einstein's equations glowing on a dark background",
+   "a curved grid of spacetime bending around Earth",
+   "a precise atomic clock in a laboratory",
+   "a hiker on a snowy mountain peak at sunrise",
+   "a GPS satellite orbiting Earth",
+   "a clock melting into a landscape",
+   "a beach at sunset beside a mountain"
+  ],
+  "photos": [
+   null,
+   {
+    "source": "stock",
+    "query": "physics equations"
+   },
+   {
+    "source": "nasa",
+    "query": "earth gravity field"
+   },
+   {
+    "source": "stock",
+    "query": "atomic clock"
+   },
+   {
+    "source": "stock",
+    "query": "mountain peak sunrise"
+   },
+   {
+    "source": "nasa",
+    "query": "gps satellite"
+   },
+   null,
+   {
+    "source": "stock",
+    "query": "beach sunset mountains"
+   }
+  ],
+  "tags": [
+   "time dilation",
+   "Einstein",
+   "physics",
+   "GPS"
+  ]
+ }
+]

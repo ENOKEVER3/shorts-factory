@@ -26,13 +26,14 @@ TOPICS = (
     (r"\b(solar eclipse)\b", "#SolarEclipse"),
     (r"\b(lunar eclipse)\b", "#LunarEclipse"),
     (r"\b(saturn|jupiter|venus)\b", "#SolarSystem"),
-    (r"\b(gta 6|gta vi|grand theft auto vi|grand theft auto 6)\b", "#GTA6"),
-    (r"\b(gta 5|gta v|grand theft auto v|grand theft auto 5)\b", "#GTA5"),
-    (r"\b(rockstar)\b", "#RockstarGames"),
-    (r"\b(mod|mods|modders)\b", "#GameMods"),
+    (r"\b(antarctica|antarctic)\b", "#Antarctica"),
+    (r"\b(einstein|time dilation)\b", "#Physics"),
+    (r"\b(internet|cable|cables)\b", "#HowTheInternetWorks"),
+    (r"\b(airplane|airplanes|aircraft|jets)\b", "#Aviation"),
+    (r"\b(sleep|asleep)\b", "#SleepScience"),
 )
 THEMES = {"ai": "#ArtificialIntelligence", "planet": "#EarthScience",
-          "biology": "#Biology", "future-tech": "#FutureTechnology", "gaming": "#Gaming", "space": "#Space"}
+          "biology": "#Biology", "future-tech": "#FutureTechnology", "curiosity": "#ScienceFacts", "space": "#Space"}
 
 
 def hashtags(script: dict) -> list[str]:

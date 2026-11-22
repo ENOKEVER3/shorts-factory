@@ -77,7 +77,7 @@ class ScheduleTests(unittest.TestCase):
         self.assertNotIn(content.next_script(used, CFG)["id"], used)
 
     def test_only_the_four_chosen_subjects_are_posted(self):
-        self.assertEqual(set(CFG["themes"]), {"space", "gaming", "ai", "planet", "biology", "future-tech"})
+        self.assertEqual(set(CFG["themes"]), {"curiosity", "space", "ai", "planet", "biology", "future-tech"})
         scripts = content.allowed_scripts(CFG)
         self.assertTrue(all(s.get("theme") in CFG["themes"] for s in scripts))
         ids = {s["id"] for s in scripts}
@@ -85,10 +85,14 @@ class ScheduleTests(unittest.TestCase):
         self.assertNotIn("v2-003-why-is-my-phone-battery-draining-so-fast-quick-fixes", ids)
         self.assertFalse(any(s.get("kind") in ("ai-fix", "tool", "fix") for s in scripts))
 
-    def test_space_shorts_come_first_with_nasa_pictures(self):
+    def test_curiosity_shorts_come_first_with_planned_pictures(self):
         first = content.next_script(set(), CFG)
-        self.assertEqual(first["theme"], "space")
-        self.assertTrue(any(p and p["source"] == "nasa" for p in first["photos"]))
+        self.assertEqual(first["theme"], "curiosity")
+        self.assertTrue(any(p for p in first["photos"]))
+
+    def test_no_gaming_shorts_are_posted(self):
+        self.assertNotIn("gaming", CFG["themes"])
+        self.assertFalse(any(s.get("theme") == "gaming" for s in content.all_scripts()))
 
     def test_two_shorts_in_a_row_are_different_subjects(self):
         scripts = content.allowed_scripts(CFG)
