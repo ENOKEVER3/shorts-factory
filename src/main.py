@@ -12,7 +12,7 @@ import shutil
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
-from . import align, providers, queue, captions, content, metadata, quality, render, tts, visuals, youtube
+from . import align, providers, queue, captions, content, metadata, quality, render, tts, visuals, youtube, plan
 from .util import ROOT, fail, load_json, log, save_json
 
 STATE = ROOT / "state" / "posted.json"
@@ -121,6 +121,9 @@ def produce(s: dict, index: int, cfg: dict) -> Path:
 
 def pick_script(state: dict, cfg: dict, exclude: set[str]) -> dict | None:
     used = {p["script_id"] for p in state["posts"]} | exclude
+    planned = plan.next_script(load_json(plan.PLAN, {'items': []}), cfg, used)
+    if planned:
+        return planned
     by_id = {x["id"]: x for x in content.all_scripts()}
     last = by_id.get(state["posts"][-1]["script_id"], {}) if state["posts"] else {}
     return content.next_script(used, cfg, last.get("theme"))
@@ -128,6 +131,7 @@ def pick_script(state: dict, cfg: dict, exclude: set[str]) -> dict | None:
 
 def prepare(cfg: dict, state: dict, now: datetime) -> None:
     q = queue.prune(queue.load(), {p["script_id"] for p in state["posts"]}, cfg, now)
+    monthly = plan.refresh(cfg, state['posts'], q['items'], now)
     if not queue.needs_more(q, cfg):
         queue.save(q)
         summary(f"Queue already has {len(q['items'])} ready Shorts. Nothing to prepare.")
@@ -135,7 +139,7 @@ def prepare(cfg: dict, state: dict, now: datetime) -> None:
     queued = {it["script_id"] for it in q["items"]}
     last_theme = q["items"][-1]["script"].get("theme") if q["items"] else None
     used = {p["script_id"] for p in state["posts"]} | queued
-    s = content.next_script(used, cfg, last_theme)
+    s = plan.next_script(monthly, cfg, used) or content.next_script(used, cfg, last_theme)
     if s is None:
         summary("No scripts left to prepare.")
         return
@@ -152,6 +156,7 @@ def prepare(cfg: dict, state: dict, now: datetime) -> None:
                        "created_at": now.isoformat(timespec="seconds"),
                        "script": {k: v for k, v in s.items()}})
     queue.save(q)
+    plan.refresh(cfg, state['posts'], q['items'], now)
     summary(f"Prepared and queued: **{s['title']}** ({len(q['items'])} ready)")
 
 

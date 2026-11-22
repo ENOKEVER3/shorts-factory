@@ -13,6 +13,7 @@ on:
         default: '[]'
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: channel-metadata
   cancel-in-progress: false
@@ -26,6 +27,16 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install google-api-python-client google-auth
+      - name: Restore private subscriber history
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p out
+          artifact=$(gh api "repos/$GITHUB_REPOSITORY/actions/artifacts?name=subscriber-history&per_page=5" --jq '[.artifacts[] | select(.expired == false)][0].id // empty')
+          if [ -n "$artifact" ]; then
+            gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$artifact/zip" > /tmp/history.zip
+            unzip -o /tmp/history.zip -d out
+          fi
       - name: Sync or update owned videos
         env:
           CHANNEL_MODE: ${{ inputs.mode || 'sync' }}
@@ -41,4 +52,12 @@ jobs:
           name: channel-snapshot
           path: out/channel*.json
           retention-days: 14
+          if-no-files-found: warn
+      - name: Carry forward private subscriber history
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: subscriber-history
+          path: out/subscribers.json
+          retention-days: 90
           if-no-files-found: warn

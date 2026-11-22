@@ -86,13 +86,22 @@ jobs:
           f=$(ls out/queue/*.mp4 2>/dev/null | head -1 || true)
           if [ -n "$f" ]; then echo "name=queued-$(basename "$f" .mp4)" >> "$GITHUB_OUTPUT"; else echo "name=none" >> "$GITHUB_OUTPUT"; fi
 
+      - name: Store the prepared Short before marking it ready
+        if: success() && steps.q.outputs.name != 'none'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.q.outputs.name }}
+          path: out/queue/*.mp4
+          retention-days: 14
+          if-no-files-found: error
+
       - name: Save progress to the repo
         if: success()
         run: |
           mkdir -p state content/generated
           git config user.name "shorts-factory-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add state content/generated
+          git add state content/generated content/monthly-plan.json
           if git diff --cached --quiet; then echo "No changes"; exit 0; fi
           git commit -m "Update ready queue [skip ci]"
           for i in 1 2 3 4 5; do
@@ -101,11 +110,3 @@ jobs:
           done
           exit 1
 
-      - name: Store the prepared Short in the queue
-        if: success()
-        uses: actions/upload-artifact@v4
-        with:
-          name: ${{ steps.q.outputs.name }}
-          path: out/queue/*.mp4
-          retention-days: 14
-          if-no-files-found: ignore

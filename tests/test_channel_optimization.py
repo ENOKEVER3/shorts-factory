@@ -15,7 +15,7 @@ class OptimizationTest(unittest.TestCase):
         with self.assertRaises(ValueError): validate_edit(e)
     def test_category_and_language_preserved(self):
         yt=MagicMock(); yt.channels().list().execute.return_value={'items':[{'id':'target','snippet':{'title':'Makoko'}}]}
-        old={'channelId':'target','categoryId':'28','defaultLanguage':'en','title':'Old','description':''}; fresh=dict(old,title='New',description='New description')
+        old={'channelId':'target','categoryId':'28','defaultLanguage':'en','title':'Old','description':''}; fresh=dict(old,title='New',description='New description',tags=['Moon'])
         yt.videos().list().execute.side_effect=[{'items':[{'snippet':old}]},{'items':[{'snippet':fresh}]}]
         update_video(yt,{'expected_channel_id':'target'},{'id':'8t2BHhbWjKE','title':'New','description':'New description','tags':['Moon']})
         body=yt.videos().update.call_args.kwargs['body']

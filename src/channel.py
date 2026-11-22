@@ -2,7 +2,7 @@
 from __future__ import annotations
 import json, os, re
 from datetime import datetime, timedelta, timezone
-from . import content, metadata, youtube
+from . import content, metadata, youtube, plan, subscribers as subscriber_history
 from .util import ROOT, load_json, save_json
 
 
@@ -26,7 +26,7 @@ def update_video(yt, cfg, edit):
     snippet.update({k: e[k] for k in ('title', 'description', 'tags')})
     yt.videos().update(part='snippet', body={'id': e['id'], 'snippet': snippet}).execute()
     fresh = yt.videos().list(part='snippet', id=e['id']).execute()['items'][0]['snippet']
-    if fresh['title'] != e['title'] or fresh.get('description', '') != e['description']: raise RuntimeError('Read-back mismatch')
+    if fresh['title'] != e['title'] or fresh.get('description', '') != e['description'] or fresh.get('tags', []) != e['tags']: raise RuntimeError('Read-back mismatch')
     return {'id': e['id'], 'before': old, 'after': fresh}
 
 
@@ -42,7 +42,7 @@ def suggestion(v, bank, cfg):
 def snapshot(yt, cfg):
     c = yt.channels().list(part='snippet,contentDetails,statistics', mine=True).execute()['items'][0]
     stats = c.get('statistics', {})
-    subscribers = None if stats.get('hiddenSubscriberCount') else int(stats.get('subscriberCount', 0))
+    subscribers = subscriber_history.count(stats)
     posts = {p['video_id']: p for p in load_json(ROOT/'state/posted.json', {'posts': []})['posts']}
     ids, token = [], None
     while True:
@@ -71,7 +71,12 @@ def snapshot(yt, cfg):
         print('Analytics request failed:',str(exc))
     bank = {s['id']:s for s in content.all_scripts()}
     for v in videos: v['suggested'] = suggestion(v,bank,cfg)
-    return {'channel_id':c['id'],'channel_name':c['snippet']['title'],'subscribers':subscribers,'synced_at':datetime.now(timezone.utc).isoformat(),'period_start':start.isoformat(),'period_end':end.isoformat(),'analytics_error':error,'swipe_note':'Swipe-away rate is not exposed by the YouTube Analytics API; use Viewed vs swiped away in YouTube Studio.','videos':videos,'queue':load_json(ROOT/'state/queue.json',{'items':[]})}
+    timestamp = datetime.now(timezone.utc).isoformat()
+    history = subscriber_history.record(load_json(ROOT/'out/subscribers.json', {}), c['id'], subscribers, timestamp)
+    save_json(ROOT/'out/subscribers.json', history)
+    q = load_json(ROOT/'state/queue.json', {'items': []})
+    monthly = plan.build(cfg, list(posts.values()), q['items'], previous=load_json(plan.PLAN, {}))
+    return {'channel_id':c['id'],'channel_name':c['snippet']['title'],'subscribers':subscribers,'subscriber_history':history['points'],'monthly_plan':monthly,'synced_at':timestamp,'period_start':start.isoformat(),'period_end':end.isoformat(),'analytics_error':error,'swipe_note':'Swipe-away rate is not exposed by the YouTube Analytics API; use Viewed vs swiped away in YouTube Studio.','videos':videos,'queue':q}
 
 
 def main():
