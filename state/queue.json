@@ -88,6 +88,51 @@
           "Photo by Marc Wieland on Unsplash"
         ]
       }
+    },
+    {
+      "script_id": "v3-025-why-a-quantum-computer-is-not-faster-at-everything",
+      "run_id": "45035082492",
+      "created_at": "2026-11-22T14:53:08+00:00",
+      "script": {
+        "id": "v3-025-why-a-quantum-computer-is-not-faster-at-everything",
+        "kind": "explainer",
+        "title": "Why a quantum computer is not faster at everything",
+        "sentences": [
+          "Would a quantum computer make every ordinary laptop instantly obsolete?",
+          "No, because quantum computing offers possible advantages for particular problems rather than a universal speed boost.",
+          "Quantum bits can be manipulated in ways that let algorithms exploit interference between possible computational paths.",
+          "Getting a useful answer still requires the right algorithm, enough reliable hardware, and careful management of errors.",
+          "Many everyday tasks do not gain a known practical advantage simply by moving onto quantum hardware.",
+          "Researchers investigate applications such as simulating quantum systems, where the underlying physics makes these machines especially interesting.",
+          "A benchmark result on one carefully chosen task should not be confused with winning at every useful computation.",
+          "Would you rather simulate a molecule or speed up a spreadsheet?"
+        ],
+        "tags": [
+          "quantum computer explained",
+          "quantum computing limits",
+          "qubits explained",
+          "quantum advantage"
+        ],
+        "hashtags": [
+          "#Science",
+          "#Technology",
+          "#Seunenoch"
+        ],
+        "theme": "future-tech",
+        "_voice": "kokoro",
+        "_captions": "whisper word timing",
+        "_sources": [
+          "free AI illustration (still, animated)",
+          "free AI illustration (still, animated)",
+          "free AI illustration (still, animated)",
+          "free AI illustration (still, animated)",
+          "free AI illustration (still, animated)",
+          "free AI illustration (still, animated)",
+          "free AI illustration (still, animated)",
+          "free AI illustration (still, animated)"
+        ],
+        "_credits": []
+      }
     }
   ]
 }
