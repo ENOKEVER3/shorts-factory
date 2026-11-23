@@ -74,6 +74,8 @@ jobs:
           key: voice-models-v1
 
       - name: Self-test
+        env:
+          SF_PROFILE: ""
         run: python -m unittest discover tests
 
       - name: Produce and publish
