@@ -58,3 +58,18 @@ class SearchPhrasingTest(unittest.TestCase):
     def test_explicit_search_title_wins(self):
         self.assertEqual(title({"title": "Point Nemo", "search_title": "Why spacecraft go to die at Point Nemo"}),
                          "Why spacecraft go to die at Point Nemo")
+
+
+class ProfileHashtagTest(unittest.TestCase):
+    def test_uriel_uses_own_brand_and_crime_tags(self):
+        import os
+        from src import metadata
+        os.environ["SF_PROFILE"] = "uriel"
+        try:
+            s = {"title": "How 3 Men Escaped Alcatraz Using Fake Heads", "theme": "escape", "sentences": ["They dug out."], "tags": ["alcatraz escape"]}
+            h = metadata.hashtags(s)
+            self.assertIn("#Uriel", h); self.assertNotIn("#MAKOKOGW", h); self.assertIn("#PrisonEscape", h)
+            self.assertIn("alcatraz escape", metadata.tags(s))
+            self.assertTrue(metadata.description(s, {"description_footer": ""}).startswith("How 3 Men Escaped Alcatraz Using Fake Heads."))
+        finally:
+            os.environ.pop("SF_PROFILE")
