@@ -7,13 +7,13 @@
   "slots_utc": [
     {
       "name": "midday",
-      "start_hour": 13,
-      "end_hour": 16
+      "start_hour": 12,
+      "end_hour": 14
     },
     {
-      "name": "night",
-      "start_hour": 23,
-      "end_hour": 28
+      "name": "evening",
+      "start_hour": 17,
+      "end_hour": 19
     }
   ],
   "min_gap_minutes": 45,
