@@ -2,14 +2,11 @@ name: Uriel Shorts
 
 on:
   schedule:
-    # Second channel (Uriel.). Times are UTC, see channels/uriel/config.json "slots_utc".
-    - cron: "23 13 * * *"  # midday slot
-    - cron: "23 14 * * *"  # midday retry
-    - cron: "23 15 * * *"  # midday retry
-    - cron: "43 23 * * *"  # night slot
-    - cron: "43 0 * * *"   # night retry
-    - cron: "43 1 * * *"   # night retry
-    - cron: "43 2 * * *"   # last catch-up
+    # Uriel. slots in UTC (see channels/uriel/config.json). Picked from the channel's past upload-time sweep.
+    - cron: "13 12 * * *"  # midday slot
+    - cron: "13 13 * * *"  # midday retry
+    - cron: "33 17 * * *"  # evening slot
+    - cron: "33 18 * * *"  # evening retry
   workflow_dispatch:
     inputs:
       dry_run:
