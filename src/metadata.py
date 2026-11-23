@@ -33,7 +33,14 @@ TOPICS = (
     (r"\b(sleep|asleep)\b", "#SleepScience"),
 )
 THEMES = {"ai": "#ArtificialIntelligence", "planet": "#EarthScience",
-          "biology": "#Biology", "future-tech": "#FutureTechnology", "curiosity": "#ScienceFacts", "space": "#Space"}
+          "biology": "#Biology", "future-tech": "#FutureTechnology", "curiosity": "#ScienceFacts", "space": "#Space",
+          "escape": "#PrisonEscape", "heist": "#Heist", "con-artist": "#ConArtist", "case-mystery": "#TrueCrime"}
+CRIME_THEMES = {"escape", "heist", "con-artist", "case-mystery", "crime"}
+
+
+def _brand() -> str:
+    import os
+    return "#Uriel" if os.environ.get("SF_PROFILE", "").strip() == "uriel" else "#MAKOKOGW"
 
 
 def hashtags(script: dict) -> list[str]:
@@ -43,10 +50,15 @@ def hashtags(script: dict) -> list[str]:
         for pattern, tag in TOPICS:
             if re.search(pattern, text, re.IGNORECASE) and tag not in selected:
                 selected.append(tag)
-    theme = THEMES.get(script.get("theme"), "#Science")
+    crime = script.get("theme") in CRIME_THEMES
+    theme = THEMES.get(script.get("theme"), "#TrueCrime" if crime else "#Science")
+    if crime:
+        selected = [t for t in selected if "Science" not in t]
     if theme not in selected:
-        selected.append(theme)
-    return [*selected[:3], "#Shorts", "#MAKOKOGW"]
+        selected.insert(0, theme) if crime else selected.append(theme)
+    if crime and "#TrueCrime" not in selected:
+        selected.append("#TrueCrime")
+    return [*selected[:3], "#Shorts", _brand()]
 
 
 def _clean(text: str) -> str:
@@ -85,6 +97,7 @@ def search_queries(script: dict) -> list[str]:
 def tags(script: dict) -> list[str]:
     """Replace unrelated channel-wide defaults with a small topic-specific set."""
     chosen = [*search_queries(script)]
+    chosen += [_clean(str(t)) for t in (script.get("tags") or [])]
     chosen += [re.sub(r"(?<=[a-z])(?=[A-Z])", " ", h[1:]) for h in hashtags(script)]
     result = []
     for tag in chosen:
@@ -99,5 +112,7 @@ def description(script: dict, cfg: dict) -> str:
     credits = script.get("_credits") or []
     credit_block = ("\n\nPhoto credits:\n" + "\n".join(f"- {c}" for c in credits)) if credits else ""
     lead = title(script)
-    lead += "" if lead.endswith("?") or not re.match(r"(why|how|what)\b", lead, re.IGNORECASE) else "?"
+    if not lead.endswith(("?", ".", "!")):
+        question = re.match(r"(why|what)\b", lead, re.IGNORECASE) or re.match(r"how (do|does|did|can|is|are|much|many|long|far)\b", lead, re.IGNORECASE)
+        lead += "?" if question else "."
     return f"{lead} Here is the short answer.\n\n{' '.join(script.get('sentences', []))}\n\n{cfg['description_footer']}{credit_block}\n\n{' '.join(hashtags(script))}"[:4900]
