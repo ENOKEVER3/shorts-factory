@@ -1,12 +1,12 @@
 import unittest
-from src.metadata import hashtags, tags, title
+from src.metadata import hashtags, tags, title, search_queries
 from src.main import build_description
 
 
 class HashtagTest(unittest.TestCase):
     def test_moon_has_no_unrelated_earth_or_ai_tags(self):
         s = {"title": "What if the Moon disappeared? #Shorts", "theme": "space"}
-        self.assertEqual(title(s), "What if the Moon disappeared?")
+        self.assertEqual(title(s), "What would happen if the Moon disappeared?")
         self.assertIn("#Moon", hashtags(s))
         self.assertNotIn("AI", tags(s))
         self.assertNotIn("#PlanetEarth", hashtags(s))
@@ -43,3 +43,18 @@ class HashtagTest(unittest.TestCase):
         description = build_description(script, {"description_footer": "Original narration."})
         self.assertIn("Photo credits:\n- NASA", description)
         self.assertTrue(description.endswith("#FusionEnergy #FutureTechnology #Shorts #MAKOKOGW"))
+
+class SearchPhrasingTest(unittest.TestCase):
+    def test_what_if_becomes_search_phrasing(self):
+        s = {"title": "What if Earth stopped spinning?", "theme": "planet"}
+        self.assertEqual(title(s), "What would happen if Earth stopped spinning?")
+        self.assertIn("what happens if earth stopped spinning", tags(s))
+
+    def test_why_title_gets_why_query_tags(self):
+        q = search_queries({"title": "Why space is freezing if the Sun is so hot"})
+        self.assertEqual(q[0], "why space is freezing if the sun is so hot")
+        self.assertIn("space is freezing if the sun is so hot explained", q)
+
+    def test_explicit_search_title_wins(self):
+        self.assertEqual(title({"title": "Point Nemo", "search_title": "Why spacecraft go to die at Point Nemo"}),
+                         "Why spacecraft go to die at Point Nemo")
