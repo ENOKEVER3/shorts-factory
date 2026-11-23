@@ -1,30 +1,8 @@
 {
-  "generated_at": "2026-11-22T20:25:13.743904+00:00",
-  "start_date": "2026-11-22",
-  "end_date": "2026-12-21",
+  "generated_at": "2026-11-23T18:05:42.765677+00:00",
+  "start_date": "2026-11-23",
+  "end_date": "2026-12-22",
   "items": [
-    {
-      "date": "2026-11-22",
-      "slot": "afternoon",
-      "hour_utc": 16,
-      "script_id": "c-001-point-nemo",
-      "title": "Why spacecraft go to die at Point Nemo",
-      "theme": "curiosity",
-      "ending": "Would you sail out to the loneliest place on the planet?",
-      "ending_type": "question",
-      "status": "ready"
-    },
-    {
-      "date": "2026-11-22",
-      "slot": "evening",
-      "hour_utc": 21,
-      "script_id": "v3-025-why-a-quantum-computer-is-not-faster-at-everything",
-      "title": "Why a quantum computer is not faster at everything",
-      "theme": "future-tech",
-      "ending": "Would you rather simulate a molecule or speed up a spreadsheet?",
-      "ending_type": "question",
-      "status": "ready"
-    },
     {
       "date": "2026-11-23",
       "slot": "afternoon",
@@ -34,7 +12,7 @@
       "theme": "curiosity",
       "ending": "How deep do you think we will ever really go?",
       "ending_type": "question",
-      "status": "planned"
+      "status": "ready"
     },
     {
       "date": "2026-11-23",
@@ -660,6 +638,28 @@
       "title": "Farms That Grow Upward",
       "theme": "planet",
       "ending": "Cheaper clean energy could decide whether this idea grows or fades.",
+      "ending_type": "payoff",
+      "status": "planned"
+    },
+    {
+      "date": "2026-12-22",
+      "slot": "afternoon",
+      "hour_utc": 16,
+      "script_id": "v2-029-how-does-face-unlock-actually-work",
+      "title": "How Does Face Unlock Actually Work?",
+      "theme": "ai",
+      "ending": "Comment what AI word confuses you most.",
+      "ending_type": "payoff",
+      "status": "planned"
+    },
+    {
+      "date": "2026-12-22",
+      "slot": "evening",
+      "hour_utc": 21,
+      "script_id": "s027-storing-the-internet-in-dna",
+      "title": "Storing the Internet in DNA",
+      "theme": "biology",
+      "ending": "But for long-term archives, it could be the ultimate hard drive.",
       "ending_type": "payoff",
       "status": "planned"
     }
