@@ -1,0 +1,412 @@
+[
+ {
+  "id": "u-001",
+  "kind": "crime",
+  "title": "The con man who sold the Eiffel Tower",
+  "theme": "con-artist",
+  "sentences": [
+   "In 1925, a man named Victor Lustig read that Paris could not afford to repair the Eiffel Tower.",
+   "He forged government letters and invited scrap metal dealers to a secret meeting in a luxury hotel.",
+   "He told them the tower would be torn down, and the city needed a buyer for the iron.",
+   "One dealer, André Poisson, was so eager that he also paid Lustig a bribe.",
+   "Lustig fled to Austria with the money and waited for the police to come.",
+   "They never did, because Poisson was too embarrassed to report it.",
+   "So, according to most accounts, Lustig came back and tried the same trick again.",
+   "Would you have noticed the warning signs?"
+  ],
+  "visuals": [
+   "the Eiffel Tower in 1920s Paris, sepia illustration",
+   "a forged official letter with a wax seal on a desk",
+   "businessmen around a table in a grand hotel room",
+   "a nervous man handing an envelope of cash across a table",
+   "a steam train leaving a station at night",
+   "a man in a suit hiding his face in shame",
+   "a confident con man in a fedora smiling in Paris",
+   "a magnifying glass over a forged signature"
+  ],
+  "photos": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null
+  ],
+  "tags": [
+   "victor lustig",
+   "eiffel tower scam",
+   "con artist"
+  ]
+ },
+ {
+  "id": "u-002",
+  "kind": "crime",
+  "title": "Why the famous Catch Me If You Can story may be a con",
+  "theme": "con-artist",
+  "sentences": [
+   "Frank Abagnale became famous for saying he faked being a pilot, a doctor and a lawyer as a teenager.",
+   "His story became a bestselling book and a Hollywood film.",
+   "But in 2020, researcher Alan Logan dug through old records and found serious problems.",
+   "Records placed Abagnale in prison in the years he claimed he was flying around the world.",
+   "Former colleagues and documents contradicted many of his most famous adventures.",
+   "Abagnale did commit real fraud, but much of the legend appears to have been invented.",
+   "The greatest con may have been the story itself.",
+   "How much of a famous story do you just believe?"
+  ],
+  "visuals": [
+   "a vintage airline pilot uniform hanging in a dim room",
+   "a stack of bestselling books and a film reel",
+   "a researcher reading old newspaper archives under a lamp",
+   "a prison cell door with old paper records beside it",
+   "old documents with red question marks over them",
+   "a cracked golden trophy",
+   "a theatre mask resting on a pile of papers",
+   "a person reading a book with a sceptical look"
+  ],
+  "photos": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null
+  ],
+  "tags": [
+   "frank abagnale",
+   "catch me if you can",
+   "fake story"
+  ]
+ },
+ {
+  "id": "u-003",
+  "kind": "crime",
+  "title": "The art forger who fooled a Nazi leader",
+  "theme": "con-artist",
+  "sentences": [
+   "After World War Two, Dutch police arrested painter Han van Meegeren for selling a national treasure to the Nazis.",
+   "The painting was a Vermeer, bought by Hermann Göring, and selling it counted as treason.",
+   "Van Meegeren had a shocking defence: the Vermeer was fake, and he had painted it himself.",
+   "Nobody believed him, so he offered to prove it.",
+   "Under watch, he painted a new Vermeer-style picture in front of witnesses.",
+   "Experts later confirmed his forgeries, and the treason charge was dropped.",
+   "He was convicted of forgery instead, and became a strange kind of folk hero.",
+   "Would you rather be a traitor or a fraud?"
+  ],
+  "visuals": [
+   "a 1940s Dutch courtroom illustration",
+   "an old master painting in a gold frame with a military officer studying it",
+   "a painter pointing at a canvas in shock",
+   "sceptical police officers with arms crossed",
+   "a painter working at an easel surrounded by watchful men",
+   "art experts examining paint under a microscope",
+   "newspaper headlines in Dutch about a forger",
+   "a split portrait of a hero and a criminal"
+  ],
+  "photos": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null
+  ],
+  "tags": [
+   "han van meegeren",
+   "art forgery",
+   "vermeer"
+  ]
+ },
+ {
+  "id": "u-004",
+  "kind": "crime",
+  "title": "How three men escaped Alcatraz with fake heads",
+  "theme": "escape",
+  "sentences": [
+   "In June 1962, guards at Alcatraz found three prisoners asleep in their beds.",
+   "Except they were not prisoners at all, they were heads made from soap, paper and real hair.",
+   "Frank Morris and brothers John and Clarence Anglin had dug through their cell walls with sharpened spoons.",
+   "They climbed onto the roof and launched a raft made from more than fifty raincoats.",
+   "Then they disappeared into the cold waters of San Francisco Bay.",
+   "The FBI concluded they most likely drowned, but no bodies were ever found.",
+   "The case is still officially open with the US Marshals today.",
+   "Do you think they made it?"
+  ],
+  "visuals": [
+   "Alcatraz island at night in fog",
+   "a fake dummy head on a prison pillow",
+   "a hand scraping a cell wall with a spoon",
+   "a raft made of raincoats on a rooftop",
+   "a tiny raft on dark choppy water",
+   "an FBI file stamped with a question mark",
+   "a wanted poster pinned to a wooden board",
+   "foggy shoreline at dawn with footprints"
+  ],
+  "photos": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null
+  ],
+  "tags": [
+   "alcatraz escape",
+   "frank morris",
+   "prison escape"
+  ]
+ },
+ {
+  "id": "u-005",
+  "kind": "crime",
+  "title": "The hijacker who parachuted away with 200,000 dollars",
+  "theme": "case-mystery",
+  "sentences": [
+   "In November 1971, a calm man in a suit bought a plane ticket under the name Dan Cooper.",
+   "On the flight, he showed a stewardess a note saying he had a bomb.",
+   "He demanded 200,000 dollars and four parachutes, and the airline agreed.",
+   "After landing to collect the money, he ordered the plane back into the air.",
+   "Somewhere over the forests of the Pacific Northwest, he jumped out into the night.",
+   "In 1980, a boy found about 5,800 dollars of the ransom buried by a river.",
+   "The FBI ended its active investigation in 2016, and he was never identified.",
+   "Who do you think he was?"
+  ],
+  "visuals": [
+   "a 1970s airport terminal",
+   "a man in sunglasses passing a folded note",
+   "bundles of cash and parachutes on a tarmac",
+   "a jet airliner taking off at night",
+   "a dark forest seen from a plane door",
+   "old weathered banknotes in river sand",
+   "a closed FBI case file",
+   "a sketch of a man in a suit and tie"
+  ],
+  "photos": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null
+  ],
+  "tags": [
+   "db cooper",
+   "unsolved mystery",
+   "hijacking"
+  ]
+ },
+ {
+  "id": "u-006",
+  "kind": "crime",
+  "title": "The impostor who performed surgery on a warship",
+  "theme": "con-artist",
+  "sentences": [
+   "In 1951, a Canadian navy destroyer had a new doctor on board named Joseph Cyr.",
+   "During the Korean War, he operated on wounded soldiers and saved lives.",
+   "But he was not a doctor, he was an impostor named Ferdinand Waldo Demara.",
+   "He had borrowed the real doctor's identity and learned what he could from medical books.",
+   "His fame finally exposed him, when newspapers reported the doctor's heroics.",
+   "The real Joseph Cyr saw the story and realised someone was using his name.",
+   "Demara was sent home, and spent his life switching identities again and again.",
+   "Could you fake a job you never trained for?"
+  ],
+  "visuals": [
+   "a navy destroyer at sea in the 1950s",
+   "a makeshift ship operating room with lanterns",
+   "a man in a doctor's coat with a hidden shadow",
+   "a man reading a medical textbook by candlelight",
+   "a 1950s newspaper headline about a hero doctor",
+   "a real doctor reading a newspaper in shock",
+   "a man looking at many different ID cards",
+   "a stethoscope on top of a disguise kit"
+  ],
+  "photos": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null
+  ],
+  "tags": [
+   "great impostor",
+   "ferdinand demara",
+   "impostor"
+  ]
+ },
+ {
+  "id": "u-007",
+  "kind": "crime",
+  "title": "The man who promised 50 percent profit in 45 days",
+  "theme": "escape",
+  "sentences": [
+   "In 1920, Charles Ponzi promised investors in Boston a 50 percent return in just 45 days.",
+   "He claimed the money came from trading international postal coupons.",
+   "In reality, he paid early investors with money from new investors.",
+   "Thousands of people lined up, and he was taking in huge sums every day.",
+   "A newspaper investigation showed his business could never make that money.",
+   "Within months it collapsed, and Ponzi went to prison for fraud.",
+   "His name is still used for every scheme that works the same way.",
+   "Have you ever seen an offer that sounded too good?"
+  ],
+  "visuals": [
+   "1920s Boston street with crowds",
+   "old international postal coupons on a desk",
+   "money flowing from one hand to another in a chain",
+   "a long queue of people in hats outside an office",
+   "a newspaper reporter typing at night",
+   "an empty office with papers scattered",
+   "a dictionary page showing the word Ponzi",
+   "a glowing too-good-to-be-true advert"
+  ],
+  "photos": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null
+  ],
+  "tags": [
+   "ponzi scheme",
+   "charles ponzi",
+   "fraud"
+  ]
+ },
+ {
+  "id": "u-008",
+  "kind": "crime",
+  "title": "The fake heiress who fooled New York",
+  "theme": "con-artist",
+  "sentences": [
+   "Anna Sorokin arrived in New York calling herself Anna Delvey, a rich German heiress.",
+   "She lived in luxury hotels and told everyone her family fortune was coming soon.",
+   "She even tried to borrow millions to open a private art club.",
+   "To banks, she showed forged documents claiming she had money overseas.",
+   "Bills went unpaid, friends covered huge costs, and the lies finally caught up with her.",
+   "In 2019, a jury convicted her of grand larceny and theft of services.",
+   "Her story later became a Netflix series.",
+   "What makes people trust someone so fast?"
+  ],
+  "visuals": [
+   "a stylish young woman in a luxury New York hotel lobby",
+   "designer shopping bags and room service",
+   "a sketch of an exclusive art club",
+   "forged bank papers on a glass table",
+   "a stack of unpaid bills",
+   "a courtroom with a jury",
+   "a streaming screen showing a drama",
+   "two hands shaking with a hidden crossed finger"
+  ],
+  "photos": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null
+  ],
+  "tags": [
+   "anna delvey",
+   "fake heiress",
+   "scam"
+  ]
+ },
+ {
+  "id": "u-009",
+  "kind": "crime",
+  "title": "The innocent man jailed twice for another man's crimes",
+  "theme": "case-mystery",
+  "sentences": [
+   "In 1896, London police arrested Adolf Beck after a woman said he had tricked her.",
+   "Several women identified him as a con man who stole their jewellery.",
+   "Beck said he was innocent, but he was convicted and sent to prison.",
+   "After his release, he was arrested and convicted again for the same kind of crime.",
+   "Then, while Beck was in custody, the real con man kept committing the crimes.",
+   "The real culprit, a man who looked like Beck, was caught, and Beck was pardoned.",
+   "The scandal helped lead to England's Court of Criminal Appeal in 1907.",
+   "Should one witness be enough to convict someone?"
+  ],
+  "visuals": [
+   "Victorian London street at night",
+   "witnesses pointing at a man in a line",
+   "a Victorian prison corridor",
+   "a man arrested twice, shown as two shadows",
+   "a lookalike man in a top hat slipping away",
+   "a royal pardon document",
+   "a historic English courtroom",
+   "a scale of justice tipping"
+  ],
+  "photos": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null
+  ],
+  "tags": [
+   "adolf beck",
+   "wrongful conviction",
+   "mistaken identity"
+  ]
+ },
+ {
+  "id": "u-010",
+  "kind": "crime",
+  "title": "The company that fooled investors with a fake blood test",
+  "theme": "escape",
+  "sentences": [
+   "Elizabeth Holmes said her company, Theranos, could run hundreds of tests from a drop of blood.",
+   "Investors poured in hundreds of millions of dollars, and the company was valued at 9 billion.",
+   "But the machines did not work the way she claimed.",
+   "Many tests were secretly run on ordinary lab machines from other companies.",
+   "A Wall Street Journal reporter exposed the problems in 2015.",
+   "In 2022, Holmes was convicted of defrauding investors and later sentenced to over eleven years.",
+   "A whistleblower and a reporter brought down a billion-dollar lie.",
+   "Would you have invested?"
+  ],
+  "visuals": [
+   "a single drop of blood on a fingertip",
+   "a glowing billion-dollar valuation chart",
+   "a sleek lab machine with an error light",
+   "ordinary lab machines hidden behind a curtain",
+   "a newspaper reporter at a desk with documents",
+   "a courtroom gavel",
+   "a whistleblower in shadow holding papers",
+   "a stack of money crumbling"
+  ],
+  "photos": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null
+  ],
+  "tags": [
+   "theranos",
+   "elizabeth holmes",
+   "fraud"
+  ]
+ }
+]

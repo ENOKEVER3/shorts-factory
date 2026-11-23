@@ -16,9 +16,9 @@ import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from .util import ROOT, load_json, log, save_json
+from .util import STATE_DIR, ROOT, load_json, log, save_json
 
-QUEUE = ROOT / "state" / "queue.json"
+QUEUE = STATE_DIR / "queue.json"
 DIR = ROOT / "out" / "queue"
 
 

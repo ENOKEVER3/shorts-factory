@@ -1,0 +1,70 @@
+{
+  "channel_name": "Uriel.",
+  "expected_channel_id": "UC51tVC_mdH6q3oEp9Pzq9Pw",
+  "campaign_days": 30,
+  "max_posts_per_day": 2,
+  "day_rollover_hour_utc": 4,
+  "slots_utc": [
+    {
+      "name": "midday",
+      "start_hour": 13,
+      "end_hour": 16
+    },
+    {
+      "name": "night",
+      "start_hour": 23,
+      "end_hour": 28
+    }
+  ],
+  "min_gap_minutes": 45,
+  "privacy_status": "public",
+  "category_id": "25",
+  "language": "en",
+  "voice": {
+    "edge_voice": "en-US-ChristopherNeural",
+    "edge_rate": "+6%",
+    "piper_voice": "en_US-ryan-high",
+    "piper_speed": 1.0,
+    "kokoro": true,
+    "kokoro_voice": "am_michael",
+    "kokoro_speed": 1.05
+  },
+  "video": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "max_seconds": 58
+  },
+  "music": true,
+  "illustrations": true,
+  "gemini_model": "gemini-3.5-flash",
+  "default_tags": [
+    "true crime",
+    "crime psychology",
+    "con artist",
+    "unsolved mystery",
+    "history",
+    "shorts"
+  ],
+  "description_footer": "True stories of deception, impostors and investigations, told with documented facts only.\nNarration uses an AI voice. Pictures are illustrations or credited free photos, not real evidence.\nSimplified for a 60-second format - check primary sources for full details.",
+  "gemini_image_model": "gemini-3.1-flash-image",
+  "gemini_images": false,
+  "themes": [
+    "con-artist",
+    "escape",
+    "case-mystery"
+  ],
+  "providers": {
+    "enabled_paid": [],
+    "daily_limit_usd": 0,
+    "monthly_limit_usd": 0,
+    "max_paid_calls_per_video": 0
+  },
+  "whisper_captions": true,
+  "whisper_model": "base.en",
+  "queue": {
+    "target_ready": 2,
+    "max_age_days": 10
+  },
+  "generate_scripts": false
+}

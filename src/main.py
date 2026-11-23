@@ -13,9 +13,9 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 from . import align, providers, queue, captions, content, metadata, quality, render, tts, visuals, youtube, plan
-from .util import ROOT, fail, load_json, log, save_json
+from .util import STATE_DIR, CONFIG, ROOT, fail, load_json, log, save_json
 
-STATE = ROOT / "state" / "posted.json"
+STATE = STATE_DIR / "posted.json"
 OUT = ROOT / "out"
 
 
@@ -161,7 +161,7 @@ def prepare(cfg: dict, state: dict, now: datetime) -> None:
 
 
 def main() -> None:
-    cfg = load_json(ROOT / "config.json")
+    cfg = load_json(CONFIG)
     state = load_json(STATE, {"campaign_start": None, "posts": []})
     dry, force = os.environ.get("DRY_RUN") == "1", os.environ.get("FORCE") == "1"
     now = datetime.now(timezone.utc)

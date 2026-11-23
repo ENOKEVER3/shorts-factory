@@ -3,7 +3,7 @@ from __future__ import annotations
 import json, os, re
 from datetime import datetime, timedelta, timezone
 from . import content, metadata, youtube, plan, subscribers as subscriber_history
-from .util import ROOT, load_json, save_json
+from .util import STATE_DIR, CONFIG, ROOT, load_json, save_json
 
 
 def validate_edit(e):
@@ -43,7 +43,7 @@ def snapshot(yt, cfg):
     c = yt.channels().list(part='snippet,contentDetails,statistics', mine=True).execute()['items'][0]
     stats = c.get('statistics', {})
     subscribers = subscriber_history.count(stats)
-    posts = {p['video_id']: p for p in load_json(ROOT/'state/posted.json', {'posts': []})['posts']}
+    posts = {p['video_id']: p for p in load_json(STATE_DIR/'posted.json', {'posts': []})['posts']}
     ids, token = [], None
     while True:
         p = yt.playlistItems().list(part='contentDetails', playlistId=c['contentDetails']['relatedPlaylists']['uploads'], maxResults=50, **({'pageToken': token} if token else {})).execute()
@@ -74,13 +74,13 @@ def snapshot(yt, cfg):
     timestamp = datetime.now(timezone.utc).isoformat()
     history = subscriber_history.record(load_json(ROOT/'out/subscribers.json', {}), c['id'], subscribers, timestamp)
     save_json(ROOT/'out/subscribers.json', history)
-    q = load_json(ROOT/'state/queue.json', {'items': []})
+    q = load_json(STATE_DIR/'queue.json', {'items': []})
     monthly = plan.build(cfg, list(posts.values()), q['items'], previous=load_json(plan.PLAN, {}))
     return {'channel_id':c['id'],'channel_name':c['snippet']['title'],'subscribers':subscribers,'subscriber_history':history['points'],'monthly_plan':monthly,'synced_at':timestamp,'period_start':start.isoformat(),'period_end':end.isoformat(),'analytics_error':error,'swipe_note':'Swipe-away rate is not exposed by the YouTube Analytics API; use Viewed vs swiped away in YouTube Studio.','videos':videos,'queue':q}
 
 
 def main():
-    cfg = load_json(ROOT/'config.json'); yt = youtube.client(); youtube.verify_channel(yt,cfg['expected_channel_id'])
+    cfg = load_json(CONFIG); yt = youtube.client(); youtube.verify_channel(yt,cfg['expected_channel_id'])
     mode = os.environ.get('CHANNEL_MODE','sync'); snap = snapshot(yt,cfg); report = {'updated':[],'errors':[]}
     if mode == 'sync':
         previous = load_json(ROOT/'out/previous-channel.json', {})

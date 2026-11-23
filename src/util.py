@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 import time
@@ -9,6 +10,11 @@ from pathlib import Path
 from typing import Callable, TypeVar
 
 ROOT = Path(__file__).resolve().parent.parent
+# SF_PROFILE selects a second channel kept in channels/<name>/ (own config, scripts and state).
+PROFILE = os.environ.get("SF_PROFILE", "").strip()
+BASE = ROOT / "channels" / PROFILE if PROFILE else ROOT
+CONFIG = BASE / "config.json"
+STATE_DIR = BASE / "state"
 T = TypeVar("T")
 
 

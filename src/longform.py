@@ -9,10 +9,10 @@ import os
 from datetime import datetime, timezone
 
 from . import main as shorts, metadata, youtube
-from .util import ROOT, fail, load_json, log, save_json
+from .util import STATE_DIR, CONFIG, ROOT, fail, load_json, log, save_json
 
 BANK = ROOT / "content" / "longform.json"
-STATE = ROOT / "state" / "longform.json"
+STATE = STATE_DIR / "longform.json"
 MAX_SECONDS = 420
 
 
@@ -22,7 +22,7 @@ def next_video(posts: list[dict]) -> dict | None:
 
 
 def run() -> None:
-    cfg = load_json(ROOT / "config.json")
+    cfg = load_json(CONFIG)
     cfg["video"] = {**cfg["video"], "max_seconds": MAX_SECONDS}
     state = load_json(STATE, {"posts": []})
     dry = os.environ.get("DRY_RUN") == "1"

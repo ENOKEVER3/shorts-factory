@@ -17,14 +17,14 @@ import json
 import re
 
 from . import gemini
-from .util import ROOT, load_json, log, retry, save_json
+from .util import BASE, PROFILE, ROOT, load_json, log, retry, save_json
 
 BANK_SPACE = ROOT / "content" / "scripts_space.json"
 BANK_CURIOSITY = ROOT / "content" / "scripts_curiosity.json"
 BANK_V3 = ROOT / "content" / "scripts_v3.json"
 BANK_V2 = ROOT / "content" / "scripts_v2.json"
 BANK = ROOT / "content" / "scripts.json"
-GENERATED = ROOT / "content" / "generated"
+GENERATED = (BASE / "generated") if PROFILE else ROOT / "content" / "generated"
 
 THEME_TEXT = {
     "ai": "AI in technology (how AI systems work, what they can and cannot do, real AI uses)",
@@ -32,6 +32,9 @@ THEME_TEXT = {
     "planet": "the planet (Earth, the Moon, Mars and other planets, climate, oceans, natural forces)",
     "biology": "biology (the human body, DNA, medicine, animals, life)",
     "curiosity": "high-intent curiosity (forbidden or inaccessible places, what-happens-if science, hidden infrastructure, everyday engineering, human body limits), answered accurately with a clear payoff",
+    "con-artist": "documented con artists and impostors, how the deception worked and how it was exposed",
+    "escape": "documented escapes, heists and big frauds, the trick behind them and how it was exposed",
+    "case-mystery": "documented unsolved or overturned cases, told with only verified facts",
     "future-tech": "future technology (energy, robots, rockets, materials, computing, inventions)",
 }
 
@@ -48,6 +51,11 @@ def _valid(s: dict) -> bool:
 
 
 def all_scripts() -> list[dict]:
+    if PROFILE:  # a second channel only uses its own bank, never the main channel's topics
+        scripts = list(load_json(BASE / "scripts.json", []))
+        for p in sorted(GENERATED.glob("*.json")):
+            scripts.append(load_json(p))
+        return scripts
     scripts = list(load_json(BANK_CURIOSITY, [])) + list(load_json(BANK_SPACE, [])) + list(load_json(BANK_V3, [])) + list(load_json(BANK_V2, [])) + list(load_json(BANK, []))
     for p in sorted(GENERATED.glob("*.json")):
         scripts.append(load_json(p))
@@ -73,7 +81,7 @@ def next_script(used_ids: set[str], cfg: dict, last_theme: str | None = None) ->
             return s
     if fresh:
         return fresh[0]
-    if gemini.key():
+    if cfg.get("generate_scripts", True) and gemini.key():
         return _generate(cfg, [s["title"] for s in all_scripts()])
     return None
 

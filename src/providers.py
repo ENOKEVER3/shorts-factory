@@ -10,9 +10,9 @@ from __future__ import annotations
 import os
 from datetime import datetime, timezone
 
-from .util import ROOT, load_json, log, save_json
+from .util import STATE_DIR, ROOT, load_json, log, save_json
 
-USAGE = ROOT / "state" / "usage.json"
+USAGE = STATE_DIR / "usage.json"
 
 # kind: image | video | voice. cost = estimated USD per call (0 = free).
 REGISTRY: dict[str, dict] = {

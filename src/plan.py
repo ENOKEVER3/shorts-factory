@@ -1,9 +1,9 @@
 """Rolling 30-day, two-slot plan shared by preparation and the private workspace."""
 from datetime import datetime, timedelta, timezone
 from . import content
-from .util import ROOT, load_json, save_json
+from .util import BASE, PROFILE, ROOT, load_json, save_json
 
-PLAN = ROOT / 'content' / 'monthly-plan.json'
+PLAN = BASE / ('plan.json' if PROFILE else 'content/monthly-plan.json')
 
 def build(cfg, posts, queued, now=None, previous=None):
     now = now or datetime.now(timezone.utc)
