@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-23T18:05:42.765677+00:00",
+  "generated_at": "2026-11-23T22:06:28.809231+00:00",
   "start_date": "2026-11-23",
   "end_date": "2026-12-22",
   "items": [
@@ -23,7 +23,7 @@
       "theme": "space",
       "ending": "Is NASA's asteroid watch enough to stop the next one?",
       "ending_type": "question",
-      "status": "planned"
+      "status": "ready"
     },
     {
       "date": "2026-11-24",
