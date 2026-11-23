@@ -1,49 +1,8 @@
 [
  {
-  "id": "u-001",
-  "kind": "crime",
-  "title": "The con man who sold the Eiffel Tower",
-  "theme": "con-artist",
-  "sentences": [
-   "In 1925, a man named Victor Lustig read that Paris could not afford to repair the Eiffel Tower.",
-   "He forged government letters and invited scrap metal dealers to a secret meeting in a luxury hotel.",
-   "He told them the tower would be torn down, and the city needed a buyer for the iron.",
-   "One dealer, André Poisson, was so eager that he also paid Lustig a bribe.",
-   "Lustig fled to Austria with the money and waited for the police to come.",
-   "They never did, because Poisson was too embarrassed to report it.",
-   "So, according to most accounts, Lustig came back and tried the same trick again.",
-   "Would you have noticed the warning signs?"
-  ],
-  "visuals": [
-   "the Eiffel Tower in 1920s Paris, sepia illustration",
-   "a forged official letter with a wax seal on a desk",
-   "businessmen around a table in a grand hotel room",
-   "a nervous man handing an envelope of cash across a table",
-   "a steam train leaving a station at night",
-   "a man in a suit hiding his face in shame",
-   "a confident con man in a fedora smiling in Paris",
-   "a magnifying glass over a forged signature"
-  ],
-  "photos": [
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null
-  ],
-  "tags": [
-   "victor lustig",
-   "eiffel tower scam",
-   "con artist"
-  ]
- },
- {
   "id": "u-002",
   "kind": "crime",
-  "title": "Why the famous Catch Me If You Can story may be a con",
+  "title": "Catch Me If You Can Was Probably a Lie",
   "theme": "con-artist",
   "sentences": [
    "Frank Abagnale became famous for saying he faked being a pilot, a doctor and a lawyer as a teenager.",
@@ -82,50 +41,9 @@
   ]
  },
  {
-  "id": "u-003",
-  "kind": "crime",
-  "title": "The art forger who fooled a Nazi leader",
-  "theme": "con-artist",
-  "sentences": [
-   "After World War Two, Dutch police arrested painter Han van Meegeren for selling a national treasure to the Nazis.",
-   "The painting was a Vermeer, bought by Hermann Göring, and selling it counted as treason.",
-   "Van Meegeren had a shocking defence: the Vermeer was fake, and he had painted it himself.",
-   "Nobody believed him, so he offered to prove it.",
-   "Under watch, he painted a new Vermeer-style picture in front of witnesses.",
-   "Experts later confirmed his forgeries, and the treason charge was dropped.",
-   "He was convicted of forgery instead, and became a strange kind of folk hero.",
-   "Would you rather be a traitor or a fraud?"
-  ],
-  "visuals": [
-   "a 1940s Dutch courtroom illustration",
-   "an old master painting in a gold frame with a military officer studying it",
-   "a painter pointing at a canvas in shock",
-   "sceptical police officers with arms crossed",
-   "a painter working at an easel surrounded by watchful men",
-   "art experts examining paint under a microscope",
-   "newspaper headlines in Dutch about a forger",
-   "a split portrait of a hero and a criminal"
-  ],
-  "photos": [
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null
-  ],
-  "tags": [
-   "han van meegeren",
-   "art forgery",
-   "vermeer"
-  ]
- },
- {
   "id": "u-004",
   "kind": "crime",
-  "title": "How three men escaped Alcatraz with fake heads",
+  "title": "3 Men Escaped Alcatraz Using Fake Heads Made of Soap",
   "theme": "escape",
   "sentences": [
    "In June 1962, guards at Alcatraz found three prisoners asleep in their beds.",
@@ -164,50 +82,9 @@
   ]
  },
  {
-  "id": "u-005",
-  "kind": "crime",
-  "title": "The hijacker who parachuted away with 200,000 dollars",
-  "theme": "case-mystery",
-  "sentences": [
-   "In November 1971, a calm man in a suit bought a plane ticket under the name Dan Cooper.",
-   "On the flight, he showed a stewardess a note saying he had a bomb.",
-   "He demanded 200,000 dollars and four parachutes, and the airline agreed.",
-   "After landing to collect the money, he ordered the plane back into the air.",
-   "Somewhere over the forests of the Pacific Northwest, he jumped out into the night.",
-   "In 1980, a boy found about 5,800 dollars of the ransom buried by a river.",
-   "The FBI ended its active investigation in 2016, and he was never identified.",
-   "Who do you think he was?"
-  ],
-  "visuals": [
-   "a 1970s airport terminal",
-   "a man in sunglasses passing a folded note",
-   "bundles of cash and parachutes on a tarmac",
-   "a jet airliner taking off at night",
-   "a dark forest seen from a plane door",
-   "old weathered banknotes in river sand",
-   "a closed FBI case file",
-   "a sketch of a man in a suit and tie"
-  ],
-  "photos": [
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null
-  ],
-  "tags": [
-   "db cooper",
-   "unsolved mystery",
-   "hijacking"
-  ]
- },
- {
   "id": "u-006",
   "kind": "crime",
-  "title": "The impostor who performed surgery on a warship",
+  "title": "Fake Doctor Performed Surgery on a Warship and Got Away With It",
   "theme": "con-artist",
   "sentences": [
    "In 1951, a Canadian navy destroyer had a new doctor on board named Joseph Cyr.",
@@ -248,7 +125,7 @@
  {
   "id": "u-007",
   "kind": "crime",
-  "title": "The man who promised 50 percent profit in 45 days",
+  "title": "He Promised 50% Profit in 45 Days and Fooled Thousands",
   "theme": "escape",
   "sentences": [
    "In 1920, Charles Ponzi promised investors in Boston a 50 percent return in just 45 days.",
@@ -287,50 +164,9 @@
   ]
  },
  {
-  "id": "u-008",
-  "kind": "crime",
-  "title": "The fake heiress who fooled New York",
-  "theme": "con-artist",
-  "sentences": [
-   "Anna Sorokin arrived in New York calling herself Anna Delvey, a rich German heiress.",
-   "She lived in luxury hotels and told everyone her family fortune was coming soon.",
-   "She even tried to borrow millions to open a private art club.",
-   "To banks, she showed forged documents claiming she had money overseas.",
-   "Bills went unpaid, friends covered huge costs, and the lies finally caught up with her.",
-   "In 2019, a jury convicted her of grand larceny and theft of services.",
-   "Her story later became a Netflix series.",
-   "What makes people trust someone so fast?"
-  ],
-  "visuals": [
-   "a stylish young woman in a luxury New York hotel lobby",
-   "designer shopping bags and room service",
-   "a sketch of an exclusive art club",
-   "forged bank papers on a glass table",
-   "a stack of unpaid bills",
-   "a courtroom with a jury",
-   "a streaming screen showing a drama",
-   "two hands shaking with a hidden crossed finger"
-  ],
-  "photos": [
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null
-  ],
-  "tags": [
-   "anna delvey",
-   "fake heiress",
-   "scam"
-  ]
- },
- {
   "id": "u-009",
   "kind": "crime",
-  "title": "The innocent man jailed twice for another man's crimes",
+  "title": "Innocent Man Jailed Twice Because He Had a Lookalike",
   "theme": "case-mystery",
   "sentences": [
    "In 1896, London police arrested Adolf Beck after a woman said he had tricked her.",
@@ -371,8 +207,8 @@
  {
   "id": "u-010",
   "kind": "crime",
-  "title": "The company that fooled investors with a fake blood test",
-  "theme": "escape",
+  "title": "She Raised $700M With a Blood Test That Didn't Work",
+  "theme": "con-artist",
   "sentences": [
    "Elizabeth Holmes said her company, Theranos, could run hundreds of tests from a drop of blood.",
    "Investors poured in hundreds of millions of dollars, and the company was valued at 9 billion.",
@@ -407,6 +243,164 @@
    "theranos",
    "elizabeth holmes",
    "fraud"
+  ]
+ },
+ {
+  "id": "u-011",
+  "kind": "crime",
+  "title": "76 Prisoners Escaped the Nazis Through a Tunnel Called Harry",
+  "theme": "escape",
+  "sentences": [
+   "In 1944, Allied airmen in a German prison camp called Stalag Luft Three dug three secret tunnels.",
+   "They named them Tom, Dick and Harry, so the guards would never hear the word tunnel.",
+   "Sand from digging was hidden in bags inside their trousers and shaken out in the gardens.",
+   "Bed boards held up the walls, and a hand-pumped air system kept the diggers breathing.",
+   "On the night of March 24th, 76 men crawled through Harry and out beyond the fence.",
+   "Almost all were caught, and only three made it all the way to freedom.",
+   "The story became the famous film The Great Escape.",
+   "Would you have crawled into that tunnel?"
+  ],
+  "visuals": [
+   "a snowy World War Two prison camp with watchtowers",
+   "three tunnel entrances hidden under a hut floor",
+   "a prisoner shaking sand out of his trouser leg in a garden",
+   "a narrow wooden-shored tunnel lit by a candle",
+   "men crawling out of a hole in the snow at night",
+   "searchlights sweeping over a forest",
+   "an old cinema film reel",
+   "a dark tunnel opening with a faint light at the end"
+  ],
+  "photos": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null
+  ],
+  "tags": [
+   "great escape",
+   "stalag luft iii",
+   "ww2 escape"
+  ]
+ },
+ {
+  "id": "u-012",
+  "kind": "crime",
+  "title": "109 Officers Escaped Prison Through a Tunnel Dug With Spoons",
+  "theme": "escape",
+  "sentences": [
+   "In 1864, Union officers were held in Libby Prison, a crowded warehouse in Richmond, Virginia.",
+   "A group of them found a way into a rat-filled cellar the guards rarely checked.",
+   "For weeks, they dug a tunnel using knives, spoons and a wooden spittoon to drag out dirt.",
+   "On February 9th, 109 officers crawled through it and walked out into the city.",
+   "Guards did not notice until the morning roll call came up short.",
+   "Fifty-nine of them reached Union lines, one of the biggest prison breaks of the Civil War.",
+   "Would you trust a tunnel dug with spoons?"
+  ],
+  "visuals": [
+   "an old brick warehouse prison in the 1860s",
+   "men lowering a candle into a dark cellar with rats",
+   "hands digging dirt with a spoon",
+   "a line of soldiers crawling out of the ground at night",
+   "guards counting prisoners at dawn in shock",
+   "tired soldiers reaching a camp with flags",
+   "a rusty spoon lying in dirt"
+  ],
+  "photos": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null
+  ],
+  "tags": [
+   "libby prison",
+   "civil war escape",
+   "prison break"
+  ]
+ },
+ {
+  "id": "u-013",
+  "kind": "crime",
+  "title": "Robbers Came for $3M Cash and Found $35M in Gold",
+  "theme": "escape",
+  "sentences": [
+   "In November 1983, six robbers broke into the Brink's-Mat warehouse near Heathrow Airport in London.",
+   "They had inside help from a security guard, and expected to find about three million pounds in cash.",
+   "Instead, they found nearly 7,000 gold bars worth around 26 million pounds.",
+   "They loaded it all into a van and drove away.",
+   "Much of the gold was melted down and quietly sold back into the market.",
+   "Some robbers were caught, but most of the gold has never been found.",
+   "People say anyone wearing gold bought in Britain after 1983 might be wearing some of it.",
+   "Would you check your jewellery?"
+  ],
+  "visuals": [
+   "an airport warehouse at dawn in 1980s London",
+   "a security guard nervously glancing at a clock",
+   "stacks of gold bars glowing in a vault",
+   "a van loaded with heavy boxes driving through fog",
+   "gold being melted in a glowing furnace",
+   "an empty vault with police tape",
+   "gold rings and necklaces in a shop window",
+   "a gold ring under a magnifying glass"
+  ],
+  "photos": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null
+  ],
+  "tags": [
+   "brinks mat robbery",
+   "gold heist",
+   "heathrow heist"
+  ]
+ },
+ {
+  "id": "u-014",
+  "kind": "crime",
+  "title": "He Mailed Himself to Freedom in a Wooden Box",
+  "theme": "escape",
+  "sentences": [
+   "In 1849, Henry Brown was enslaved in Richmond, Virginia, and his family had been sold away.",
+   "He decided to escape in the most dangerous way possible: by shipping himself in a box.",
+   "The crate was about three feet long, with a few holes for air and a little water.",
+   "For about 27 hours, it travelled by wagon, train and steamboat, sometimes upside down.",
+   "It arrived at an anti-slavery office in Philadelphia, and when they opened it, he climbed out.",
+   "He became known as Henry Box Brown, and spoke across America and Britain about his escape.",
+   "Could you survive 27 hours in a box?"
+  ],
+  "visuals": [
+   "a quiet 1840s Virginia street",
+   "a man looking at a wooden shipping crate",
+   "a small wooden crate with tiny air holes",
+   "a crate on a steamboat deck, upside down",
+   "people opening a crate in an office and a man rising out",
+   "a man speaking to a large crowd in the 1850s",
+   "a small open wooden box in warm light"
+  ],
+  "photos": [
+   null,
+   null,
+   null,
+   null,
+   null,
+   null,
+   null
+  ],
+  "tags": [
+   "henry box brown",
+   "escape from slavery",
+   "true story"
   ]
  }
 ]
