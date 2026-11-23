@@ -49,16 +49,42 @@ def hashtags(script: dict) -> list[str]:
     return [*selected[:3], "#Shorts", "#MAKOKOGW"]
 
 
+def _clean(text: str) -> str:
+    return re.sub(r"\s+", " ", re.sub(r"#\w+", "", text or "")).strip()
+
+
 def title(script: dict) -> str:
-    """Keep the factual promise; remove clutter rather than invent clickbait."""
-    text = re.sub(r"#\w+", "", script.get("title", "")).strip()
-    text = re.sub(r"\s+", " ", text)
+    """Phrase titles like real searches ("What would happen if…", "Why…") without inventing claims."""
+    text = _clean(script.get("search_title") or script.get("title", ""))
+    text = re.sub(r"^what if\b", "What would happen if", text, flags=re.IGNORECASE)
     return text[:100].rstrip()
+
+
+def search_queries(script: dict) -> list[str]:
+    """Lowercase query-style phrasings viewers type into YouTube/Google search."""
+    base = title(script).rstrip("?!.").strip()
+    low = base[0].lower() + base[1:] if base else ""
+    out = [low.lower()]
+    m = re.match(r"what would happen if (.+)", low, re.IGNORECASE)
+    if m:
+        out += [f"what happens if {m.group(1)}", f"what if {m.group(1)}"]
+    m = re.match(r"why (.+)", low, re.IGNORECASE)
+    if m:
+        out.append(f"{m.group(1)} explained")
+    m = re.match(r"how (.+)", low, re.IGNORECASE)
+    if m:
+        out.append(f"how {m.group(1)} explained")
+    seen, result = set(), []
+    for q in out:
+        q = q.strip().lower()
+        if q and q not in seen:
+            seen.add(q); result.append(q)
+    return result[:3]
 
 
 def tags(script: dict) -> list[str]:
     """Replace unrelated channel-wide defaults with a small topic-specific set."""
-    chosen = [title(script).rstrip("?!.")]
+    chosen = [*search_queries(script)]
     chosen += [re.sub(r"(?<=[a-z])(?=[A-Z])", " ", h[1:]) for h in hashtags(script)]
     result = []
     for tag in chosen:
@@ -72,4 +98,6 @@ def description(script: dict, cfg: dict) -> str:
     """Lead with the video's actual subject and preserve attribution/disclosure."""
     credits = script.get("_credits") or []
     credit_block = ("\n\nPhoto credits:\n" + "\n".join(f"- {c}" for c in credits)) if credits else ""
-    return f"{title(script)}\n\n{' '.join(script.get('sentences', []))}\n\n{cfg['description_footer']}{credit_block}\n\n{' '.join(hashtags(script))}"[:4900]
+    lead = title(script)
+    lead += "" if lead.endswith("?") or not re.match(r"(why|how|what)\b", lead, re.IGNORECASE) else "?"
+    return f"{lead} Here is the short answer.\n\n{' '.join(script.get('sentences', []))}\n\n{cfg['description_footer']}{credit_block}\n\n{' '.join(hashtags(script))}"[:4900]
