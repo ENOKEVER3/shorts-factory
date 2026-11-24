@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-11-24T00:59:08.905397+00:00",
-  "start_date": "2026-11-23",
-  "end_date": "2026-12-22",
+  "generated_at": "2026-11-24T17:42:12.737140+00:00",
+  "start_date": "2026-11-24",
+  "end_date": "2026-12-23",
   "items": [
     {
-      "date": "2026-11-23",
+      "date": "2026-11-24",
       "slot": "afternoon",
       "hour_utc": 16,
       "script_id": "c-002-kola-borehole",
@@ -15,7 +15,7 @@
       "status": "ready"
     },
     {
-      "date": "2026-11-23",
+      "date": "2026-11-24",
       "slot": "evening",
       "hour_utc": 21,
       "script_id": "s-005-dinosaur-asteroid",
@@ -26,7 +26,7 @@
       "status": "ready"
     },
     {
-      "date": "2026-11-24",
+      "date": "2026-11-25",
       "slot": "afternoon",
       "hour_utc": 16,
       "script_id": "c-003-space-cold-sun-hot",
@@ -37,7 +37,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-11-24",
+      "date": "2026-11-25",
       "slot": "evening",
       "hour_utc": 21,
       "script_id": "v3-018-what-if-earth-stopped-spinning",
@@ -48,7 +48,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-11-25",
+      "date": "2026-11-26",
       "slot": "afternoon",
       "hour_utc": 16,
       "script_id": "c-004-delete-data",
@@ -59,7 +59,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-11-25",
+      "date": "2026-11-26",
       "slot": "evening",
       "hour_utc": 21,
       "script_id": "v3-054-why-a-humanoid-shape-is-not-proof-of-human-intelligence",
@@ -70,7 +70,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-11-26",
+      "date": "2026-11-27",
       "slot": "afternoon",
       "hour_utc": 16,
       "script_id": "c-005-undersea-cables",
@@ -81,7 +81,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-11-26",
+      "date": "2026-11-27",
       "slot": "evening",
       "hour_utc": 21,
       "script_id": "v3-033-can-humans-regrow-a-whole-limb",
@@ -92,7 +92,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-11-27",
+      "date": "2026-11-28",
       "slot": "afternoon",
       "hour_utc": 16,
       "script_id": "v3-034-why-a-battery-breakthrough-needs-more-than-capacity",
@@ -103,7 +103,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-11-27",
+      "date": "2026-11-28",
       "slot": "evening",
       "hour_utc": 21,
       "script_id": "c-006-vacuum-body",
@@ -114,7 +114,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-11-28",
+      "date": "2026-11-29",
       "slot": "afternoon",
       "hour_utc": 16,
       "script_id": "s-006-hiroshima-vs-nature",
@@ -125,7 +125,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-11-28",
+      "date": "2026-11-29",
       "slot": "evening",
       "hour_utc": 21,
       "script_id": "v3-028-how-an-asteroid-can-be-pushed-off-course",
@@ -136,7 +136,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-11-29",
+      "date": "2026-11-30",
       "slot": "afternoon",
       "hour_utc": 16,
       "script_id": "v2-002-what-is-a-large-language-model-explained",
@@ -147,7 +147,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-11-29",
+      "date": "2026-11-30",
       "slot": "evening",
       "hour_utc": 21,
       "script_id": "v3-036-what-if-humans-lived-for-200-years",
@@ -158,7 +158,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-11-30",
+      "date": "2026-12-01",
       "slot": "afternoon",
       "hour_utc": 16,
       "script_id": "v3-049-what-if-we-built-a-space-elevator",
@@ -169,7 +169,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-11-30",
+      "date": "2026-12-01",
       "slot": "evening",
       "hour_utc": 21,
       "script_id": "c-007-seawater",
@@ -180,7 +180,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-01",
+      "date": "2026-12-02",
       "slot": "afternoon",
       "hour_utc": 16,
       "script_id": "s-007-solar-eclipse-luck",
@@ -191,7 +191,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-01",
+      "date": "2026-12-02",
       "slot": "evening",
       "hour_utc": 21,
       "script_id": "v3-030-what-if-we-found-life-beyond-earth",
@@ -202,7 +202,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-02",
+      "date": "2026-12-03",
       "slot": "afternoon",
       "hour_utc": 16,
       "script_id": "v2-005-what-is-machine-learning-the-60-second-v",
@@ -213,7 +213,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-02",
+      "date": "2026-12-03",
       "slot": "evening",
       "hour_utc": 21,
       "script_id": "v3-042-why-an-ai-designed-drug-still-needs-trials",
@@ -224,7 +224,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-03",
+      "date": "2026-12-04",
       "slot": "afternoon",
       "hour_utc": 16,
       "script_id": "v3-055-what-if-we-sent-a-probe-to-another-star",
@@ -235,7 +235,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-03",
+      "date": "2026-12-04",
       "slot": "evening",
       "hour_utc": 21,
       "script_id": "c-008-hypnic-jerk",
@@ -246,7 +246,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-04",
+      "date": "2026-12-05",
       "slot": "afternoon",
       "hour_utc": 16,
       "script_id": "s-008-voyager-golden-record",
@@ -257,7 +257,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-04",
+      "date": "2026-12-05",
       "slot": "evening",
       "hour_utc": 21,
       "script_id": "v3-037-young-planets-leave-clues-in-cosmic-debris",
@@ -268,7 +268,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-05",
+      "date": "2026-12-06",
       "slot": "afternoon",
       "hour_utc": 16,
       "script_id": "v2-008-what-is-chatgpt-actually-doing-when-it-a",
@@ -279,7 +279,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-05",
+      "date": "2026-12-06",
       "slot": "evening",
       "hour_utc": 21,
       "script_id": "v3-051-why-lab-grown-organs-need-plumbing",
@@ -290,7 +290,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-06",
+      "date": "2026-12-07",
       "slot": "afternoon",
       "hour_utc": 16,
       "script_id": "v3-060-what-if-we-could-copy-a-human-mind",
@@ -301,7 +301,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-06",
+      "date": "2026-12-07",
       "slot": "evening",
       "hour_utc": 21,
       "script_id": "c-009-jupiter-fall",
@@ -312,7 +312,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-07",
+      "date": "2026-12-08",
       "slot": "afternoon",
       "hour_utc": 16,
       "script_id": "s-009-saturn-losing-rings",
@@ -323,7 +323,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-07",
+      "date": "2026-12-08",
       "slot": "evening",
       "hour_utc": 21,
       "script_id": "v3-039-why-going-to-mars-is-not-a-straight-line-trip",
@@ -334,7 +334,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-08",
+      "date": "2026-12-09",
       "slot": "afternoon",
       "hour_utc": 16,
       "script_id": "v2-011-what-is-a-deepfake-and-how-do-you-spot-o",
@@ -345,7 +345,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-08",
+      "date": "2026-12-09",
       "slot": "evening",
       "hour_utc": 21,
       "script_id": "v2-059-can-ai-read-your-mind-brain-computer-int",
@@ -356,7 +356,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-09",
+      "date": "2026-12-10",
       "slot": "afternoon",
       "hour_utc": 16,
       "script_id": "v2-044-what-is-quantum-computing-in-simple-word",
@@ -367,7 +367,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-09",
+      "date": "2026-12-10",
       "slot": "evening",
       "hour_utc": 21,
       "script_id": "c-010-fast-charging-80",
@@ -378,7 +378,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-10",
+      "date": "2026-12-11",
       "slot": "afternoon",
       "hour_utc": 16,
       "script_id": "s-010-jupiter-great-red-spot",
@@ -389,7 +389,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-10",
+      "date": "2026-12-11",
       "slot": "evening",
       "hour_utc": 21,
       "script_id": "v3-045-why-solar-storms-affect-technology-on-earth",
@@ -400,7 +400,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-11",
+      "date": "2026-12-12",
       "slot": "afternoon",
       "hour_utc": 16,
       "script_id": "v2-014-what-is-ai-image-generation-and-how-does",
@@ -411,7 +411,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-11",
+      "date": "2026-12-12",
       "slot": "evening",
       "hour_utc": 21,
       "script_id": "c-011-lake-vostok",
@@ -422,7 +422,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-12",
+      "date": "2026-12-13",
       "slot": "afternoon",
       "hour_utc": 16,
       "script_id": "s-011-james-webb-first-light",
@@ -433,7 +433,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-12",
+      "date": "2026-12-13",
       "slot": "evening",
       "hour_utc": 21,
       "script_id": "v3-046-what-if-we-tried-to-terraform-mars",
@@ -444,7 +444,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-13",
+      "date": "2026-12-14",
       "slot": "afternoon",
       "hour_utc": 16,
       "script_id": "v2-017-will-ai-take-my-job-what-the-research-ac",
@@ -455,7 +455,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-13",
+      "date": "2026-12-14",
       "slot": "evening",
       "hour_utc": 21,
       "script_id": "s005-meat-grown-without-animals",
@@ -466,7 +466,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-14",
+      "date": "2026-12-15",
       "slot": "afternoon",
       "hour_utc": 16,
       "script_id": "s003-people-are-controlling-computers-with-th",
@@ -477,7 +477,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-14",
+      "date": "2026-12-15",
       "slot": "evening",
       "hour_utc": 21,
       "script_id": "c-012-never-touch",
@@ -488,7 +488,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-15",
+      "date": "2026-12-16",
       "slot": "afternoon",
       "hour_utc": 16,
       "script_id": "s-012-apollo-13",
@@ -499,7 +499,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-15",
+      "date": "2026-12-16",
       "slot": "evening",
       "hour_utc": 21,
       "script_id": "v3-057-why-carbon-capture-is-not-a-climate-undo-button",
@@ -510,7 +510,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-16",
+      "date": "2026-12-17",
       "slot": "afternoon",
       "hour_utc": 16,
       "script_id": "v2-023-what-are-ai-agents-the-next-big-thing-ex",
@@ -521,7 +521,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-16",
+      "date": "2026-12-17",
       "slot": "evening",
       "hour_utc": 21,
       "script_id": "s011-the-first-approved-crispr-cure",
@@ -532,7 +532,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-17",
+      "date": "2026-12-18",
       "slot": "afternoon",
       "hour_utc": 16,
       "script_id": "s004-the-day-fusion-made-more-energy-than-it-",
@@ -543,7 +543,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-17",
+      "date": "2026-12-18",
       "slot": "evening",
       "hour_utc": 21,
       "script_id": "c-013-airplane-boneyard",
@@ -554,7 +554,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-18",
+      "date": "2026-12-19",
       "slot": "afternoon",
       "hour_utc": 16,
       "script_id": "s-013-earth-magnetic-flip",
@@ -565,7 +565,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-18",
+      "date": "2026-12-19",
       "slot": "evening",
       "hour_utc": 21,
       "script_id": "s013-pulling-drinking-water-out-of-thin-air",
@@ -576,7 +576,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-19",
+      "date": "2026-12-20",
       "slot": "afternoon",
       "hour_utc": 16,
       "script_id": "v2-026-is-ai-actually-intelligent-the-honest-an",
@@ -587,7 +587,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-19",
+      "date": "2026-12-20",
       "slot": "evening",
       "hour_utc": 21,
       "script_id": "s023-mrna-vaccines-might-fight-cancer-next",
@@ -598,7 +598,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-20",
+      "date": "2026-12-21",
       "slot": "afternoon",
       "hour_utc": 16,
       "script_id": "s006-the-crystal-that-could-beat-silicon-sola",
@@ -609,7 +609,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-20",
+      "date": "2026-12-21",
       "slot": "evening",
       "hour_utc": 21,
       "script_id": "c-014-time-mountain",
@@ -620,7 +620,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-21",
+      "date": "2026-12-22",
       "slot": "afternoon",
       "hour_utc": 16,
       "script_id": "s-014-rogue-planets",
@@ -631,7 +631,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-21",
+      "date": "2026-12-22",
       "slot": "evening",
       "hour_utc": 21,
       "script_id": "s017-farms-that-grow-upward",
@@ -642,7 +642,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-22",
+      "date": "2026-12-23",
       "slot": "afternoon",
       "hour_utc": 16,
       "script_id": "v2-029-how-does-face-unlock-actually-work",
@@ -653,7 +653,7 @@
       "status": "planned"
     },
     {
-      "date": "2026-12-22",
+      "date": "2026-12-23",
       "slot": "evening",
       "hour_utc": 21,
       "script_id": "s027-storing-the-internet-in-dna",
