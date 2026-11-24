@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-24T17:42:12.737140+00:00",
+  "generated_at": "2026-11-24T23:05:19.113530+00:00",
   "start_date": "2026-11-24",
   "end_date": "2026-12-23",
   "items": [
@@ -12,7 +12,7 @@
       "theme": "curiosity",
       "ending": "How deep do you think we will ever really go?",
       "ending_type": "question",
-      "status": "ready"
+      "status": "published"
     },
     {
       "date": "2026-11-24",
@@ -34,7 +34,7 @@
       "theme": "curiosity",
       "ending": "Hot and freezing at the same time. Which side would you pick?",
       "ending_type": "question",
-      "status": "planned"
+      "status": "ready"
     },
     {
       "date": "2026-11-25",

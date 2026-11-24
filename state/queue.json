@@ -68,6 +68,99 @@
           "\"NASA's DART at the Didymos System\" - NASA (public domain)"
         ]
       }
+    },
+    {
+      "script_id": "c-003-space-cold-sun-hot",
+      "run_id": "45506614408",
+      "created_at": "2026-11-24T23:05:19+00:00",
+      "script": {
+        "id": "c-003-space-cold-sun-hot",
+        "kind": "curiosity",
+        "title": "Why space is freezing if the Sun is so hot",
+        "theme": "curiosity",
+        "sentences": [
+          "The Sun's surface is about 5,500 degrees Celsius, yet space is brutally cold.",
+          "The secret is that heat needs something to travel through.",
+          "On Earth, air and water carry heat from atom to atom.",
+          "Space is almost a perfect vacuum, with nearly nothing to carry it.",
+          "So sunlight only heats what it hits directly.",
+          "That's why the sunny side of the space station can pass 120 degrees, while the shade drops far below freezing.",
+          "Astronauts survive with suits that reflect light and carefully move heat around.",
+          "Hot and freezing at the same time. Which side would you pick?"
+        ],
+        "visuals": [
+          "the blazing Sun filling the frame",
+          "glowing heat waves rising from a hot surface",
+          "steam rising from a cup of coffee",
+          "the black empty void of space with distant stars",
+          "sunlight striking one side of a satellite",
+          "a space station half in bright sunlight half in shadow",
+          "an astronaut in a white suit during a spacewalk",
+          "the Earth split between day and night"
+        ],
+        "photos": [
+          {
+            "source": "nasa",
+            "query": "sun"
+          },
+          {
+            "source": "stock",
+            "query": "heat haze"
+          },
+          {
+            "source": "stock",
+            "query": "steaming coffee"
+          },
+          {
+            "source": "nasa",
+            "query": "deep field stars"
+          },
+          {
+            "source": "nasa",
+            "query": "satellite sunlight"
+          },
+          {
+            "source": "nasa",
+            "query": "space station"
+          },
+          {
+            "source": "nasa",
+            "query": "spacewalk"
+          },
+          {
+            "source": "nasa",
+            "query": "earth terminator"
+          }
+        ],
+        "tags": [
+          "space",
+          "the Sun",
+          "heat",
+          "vacuum",
+          "astronauts"
+        ],
+        "_voice": "kokoro",
+        "_captions": "whisper word timing",
+        "_sources": [
+          "licensed photo (still, animated)",
+          "free AI illustration (still, animated)",
+          "licensed photo (still, animated)",
+          "licensed photo (still, animated)",
+          "licensed photo (still, animated)",
+          "licensed photo (still, animated)",
+          "licensed photo (still, animated)",
+          "licensed photo (still, animated)"
+        ],
+        "_credits": [
+          "\"Sun Shines in High-Energy X-rays\" - NASA (public domain)",
+          "Photo by Ante Samarzija on Unsplash",
+          "\"History of Hubble Space Telescope (HST)\" - NASA (public domain)",
+          "\"Echo 30\" Sub Satellite\" - NASA (public domain)",
+          "\"2020 International Space Station Configuration\" - NASA (public domain)",
+          "\"NASA astronaut Scott Tingle is pictured during a spacewalk\" - NASA (public domain)",
+          "\"STS-43 Earth observation of a colorful sunrise\" - NASA (public domain)"
+        ]
+      }
     }
   ]
 }
