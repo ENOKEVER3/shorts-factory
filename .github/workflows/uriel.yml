@@ -3,10 +3,21 @@ name: Uriel Shorts
 on:
   schedule:
     # Uriel. slots in UTC (see channels/uriel/config.json). Picked from the channel's past upload-time sweep.
-    - cron: "13 12 * * *"  # midday slot
-    - cron: "13 13 * * *"  # midday retry
-    - cron: "33 17 * * *"  # evening slot
-    - cron: "33 18 * * *"  # evening retry
+    # GitHub often delays or drops scheduled runs, so each window has several catch-up check-ins.
+    - cron: "13 12 * * *"
+    - cron: "13 13 * * *"
+    - cron: "13 14 * * *"
+    - cron: "13 15 * * *"
+    - cron: "13 16 * * *"
+    - cron: "33 17 * * *"
+    - cron: "33 18 * * *"
+    - cron: "33 19 * * *"
+    - cron: "33 20 * * *"
+    - cron: "33 21 * * *"
+    - cron: "33 22 * * *"
+    - cron: "33 23 * * *"
+    - cron: "13 1 * * *"
+    - cron: "43 2 * * *"
   workflow_dispatch:
     inputs:
       dry_run:
