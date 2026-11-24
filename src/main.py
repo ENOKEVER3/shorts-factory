@@ -191,6 +191,12 @@ def main() -> None:
     q = queue.prune(queue.load(), {p["script_id"] for p in state["posts"]}, cfg, now)
     item = next((it for it in q["items"] if queue.ready_file(it).exists()), None) if not dry else None
     s = dict(item["script"]) if item else pick_script(state, cfg, {it["script_id"] for it in q["items"]})
+    wanted = os.environ.get("SCRIPT_ID", "").strip()
+    if wanted and force:
+        chosen = next((x for x in content.all_scripts() if x["id"] == wanted), None)
+        if chosen is None:
+            raise SystemExit(f"Script {wanted} not found.")
+        item, s = None, dict(chosen)
     if s is None:
         print("::warning::Script bank is empty and no GEMINI_API_KEY is set. Add scripts or a key to continue.")
         summary("No scripts left. Add more to content/scripts.json or set GEMINI_API_KEY.")
