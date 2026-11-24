@@ -35,6 +35,10 @@ on:
         description: "Post now, ignoring the posting windows"
         type: boolean
         default: false
+      script_id:
+        description: "Optional: post this exact script id (only with force)"
+        type: string
+        default: ""
 
 permissions:
   contents: write
@@ -51,6 +55,7 @@ jobs:
     env:
       DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && '1' || '0' }}
       FORCE: ${{ github.event_name == 'workflow_dispatch' && inputs.force && '1' || '0' }}
+      SCRIPT_ID: ${{ github.event_name == 'workflow_dispatch' && inputs.script_id || '' }}
     steps:
       - uses: actions/checkout@v5
 
