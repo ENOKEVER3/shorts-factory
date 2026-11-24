@@ -1,7 +1,7 @@
 {
   "channel_name": "MAKOKOGW",
   "expected_channel_id": "UCA5IqyxUWCJxz-ibknXuZbA",
-  "campaign_days": 30,
+  "campaign_days": 60,
   "max_posts_per_day": 2,
   "day_rollover_hour_utc": 4,
   "slots_utc": [
