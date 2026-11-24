@@ -31,7 +31,17 @@ TOPICS = (
     (r"\b(internet|cable|cables)\b", "#HowTheInternetWorks"),
     (r"\b(airplane|airplanes|aircraft|jets)\b", "#Aviation"),
     (r"\b(sleep|asleep)\b", "#SleepScience"),
+    (r"\b(nasa|voyager|space station|astronaut|satellite|satellites)\b", "#NASA"),
+    (r"\b(point nemo|island|trench|remote|loneliest)\b", "#RemotePlaces"),
+    (r"\b(ocean|deep sea|submarine)\b", "#Ocean"),
+    (r"\b(escape|escaped|breakout)\b", "#PrisonEscape"),
+    (r"\b(heist|robbery|stole)\b", "#Heist"),
+    (r"\b(con artist|impostor|fraud)\b", "#ConArtist"),
 )
+CHANNEL_KEYWORDS = {
+    "": ["what would happen if", "space facts", "science explained"],
+    "uriel": ["true crime", "famous escapes", "true story"],
+}
 THEMES = {"ai": "#ArtificialIntelligence", "planet": "#EarthScience",
           "biology": "#Biology", "future-tech": "#FutureTechnology", "curiosity": "#ScienceFacts", "space": "#Space",
           "escape": "#PrisonEscape", "heist": "#Heist", "con-artist": "#ConArtist", "case-mystery": "#TrueCrime"}
@@ -99,6 +109,8 @@ def tags(script: dict) -> list[str]:
     chosen = [*search_queries(script)]
     chosen += [_clean(str(t)) for t in (script.get("tags") or [])]
     chosen += [re.sub(r"(?<=[a-z])(?=[A-Z])", " ", h[1:]) for h in hashtags(script)]
+    import os
+    chosen += CHANNEL_KEYWORDS.get(os.environ.get("SF_PROFILE", "").strip(), CHANNEL_KEYWORDS[""])
     result = []
     for tag in chosen:
         if tag and tag.casefold() not in {t.casefold() for t in result}:
