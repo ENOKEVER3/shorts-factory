@@ -1,19 +1,19 @@
 {
   "channel_name": "Uriel.",
   "expected_channel_id": "UC51tVC_mdH6q3oEp9Pzq9Pw",
-  "campaign_days": 30,
+  "campaign_days": 60,
   "max_posts_per_day": 2,
   "day_rollover_hour_utc": 4,
   "slots_utc": [
     {
       "name": "midday",
       "start_hour": 12,
-      "end_hour": 14
+      "end_hour": 17
     },
     {
       "name": "evening",
       "start_hour": 17,
-      "end_hour": 19
+      "end_hour": 28
     }
   ],
   "min_gap_minutes": 45,
