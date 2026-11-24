@@ -46,7 +46,7 @@
     "history",
     "shorts"
   ],
-  "description_footer": "True stories of deception, impostors and investigations, told with documented facts only.\nNarration uses an AI voice. Pictures are illustrations or credited free photos, not real evidence.\nSimplified for a 60-second format - check primary sources for full details.",
+  "description_footer": "New true stories every day: famous prison escapes, heists, con artists and impostors, fact-checked and told respectfully with no graphic violence.\nNarration uses an AI voice. Pictures are illustrations or credited free photos, not real evidence.\nSimplified for a 60-second format - check primary sources for full details.",
   "gemini_image_model": "gemini-3.1-flash-image",
   "gemini_images": false,
   "themes": [
