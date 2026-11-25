@@ -1,5 +1,6 @@
 import unittest
-from unittest.mock import Mock
+from pathlib import Path
+from unittest.mock import Mock, patch
 from src import youtube
 
 TARGET = "UCA5IqyxUWCJxz-ibknXuZbA"
@@ -21,3 +22,14 @@ class ChannelGuardTest(unittest.TestCase):
     def test_missing_target_is_blocked(self):
         with self.assertRaisesRegex(RuntimeError, "expected_channel_id"):
             youtube.verify_channel(self.client(TARGET), "")
+
+    def test_every_post_render_upload_uses_a_fresh_connection(self):
+        fresh = Mock()
+        path = Path("rendered.mp4")
+        cfg = {"expected_channel_id": TARGET}
+        with patch.object(youtube, "client", return_value=fresh) as client, \
+                patch.object(youtube, "upload", return_value="video123") as upload:
+            result = youtube.upload_after_render(path, "Title", "Description", ["space"], cfg)
+        self.assertEqual(result, "video123")
+        client.assert_called_once_with()
+        upload.assert_called_once_with(fresh, path, "Title", "Description", ["space"], cfg)
