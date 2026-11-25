@@ -41,7 +41,8 @@ def run() -> None:
         return
     tags = list(dict.fromkeys([*s.get("tags", []), *cfg["default_tags"]]))
     tags = [t for t in tags if t.lower() != "shorts"]
-    desc = shorts.build_description(s, cfg).replace("#Shorts ", "")
+    desc = s.get("description") or shorts.build_description(s, cfg).replace("#Shorts ", "")
+    tags = [t for t in tags if t.lower() not in {"shorts", "#shorts"}][:30]
     video_id = youtube.upload(yt, video, s["title"], desc, tags, cfg)
     state["posts"].append({"script_id": s["id"], "video_id": video_id, "title": s["title"],
                            "uploaded_at": datetime.now(timezone.utc).isoformat(timespec="seconds")})
