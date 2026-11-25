@@ -126,3 +126,8 @@ def upload(yt, path: Path, title: str, description: str, tags: list[str], cfg: d
     if "id" not in response:
         raise RuntimeError(f"Unexpected upload response: {response}")
     return response["id"]
+
+
+def upload_after_render(path: Path, title: str, description: str, tags: list[str], cfg: dict) -> str:
+    """Always authenticate after rendering so every channel uploads with a fresh connection."""
+    return upload(client(), path, title, description, tags, cfg)
