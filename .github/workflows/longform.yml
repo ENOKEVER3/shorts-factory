@@ -8,9 +8,9 @@ on:
   workflow_dispatch:
     inputs:
       dry_run:
-        description: "Render only - do NOT upload (download the video from Artifacts)"
+        description: "Render only without publishing; leave off for a real YouTube upload"
         type: boolean
-        default: true
+        default: false
 
 permissions:
   contents: write
@@ -90,6 +90,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: long-${{ github.run_number }}
-          path: out/*.mp4
+          path: |
+            out/*.mp4
+            out/*.description.txt
           retention-days: 7
           if-no-files-found: ignore
