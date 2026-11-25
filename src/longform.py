@@ -82,8 +82,7 @@ def run() -> None:
     tags = list(dict.fromkeys([*s.get("tags", []), *cfg["default_tags"]]))
     tags = [t for t in tags if t.lower() != "shorts"]
     tags = [t for t in tags if t.lower() not in {"shorts", "#shorts"}][:30]
-    yt = youtube.client()  # fresh connection: the long render leaves the early one stale
-    video_id = youtube.upload(yt, video, s["title"], desc, tags, cfg)
+    video_id = youtube.upload_after_render(video, s["title"], desc, tags, cfg)
     state["posts"].append({"script_id": s["id"], "video_id": video_id, "title": s["title"],
                            "uploaded_at": datetime.now(timezone.utc).isoformat(timespec="seconds")})
     save_json(STATE, state)
