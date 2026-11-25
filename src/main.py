@@ -104,6 +104,9 @@ def produce(s: dict, index: int, cfg: dict) -> Path:
     if timeline[-1][1] > v["max_seconds"]:
         log("Warning: narration longer than max_seconds; video will be trimmed")
     total = min(timeline[-1][1] + 0.8, float(v["max_seconds"]))
+    if s.get("chapters"):
+        s["_timeline"] = timeline
+        s["_duration"] = total
     words = align.word_timings(narration, timeline, cfg.get("whisper_model", "base.en")) \
         if cfg.get("whisper_captions", True) else None
     s["_captions"] = "whisper word timing" if words else "sentence timing"
@@ -226,10 +229,10 @@ def main() -> None:
         summary(f"Dry run OK: rendered `{video.name}` (download it from the run's Artifacts).")
         return
 
-    # 6. Upload
+    # 6. Upload with a fresh connection: rendering can outlive the early credential check.
     title = metadata.title(s)
     tags = metadata.tags(s)
-    video_id = youtube.upload(yt, video, title, build_description(s, cfg), tags, cfg)
+    video_id = youtube.upload_after_render(video, title, build_description(s, cfg), tags, cfg)
 
     # 7. Record immediately so a later failure never causes a duplicate upload
     state["campaign_start"] = state["campaign_start"] or today
