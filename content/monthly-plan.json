@@ -1,30 +1,8 @@
 {
-  "generated_at": "2026-11-24T23:05:19.113530+00:00",
-  "start_date": "2026-11-24",
-  "end_date": "2026-12-23",
+  "generated_at": "2026-11-25T17:12:39.706344+00:00",
+  "start_date": "2026-11-25",
+  "end_date": "2026-12-24",
   "items": [
-    {
-      "date": "2026-11-24",
-      "slot": "afternoon",
-      "hour_utc": 16,
-      "script_id": "c-002-kola-borehole",
-      "title": "Why humans can't dig deeper than 12 kilometres",
-      "theme": "curiosity",
-      "ending": "How deep do you think we will ever really go?",
-      "ending_type": "question",
-      "status": "published"
-    },
-    {
-      "date": "2026-11-24",
-      "slot": "evening",
-      "hour_utc": 21,
-      "script_id": "s-005-dinosaur-asteroid",
-      "title": "The asteroid that ended the dinosaurs",
-      "theme": "space",
-      "ending": "Is NASA's asteroid watch enough to stop the next one?",
-      "ending_type": "question",
-      "status": "ready"
-    },
     {
       "date": "2026-11-25",
       "slot": "afternoon",
@@ -45,7 +23,7 @@
       "theme": "planet",
       "ending": "Would you choose to explain the wind or the changing daylight next?",
       "ending_type": "question",
-      "status": "planned"
+      "status": "ready"
     },
     {
       "date": "2026-11-26",
@@ -660,6 +638,28 @@
       "title": "Storing the Internet in DNA",
       "theme": "biology",
       "ending": "But for long-term archives, it could be the ultimate hard drive.",
+      "ending_type": "payoff",
+      "status": "planned"
+    },
+    {
+      "date": "2026-12-24",
+      "slot": "afternoon",
+      "hour_utc": 16,
+      "script_id": "f-001-palmer-luckey",
+      "title": "How a fired 24-year-old built a $30 billion defense company",
+      "theme": "founders",
+      "ending": "Was getting fired the best thing that ever happened to him?",
+      "ending_type": "question",
+      "status": "planned"
+    },
+    {
+      "date": "2026-12-24",
+      "slot": "evening",
+      "hour_utc": 21,
+      "script_id": "s007-why-quantum-computers-are-so-hard-to-bui",
+      "title": "Why Quantum Computers Are So Hard to Build",
+      "theme": "future-tech",
+      "ending": "Recent experiments suggest that this approach can actually work.",
       "ending_type": "payoff",
       "status": "planned"
     }

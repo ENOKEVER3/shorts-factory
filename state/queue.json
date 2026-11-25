@@ -92,6 +92,51 @@
           "\"STS-43 Earth observation of a colorful sunrise\" - NASA (public domain)"
         ]
       }
+    },
+    {
+      "script_id": "v3-018-what-if-earth-stopped-spinning",
+      "run_id": "45661963629",
+      "created_at": "2026-11-25T17:12:39+00:00",
+      "script": {
+        "id": "v3-018-what-if-earth-stopped-spinning",
+        "kind": "whatif",
+        "title": "What if Earth stopped spinning?",
+        "sentences": [
+          "If Earth suddenly stopped spinning, would you stop with it?",
+          "This thought experiment needs a rule: imagine the solid ground stops, but the air and oceans initially keep moving.",
+          "Their existing motion would drive catastrophic winds and water movement relative to the suddenly stationary surface.",
+          "The effect would depend on latitude, because the surface’s rotational speed is greatest near the equator.",
+          "Stopping gradually would be a different scenario, with very different consequences for people and infrastructure.",
+          "Longer-term sunlight patterns would also change, though Earth would still travel around the Sun.",
+          "There is no realistic ordinary event that simply switches off Earth’s rotation, so this is hypothetical physics.",
+          "Would you choose to explain the wind or the changing daylight next?"
+        ],
+        "tags": [
+          "what if Earth stopped spinning",
+          "Earth rotation",
+          "inertia explained",
+          "planet physics"
+        ],
+        "hashtags": [
+          "#Science",
+          "#Technology",
+          "#Seunenoch"
+        ],
+        "theme": "planet",
+        "_voice": "kokoro",
+        "_captions": "whisper word timing",
+        "_sources": [
+          "motion graphic card",
+          "free AI illustration (still, animated)",
+          "free AI illustration (still, animated)",
+          "motion graphic card",
+          "free AI illustration (still, animated)",
+          "free AI illustration (still, animated)",
+          "free AI illustration (still, animated)",
+          "free AI illustration (still, animated)"
+        ],
+        "_credits": []
+      }
     }
   ]
 }
