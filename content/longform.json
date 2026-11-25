@@ -1,1 +1,270 @@
-[]
+[
+ {
+  "id": "lf-001-asteroid-defense",
+  "kind": "cinematic",
+  "theme": "space",
+  "title": "Could an Asteroid Wipe Us Out Like the Dinosaurs? The Real Plan to Stop One",
+  "sentences": [
+   "Sixty-six million years ago, a rock about ten kilometres wide fell out of the sky and ended the age of the dinosaurs.",
+   "Today, astronomers track tens of thousands of space rocks that pass near Earth.",
+   "So could it happen again, and if one came for us, could we actually stop it?",
+   "Here is what really happened to the dinosaurs, what nearly hit us since, and the real plan to defend the planet.",
+   "The dinosaur killer struck the coast of what is now Mexico's Yucatan Peninsula.",
+   "It hit at roughly twenty kilometres per second, many times faster than a rifle bullet.",
+   "It left a scar called the Chicxulub crater, about one hundred and eighty kilometres across.",
+   "The blast threw molten rock and dust high into the sky, and some of it rained back down around the world.",
+   "Soot and dust blocked sunlight for years, plants struggled, and food chains collapsed.",
+   "About three quarters of all plant and animal species disappeared.",
+   "But small, furry mammals survived, and millions of years later, so did we.",
+   "That is the scary part: one rock rewrote the history of life on Earth.",
+   "And smaller rocks still arrive far more often than most people think.",
+   "In 1908, something exploded in the air above Tunguska, in remote Siberia.",
+   "It flattened around eighty million trees across more than two thousand square kilometres.",
+   "Because the area was almost empty, very few people were hurt.",
+   "If it had burst over a modern city, the story would be completely different.",
+   "Then, in February 2013, a rock about twenty metres wide exploded over Chelyabinsk in Russia.",
+   "Nobody saw it coming, because it approached from the direction of the Sun.",
+   "The shock wave shattered windows across the city, and about fifteen hundred people were hurt, mostly by flying glass.",
+   "That day, the world realised we needed to find these rocks long before they find us.",
+   "So, how big is the danger right now?",
+   "Scientists believe they have found more than ninety percent of the near-Earth asteroids that are one kilometre or larger.",
+   "None of those known giants is on course to hit Earth for at least the next hundred years.",
+   "The bigger worry is the medium-sized rocks, big enough to wipe out a city, and many of them are still unfound.",
+   "In early 2025, one of them made headlines: an asteroid called 2024 YR4.",
+   "For a few weeks, its chance of hitting Earth in 2032 climbed to around three percent, the highest ever recorded for an object that size.",
+   "Then more telescope observations came in, and the risk to Earth dropped to essentially zero.",
+   "That is how it usually works: more data shrinks the uncertainty, and the scare fades.",
+   "But finding a rock is only half the job, because what do you do if the odds don't drop?",
+   "Forget the movies, because blowing it up with a nuclear bomb is not plan A.",
+   "The real idea is far simpler: hit it early, and give it a tiny push.",
+   "In September 2022, NASA tested exactly that with a mission called DART.",
+   "A spacecraft the size of a vending machine slammed into a small asteroid moon called Dimorphos.",
+   "Scientists hoped to change its orbit by at least seventy-three seconds.",
+   "Instead, it changed it by about thirty-two minutes.",
+   "For the first time ever, humans had moved a natural object in space.",
+   "A European spacecraft called Hera is now on its way to inspect the crater and measure exactly what DART did.",
+   "The lesson is simple: the earlier we spot a threat, the smaller the push we need.",
+   "That is why the next big step is all about looking.",
+   "The Vera Rubin Observatory in Chile has begun scanning the whole southern sky every few nights.",
+   "And NASA is building NEO Surveyor, a space telescope designed to hunt dangerous asteroids by the heat they give off.",
+   "Meanwhile, a famous asteroid is coming to visit.",
+   "On April thirteenth, 2029, an asteroid called Apophis, about three hundred and forty metres wide, will pass closer to Earth than some of our satellites.",
+   "It will not hit us, and on a clear night, people in parts of Europe and Africa may see it with their own eyes.",
+   "A NASA spacecraft, renamed OSIRIS-APEX, is heading there to study it up close.",
+   "So could another asteroid wipe us out like the dinosaurs?",
+   "It's possible, but for the first time in the history of life on Earth, a species is watching the sky and practising how to fight back.",
+   "The dinosaurs had no telescopes and no space program.",
+   "We do.",
+   "Send this to the friend who still thinks we'd just nuke it, and tell me in the comments: would you watch Apophis fly past in 2029?"
+  ],
+  "visuals": [
+   "a giant glowing asteroid entering Earth's atmosphere above a prehistoric jungle",
+   "a dark starfield crowded with tracked orbit lines around the Sun",
+   "Earth seen from space with a small grey asteroid in the foreground",
+   "a mission control room with screens showing an asteroid trajectory",
+   "a satellite view of the Yucatan Peninsula coastline",
+   "a fiery streak of an asteroid tearing through the sky",
+   "a vast circular crater outline buried under green jungle and sea",
+   "glowing debris falling back through a darkened sky like shooting stars",
+   "a dim grey sun barely visible through a sky full of ash over a dead forest",
+   "silhouettes of dinosaurs on a scorched plain under a dark red sky",
+   "a tiny furry early mammal peeking out of a burrow in the ashes",
+   "a glowing timeline spiral of Earth's history with a bright impact flash",
+   "many small meteors burning up over the curve of the Earth",
+   "a remote Siberian forest at dawn with a blinding flash on the horizon",
+   "a forest of trees knocked flat in one direction for miles",
+   "an empty wilderness of fallen trees with no towns in sight",
+   "a modern city skyline at dusk with a bright fireball overhead",
+   "a bright fireball with a long smoke trail over a snowy Russian city",
+   "a blinding Sun with a tiny dark rock hidden in its glare",
+   "shattered office windows and glass on a snowy street",
+   "a large telescope dome opening under a night sky full of stars",
+   "a scientist studying a glowing map of asteroid orbits",
+   "a chart of thousands of dots representing discovered asteroids around the Sun",
+   "Earth glowing safely blue while large asteroids pass far away",
+   "a mid-sized asteroid tumbling quietly through deep space",
+   "news headlines about an asteroid glowing on screens in a dark room",
+   "a rising probability graph next to an asteroid orbit diagram",
+   "a falling probability line as new telescope data arrives",
+   "an orbit path narrowing from a wide fuzzy band into a thin precise line",
+   "a lone asteroid heading toward a distant blue Earth",
+   "a crossed-out cartoon of a rocket blowing up an asteroid",
+   "a small spacecraft approaching a grey rocky asteroid",
+   "a NASA rocket launching into a clear night sky",
+   "the boulder-covered surface of an asteroid rushing toward the camera",
+   "a stopwatch overlaid on a small moon orbiting a larger asteroid",
+   "a bright plume of debris spraying from an asteroid after an impact",
+   "two linked asteroids in space with a new altered orbit line",
+   "a spacecraft with solar panels flying toward a pair of asteroids",
+   "a tiny nudge arrow bending an orbit far away from Earth",
+   "a giant new telescope under the Milky Way",
+   "a modern observatory on a Chilean mountain under a starry sky",
+   "an infrared space telescope orbiting in deep space",
+   "a large asteroid drifting past a bright Earth",
+   "an asteroid passing between Earth and a ring of satellites",
+   "people on a hill pointing at a moving point of light in the night sky",
+   "a spacecraft with a sampling arm approaching an asteroid",
+   "Earth and the Moon side by side in deep space",
+   "Earth glowing peacefully at sunrise seen from orbit",
+   "a lone dinosaur looking up at a starry sky",
+   "a rocket rising into the stars leaving a bright trail",
+   "a starry sky over a quiet hilltop with a faint moving light"
+  ],
+  "photos": [
+   {
+    "source": "nasa",
+    "query": "asteroid impact illustration"
+   },
+   {
+    "source": "nasa",
+    "query": "near earth asteroids orbits"
+   },
+   {
+    "source": "nasa",
+    "query": "earth from space"
+   },
+   {
+    "source": "nasa",
+    "query": "planetary defense coordination office"
+   },
+   {
+    "source": "nasa",
+    "query": "yucatan peninsula"
+   },
+   null,
+   {
+    "source": "nasa",
+    "query": "chicxulub crater"
+   },
+   null,
+   null,
+   null,
+   null,
+   null,
+   {
+    "source": "nasa",
+    "query": "meteor shower from space station"
+   },
+   null,
+   null,
+   null,
+   null,
+   {
+    "source": "nasa",
+    "query": "chelyabinsk meteor"
+   },
+   {
+    "source": "nasa",
+    "query": "sun"
+   },
+   null,
+   {
+    "source": "nasa",
+    "query": "telescope observatory night"
+   },
+   null,
+   {
+    "source": "nasa",
+    "query": "asteroid discovery map"
+   },
+   {
+    "source": "nasa",
+    "query": "blue marble earth"
+   },
+   {
+    "source": "nasa",
+    "query": "asteroid bennu"
+   },
+   null,
+   null,
+   {
+    "source": "nasa",
+    "query": "james webb space telescope"
+   },
+   null,
+   null,
+   null,
+   {
+    "source": "nasa",
+    "query": "DART spacecraft"
+   },
+   {
+    "source": "nasa",
+    "query": "DART launch falcon 9"
+   },
+   {
+    "source": "nasa",
+    "query": "dimorphos"
+   },
+   null,
+   {
+    "source": "nasa",
+    "query": "dimorphos impact hubble"
+   },
+   {
+    "source": "nasa",
+    "query": "didymos dimorphos"
+   },
+   {
+    "source": "nasa",
+    "query": "hera spacecraft"
+   },
+   null,
+   null,
+   {
+    "source": "nasa",
+    "query": "milky way observatory chile"
+   },
+   {
+    "source": "nasa",
+    "query": "neo surveyor"
+   },
+   null,
+   {
+    "source": "nasa",
+    "query": "apophis"
+   },
+   null,
+   {
+    "source": "nasa",
+    "query": "OSIRIS-REx"
+   },
+   {
+    "source": "nasa",
+    "query": "earth and moon"
+   },
+   {
+    "source": "nasa",
+    "query": "sunrise from space station"
+   },
+   null,
+   {
+    "source": "nasa",
+    "query": "rocket launch night"
+   },
+   {
+    "source": "nasa",
+    "query": "night sky stars"
+   }
+  ],
+  "tags": [
+   "asteroid",
+   "asteroid impact",
+   "what if an asteroid hit earth",
+   "dinosaur extinction",
+   "Chicxulub crater",
+   "Apophis 2029",
+   "asteroid 2024 YR4",
+   "NASA DART mission",
+   "planetary defense",
+   "Tunguska event",
+   "Chelyabinsk meteor",
+   "could an asteroid hit earth",
+   "how to stop an asteroid",
+   "space documentary",
+   "NEO Surveyor",
+   "Vera Rubin Observatory"
+  ],
+  "description": "Could an asteroid really end humanity like it ended the dinosaurs? Here's what actually hit Earth 66 million years ago, the close calls since (Tunguska 1908, Chelyabinsk 2013, the 2024 YR4 scare), and the real plan to stop the next one: NASA's DART mission, ESA's Hera, NEO Surveyor, the Vera Rubin Observatory and the Apophis flyby on 13 April 2029.\n\nIn this video:\n- What the Chicxulub impact did to life on Earth\n- Tunguska and Chelyabinsk: the rocks we didn't see coming\n- Asteroid 2024 YR4 and how impact odds are calculated\n- How DART moved an asteroid by 32 minutes\n- Apophis 2029: when and where you might see it\n\nShare this with someone who thinks we'd just nuke it. New science and space stories on MAKOKOGW every week, subscribe so you don't miss the next one.\n\nImages: NASA public-domain imagery and original illustrations.\n\n#asteroid #space #NASA #Apophis #science"
+ }
+]
