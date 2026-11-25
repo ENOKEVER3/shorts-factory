@@ -120,6 +120,9 @@ def main():
             f.write(f"## Channel sync\n{len(snap['videos'])} Shorts synced. {len(report['updated'])} updated; {len(report['errors'])} failed.\n")
             if snap['analytics_error']: f.write(snap['analytics_error']+'\n')
             f.write(snap['swipe_note']+'\n')
+    blocked = all('insufficient' in x['error'].lower() or 'editing permission' in x['error'] for x in report['errors'])
+    if mode == 'daily' and report['errors'] and blocked:
+        print('Skipped published-video edits: current YouTube access is upload-only (kept by owner choice).'); return
     if mode != 'sync' and report['errors']: raise RuntimeError('Metadata updates failed; see channel artifact')
 
 if __name__ == '__main__': main()
