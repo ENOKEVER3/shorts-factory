@@ -64,8 +64,16 @@ def verify_channel(yt, expected_id: str) -> str:
 
 
 def upload(yt, path: Path, title: str, description: str, tags: list[str], cfg: dict) -> str:
-    verify_channel(yt, cfg.get("expected_channel_id", ""))
     import httplib2
+    for i in range(4):
+        try:
+            verify_channel(yt, cfg.get("expected_channel_id", ""))
+            break
+        except (OSError, TimeoutError, httplib2.HttpLib2Error) as exc:
+            if i == 3:
+                raise
+            log(f"Channel check network error ({exc}); retrying")
+            time.sleep(5 * (i + 1))
     from googleapiclient.errors import HttpError
     from googleapiclient.http import MediaFileUpload
 
