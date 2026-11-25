@@ -16,6 +16,44 @@ STATE = STATE_DIR / "longform.json"
 MAX_SECONDS = 420
 
 
+def chapter_text(s: dict) -> str:
+    """Use rendered sentence starts, never word-count estimates, for YouTube chapters."""
+    chapters = s.get("chapters", [])
+    if not chapters:
+        return ""
+    timeline = s.get("_timeline", [])
+    duration = s.get("_duration", 0)
+    starts = []
+    lines = []
+    for chapter in chapters:
+        index = chapter["sentence_index"]
+        if not isinstance(index, int) or index < 0 or index >= len(timeline):
+            raise ValueError("Chapter requires a confirmed rendered sentence timing")
+        start = int(timeline[index][0])
+        title = chapter["title"].strip()
+        if not title or "\n" in title:
+            raise ValueError("Invalid chapter title")
+        starts.append(start)
+        minutes, seconds = divmod(start, 60)
+        lines.append(f"{minutes:02d}:{seconds:02d} {title}")
+    if len(starts) < 3 or starts[0] != 0:
+        raise ValueError("YouTube chapters need at least three sections starting at 00:00")
+    if any(b - a < 10 for a, b in zip(starts, starts[1:])) or duration - starts[-1] < 10:
+        raise ValueError("Every YouTube chapter must last at least ten seconds")
+    return "Chapters:\n" + "\n".join(lines)
+
+
+def build_description(s: dict, cfg: dict) -> str:
+    desc = s.get("description") or shorts.build_description(s, cfg).replace("#Shorts ", "")
+    chapters = chapter_text(s)
+    if not chapters:
+        return desc
+    body, separator, hashtags = desc.rpartition("\n\n#")
+    if separator:
+        return f"{body}\n\n{chapters}\n\n#{hashtags}"
+    return f"{desc}\n\n{chapters}"
+
+
 def next_video(posts: list[dict]) -> dict | None:
     used = {p["script_id"] for p in posts}
     return next((s for s in load_json(BANK, []) if s["id"] not in used), None)
@@ -36,13 +74,15 @@ def run() -> None:
         yt = youtube.client()
         youtube.verify_channel(yt, cfg.get("expected_channel_id", ""))
     video = shorts.produce(s, 500 + len(state["posts"]), cfg)
+    desc = build_description(s, cfg)
+    video.with_suffix(".description.txt").write_text(desc, encoding="utf-8")
     if dry:
         shorts.summary(f"Dry run OK: rendered `{video.name}`.")
         return
     tags = list(dict.fromkeys([*s.get("tags", []), *cfg["default_tags"]]))
     tags = [t for t in tags if t.lower() != "shorts"]
-    desc = s.get("description") or shorts.build_description(s, cfg).replace("#Shorts ", "")
     tags = [t for t in tags if t.lower() not in {"shorts", "#shorts"}][:30]
+    yt = youtube.client()  # fresh connection: the long render leaves the early one stale
     video_id = youtube.upload(yt, video, s["title"], desc, tags, cfg)
     state["posts"].append({"script_id": s["id"], "video_id": video_id, "title": s["title"],
                            "uploaded_at": datetime.now(timezone.utc).isoformat(timespec="seconds")})
