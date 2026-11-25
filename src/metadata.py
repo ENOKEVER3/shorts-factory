@@ -44,7 +44,7 @@ CHANNEL_KEYWORDS = {
     "uriel": ["true crime", "famous escapes", "true story"],
 }
 THEMES = {"ai": "#ArtificialIntelligence", "planet": "#EarthScience",
-          "biology": "#Biology", "future-tech": "#FutureTechnology", "curiosity": "#ScienceFacts", "space": "#Space",
+          "biology": "#Biology", "future-tech": "#FutureTechnology", "curiosity": "#ScienceFacts", "space": "#Space", "founders": "#TechHistory",
           "escape": "#PrisonEscape", "heist": "#Heist", "con-artist": "#ConArtist", "case-mystery": "#TrueCrime"}
 CRIME_THEMES = {"escape", "heist", "con-artist", "case-mystery", "crime"}
 

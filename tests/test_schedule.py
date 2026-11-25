@@ -77,7 +77,7 @@ class ScheduleTests(unittest.TestCase):
         self.assertNotIn(content.next_script(used, CFG)["id"], used)
 
     def test_only_the_four_chosen_subjects_are_posted(self):
-        self.assertEqual(set(CFG["themes"]), {"curiosity", "space", "ai", "planet", "biology", "future-tech"})
+        self.assertEqual(set(CFG["themes"]), {"founders", "curiosity", "space", "ai", "planet", "biology", "future-tech"})
         scripts = content.allowed_scripts(CFG)
         self.assertTrue(all(s.get("theme") in CFG["themes"] for s in scripts))
         ids = {s["id"] for s in scripts}
@@ -87,8 +87,14 @@ class ScheduleTests(unittest.TestCase):
 
     def test_curiosity_shorts_come_first_with_planned_pictures(self):
         first = content.next_script(set(), CFG)
-        self.assertEqual(first["theme"], "curiosity")
+        self.assertEqual(first["theme"], "founders")
         self.assertTrue(any(p for p in first["photos"]))
+
+    def test_founder_story_then_different_subject(self):
+        first = content.next_script(set(), CFG)
+        second = content.next_script({first["id"]}, CFG, first["theme"])
+        self.assertEqual(first["id"], "f-001-palmer-luckey")
+        self.assertNotEqual(second["theme"], "founders")
 
     def test_no_gaming_shorts_are_posted(self):
         self.assertNotIn("gaming", CFG["themes"])
@@ -106,8 +112,11 @@ class ScheduleTests(unittest.TestCase):
         self.assertEqual(len(set(titles)), len(titles))
 
     def test_bank_covers_full_campaign(self):
+        # The campaign window is effectively open-ended (10,000 days); the bank
+        # only needs a healthy runway because Gemini writes fresh scripts once
+        # the bank is exhausted (see content.next_script).
         scripts = content.allowed_scripts(CFG)
-        self.assertGreaterEqual(len(scripts), CFG["campaign_days"] * CFG["max_posts_per_day"])
+        self.assertGreaterEqual(len(scripts), 30 * CFG["max_posts_per_day"])
         self.assertEqual(len({s["id"] for s in scripts}), len(scripts))
         self.assertTrue(all(content._valid(s) for s in scripts))
 

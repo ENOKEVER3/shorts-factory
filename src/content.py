@@ -1,6 +1,7 @@
 """Where scripts come from.
 
-1. content/scripts_curiosity.json - high-intent curiosity questions, used first
+1. content/scripts_founders.json - tech founder rise/fall/comeback stories
+   content/scripts_curiosity.json - high-intent curiosity questions, used first
    content/scripts_space.json - cinematic space
    content/scripts_v3.json - curiosity science/AI explainers, used first
    content/scripts_v2.json - simple AI explainers
@@ -20,6 +21,7 @@ from . import gemini
 from .util import BASE, PROFILE, ROOT, load_json, log, retry, save_json
 
 BANK_SPACE = ROOT / "content" / "scripts_space.json"
+BANK_FOUNDERS = ROOT / "content" / "scripts_founders.json"
 BANK_CURIOSITY = ROOT / "content" / "scripts_curiosity.json"
 BANK_V3 = ROOT / "content" / "scripts_v3.json"
 BANK_V2 = ROOT / "content" / "scripts_v2.json"
@@ -35,6 +37,7 @@ THEME_TEXT = {
     "con-artist": "documented con artists and impostors, how the deception worked and how it was exposed",
     "escape": "documented escapes, heists and big frauds, the trick behind them and how it was exposed",
     "case-mystery": "documented unsolved or overturned cases, told with only verified facts",
+    "founders": "documented tech founder rise, fall and comeback stories (startups, inventors, Silicon Valley), with verified numbers and dates",
     "future-tech": "future technology (energy, robots, rockets, materials, computing, inventions)",
 }
 
@@ -56,7 +59,7 @@ def all_scripts() -> list[dict]:
         for p in sorted(GENERATED.glob("*.json")):
             scripts.append(load_json(p))
         return scripts
-    scripts = list(load_json(BANK_CURIOSITY, [])) + list(load_json(BANK_SPACE, [])) + list(load_json(BANK_V3, [])) + list(load_json(BANK_V2, [])) + list(load_json(BANK, []))
+    scripts = list(load_json(BANK_FOUNDERS, [])) + list(load_json(BANK_CURIOSITY, [])) + list(load_json(BANK_SPACE, [])) + list(load_json(BANK_V3, [])) + list(load_json(BANK_V2, [])) + list(load_json(BANK, []))
     for p in sorted(GENERATED.glob("*.json")):
         scripts.append(load_json(p))
     return scripts

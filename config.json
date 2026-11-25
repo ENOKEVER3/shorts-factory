@@ -1,7 +1,7 @@
 {
   "channel_name": "MAKOKOGW",
   "expected_channel_id": "UCA5IqyxUWCJxz-ibknXuZbA",
-  "campaign_days": 60,
+  "campaign_days": 10000,
   "max_posts_per_day": 2,
   "day_rollover_hour_utc": 4,
   "slots_utc": [
@@ -50,6 +50,7 @@
   "gemini_image_model": "gemini-3.1-flash-image",
   "gemini_images": true,
   "themes": [
+    "founders",
     "curiosity",
     "space",
     "planet",

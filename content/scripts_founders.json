@@ -1,0 +1,413 @@
+[
+  {
+    "id": "f-001-palmer-luckey",
+    "kind": "founder",
+    "title": "How a fired 24-year-old built a $30 billion defense company",
+    "theme": "founders",
+    "sentences": [
+      "Palmer Luckey was born in California in 1992 and was homeschooled.",
+      "As a teenager he repaired broken phones and built virtual reality headsets in his parents' garage.",
+      "In 2012 his Oculus Rift Kickstarter asked for 250,000 dollars and raised about 2.4 million.",
+      "Two years later, Facebook bought Oculus for around two billion dollars.",
+      "Then in 2016, a 10,000 dollar political donation turned Silicon Valley against him.",
+      "By 2017 he was out of Facebook, at just 24 years old.",
+      "That same year he founded Anduril, building autonomous drones and defense software.",
+      "By 2025, Anduril was valued at more than 30 billion dollars.",
+      "Was getting fired the best thing that ever happened to him?"
+    ],
+    "visuals": [
+      "a teenager soldering electronics in a cluttered garage",
+      "a workbench covered in circuit boards and phone parts",
+      "an early virtual reality headset prototype on a desk",
+      "a crowd trying on virtual reality headsets at a tech expo",
+      "news headlines and angry social media posts on screens",
+      "an empty office desk with a cardboard box of belongings",
+      "a sleek military drone flying over desert",
+      "a modern factory floor building drones",
+      "a lone man silhouetted in front of a glowing skyline"
+    ],
+    "photos": [
+      {
+        "source": "stock",
+        "query": "garage electronics workbench"
+      },
+      {
+        "source": "stock",
+        "query": "circuit board soldering"
+      },
+      {
+        "source": "stock",
+        "query": "virtual reality headset"
+      },
+      {
+        "source": "stock",
+        "query": "tech conference crowd"
+      },
+      {
+        "source": "stock",
+        "query": "newspaper headlines"
+      },
+      null,
+      {
+        "source": "stock",
+        "query": "drone flying desert"
+      },
+      {
+        "source": "stock",
+        "query": "factory robots"
+      },
+      {
+        "source": "stock",
+        "query": "city skyline night"
+      }
+    ],
+    "tags": [
+      "Palmer Luckey",
+      "Oculus",
+      "Anduril",
+      "tech founder story",
+      "Silicon Valley"
+    ]
+  },
+  {
+    "id": "f-002-nvidia-dennys",
+    "kind": "founder",
+    "title": "Why Nvidia was started in a Denny's booth",
+    "theme": "founders",
+    "sentences": [
+      "In 1993, three engineers sat in a Denny's restaurant in San Jose and planned a chip company.",
+      "One of them, Jensen Huang, had once washed dishes and waited tables at Denny's.",
+      "Their company, Nvidia, bet that computers would need special chips for graphics.",
+      "Its first product flopped, and by 1996 Nvidia was weeks away from running out of money.",
+      "Huang cut more than half the staff and bet everything on one new chip, the RIVA 128.",
+      "It worked, and Nvidia survived.",
+      "Decades later, those same graphics chips turned out to be perfect for training AI.",
+      "In 2025 Nvidia became the first company worth four trillion dollars.",
+      "Where is the next trillion-dollar idea being sketched tonight?"
+    ],
+    "visuals": [
+      "a retro American diner booth at night",
+      "a young man washing dishes in a diner kitchen",
+      "a glowing computer graphics chip close up",
+      "an empty office with an almost empty bank account on screen",
+      "an engineer holding a single chip under a desk lamp",
+      "a 1990s computer showing 3D graphics",
+      "rows of glowing servers in a data center",
+      "a stock chart rocketing upward",
+      "a napkin sketch on a diner table"
+    ],
+    "photos": [
+      {
+        "source": "stock",
+        "query": "diner booth night"
+      },
+      {
+        "source": "stock",
+        "query": "dishwashing kitchen"
+      },
+      {
+        "source": "stock",
+        "query": "computer chip macro"
+      },
+      {
+        "source": "stock",
+        "query": "empty office"
+      },
+      null,
+      {
+        "source": "stock",
+        "query": "retro computer"
+      },
+      {
+        "source": "stock",
+        "query": "data center servers"
+      },
+      {
+        "source": "stock",
+        "query": "stock market chart"
+      },
+      {
+        "source": "stock",
+        "query": "coffee napkin sketch"
+      }
+    ],
+    "tags": [
+      "Nvidia",
+      "Jensen Huang",
+      "AI chips",
+      "tech founder story",
+      "startup story"
+    ]
+  },
+  {
+    "id": "f-003-airbnb-cereal",
+    "kind": "founder",
+    "title": "How cereal boxes saved Airbnb",
+    "theme": "founders",
+    "sentences": [
+      "In 2008, two designers in San Francisco could not pay their rent.",
+      "So they put air mattresses on their floor and rented them to strangers.",
+      "That became Airbnb, but almost nobody wanted to invest.",
+      "Deep in credit card debt, the founders tried something strange.",
+      "During the 2008 election they sold cereal boxes called Obama O's and Cap'n McCain's.",
+      "They raised about 30,000 dollars, enough to keep the company alive.",
+      "That stunt helped get them into the startup program Y Combinator.",
+      "Today Airbnb has hosted well over a billion guest arrivals.",
+      "What crazy side hustle would you try to save your dream?"
+    ],
+    "visuals": [
+      "a small San Francisco apartment with unpaid bills on the table",
+      "air mattresses on a living room floor",
+      "an investor shaking his head in a meeting room",
+      "a pile of credit card statements",
+      "colorful cereal boxes stacked on a kitchen counter",
+      "a jar filled with cash",
+      "a startup office with founders at laptops",
+      "a world map lit with travel pins",
+      "a sunrise over city rooftops"
+    ],
+    "photos": [
+      {
+        "source": "stock",
+        "query": "apartment bills"
+      },
+      {
+        "source": "stock",
+        "query": "air mattress room"
+      },
+      {
+        "source": "stock",
+        "query": "business meeting"
+      },
+      {
+        "source": "stock",
+        "query": "credit cards"
+      },
+      {
+        "source": "stock",
+        "query": "cereal boxes"
+      },
+      {
+        "source": "stock",
+        "query": "money jar"
+      },
+      {
+        "source": "stock",
+        "query": "startup office laptops"
+      },
+      {
+        "source": "stock",
+        "query": "world map travel"
+      },
+      {
+        "source": "stock",
+        "query": "city rooftops sunrise"
+      }
+    ],
+    "tags": [
+      "Airbnb",
+      "startup story",
+      "Y Combinator",
+      "tech founder story",
+      "entrepreneur"
+    ]
+  },
+  {
+    "id": "f-004-jobs-fired",
+    "kind": "founder",
+    "title": "Why Apple fired Steve Jobs and then begged him back",
+    "theme": "founders",
+    "sentences": [
+      "In 1985, Steve Jobs was forced out of Apple, the company he had co-founded.",
+      "He was 30 years old and called it devastating.",
+      "He started a new computer company called NeXT and bought a small studio that became Pixar.",
+      "Meanwhile Apple was losing money and, by 1997, was close to collapse.",
+      "So Apple bought NeXT for about 400 million dollars, and Jobs came back.",
+      "NeXT's software became the base of macOS and later the iPhone.",
+      "Within ten years, Apple went from near bankruptcy to changing the world with one phone.",
+      "Can losing everything be the start of something bigger?"
+    ],
+    "visuals": [
+      "an empty corner office with a nameplate removed",
+      "a young man staring out of a rainy window",
+      "a black cube shaped computer in a dark studio",
+      "a graph of falling sales on an office screen",
+      "two executives shaking hands over a contract",
+      "computer code glowing on a monitor",
+      "a smartphone glowing in a dark room",
+      "a sunrise breaking through storm clouds"
+    ],
+    "photos": [
+      {
+        "source": "stock",
+        "query": "empty office"
+      },
+      {
+        "source": "stock",
+        "query": "rainy window"
+      },
+      {
+        "source": "stock",
+        "query": "vintage computer"
+      },
+      {
+        "source": "stock",
+        "query": "falling chart"
+      },
+      {
+        "source": "stock",
+        "query": "business handshake"
+      },
+      {
+        "source": "stock",
+        "query": "code monitor"
+      },
+      {
+        "source": "stock",
+        "query": "smartphone dark"
+      },
+      {
+        "source": "stock",
+        "query": "storm clouds sunrise"
+      }
+    ],
+    "tags": [
+      "Steve Jobs",
+      "Apple",
+      "NeXT",
+      "tech founder story",
+      "comeback story"
+    ]
+  },
+  {
+    "id": "f-005-spacex-fourth",
+    "kind": "founder",
+    "title": "Why SpaceX almost died on its fourth launch",
+    "theme": "founders",
+    "sentences": [
+      "SpaceX's first rocket, Falcon 1, failed in 2006.",
+      "It failed again in 2007, and a third time in August 2008.",
+      "Elon Musk later said the company only had money for about four attempts.",
+      "Tesla was also running out of cash in the middle of a financial crisis.",
+      "On September 28, 2008, the fourth Falcon 1 lifted off.",
+      "It reached orbit, the first privately developed liquid-fuel rocket to do it.",
+      "Months later, NASA gave SpaceX a 1.6 billion dollar cargo contract.",
+      "Today SpaceX launches more rockets than any other organization on Earth.",
+      "Would you have bet everything on attempt number four?"
+    ],
+    "visuals": [
+      "a rocket exploding shortly after liftoff",
+      "debris falling into the ocean",
+      "a tense engineer staring at a mission control screen",
+      "an empty car factory under grey skies",
+      "a slim rocket lifting off from a tropical island",
+      "a rocket stage glowing against the blackness of space",
+      "a cargo spacecraft approaching the space station",
+      "a large rocket launching at dawn",
+      "a crowd of engineers cheering in a control room"
+    ],
+    "photos": [
+      null,
+      {
+        "source": "stock",
+        "query": "ocean debris"
+      },
+      {
+        "source": "stock",
+        "query": "mission control"
+      },
+      null,
+      {
+        "source": "stock",
+        "query": "rocket launch"
+      },
+      {
+        "source": "stock",
+        "query": "rocket space"
+      },
+      {
+        "source": "stock",
+        "query": "international space station"
+      },
+      {
+        "source": "stock",
+        "query": "rocket launch dawn"
+      },
+      {
+        "source": "stock",
+        "query": "engineers cheering"
+      }
+    ],
+    "tags": [
+      "SpaceX",
+      "Falcon 1",
+      "Elon Musk",
+      "tech founder story",
+      "rocket launch"
+    ]
+  },
+  {
+    "id": "f-006-dyson-5127",
+    "kind": "founder",
+    "title": "Why James Dyson built 5,127 failed vacuums",
+    "theme": "founders",
+    "sentences": [
+      "In the late 1970s, James Dyson got angry at his vacuum cleaner.",
+      "It kept losing suction because its bag clogged with dust.",
+      "He wondered if a spinning cyclone could pull dust out of the air instead.",
+      "Over about five years he built 5,127 prototypes, and every one but the last fell short.",
+      "He went deep into debt, and big companies refused to license his idea.",
+      "So he launched it himself in 1993, under his own name.",
+      "The bagless Dyson became one of Britain's best selling vacuums.",
+      "Could you keep going after five thousand failures?"
+    ],
+    "visuals": [
+      "a frustrated man holding an old vacuum cleaner",
+      "dust clogging a vacuum bag close up",
+      "a swirling cyclone of air and dust",
+      "rows of handmade cardboard and plastic prototypes in a workshop",
+      "rejection letters piled on a desk",
+      "a clear plastic vacuum in a bright showroom",
+      "a busy store shelf full of vacuums",
+      "a single lightbulb glowing in a dark workshop"
+    ],
+    "photos": [
+      {
+        "source": "stock",
+        "query": "vacuum cleaner"
+      },
+      {
+        "source": "stock",
+        "query": "dust"
+      },
+      null,
+      {
+        "source": "stock",
+        "query": "workshop prototypes"
+      },
+      {
+        "source": "stock",
+        "query": "paperwork desk"
+      },
+      {
+        "source": "stock",
+        "query": "modern vacuum"
+      },
+      {
+        "source": "stock",
+        "query": "store shelf"
+      },
+      {
+        "source": "stock",
+        "query": "lightbulb workshop"
+      }
+    ],
+    "tags": [
+      "James Dyson",
+      "Dyson",
+      "inventor story",
+      "invention",
+      "engineering"
+    ]
+  }
+]
