@@ -1,0 +1,46 @@
+name: Daily video SEO
+on:
+  schedule:
+    - cron: '23 7 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: daily-video-seo
+  cancel-in-progress: false
+jobs:
+  optimize:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - profile: main
+            token: YT_REFRESH_TOKEN
+          - profile: uriel
+            token: URIEL_YT_REFRESH_TOKEN
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      SF_PROFILE: ${{ matrix.profile == 'uriel' && 'uriel' || '' }}
+      CHANNEL_MODE: daily
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - run: pip install google-api-python-client google-auth
+      - name: Check free search trends
+        run: python -m src.trends
+      - name: Review owned Shorts and update changed metadata
+        env:
+          YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
+          YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
+          YT_REFRESH_TOKEN: ${{ secrets[matrix.token] }}
+        run: python -m src.channel
+      - name: Save private review and pre-edit backup
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: daily-seo-${{ matrix.profile }}
+          path: out/*.json
+          retention-days: 14

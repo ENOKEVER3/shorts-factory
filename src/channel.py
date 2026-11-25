@@ -32,7 +32,14 @@ def update_video(yt, cfg, edit):
 
 def suggestion(v, bank, cfg):
     s = bank.get(v.get('script_id'))
-    if not s: return {'id': v['id'], 'title': metadata.title(v), 'description': v['description'], 'tags': v['tags']}
+    if not s:
+        # Unmapped older Shorts keep their existing factual description and credits.
+        s = dict(v, theme='crime' if os.environ.get('SF_PROFILE') == 'uriel' else 'curiosity')
+        body = re.sub(r'(?:\s*#\w+)+\s*$', '', v['description']).rstrip()
+        description = body + '\n\n' + ' '.join(metadata.hashtags(s))
+        return {'id': v['id'], 'title': metadata.title(s),
+                'description': description if len(description) <= 4900 else v['description'],
+                'tags': metadata.tags(s)}
     s = dict(s)
     if 'Photo credits:' in v['description']:
         s['_credits'] = [x.strip('- ').strip() for x in v['description'].split('Photo credits:', 1)[1].split('\n') if x.startswith('- ')]
@@ -51,9 +58,11 @@ def snapshot(yt, cfg):
         if not token: break
     videos = []
     for i in range(0, len(ids), 50):
-        for v in yt.videos().list(part='snippet,statistics', id=','.join(ids[i:i+50])).execute().get('items', []):
+        for v in yt.videos().list(part='snippet,statistics,contentDetails', id=','.join(ids[i:i+50])).execute().get('items', []):
             s = v['snippet']
-            if v['id'] not in posts and '#shorts' not in s['title'].lower(): continue
+            duration = re.fullmatch(r'PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?', v.get('contentDetails', {}).get('duration', ''))
+            seconds = sum(int(n or 0) * unit for n, unit in zip(duration.groups(), (3600, 60, 1))) if duration else None
+            if v['id'] not in posts and '#shorts' not in (s['title'] + s.get('description', '')).lower() and not (os.environ.get('CHANNEL_MODE') == 'daily' and seconds is not None and 0 < seconds <= 180): continue
             thumbs = s.get('thumbnails', {})
             thumb = next((thumbs[k]['url'] for k in ('maxres','standard','high','medium','default') if k in thumbs), '')
             videos.append({'id': v['id'], 'script_id': posts.get(v['id'],{}).get('script_id'), 'title': s['title'], 'description': s.get('description',''), 'tags': s.get('tags',[]), 'thumbnail': thumb, 'published_at': s['publishedAt'], 'views': int(v.get('statistics',{}).get('viewCount',0)), 'likes': int(v.get('statistics',{}).get('likeCount',0)), 'comments': int(v.get('statistics',{}).get('commentCount',0)), 'watch_minutes': None, 'average_view_seconds': None, 'analytics_views': None, 'swipe_away_rate': None})
@@ -79,6 +88,11 @@ def snapshot(yt, cfg):
     return {'channel_id':c['id'],'channel_name':c['snippet']['title'],'subscribers':subscribers,'subscriber_history':history['points'],'monthly_plan':monthly,'synced_at':timestamp,'period_start':start.isoformat(),'period_end':end.isoformat(),'analytics_error':error,'swipe_note':'Swipe-away rate is not exposed by the YouTube Analytics API; use Viewed vs swiped away in YouTube Studio.','videos':videos,'queue':q}
 
 
+def daily_changes(videos):
+    edits = [v['suggested'] for v in videos if any(v['suggested'][k] != v.get(k) for k in ('title','description','tags'))]
+    return edits[:20], {'updated': [], 'errors': [], 'reviewed': len(videos), 'deferred': max(0, len(edits) - 20)}
+
+
 def main():
     cfg = load_json(CONFIG); yt = youtube.client(); youtube.verify_channel(yt,cfg['expected_channel_id'])
     mode = os.environ.get('CHANNEL_MODE','sync'); snap = snapshot(yt,cfg); report = {'updated':[],'errors':[]}
@@ -86,15 +100,18 @@ def main():
         previous = load_json(ROOT/'out/previous-channel.json', {})
         if previous.get('channel_id') == cfg['expected_channel_id']:
             report = previous.get('update_report', report)
-    if mode in ('apply','optimize'):
+    if mode in ('apply','optimize','daily'):
         edits = json.loads(os.environ.get('VIDEO_EDITS','[]')) if mode == 'apply' else [v['suggested'] for v in snap['videos']]
+        if mode == 'daily':
+            # Reserve daily API quota for both channels' uploads; next checks skip unchanged videos.
+            edits, report = daily_changes(snap['videos'])
         save_json(ROOT/'out/channel-backup.json',snap)
-        for e in edits:
+        for index, e in enumerate(edits):
             try: report['updated'].append(update_video(yt,cfg,e)['id'])
             except Exception as exc:
                 report['errors'].append({'id':e.get('id'),'error':str(exc)}); print('Metadata update failed:',str(exc))
                 if 'insufficient' in str(exc).lower():
-                    report['errors'].extend({'id':pending.get('id'),'error':'Not attempted: YouTube authorization lacks video editing permission.'} for pending in edits[len(report['updated'])+len(report['errors']):])
+                    report['errors'].extend({'id':pending.get('id'),'error':'Not attempted: YouTube authorization lacks video editing permission.'} for pending in edits[index+1:])
                     break
         snap = snapshot(yt,cfg)
     snap['update_report'] = report; save_json(ROOT/'out/channel.json',snap)

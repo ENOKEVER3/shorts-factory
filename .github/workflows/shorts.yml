@@ -116,7 +116,9 @@ jobs:
           ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
           KLING_API_KEY: ${{ secrets.KLING_API_KEY }}
           VEO_API_KEY: ${{ secrets.VEO_API_KEY }}
-        run: python -m src.main
+        run: |
+          python -m src.trends
+          python -m src.main
 
       - name: Save progress to the repo
         if: always() && env.DRY_RUN != '1'

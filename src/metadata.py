@@ -1,5 +1,6 @@
 """Small, topic-matched hashtag sets for bank and generated Shorts."""
 import re
+from . import trends
 
 TOPICS = (
     (r"\b(chatgpt|openai)\b", "#ChatGPT"),
@@ -68,6 +69,8 @@ def hashtags(script: dict) -> list[str]:
         selected.insert(0, theme) if crime else selected.append(theme)
     if crime and "#TrueCrime" not in selected:
         selected.append("#TrueCrime")
+    matching = [t['hashtag'] for t in trends.matches(script)]
+    selected = list(dict.fromkeys([*matching, *selected]))
     return [*selected[:3], "#Shorts", _brand()]
 
 
@@ -79,12 +82,18 @@ def title(script: dict) -> str:
     """Phrase titles like real searches ("What would happen if…", "Why…") without inventing claims."""
     text = _clean(script.get("search_title") or script.get("title", ""))
     text = re.sub(r"^what if\b", "What would happen if", text, flags=re.IGNORECASE)
-    return text[:100].rstrip()
+    text = text[:100].rstrip()
+    matching = trends.matches(script)
+    if matching:
+        suffix = ' ' + matching[0]['hashtag']
+        if len(text) + len(suffix) <= 100:
+            text += suffix
+    return text
 
 
 def search_queries(script: dict) -> list[str]:
     """Lowercase query-style phrasings viewers type into YouTube/Google search."""
-    base = title(script).rstrip("?!.").strip()
+    base = _clean(title(script)).rstrip("?!.").strip()
     low = base[0].lower() + base[1:] if base else ""
     out = [low.lower()]
     m = re.match(r"what would happen if (.+)", low, re.IGNORECASE)
@@ -108,13 +117,14 @@ def tags(script: dict) -> list[str]:
     """Replace unrelated channel-wide defaults with a small topic-specific set."""
     chosen = [*search_queries(script)]
     chosen += [_clean(str(t)) for t in (script.get("tags") or [])]
+    chosen += [t['query'] for t in trends.matches(script)]
     chosen += [re.sub(r"(?<=[a-z])(?=[A-Z])", " ", h[1:]) for h in hashtags(script)]
     import os
     chosen += CHANNEL_KEYWORDS.get(os.environ.get("SF_PROFILE", "").strip(), CHANNEL_KEYWORDS[""])
     result = []
     for tag in chosen:
         if tag and tag.casefold() not in {t.casefold() for t in result}:
-            if sum(len(t) + 3 for t in result) + len(tag) + 3 <= 500:
+            if len(result) < 30 and sum(len(t) + 3 for t in result) + len(tag) + 3 <= 500:
                 result.append(tag)
     return result
 
@@ -123,7 +133,7 @@ def description(script: dict, cfg: dict) -> str:
     """Lead with the video's actual subject and preserve attribution/disclosure."""
     credits = script.get("_credits") or []
     credit_block = ("\n\nPhoto credits:\n" + "\n".join(f"- {c}" for c in credits)) if credits else ""
-    lead = title(script)
+    lead = _clean(title(script))
     if not lead.endswith(("?", ".", "!")):
         question = re.match(r"(why|what)\b", lead, re.IGNORECASE) or re.match(r"how (do|does|did|can|is|are|much|many|long|far)\b", lead, re.IGNORECASE)
         lead += "?" if question else "."

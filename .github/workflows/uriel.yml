@@ -106,6 +106,7 @@ jobs:
           if [ -z "$YT_REFRESH_TOKEN" ] && [ "$DRY_RUN" != "1" ]; then
             echo "URIEL_YT_REFRESH_TOKEN is not set yet - skipping (no upload)."; exit 0
           fi
+          python -m src.trends
           python -m src.main
 
       - name: Save progress to the repo
