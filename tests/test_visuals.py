@@ -28,6 +28,11 @@ class SegmentsTest(unittest.TestCase):
     def test_prompt_forbids_text(self):
         self.assertIn("no text", visuals.build_prompt("T", "A robot walks."))
 
+    def test_channel_style_is_3d_and_keeps_no_text(self):
+        p = visuals.build_prompt("T", "A vault.", "bank vault cutaway", "photorealistic 3D reconstruction")
+        self.assertIn("photorealistic 3D reconstruction", p)
+        self.assertIn("no text", p)
+
 
 class ScenePlanTest(unittest.TestCase):
     def test_stored_plan_is_used_per_sentence(self):
