@@ -1,30 +1,8 @@
 {
-  "generated_at": "2026-11-25T22:38:01.277239+00:00",
-  "start_date": "2026-11-25",
-  "end_date": "2026-12-24",
+  "generated_at": "2026-11-26T16:53:16.855900+00:00",
+  "start_date": "2026-11-26",
+  "end_date": "2026-12-25",
   "items": [
-    {
-      "date": "2026-11-25",
-      "slot": "afternoon",
-      "hour_utc": 16,
-      "script_id": "c-003-space-cold-sun-hot",
-      "title": "Why space is freezing if the Sun is so hot",
-      "theme": "curiosity",
-      "ending": "Hot and freezing at the same time. Which side would you pick?",
-      "ending_type": "question",
-      "status": "ready"
-    },
-    {
-      "date": "2026-11-25",
-      "slot": "evening",
-      "hour_utc": 21,
-      "script_id": "v3-018-what-if-earth-stopped-spinning",
-      "title": "What if Earth stopped spinning?",
-      "theme": "planet",
-      "ending": "Would you choose to explain the wind or the changing daylight next?",
-      "ending_type": "question",
-      "status": "ready"
-    },
     {
       "date": "2026-11-26",
       "slot": "afternoon",
@@ -34,7 +12,7 @@
       "theme": "curiosity",
       "ending": "Did you know your old phone might still remember?",
       "ending_type": "question",
-      "status": "planned"
+      "status": "ready"
     },
     {
       "date": "2026-11-26",
@@ -660,6 +638,28 @@
       "title": "Why Quantum Computers Are So Hard to Build",
       "theme": "future-tech",
       "ending": "Recent experiments suggest that this approach can actually work.",
+      "ending_type": "payoff",
+      "status": "planned"
+    },
+    {
+      "date": "2026-12-25",
+      "slot": "afternoon",
+      "hour_utc": 16,
+      "script_id": "f-002-nvidia-dennys",
+      "title": "Why Nvidia was started in a Denny's booth",
+      "theme": "founders",
+      "ending": "Where is the next trillion-dollar idea being sketched tonight?",
+      "ending_type": "question",
+      "status": "planned"
+    },
+    {
+      "date": "2026-12-25",
+      "slot": "evening",
+      "hour_utc": 21,
+      "script_id": "s020-machines-that-suck-carbon-out-of-the-sky",
+      "title": "Machines That Suck Carbon Out of the Sky",
+      "theme": "planet",
+      "ending": "Experts say it can help, but cutting emissions still matters most.",
       "ending_type": "payoff",
       "status": "planned"
     }
