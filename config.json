@@ -37,6 +37,7 @@
   },
   "music": true,
   "illustrations": true,
+  "visual_style": "photorealistic 3D explanatory science visualisation, realistic cutaway cross-section or exploded model where useful, physically based materials, cinematic volumetric lighting, documentary CGI quality like a high-end science film, sharp focus, rich detail",
   "gemini_model": "gemini-3.5-flash",
   "default_tags": [
     "science",
