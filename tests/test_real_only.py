@@ -10,17 +10,43 @@ class RealOnly(unittest.TestCase):
             w = Path(d)
             real = w / "real.jpg"
             visuals.local_card("x", real, 1)  # stands in for a real photo file
-            script = {"id": "t", "title": "Sun", "sentences": ["a", "b", "c"]}
+            script = {"id": "t", "title": "Earth", "sentences": ["Earth spins.", "Earth rotates.", "Earth has an axis."]}
             def fake_photo(photo, dst, used):
-                if "real.jpg" in used:
-                    return None
-                used.add("real.jpg"); dst.write_bytes(real.read_bytes()); return "NASA"
-            with mock.patch.object(visuals, "_fetch", side_effect=RuntimeError("down")), \
+                dst.write_bytes(real.read_bytes()); return "NASA"
+            with mock.patch.object(visuals, "_fetch", side_effect=AssertionError("AI must not run")), \
+                 mock.patch.object(visuals, "local_card", side_effect=AssertionError("cards must not run")), \
                  mock.patch.object(visuals, "find_photo", side_effect=fake_photo), \
                  mock.patch.object(visuals, "_accept", return_value=True), \
                  mock.patch.object(visuals, "scene_plan", return_value=[(None, None)] * 3):
                 visuals.illustrate(script, w, 0, {"real_images_only": True, "gemini_images": False})
             self.assertNotIn("motion graphic card", script["_sources"])
+
+    def test_missing_real_photo_blocks_instead_of_drawing(self):
+        with tempfile.TemporaryDirectory() as d, \
+             mock.patch.object(visuals, "find_photo", return_value=None), \
+             mock.patch.object(visuals, "local_card") as card:
+            with self.assertRaisesRegex(RuntimeError, "No matching real photo"):
+                visuals.illustrate({"id": "x", "title": "Earth", "sentences": ["Earth spins."]},
+                                   Path(d), 0, {"real_images_only": True})
+            card.assert_not_called()
+
+    def test_rotation_is_a_real_earth_search(self):
+        self.assertEqual(visuals.matching_photo("Earth's rotation makes a day.", None,
+                         {"source": "nasa", "query": "sun"}, "T"),
+                         {"source": "nasa", "query": "earth blue marble"})
+
+    def test_impact_uses_real_earth_crater_not_a_generic_planet(self):
+        self.assertEqual(visuals.matching_photo("An asteroid impact struck Earth.", None,
+                         {"source": "nasa", "query": "earth"}, "T"),
+                         {"source": "nasa", "query": "meteor crater"})
+
+    def test_mission_plan_preserved_for_pronoun(self):
+        plan = {"source": "nasa", "query": "Voyager antenna"}
+        self.assertEqual(visuals.matching_photo("It is still talking to us.", "Voyager spacecraft", plan, "T"), plan)
+
+    def test_real_photography_is_not_excluded_as_graph(self):
+        self.assertIsNone(visuals.NASA_SKIP.search("Meteor Crater in Arizona Earth photography"))
+        self.assertIsNotNone(visuals.NASA_SKIP.search("Artist illustration of an impact"))
 
 
 if __name__ == "__main__":

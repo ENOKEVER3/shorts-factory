@@ -91,7 +91,7 @@ def build_description(s: dict, cfg: dict) -> str:
 
 def scene_report_md(s: dict) -> str:
     rows = "\n".join(f"| {i + 1} | {src} |" for i, src in enumerate(s.get("_sources") or []))
-    note = "No scene uses AI-generated video; motion is FFmpeg pan/zoom animation of still pictures."
+    note = "Real photos use pan/zoom; eligible Earth scenes use the official NASA textured 3D globe with time-compressed motion."
     return f"### Scenes (voice: {s.get('_voice', '?')}, captions: {s.get('_captions', '?')})\n{note}\n\n| Scene | Source |\n|---|---|\n{rows}"
 
 
@@ -100,7 +100,16 @@ def produce(s: dict, index: int, cfg: dict) -> Path:
     work = OUT / "work"
     shutil.rmtree(work, ignore_errors=True)
     work.mkdir(parents=True)
-    narration, timeline, engine = tts.synthesize(s["sentences"], work, cfg["voice"], cfg)
+    # Fetch independent real photos while the narrator is synthesizing, not after Whisper finishes.
+    from concurrent.futures import ThreadPoolExecutor
+    photo_pool = ThreadPoolExecutor(max_workers=1)
+    photo_job = photo_pool.submit(visuals.illustrate, s, work, index * 100, cfg, started) \
+        if cfg.get("illustrations", True) and cfg.get("real_images_only") else None
+    try:
+        narration, timeline, engine = tts.synthesize(s["sentences"], work, cfg["voice"], cfg)
+    except Exception:
+        photo_pool.shutdown(wait=True, cancel_futures=True)
+        raise
     s["_voice"] = engine
     v = cfg["video"]
     if timeline[-1][1] > v["max_seconds"]:
@@ -117,12 +126,18 @@ def produce(s: dict, index: int, cfg: dict) -> Path:
     )
     segs = []
     if cfg.get("illustrations", True):
-        images = visuals.illustrate(s, work, seed_base=index * 100, cfg=cfg, started=started)
+        try:
+            images = photo_job.result() if photo_job else visuals.illustrate(s, work, seed_base=index * 100, cfg=cfg, started=started)
+        finally:
+            photo_pool.shutdown(wait=True)
         segs = visuals.segments(images, timeline, total)
         segs = trajectories.animate(s, images, segs, work, cfg)
+    else:
+        photo_pool.shutdown(wait=True)
     out = OUT / f"{s['id']}.mp4"
     render.render(narration, ass, out, index, cfg, total, segs)
-    log(f"Video assembled in {time.time() - started:.0f}s (picture budget {cfg.get('picture_budget_seconds', 150)}s)")
+    s["_production_seconds"] = round(time.time() - started, 2)
+    log(f"Video assembled in {s['_production_seconds']}s (target: 120s, picture budget {cfg.get('picture_budget_seconds', 20)}s)")
     return out
 
 

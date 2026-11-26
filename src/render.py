@@ -75,17 +75,19 @@ def camera_move(n: int, frames: int) -> str:
     return f"z='1.12':x='{cx}':y='(ih-ih/zoom)*(1-{ease})'"
 
 
-def illustration_chain(segs, pal: tuple[str, ...], fps: int, first_input: int = 1) -> tuple[str, str]:
+def illustration_chain(segs, pal: tuple[str, ...], fps: int, first_input: int = 1, real_only: bool = False) -> tuple[str, str]:
     """Filters that slide each illustration in with a slow zoom. Returns (filters, last label)."""
     parts, last = [], "bg"
     for n, (p, start, end) in enumerate(segs):
         dur = end - start
         frames = max(int(dur * fps), 2)
         fade = min(0.3, dur / 4)
+        fades = "" if real_only else (f"fade=t=in:st=0:d={fade:.2f}:alpha=1,"
+                                      f"fade=t=out:st={dur - fade:.2f}:d={fade:.2f}:alpha=1,")
         if str(p).endswith(".mp4"):  # pre-animated orbital scene: no Ken Burns, just fade in/out
             parts.append(
                 f"[{first_input + n}:v]scale={FULL_W}:{FULL_H}:flags=lanczos,fps={fps},format=yuva420p,"
-                f"fade=t=in:st=0:d={fade:.2f}:alpha=1,fade=t=out:st={dur - fade:.2f}:d={fade:.2f}:alpha=1,"
+                f"{fades}"
                 f"setpts=PTS-STARTPTS+{start:.3f}/TB[im{n}]"
             )
             parts.append(f"[{last}][im{n}]overlay=x=0:y=0:eof_action=pass[ov{n}]")
@@ -95,7 +97,7 @@ def illustration_chain(segs, pal: tuple[str, ...], fps: int, first_input: int = 
             f"[{first_input + n}:v]scale=1620:2880:force_original_aspect_ratio=increase:flags=lanczos,crop=1620:2880,"
             f"zoompan={camera_move(n, frames)}:d={frames}:s={FULL_W}x{FULL_H}:fps={fps},unsharp=5:5:0.6,"
             f"eq=brightness=-0.04:contrast=1.06:saturation=1.12,vignette=PI/5,"
-            f"format=yuva420p,fade=t=in:st=0:d={fade:.2f}:alpha=1,fade=t=out:st={dur - fade:.2f}:d={fade:.2f}:alpha=1,"
+            f"format=yuva420p,{fades}"
             f"setpts=PTS-STARTPTS+{start:.3f}/TB[im{n}]"
         )
         nxt = f"ov{n}"
@@ -113,8 +115,10 @@ def render(narration: Path, ass: Path, out: Path, index: int, cfg: dict, total: 
     if not fonts.exists():
         shutil.copytree(ROOT / "assets" / "fonts", fonts)
 
-    bg = background_filter(index, pal, total, w, h, fps)
-    ill, base = illustration_chain(list(segs), pal, fps)
+    if cfg.get("real_images_only") and not segs:
+        raise RuntimeError("No real scene imagery; blocked instead of rendering a drawn background")
+    bg = f"color=c=black:s={w}x{h}:r={fps}:d={total:.2f}" if cfg.get("real_images_only") else background_filter(index, pal, total, w, h, fps)
+    ill, base = illustration_chain(list(segs), pal, fps, real_only=bool(cfg.get("real_images_only")))
     vf = (
         f"{bg}[bg];{ill + ';' if ill else ''}color=c={pal[2]}:s={w}x14:r={fps}:d={total:.2f}[bar];"
         f"[{base}][bar]overlay=x='-w+w*t/{total:.2f}':y=H-14:shortest=1,ass={ass.name}:fontsdir=fonts[v]"
@@ -140,11 +144,11 @@ def render(narration: Path, ass: Path, out: Path, index: int, cfg: dict, total: 
     log(f"Rendering {total:.1f}s video (background style {index % 5}, palette {index % len(PALETTES)})")
     run(
         [
-            "ffmpeg", "-y", "-v", "error", "-i", str(narration.resolve()),
+            "ffmpeg", "-y", "-v", "error", "-filter_complex_threads", "2", "-i", str(narration.resolve()),
             *[a for p, _s, _e in segs for a in ("-i", str(Path(p).resolve()))],
             "-filter_complex", f"{vf};{pad}",
             "-map", "[v]", "-map", "[a]", "-t", f"{total:.2f}",
-            "-c:v", "libx264", "-preset", cfg["video"].get("preset", "fast"), "-crf", str(cfg["video"].get("crf", 17)), "-profile:v", "high", "-level", "4.2",
+            "-c:v", "libx264", "-threads", "2", "-preset", cfg["video"].get("preset", "fast"), "-crf", str(cfg["video"].get("crf", 17)), "-profile:v", "high", "-level", "4.2",
             "-tune", "film", "-maxrate", "16M", "-bufsize", "32M", "-g", str(fps * 2), "-pix_fmt", "yuv420p", "-r", str(fps),
             "-colorspace", "bt709", "-color_primaries", "bt709", "-color_trc", "bt709",
             "-c:a", "aac", "-b:a", "320k", "-ar", "48000", "-movflags", "+faststart", str(out.resolve()),

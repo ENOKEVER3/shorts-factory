@@ -52,6 +52,16 @@ jobs:
         run: |
           for i in 1 2 3; do pip install -q -r requirements.txt && break; sleep 15; done
 
+      - name: Install free off-screen NASA globe graphics
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq libegl1 libgl1 libgl1-mesa-dri
+
+      - name: Cache matched real photos
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/shorts-factory/photos
+          key: real-photos-v1-${{ github.run_id }}
+          restore-keys: real-photos-v1-
+
       - name: Cache voice + caption models (Kokoro, Whisper, Piper)
         uses: actions/cache@v4
         with:

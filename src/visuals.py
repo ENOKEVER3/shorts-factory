@@ -25,6 +25,9 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
+import shutil
+import threading
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 from . import providers, gemini, quality
@@ -67,11 +70,11 @@ def _valid_image(path: Path) -> bool:
     if not path.exists() or path.stat().st_size < 8000:
         return False
     try:
-        out = subprocess.check_output(
-            ["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=width",
-             "-of", "csv=p=0", str(path)], text=True, stderr=subprocess.DEVNULL,
-        )
-        return int(out.strip() or 0) >= 256
+        from PIL import Image
+        with Image.open(path) as im:
+            im.verify()
+        with Image.open(path) as im:
+            return min(im.size) >= 256
     except Exception:  # noqa: BLE001
         return False
 
@@ -222,23 +225,41 @@ def scene_plan(script: dict, cfg: dict | None = None) -> list[tuple[str | None, 
 # Never Google Images or Shutterstock results: those are copyrighted or paid.
 
 UA = {"User-Agent": "shorts-factory/1.0 (+https://github.com)"}
+PHOTO_CACHE = Path.home() / ".cache" / "shorts-factory" / "photos"
+_PHOTO_STATE = threading.local()
+_CACHE_LOCK = threading.Lock()
+
+
+def _photo_timeout() -> float:
+    left = getattr(_PHOTO_STATE, "deadline", time.monotonic() + 4) - time.monotonic()
+    if left <= 0:
+        raise TimeoutError("photo search budget exhausted")
+    return min(4.0, left)
 
 
 def _get_json(url: str, headers: dict | None = None) -> dict:
     req = urllib.request.Request(url, headers={**UA, **(headers or {})})
-    with urllib.request.urlopen(req, timeout=30) as r:
+    with urllib.request.urlopen(req, timeout=_photo_timeout()) as r:
         return json.loads(r.read())
 
 
 NASA_SKIP = re.compile(
-    r"logo|patch|insignia|poster|chart|graph|diagram|model|plot|spectrum|event|prize|ceremony|award|meeting|"
+    r"\b(?:logo|patch|insignia|poster|chart|graph|diagram|model|plot|spectrum|event|prize|ceremony|award|meeting|"
     r"briefing|conference|team|portrait|official|visit|students?|workshop|exhibit|signing|press|tour|"
-    r"practice|training|finds|rhythm|virtual|mockup|testing|hearing|data", re.I)
+    r"practice|training|finds|rhythm|virtual|mockup|testing|hearing|data|artist|illustration|concept|render)\b", re.I)
 _STOP = {"in", "of", "the", "a", "an", "and", "on", "from", "with", "to", "at", "for"}
 
 
 def _nasa(query: str) -> list[tuple[str, str]]:
     """Public-domain NASA images whose title matches the query; skips charts, events and logos."""
+    PHOTO_CACHE.mkdir(parents=True, exist_ok=True)
+    key = hashlib.sha256(("subject-v4:" + query.casefold()).encode()).hexdigest()
+    cached = PHOTO_CACHE / f"query-{key}.json"
+    if cached.exists() and time.time() - cached.stat().st_mtime < 7 * 86400:
+        try:
+            return [tuple(x) for x in json.loads(cached.read_text())]
+        except (ValueError, OSError):
+            pass
     data = _get_json("https://images-api.nasa.gov/search?" + urllib.parse.urlencode({"q": query, "media_type": "image"}))
     words = [w for w in re.findall(r"[a-z]+", query.lower()) if w not in _STOP]
     scored = []
@@ -248,13 +269,24 @@ def _nasa(query: str) -> list[tuple[str, str]]:
         text = (title + " " + " ".join(meta.get("keywords") or [])).lower()
         if not links or NASA_SKIP.search(title + " " + " ".join(meta.get("keywords") or [])):
             continue
-        hits = sum(1 for w in words if w in text)
-        if hits == 0:
+        hits = sum(1 for w in words if re.search(r"\b" + re.escape(w) + r"\b", text))
+        # Require the concrete subject, not a loose match on 'space', 'impact' or 'blue'.
+        subject = next((w for w in words if w not in {"blue", "marble", "space", "impact", "surface", "rotation"}), "")
+        if hits == 0 or (subject and not re.search(r"\b" + re.escape(subject) + r"\b", text)):
+            continue
+        entities = set(words) & {"earth", "mars", "moon", "sun", "asteroid", "crater", "bennu", "didymos", "voyager", "jupiter", "saturn"}
+        if any(not re.search(r"\b" + re.escape(entity) + r"\b", text) for entity in entities):
+            continue
+        if "meteor crater" in query.lower() and re.search(r"\bmars\b|\bmoon\b", text):
             continue
         href = links[0]["href"].replace("~thumb", "~medium").replace("~small", "~medium")
         scored.append((hits, href, f"\"{title[:80]}\" - NASA (public domain)"))
     scored.sort(key=lambda x: -x[0])
-    return [(h, c) for _n, h, c in scored]
+    results = [(h, c) for _n, h, c in scored]
+    if results:
+        with _CACHE_LOCK:
+            cached.write_text(json.dumps(results))
+    return results
 
 
 def _pexels(query: str) -> list[tuple[str, str]]:
@@ -296,19 +328,28 @@ def _unsplash(query: str) -> list[tuple[str, str]]:
 def find_photo(photo: dict, dst: Path, used: set[str]) -> str | None:
     """Download the best free photo for this sentence. Returns the credit line, or None."""
     sources = [_nasa] if photo.get("source") == "nasa" else []
-    sources += [_pexels, _unsplash, _pixabay]
+    if photo.get("source") != "nasa":
+        sources += [_pexels, _unsplash, _pixabay]
     for source in sources:
         try:
             results = source(photo["query"])
         except Exception as exc:  # noqa: BLE001
             log(f"Photo search {source.__name__} failed ({exc})")
             continue
-        for url, credit in results:
+        for url, credit in results[:2]:
             if url in used:
                 continue  # never show the same photo twice in one video
             try:
-                with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=45) as r:
-                    dst.write_bytes(r.read())
+                PHOTO_CACHE.mkdir(parents=True, exist_ok=True)
+                cached = PHOTO_CACHE / (hashlib.sha256(url.encode()).hexdigest() + ".jpg")
+                if cached.exists() and _valid_image(cached):
+                    shutil.copyfile(cached, dst)
+                else:
+                    with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=_photo_timeout()) as r:
+                        dst.write_bytes(r.read(20_000_000))
+                    if _valid_image(dst):
+                        with _CACHE_LOCK:
+                            shutil.copyfile(dst, cached)
             except Exception:  # noqa: BLE001
                 continue
             if _valid_image(dst):
@@ -316,6 +357,74 @@ def find_photo(photo: dict, dst: Path, used: set[str]) -> str | None:
                 return credit
             dst.unlink(missing_ok=True)
     return None
+
+
+def matching_photo(sentence: str, visual: str | None, photo: dict | None, title: str) -> dict | None:
+    """Resolve explicit sentence subjects before contextual/pronoun scene plans.
+
+    Impact is shown as a real impact crater, never an invented photograph of a hypothetical event.
+    Specific missions/places keep their written plans; no unrelated generic Earth fallback.
+    """
+    text = sentence.lower()
+    if re.search(r"\bearth\b", text) and re.search(r"rotat|spin|axis", text):
+        return {"source": "nasa", "query": "earth blue marble"}
+    if re.search(r"asteroid|meteor", text) and re.search(r"impact|hit|struck|crash|crater", text):
+        return {"source": "nasa", "query": "meteor crater"}
+    if photo and photo.get("query"):
+        return dict(photo)
+    context = (visual or sentence or title).lower()
+    for subject in ("bennu", "didymos", "voyager", "mars", "jupiter", "saturn", "asteroid", "moon", "earth", "sun"):
+        if re.search(r"\b" + subject + r"\b", context):
+            return {"source": "nasa", "query": "earth blue marble" if subject == "earth" else subject}
+    return None
+
+
+def _real_photos(script: dict, plan: list, work: Path, cfg: dict) -> list[Path | None]:
+    """Four parallel, cached searches; no AI calls or card creation in real-only mode."""
+    started = time.monotonic()
+    deadline = started + min(float(cfg.get("picture_budget_seconds", 20)), 20)
+    requests = [matching_photo(s, v, p, script["title"])
+                for s, (v, p) in zip(script["sentences"], plan)]
+
+    def fetch(item):
+        i, photo = item
+        _PHOTO_STATE.deadline = deadline
+        studio = _pregenerated(script.get("id", ""), i)
+        if studio and _valid_image(studio):
+            return studio, "studio scene (still, animated)", None
+        dst = work / f"img_{i:02d}.jpg"
+        credit = find_photo(photo, dst, set()) if photo else None
+        return (dst, "licensed photo (still, animated)", credit) if credit else (None, "unavailable", None)
+
+    # Pool identical queries: one search/download for repeated sentences about the same subject.
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        jobs, futures = {}, []
+        for i, photo in enumerate(requests):
+            studio = _pregenerated(script.get("id", ""), i)
+            key = ("studio", i) if studio else json.dumps(photo, sort_keys=True)
+            if key not in jobs:
+                jobs[key] = pool.submit(fetch, (i, photo))
+            futures.append(jobs[key])
+        results = [job.result() for job in futures]
+    out, sources, credits, seen, accepted = [], [], [], [], {}
+    for i, (path, source, credit) in enumerate(results):
+        if path and quality.check_image(path, seen)[0]:
+            out.append(path)
+            sources.append(source)
+            if credit:
+                credits.append(credit)
+            accepted[json.dumps(requests[i], sort_keys=True)] = path
+        elif requests[i] and json.dumps(requests[i], sort_keys=True) in accepted:
+            # Hold only the same physical subject; Earth must never explain a missing asteroid.
+            out.append(accepted[json.dumps(requests[i], sort_keys=True)])
+            sources.append("matching real picture held")
+        else:
+            raise RuntimeError(f"No matching real photo for scene {i + 1}; Short held, never replaced with a drawn card.")
+    script["_sources"], script["_credits"] = sources, list(dict.fromkeys(credits))
+    script["_photo_queries"] = requests
+    script["_photo_seconds"] = round(time.monotonic() - started, 2)
+    log(f"Real photos ready in {script['_photo_seconds']}s (parallel searches + persistent cache)")
+    return out
 
 
 def _gemini_image(prompt: str, dst: Path, cfg: dict | None) -> Path:
@@ -338,6 +447,12 @@ def illustrate(script: dict, work: Path, seed_base: int, cfg: dict | None = None
     """Return one image path (or None on failure) per sentence. Order of preference:
     studio scene -> real free photo (when the plan says a photo fits) -> AI illustration of the
     planned scene -> local scene card. Photo credits are stored in script["_credits"]."""
+    # In real-only mode never spend minutes asking an AI planner for missing scene plans.
+    if (cfg or {}).get("real_images_only"):
+        n = len(script["sentences"])
+        vs, ps = script.get("visuals") or [], script.get("photos") or []
+        plan = [(vs[i] if i < len(vs) else None, ps[i] if i < len(ps) else None) for i in range(n)]
+        return _real_photos(script, plan, work, cfg or {})
     plan = scene_plan(script, cfg)
     out: list[Path | None] = []
     credits: list[str] = []

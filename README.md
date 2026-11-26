@@ -32,7 +32,7 @@ GitHub Actions (15 short check-ins/day, UTC; 2 of them post)
 | GitHub scheduled runs | Can start 5-60+ min late at busy times, and are sometimes skipped entirely. Turned off after 60 days without repo activity. | Every window has several runs, and a later run catches up on a missed Short. Each post commits to the repo, so it stays active. |
 | edge-tts voice | Free, no key, but an **unofficial** Microsoft endpoint. It can break or be blocked without warning. | The system automatically falls back to Piper, a free offline voice. It sounds a bit less natural. |
 | Gemini API (`GEMINI_API_KEY`) | **Text** (scene plans, new scripts): free tier with per-minute and per-day limits that Google changes often; it sometimes answers "high demand, try later". **Images**: Google's free tier currently allows **0** images - you need billing on the Google Cloud project (paid per image, a few US cents each, check Google's pricing page). Older model names such as `gemini-2.5-flash` are no longer available to new keys, so the config uses `gemini-3.5-flash`. | One plan request per video is far below the free text limits. Without billing, the pipeline tries one Gemini image, sees there is no quota, and switches to the free picture sources for the rest of the video, so nothing breaks and nothing is charged. Set `"gemini_images": false` in config.json to skip even that one try. |
-| Pollinations.ai images | Free, no key, **1 image every 45 s**. Unofficial service that can change or stop, and shared GitHub runners are often throttled. | One picture per sentence, so each video takes ~6-7 extra minutes (~420 min/month extra, still under GitHub's private-repo limit). If the online picture fails, a locally drawn scene card (retro-futuristic grid + constellation art, different for every sentence) is used instead, so every video always has illustrations. Turn off with `"illustrations": false` in config.json. |
+| Pollinations.ai images | Free, no key, **1 image every 45 s**; availability is not guaranteed. | MAKOKOGW's real-only mode bypasses AI image services and drawn cards entirely. Other profiles retain their existing fallback behavior. No matching real photo means preparation is held, never silently replaced by an unrelated or drawn scene. |
 | Matching pictures | Every built-in script can carry a written scene plan per sentence (what to show + a photo search). Space sentences use real NASA photos (public domain, no key). Optional free `PEXELS_API_KEY` / `UNSPLASH_ACCESS_KEY` / `PIXABAY_API_KEY` secrets add real stock photos for everyday things. Optional free `GEMINI_API_KEY` writes the plan at run time for scripts that don't have one yet. | Without a plan, the AI picture is drawn from the sentence text, which matches less well. Photo credits are added to each video description. Google Images and Shutterstock pictures are **not** used: they are copyrighted or paid and can get the channel struck. |
 | Illustration Studio scenes (optional) | Made on the guide site with Lovable AI; uses workspace credits, not free-tier. | Best-looking option. Generate one scene per sentence on the site's Illustration Studio page, download the ZIP, and upload the images to `content/scenes/<script_id>/` (named `scene_01.png`, `scene_02.png`, ...). The pipeline uses them as-is and skips the online/local fallbacks for those sentences. |
 | Artifacts | Rendered videos are kept for 7 days. | Download any video from the run page if you want a copy. |
@@ -167,18 +167,23 @@ Run tests with `python -m unittest discover tests`.
 
 `config.json` keys that control how fast a Short is built and how space scenes look:
 
-- `orbital_animations` — `enabled`, `themes` (which script themes get them), `max_per_short`,
-  `budget_seconds`. When a sentence is about an orbit, a flyby or a spin, the scene is drawn as a
-  real animated trajectory (glowing orbit path, dashed transfer arc, tilted rotating planet with
-  latitude and longitude lines) instead of a still picture. Each clip takes about 2-3 s to draw.
-- `picture_budget_seconds` (default 150) — the free picture service only allows one image every
-  ~45 s, so a 9-scene script could otherwise spend 7 minutes waiting. After the budget, the
-  remaining scenes use instant locally drawn cards so the job finishes on time.
-- `video.preset` / `video.crf` — encoder speed vs quality (`fast` + 17 is the current balance).
+- `orbital_animations` — eligible Earth spin and Earth-centred orbit scenes use the official NASA
+  Earth mesh, reduced to 12,000 triangles, with NASA geographic texture and a 23.44° tilted axis.
+  At most two scenes per Short; other planets, transfer/flyby scenes and Uriel are not replaced.
+  Spin is time-compressed and orbital trails are schematic, not measured mission trajectories.
+  ModernGL renders off-screen through free Mesa/EGL; failure keeps the matched real photo.
+- `picture_budget_seconds` — MAKOKOGW uses 20 seconds with four parallel workers, four-second
+  request timeouts, pooled duplicate queries, persistent photo/search cache and no AI planner wait.
+  Photos start alongside narration. Explicit Earth rotation and asteroid-impact sentences override
+  generic plans; impacts use real Earth crater photographs, not invented impact photographs.
+- `real_images_only` — no drawn cards or animated graphic backgrounds. If a scene has no matching
+  image, hold a prior image only for the same subject; otherwise block that Short for review.
+- `video.preset` / `video.crf` — MAKOKOGW uses `veryfast` + 17, still 1080×1920 H.264/AAC, not 4K.
 
-Rough timings on a GitHub runner: narration ~15 s, captions ~15 s, pictures up to the budget,
-video assembly ~30-60 s. A Short with studio scenes or NASA photos ready ends well under 2 minutes;
-one that waits on the free picture service is limited by that service, not by the renderer.
+The complete production target is 120 seconds with cached voice/caption models, excluding runner
+setup, model downloads, quality inspection and YouTube upload. Timing is measured in each run;
+network outages, cold models and runner variation mean the target is not a universal guarantee.
+NASA asset sources and resolutions are recorded in `assets/earth/SOURCES.md`.
 
 ## Troubleshooting
 
