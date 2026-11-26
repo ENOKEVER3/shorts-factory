@@ -9,10 +9,11 @@ from __future__ import annotations
 
 import os
 import shutil
+import time
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
-from . import align, providers, queue, captions, content, metadata, quality, render, tts, visuals, youtube, plan
+from . import align, providers, queue, captions, content, metadata, quality, render, trajectories, tts, visuals, youtube, plan
 from .util import STATE_DIR, CONFIG, ROOT, fail, load_json, log, save_json
 
 STATE = STATE_DIR / "posted.json"
@@ -95,6 +96,7 @@ def scene_report_md(s: dict) -> str:
 
 
 def produce(s: dict, index: int, cfg: dict) -> Path:
+    started = time.time()
     work = OUT / "work"
     shutil.rmtree(work, ignore_errors=True)
     work.mkdir(parents=True)
@@ -115,10 +117,12 @@ def produce(s: dict, index: int, cfg: dict) -> Path:
     )
     segs = []
     if cfg.get("illustrations", True):
-        images = visuals.illustrate(s, work, seed_base=index * 100, cfg=cfg)
+        images = visuals.illustrate(s, work, seed_base=index * 100, cfg=cfg, started=started)
         segs = visuals.segments(images, timeline, total)
+        segs = trajectories.animate(s, images, segs, work, cfg)
     out = OUT / f"{s['id']}.mp4"
     render.render(narration, ass, out, index, cfg, total, segs)
+    log(f"Video assembled in {time.time() - started:.0f}s (picture budget {cfg.get('picture_budget_seconds', 150)}s)")
     return out
 
 
