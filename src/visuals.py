@@ -31,9 +31,12 @@ from . import providers, gemini, quality
 from .util import log, retry
 
 STYLE = (
-    "editorial digital illustration, cinematic lighting, vivid futuristic colors, clean composition, "
-    "highly detailed, no text, no words, no letters, no logos, no watermark"
+    "photorealistic 3D explanatory render, realistic materials and textures, physically based lighting, "
+    "cinematic depth of field, documentary visualisation, highly detailed, sharp focus, "
+    "no text, no words, no letters, no logos, no watermark"
 )
+# Per-channel look (config "visual_style"); the no-text guard is always appended.
+NO_TEXT = "no text, no words, no letters, no logos, no watermark"
 API = "https://image.pollinations.ai/prompt/"
 FREE_GAP = 47  # free tier: 1 image every 45 s per IP
 _last = [0.0]
@@ -54,9 +57,10 @@ def _pregenerated(script_id: str, index: int) -> Path | None:
     return None
 
 
-def build_prompt(title: str, sentence: str, visual: str | None = None) -> str:
+def build_prompt(title: str, sentence: str, visual: str | None = None, style: str | None = None) -> str:
     subject = visual.strip() if visual else f"{sentence.strip()} (topic: {title.strip()})"
-    return f"{subject}. {STYLE}"[:600]
+    look = f"{style.strip()}, {NO_TEXT}" if style and style.strip() else STYLE
+    return f"{subject}. {look}"[:700]
 
 
 def _valid_image(path: Path) -> bool:
@@ -163,7 +167,10 @@ PLAN_PROMPT = (
     "For EVERY sentence, in order, return an object:\n"
     '- "visual": 20-40 words. Name the concrete main subject of THIS sentence (resolve words like "it" or '
     '"this" using the earlier sentences), what it is doing, the setting, and the camera framing (close-up, '
-    "wide shot, cross-section, cutaway). If the idea is abstract, show a clear physical metaphor. One focal "
+    "wide shot, cross-section, cutaway). Prefer a realistic 3D explanatory model whenever it helps the viewer "
+    "understand: cutaway cross-sections showing the inside, exploded views of parts, 3D reconstructions of "
+    "places and routes, scale comparisons and step-by-step moments of the process being described. If the "
+    "idea is abstract, show a clear physical 3D model or metaphor. One focal "
     "subject, centred, simple background. Keep the same main subject looking the same from picture to picture. "
     "Never ask for text, words, numbers, labels, charts, logos or user interfaces.\n"
     '- "photo": "nasa" when a real NASA photo would show it (planets, Earth from space, rockets, astronauts, the '
@@ -357,7 +364,7 @@ def illustrate(script: dict, work: Path, seed_base: int, cfg: dict | None = None
                 sources.append("licensed photo (still, animated)")
                 photos += 1
                 continue
-        prompt = build_prompt(script["title"], sentence, visual)
+        prompt = build_prompt(script["title"], sentence, visual, (cfg or {}).get("visual_style"))
         if use_gemini:
             try:
                 _gemini_image(prompt, dst, cfg)
