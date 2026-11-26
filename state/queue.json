@@ -91,6 +91,51 @@
           "Photo by Eirik Solheim on Unsplash"
         ]
       }
+    },
+    {
+      "script_id": "v3-054-why-a-humanoid-shape-is-not-proof-of-human-intelligence",
+      "run_id": "45885532389",
+      "created_at": "2026-11-26T19:43:32+00:00",
+      "script": {
+        "id": "v3-054-why-a-humanoid-shape-is-not-proof-of-human-intelligence",
+        "kind": "explainer",
+        "title": "Why a humanoid shape is not proof of human intelligence",
+        "sentences": [
+          "If a robot looks human, should you assume it understands the world like a human?",
+          "A humanoid body is an engineering design that can help machines interact with environments built for people.",
+          "Its appearance alone tells you little about how its software reasons, learns, or handles unexpected events.",
+          "A system can perform an impressive learned behavior while remaining unreliable on tasks that seem easier to us.",
+          "You need to know the operating conditions, degree of autonomy, and whether a person is helping remotely.",
+          "Safety also depends on physical forces and failure handling, not simply how friendly the face looks.",
+          "Judge the demonstrated capability and its limits separately from the emotional impression created by the robot’s shape.",
+          "Would a human-looking face make you trust a robot more or less?"
+        ],
+        "tags": [
+          "humanoid robot intelligence",
+          "robot autonomy",
+          "robot teleoperation",
+          "AI robotics explained"
+        ],
+        "hashtags": [
+          "#Science",
+          "#Technology",
+          "#Seunenoch"
+        ],
+        "theme": "ai",
+        "_voice": "kokoro",
+        "_captions": "whisper word timing",
+        "_sources": [
+          "free AI illustration (still, animated)",
+          "free AI illustration (still, animated)",
+          "previous real picture held",
+          "previous real picture held",
+          "previous real picture held",
+          "previous real picture held",
+          "previous real picture held",
+          "previous real picture held"
+        ],
+        "_credits": []
+      }
     }
   ]
 }

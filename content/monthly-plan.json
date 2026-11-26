@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-26T16:53:16.855900+00:00",
+  "generated_at": "2026-11-26T19:43:32.526512+00:00",
   "start_date": "2026-11-26",
   "end_date": "2026-12-25",
   "items": [
@@ -23,7 +23,7 @@
       "theme": "ai",
       "ending": "Would a human-looking face make you trust a robot more or less?",
       "ending_type": "question",
-      "status": "planned"
+      "status": "ready"
     },
     {
       "date": "2026-11-27",
