@@ -23,7 +23,12 @@ class Trajectories(unittest.TestCase):
     def test_clip_renders_fast(self):
         with tempfile.TemporaryDirectory() as d:
             start = time.time()
-            out = trajectories.render_clip("orbit", 1.0, Path(d) / "o.mp4")
+            try:
+                out = trajectories.render_clip("orbit", 1.0, Path(d) / "o.mp4")
+            except Exception as e:
+                if any(k in str(e) for k in ("EGL", "libGL", "moderngl")):
+                    self.skipTest(f"off-screen graphics unavailable: {e}")
+                raise
             self.assertTrue(out.exists())
             self.assertLess(time.time() - start, 15)
 
