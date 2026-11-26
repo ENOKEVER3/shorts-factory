@@ -75,6 +75,9 @@ jobs:
         run: |
           for i in 1 2 3; do pip install -q -r requirements.txt && break; sleep 15; done
 
+      - name: Install free off-screen graphics libraries
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq libegl1 libgl1 libgl1-mesa-dri
+
       - name: Cache voice + caption models (Kokoro, Whisper, Piper)
         uses: actions/cache@v4
         with:
