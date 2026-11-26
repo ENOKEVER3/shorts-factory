@@ -3,6 +3,18 @@
   "id": "lf-001-asteroid-defense",
   "kind": "cinematic",
   "theme": "space",
+  "chapters": [
+   {"sentence_index": 0, "title": "Could an asteroid wipe us out?"},
+   {"sentence_index": 4, "title": "Chicxulub: the asteroid that killed the dinosaurs"},
+   {"sentence_index": 12, "title": "Tunguska: the 1908 airburst"},
+   {"sentence_index": 17, "title": "Chelyabinsk: the meteor nobody saw coming"},
+   {"sentence_index": 21, "title": "How dangerous are asteroids today?"},
+   {"sentence_index": 25, "title": "2024 YR4: why the impact risk changed"},
+   {"sentence_index": 30, "title": "NASA DART and Hera: how to deflect an asteroid"},
+   {"sentence_index": 39, "title": "Finding threats: Rubin Observatory and NEO Surveyor"},
+   {"sentence_index": 42, "title": "Apophis 2029: a safe close flyby"},
+   {"sentence_index": 46, "title": "Can we prevent another extinction?"}
+  ],
   "title": "Could an Asteroid Wipe Us Out Like the Dinosaurs? The Real Plan to Stop One",
   "sentences": [
    "Sixty-six million years ago, a rock about ten kilometres wide fell out of the sky and ended the age of the dinosaurs.",
