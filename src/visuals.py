@@ -351,6 +351,7 @@ def illustrate(script: dict, work: Path, seed_base: int, cfg: dict | None = None
     t0 = started or time.time()
     no_more_pics = False
     sources: list[str] = []
+    real_only = bool((cfg or {}).get("real_images_only", False))
     use_gemini = bool(gemini.key()) and (cfg or {}).get("gemini_images", True) and budget.allow("gemini_image")
     for i, sentence in enumerate(script["sentences"]):
         visual, photo = plan[i]
@@ -422,6 +423,33 @@ def illustrate(script: dict, work: Path, seed_base: int, cfg: dict | None = None
                 log(f"Illustration {i + 1} skipped: {exc2}")
                 out.append(None)
                 sources.append("none")
+    if real_only:
+        # Never show drawn cards: swap each for another real NASA photo, or let the previous real
+        # picture stay on screen longer. Cards stay only if no real picture exists at all.
+        for i, src in enumerate(sources):
+            if src != "motion graphic card":
+                continue
+            visual, photo = plan[i]
+            dst = work / f"real_{i:02d}.jpg"
+            q = (photo or {}).get("query") or script.get("photo_query") or script["title"]
+            credit = None
+            if time.time() - t0 < pic_secs + 30:
+                try:
+                    credit = find_photo({"source": "nasa", "query": q}, dst, used)
+                except Exception:  # noqa: BLE001
+                    credit = None
+            if credit and _accept(dst, seen, f"Real photo {i + 1}"):
+                out[i] = dst
+                credits.append(credit)
+                sources[i] = "licensed photo (still, animated)"
+            elif any(x == "licensed photo (still, animated)" or "image" in x or "studio" in x or "illustration" in x
+                     for x in sources):
+                out[i] = None
+                sources[i] = "previous real picture held"
+        if out and out[0] is None:
+            first = next((k for k, x in enumerate(out) if x is not None), None)
+            if first is not None:
+                out[0] = out[first]
     script["_sources"] = sources
     script["_credits"] = list(dict.fromkeys(credits))
     log(f"Pictures: {pre} studio scenes, {photos} real photos, {gem} Gemini images, {ok} free AI illustrations, "
