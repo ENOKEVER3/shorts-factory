@@ -1,7 +1,7 @@
 {
   "channel_name": "Uriel.",
   "expected_channel_id": "UC51tVC_mdH6q3oEp9Pzq9Pw",
-  "campaign_days": 60,
+  "campaign_days": 10000,
   "max_posts_per_day": 2,
   "day_rollover_hour_utc": 4,
   "slots_utc": [
@@ -37,6 +37,7 @@
   },
   "music": true,
   "illustrations": true,
+  "visual_style": "photorealistic 3D historical reconstruction, realistic period setting and materials, cutaway architectural model or route reconstruction where useful, moody cinematic lighting, documentary CGI quality like a high-end true-story film, sharp focus, rich detail, no gore, no blood",
   "gemini_model": "gemini-3.5-flash",
   "default_tags": [
     "true crime",
