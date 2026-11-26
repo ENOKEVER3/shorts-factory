@@ -74,7 +74,7 @@
     "max_age_days": 10
   },
   "orbital_animations": {
-    "enabled": true,
+    "enabled": false,
     "themes": [
       "space",
       "curiosity"
@@ -82,5 +82,6 @@
     "max_per_short": 2,
     "budget_seconds": 15
   },
-  "picture_budget_seconds": 60
+  "picture_budget_seconds": 60,
+  "real_images_only": true
 }
