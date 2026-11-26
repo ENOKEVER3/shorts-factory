@@ -1,1 +1,176 @@
-IiIiRG9jdW1lbnRhcnktc3R5bGUgb3JiaXRhbCBhbmltYXRpb25zIChNYW5pbS1saWtlIGxvb2ssIG5vIE1hbmltIGluc3RhbGwpLgoKRHJhd3Mgb3JiaXRhbCB0cmFqZWN0b3JpZXMsIHRyYW5zZmVyIGFyY3MgYW5kIHJvdGF0aW5nIHBsYW5ldHMgZnJhbWUgYnkgZnJhbWUgd2l0aApQaWxsb3cgKyBudW1weSBhbmQgcGlwZXMgdGhlbSBzdHJhaWdodCBpbnRvIGZmbXBlZy4gUmVhbCBNYW5pbSBuZWVkcyBDYWlyby9QYW5nby9MYVRlWApvbiBldmVyeSBydW5uZXIgKG1pbnV0ZXMgb2Ygc2V0dXApOyB0aGlzIHJlbmRlcnMgYSA1IHMgc2NlbmUgaW4gYSBmZXcgc2Vjb25kcyBvbiBhCjItY29yZSBHaXRIdWIgcnVubmVyIHNvIHRoZSB3aG9sZSBTaG9ydCBzdGF5cyBpbnNpZGUgaXRzIHRpbWUgYnVkZ2V0LgoiIiIKZnJvbSBfX2Z1dHVyZV9fIGltcG9ydCBhbm5vdGF0aW9ucwoKaW1wb3J0IG1hdGgKaW1wb3J0IHJhbmRvbQppbXBvcnQgcmUKaW1wb3J0IHN1YnByb2Nlc3MKaW1wb3J0IHRpbWUKZnJvbSBwYXRobGliIGltcG9ydCBQYXRoCgpmcm9tIC51dGlsIGltcG9ydCBsb2cKClcsIEgsIEZQUyA9IDEwODAsIDE5MjAsIDMwCktJTkRTID0gewogICAgInRyYW5zZmVyIjogcmUuY29tcGlsZShyIlxiKHNsaW5nc2hvdHxmbHlieXxmbHktYnl8Z3Jhdml0eSBhc3Npc3R8dHJhbnNmZXJ8dHJhamVjdG9yeXxsYXVuY2goZWQpPyB0b3xyb3V0ZSB0b3xvbiAoaXRzfHRoZWlyKSB3YXl8aW50ZXJjZXB0fGRlZmxlY3R8REFSVClcYiIsIHJlLkkpLAogICAgIm9yYml0IjogcmUuY29tcGlsZShyIlxiKG9yYml0XHcqfGNpcmNsXHcrIHRoZSAoc3VufGVhcnRofHBsYW5ldCl8eWVhciBvbnxhcm91bmQgdGhlIHN1bnxJU1N8c3BhY2Ugc3RhdGlvbnxzYXRlbGxpdGVcdyp8bW9vblx3KilcYiIsIHJlLkkpLAogICAgInJvdGF0aW9uIjogcmUuY29tcGlsZShyIlxiKHJvdGF0XHcqfHNwaW5cdyp8YXhpc3x0aWx0XHcqfGRheSBvbnxzdW5yaXNlXHcqfHN1bnNldFx3Knx0dXJucz8gb25jZSlcYiIsIHJlLkkpLAp9ClNQQUNFX1RIRU1FUyA9IHsic3BhY2UiLCAiZWFydGgiLCAiY3VyaW9zaXR5IiwgInNjaWVuY2UiLCAicGxhbmV0cyJ9CgoKZGVmIGtpbmRfZm9yKHRleHQ6IHN0cikgLT4gc3RyIHwgTm9uZToKICAgIGZvciBraW5kLCByeCBpbiBLSU5EUy5pdGVtcygpOgogICAgICAgIGlmIHJ4LnNlYXJjaCh0ZXh0IG9yICIiKToKICAgICAgICAgICAgcmV0dXJuIGtpbmQKICAgIHJldHVybiBOb25lCgoKZGVmIF9zdGFycyhkcmF3LCBybmcpOgogICAgZm9yIF8gaW4gcmFuZ2UoNDIwKToKICAgICAgICB4LCB5LCBiID0gcm5nLnJhbmRyYW5nZShXKSwgcm5nLnJhbmRyYW5nZShIKSwgcm5nLnJhbmRpbnQoNzAsIDI1NSkKICAgICAgICByID0gMiBpZiBiID4gMjM1IGVsc2UgMQogICAgICAgIGRyYXcuZWxsaXBzZSgoeCAtIHIsIHkgLSByLCB4ICsgciwgeSArIHIpLCBmaWxsPShiLCBiLCBtaW4oMjU1LCBiICsgMjApKSkKCgpkZWYgX2dsb3coaW1nLCB4eSwgcmFkaXVzLCBjb2xvcik6CiAgICBmcm9tIFBJTCBpbXBvcnQgSW1hZ2UsIEltYWdlRHJhdywgSW1hZ2VGaWx0ZXIKICAgIGxheWVyID0gSW1hZ2UubmV3KCJSR0IiLCBpbWcuc2l6ZSwgKDAsIDAsIDApKQogICAgZCA9IEltYWdlRHJhdy5EcmF3KGxheWVyKQogICAgeCwgeSA9IHh5CiAgICBkLmVsbGlwc2UoKHggLSByYWRpdXMsIHkgLSByYWRpdXMsIHggKyByYWRpdXMsIHkgKyByYWRpdXMpLCBmaWxsPWNvbG9yKQogICAgbGF5ZXIgPSBsYXllci5maWx0ZXIoSW1hZ2VGaWx0ZXIuR2F1c3NpYW5CbHVyKHJhZGl1cyAqIDAuNikpCiAgICByZXR1cm4gSW1hZ2UuYmxlbmQoaW1nLCBJbWFnZS5jb21wb3NpdGUobGF5ZXIsIGltZywgbGF5ZXIuY29udmVydCgiTCIpKSwgMC45KQoKCmRlZiBfYmFzZShzZWVkOiBpbnQsIGtpbmQ6IHN0cik6CiAgICAiIiJTdGF0aWMgbGF5ZXIgKHN0YXJzICsgYmx1cnJlZCBnbG93cykgYnVpbHQgb25jZSBwZXIgY2xpcDsgcGVyLWZyYW1lIGRyYXdpbmcgc3RheXMgY2hlYXAuIiIiCiAgICBmcm9tIFBJTCBpbXBvcnQgSW1hZ2UsIEltYWdlRHJhdwogICAgcm5nID0gcmFuZG9tLlJhbmRvbShzZWVkKQogICAgaW1nID0gSW1hZ2UubmV3KCJSR0IiLCAoVywgSCksICgzLCA1LCAxNikpCiAgICBfc3RhcnMoSW1hZ2VEcmF3LkRyYXcoaW1nKSwgcm5nKQogICAgaWYga2luZCA9PSAicm90YXRpb24iOgogICAgICAgIHJldHVybiBfZ2xvdyhpbWcsIChXIC8gMiAtIDMzMCwgSCAvIDIgLSA3MjApLCA2MCwgKDI1NSwgMjIwLCAxNTApKQogICAgcmV0dXJuIF9nbG93KGltZywgKFcgLyAyLCBIIC8gMiksIDcwLCAoMjU1LCAyMDAsIDkwKSkKCgpkZWYgX2VsbGlwc2VfcHQoY3gsIGN5LCBhLCBiLCBhbmcpOgogICAgcmV0dXJuIGN4ICsgYSAqIG1hdGguY29zKGFuZyksIGN5ICsgYiAqIG1hdGguc2luKGFuZykKCgpkZWYgX2ZyYW1lKGtpbmQ6IHN0ciwgYmcsIHQ6IGZsb2F0LCBkdXI6IGZsb2F0KToKICAgIGZyb20gUElMIGltcG9ydCBJbWFnZURyYXcKICAgIGltZyA9IGJnLmNvcHkoKQogICAgZCA9IEltYWdlRHJhdy5EcmF3KGltZywgIlJHQkEiKQogICAgcCA9IHQgLyBkdXIKICAgIGVhc2UgPSAwLjUgLSAwLjUgKiBtYXRoLmNvcyhtYXRoLnBpICogcCkKICAgIGN4LCBjeSA9IFcgLyAyLCBIIC8gMgogICAgaWYga2luZCA9PSAicm90YXRpb24iOgogICAgICAgIHIgPSAzODAKICAgICAgICBkLmVsbGlwc2UoKGN4IC0gciAtIDMwLCBjeSAtIHIgLSAzMCwgY3ggKyByICsgMzAsIGN5ICsgciArIDMwKSwgZmlsbD0oNjAsIDE0MCwgMjU1LCA0MCkpICAjIGF0bW9zcGhlcmUKICAgICAgICBkLmVsbGlwc2UoKGN4IC0gciwgY3kgLSByLCBjeCArIHIsIGN5ICsgciksIGZpbGw9KDE4LCA2MCwgMTMwKSkKICAgICAgICBkLnBpZXNsaWNlKChjeCAtIHIsIGN5IC0gciwgY3ggKyByLCBjeSArIHIpLCA5MCwgMjcwLCBmaWxsPSg0LCAxMiwgMzAsIDE3MCkpICAjIG5pZ2h0IHNpZGUKICAgICAgICBzcGluID0gMiAqIG1hdGgucGkgKiAwLjM1ICogdAogICAgICAgIHRpbHQgPSBtYXRoLnJhZGlhbnMoMjMuNCkKICAgICAgICBmb3IgayBpbiByYW5nZSgxMik6ICAjIG1lcmlkaWFucwogICAgICAgICAgICBsb24gPSBzcGluICsgayAqIG1hdGgucGkgLyA2CiAgICAgICAgICAgIGlmIG1hdGguY29zKGxvbikgPCAwOgogICAgICAgICAgICAgICAgY29udGludWUKICAgICAgICAgICAgcHRzID0gW10KICAgICAgICAgICAgZm9yIGogaW4gcmFuZ2UoNDEpOgogICAgICAgICAgICAgICAgbGF0ID0gLW1hdGgucGkgLyAyICsgbWF0aC5waSAqIGogLyA0MAogICAgICAgICAgICAgICAgeCwgeSA9IHIgKiBtYXRoLmNvcyhsYXQpICogbWF0aC5zaW4obG9uKSwgLXIgKiBtYXRoLnNpbihsYXQpCiAgICAgICAgICAgICAgICBwdHMuYXBwZW5kKChjeCArIHggKiBtYXRoLmNvcyh0aWx0KSAtIHkgKiBtYXRoLnNpbih0aWx0KSwgY3kgKyB4ICogbWF0aC5zaW4odGlsdCkgKyB5ICogbWF0aC5jb3ModGlsdCkpKQogICAgICAgICAgICBkLmxpbmUocHRzLCBmaWxsPSgxNDAsIDIwMCwgMjU1LCAxMTApLCB3aWR0aD0yKQogICAgICAgIGZvciBsYXRfZGVnIGluICgtNjAsIC0zMCwgMCwgMzAsIDYwKTogICMgcGFyYWxsZWxzCiAgICAgICAgICAgIGxhdCA9IG1hdGgucmFkaWFucyhsYXRfZGVnKQogICAgICAgICAgICBwdHMgPSBbXQogICAgICAgICAgICBmb3IgaiBpbiByYW5nZSg0MSk6CiAgICAgICAgICAgICAgICBsb24gPSAtbWF0aC5waSAvIDIgKyBtYXRoLnBpICogaiAvIDQwCiAgICAgICAgICAgICAgICB4LCB5ID0gciAqIG1hdGguY29zKGxhdCkgKiBtYXRoLnNpbihsb24pLCAtciAqIG1hdGguc2luKGxhdCkKICAgICAgICAgICAgICAgIHB0cy5hcHBlbmQoKGN4ICsgeCAqIG1hdGguY29zKHRpbHQpIC0geSAqIG1hdGguc2luKHRpbHQpLCBjeSArIHggKiBtYXRoLnNpbih0aWx0KSArIHkgKiBtYXRoLmNvcyh0aWx0KSkpCiAgICAgICAgICAgIGQubGluZShwdHMsIGZpbGw9KDE0MCwgMjAwLCAyNTUsIDkwIGlmIGxhdF9kZWcgZWxzZSAxNjApLCB3aWR0aD0yKQogICAgICAgIGF4ID0gciArIDE0MCAgIyByb3RhdGlvbiBheGlzCiAgICAgICAgZC5saW5lKChjeCArIGF4ICogbWF0aC5zaW4odGlsdCksIGN5IC0gYXggKiBtYXRoLmNvcyh0aWx0KSwgY3ggLSBheCAqIG1hdGguc2luKHRpbHQpLCBjeSArIGF4ICogbWF0aC5jb3ModGlsdCkpLAogICAgICAgICAgICAgICBmaWxsPSgyNTUsIDIxMCwgMTIwLCAyMDApLCB3aWR0aD0zKQogICAgICAgIHJldHVybiBpbWcKICAgICMgb3JiaXQgLyB0cmFuc2Zlcjogc3RhciBpbiB0aGUgbWlkZGxlLCBlbGxpcHNlIHBhdGhzLCBnbG93aW5nIGJvZHkgd2l0aCBmYWRpbmcgdHJhaWwKICAgIGQuZWxsaXBzZSgoY3ggLSA0NSwgY3kgLSA0NSwgY3ggKyA0NSwgY3kgKyA0NSksIGZpbGw9KDI1NSwgMjM2LCAxODApKQogICAgb3JiaXRzID0gWygyNjAsIDIzMCwgKDEyMCwgMjAwLCAyNTUpKSwgKDQyMCwgMzgwLCAoMjU1LCAxNTAsIDExMCkpXQogICAgZm9yIGEsIGIsIGNvbCBpbiBvcmJpdHM6CiAgICAgICAgZC5lbGxpcHNlKChjeCAtIGEsIGN5IC0gYiwgY3ggKyBhLCBjeSArIGIpLCBvdXRsaW5lPWNvbCArICg5MCwpLCB3aWR0aD0yKQogICAgYm9kaWVzID0gW10KICAgIGZvciBuLCAoYSwgYiwgY29sKSBpbiBlbnVtZXJhdGUob3JiaXRzKToKICAgICAgICBhbmcgPSAtbWF0aC5waSAvIDIgKyAyICogbWF0aC5waSAqICgwLjU1IGlmIG4gPT0gMCBlbHNlIDAuMykgKiB0CiAgICAgICAgYm9kaWVzLmFwcGVuZCgoYW5nLCBhLCBiLCBjb2wpKQogICAgICAgIGZvciBrIGluIHJhbmdlKDI4KTogICMgdHJhaWwKICAgICAgICAgICAgcGEgPSBhbmcgLSBrICogMC4wMzUKICAgICAgICAgICAgeCwgeSA9IF9lbGxpcHNlX3B0KGN4LCBjeSwgYSwgYiwgcGEpCiAgICAgICAgICAgIHJyID0gbWF4KDEsIDkgLSBrICogMC4zKQogICAgICAgICAgICBkLmVsbGlwc2UoKHggLSByciwgeSAtIHJyLCB4ICsgcnIsIHkgKyByciksIGZpbGw9Y29sICsgKGludCgyMjAgKiAoMSAtIGsgLyAyOCkpLCkpCiAgICAgICAgeCwgeSA9IF9lbGxpcHNlX3B0KGN4LCBjeSwgYSwgYiwgYW5nKQogICAgICAgIGQuZWxsaXBzZSgoeCAtIDE4LCB5IC0gMTgsIHggKyAxOCwgeSArIDE4KSwgZmlsbD1jb2wgKyAoMjU1LCkpCiAgICBpZiBraW5kID09ICJ0cmFuc2ZlciI6CiAgICAgICAgYTEsIGEyID0gMjYwLCA0MjAKICAgICAgICBwdHMgPSBbX2VsbGlwc2VfcHQoY3gsIGN5LCBhMSArIChhMiAtIGExKSAqIChzIC8gNjApLCAyMzAgKyAxNTAgKiAocyAvIDYwKSwgbWF0aC5waSAvIDIgLSBtYXRoLnBpICogKHMgLyA2MCkgKiBlYXNlKQogICAgICAgICAgICAgICBmb3IgcyBpbiByYW5nZSg2MSldCiAgICAgICAgZm9yIGkgaW4gcmFuZ2UoMCwgNjAsIDMpOiAgIyBkYXNoZWQgdHJhbnNmZXIgYXJjCiAgICAgICAgICAgIGQubGluZSgocHRzW2ldLCBwdHNbaSArIDFdKSwgZmlsbD0oMjU1LCAyNTUsIDI1NSwgMjIwKSwgd2lkdGg9NCkKICAgICAgICBweCwgcHkgPSBwdHNbLTFdCiAgICAgICAgZC5wb2x5Z29uKFsocHgsIHB5IC0gMTYpLCAocHggLSAxMCwgcHkgKyAxMiksIChweCArIDEwLCBweSArIDEyKV0sIGZpbGw9KDI1NSwgMjU1LCAyNTUpKQogICAgICAgIGZvciByciwgYWwgaW4gKCgzNCwgNDApLCAoMjQsIDcwKSk6CiAgICAgICAgICAgIGQuZWxsaXBzZSgocHggLSByciwgcHkgLSByciwgcHggKyByciwgcHkgKyByciksIGZpbGw9KDE4MCwgMjIwLCAyNTUsIGFsKSkKICAgIHJldHVybiBpbWcKCgpkZWYgcmVuZGVyX2NsaXAoa2luZDogc3RyLCBkdXI6IGZsb2F0LCBkc3Q6IFBhdGgsIHNlZWQ6IGludCA9IDApIC0+IFBhdGg6CiAgICBmcmFtZXMgPSBtYXgoaW50KGR1ciAqIEZQUyksIDIpCiAgICBiZyA9IF9iYXNlKHNlZWQsIGtpbmQpCiAgICBwcm9jID0gc3VicHJvY2Vzcy5Qb3BlbigKICAgICAgICBbImZmbXBlZyIsICIteSIsICItdiIsICJlcnJvciIsICItZiIsICJyYXd2aWRlbyIsICItcGl4X2ZtdCIsICJyZ2IyNCIsICItcyIsIGYie1d9eHtIfSIsICItciIsIHN0cihGUFMpLAogICAgICAgICAiLWkiLCAiLSIsICItYzp2IiwgImxpYngyNjQiLCAiLXByZXNldCIsICJ2ZXJ5ZmFzdCIsICItY3JmIiwgIjE2IiwgIi1waXhfZm10IiwgInl1djQyMHAiLCBzdHIoZHN0KV0sCiAgICAgICAgc3RkaW49c3VicHJvY2Vzcy5QSVBFLAogICAgKQogICAgdHJ5OgogICAgICAgIGZvciBmIGluIHJhbmdlKGZyYW1lcyk6CiAgICAgICAgICAgIHByb2Muc3RkaW4ud3JpdGUoX2ZyYW1lKGtpbmQsIGJnLCBmIC8gRlBTLCBkdXIpLnRvYnl0ZXMoKSkKICAgIGZpbmFsbHk6CiAgICAgICAgcHJvYy5zdGRpbi5jbG9zZSgpCiAgICAgICAgcHJvYy53YWl0KCkKICAgIGlmIHByb2MucmV0dXJuY29kZSAhPSAwIG9yIG5vdCBkc3QuZXhpc3RzKCk6CiAgICAgICAgcmFpc2UgUnVudGltZUVycm9yKGYiZmZtcGVnIGZhaWxlZCBmb3Ige2tpbmR9IGFuaW1hdGlvbiIpCiAgICByZXR1cm4gZHN0CgoKZGVmIGFuaW1hdGUoc2NyaXB0OiBkaWN0LCBpbWFnZXM6IGxpc3QsIHNlZ3M6IGxpc3QsIHdvcms6IFBhdGgsIGNmZzogZGljdCB8IE5vbmUpIC0+IGxpc3Q6CiAgICAiIiJTd2FwIHVwIHRvIGBtYXhfcGVyX3Nob3J0YCBzcGFjZS9FYXJ0aCBzY2VuZXMgZm9yIG9yYml0L3JvdGF0aW9uIGFuaW1hdGlvbnMsIHdpdGhpbiBhIHRpbWUgYnVkZ2V0LiIiIgogICAgb3B0cyA9IChjZmcgb3Ige30pLmdldCgib3JiaXRhbF9hbmltYXRpb25zIikgb3Ige30KICAgIGlmIG5vdCBvcHRzLmdldCgiZW5hYmxlZCIpIG9yIHNjcmlwdC5nZXQoInRoZW1lIikgbm90IGluIHNldChvcHRzLmdldCgidGhlbWVzIiwgU1BBQ0VfVEhFTUVTKSk6CiAgICAgICAgcmV0dXJuIHNlZ3MKICAgIGxpbWl0LCBidWRnZXQgPSBpbnQob3B0cy5nZXQoIm1heF9wZXJfc2hvcnQiLCAyKSksIGZsb2F0KG9wdHMuZ2V0KCJidWRnZXRfc2Vjb25kcyIsIDI1KSkKICAgIHZpc3VhbHMgPSBzY3JpcHQuZ2V0KCJ2aXN1YWxzIikgb3IgW10KICAgIHN0YXJ0ZWQsIG1hZGUsIG91dCA9IHRpbWUudGltZSgpLCAwLCBbXQogICAgZm9yIHBhdGgsIHN0YXJ0LCBlbmQgaW4gc2VnczoKICAgICAgICBpZHggPSBuZXh0KChpIGZvciBpLCBpbSBpbiBlbnVtZXJhdGUoaW1hZ2VzKSBpZiBpbSBpcyBub3QgTm9uZSBhbmQgc3RyKGltKSA9PSBzdHIocGF0aCkpLCBOb25lKQogICAgICAgIHRleHQgPSBzY3JpcHRbInNlbnRlbmNlcyJdW2lkeF0gKyAiICIgKyAodmlzdWFsc1tpZHhdIGlmIGlkeCBpcyBub3QgTm9uZSBhbmQgaWR4IDwgbGVuKHZpc3VhbHMpIGFuZCB2aXN1YWxzW2lkeF0gZWxzZSAiIikgXAogICAgICAgICAgICBpZiBpZHggaXMgbm90IE5vbmUgZWxzZSAiIgogICAgICAgIGtpbmQgPSBraW5kX2Zvcih0ZXh0KQogICAgICAgIGlmIGtpbmQgYW5kIG1hZGUgPCBsaW1pdCBhbmQgdGltZS50aW1lKCkgLSBzdGFydGVkIDwgYnVkZ2V0IGFuZCBlbmQgLSBzdGFydCA8PSA5OgogICAgICAgICAgICB0cnk6CiAgICAgICAgICAgICAgICBjbGlwID0gcmVuZGVyX2NsaXAoa2luZCwgZW5kIC0gc3RhcnQsIHdvcmsgLyBmIm9yYml0X3tpZHg6MDJkfS5tcDQiLCBzZWVkPWlkeCkKICAgICAgICAgICAgICAgIG91dC5hcHBlbmQoKGNsaXAsIHN0YXJ0LCBlbmQpKQogICAgICAgICAgICAgICAgbWFkZSArPSAxCiAgICAgICAgICAgICAgICAoc2NyaXB0LnNldGRlZmF1bHQoIl9zb3VyY2VzIiwgW10pIG9yIFtdKS5hcHBlbmQoZiJvcmJpdGFsIGFuaW1hdGlvbiAoe2tpbmR9KSIpCiAgICAgICAgICAgICAgICBjb250aW51ZQogICAgICAgICAgICBleGNlcHQgRXhjZXB0aW9uIGFzIGV4YzogICMgbm9xYTogQkxFMDAxIC0gYW5pbWF0aW9ucyBhcmUgb3B0aW9uYWwKICAgICAgICAgICAgICAgIGxvZyhmIk9yYml0YWwgYW5pbWF0aW9uIHtpZHggKyAxfSBmYWlsZWQgKHtleGN9KTsga2VlcGluZyB0aGUgcGljdHVyZSIpCiAgICAgICAgb3V0LmFwcGVuZCgocGF0aCwgc3RhcnQsIGVuZCkpCiAgICBpZiBtYWRlOgogICAgICAgIGxvZyhmIk9yYml0YWwgYW5pbWF0aW9uczoge21hZGV9IHNjZW5lKHMpIGluIHt0aW1lLnRpbWUoKSAtIHN0YXJ0ZWQ6LjFmfXMiKQogICAgcmV0dXJuIG91dAo=
+"""Documentary-style orbital animations (Manim-like look, no Manim install).
+
+Draws orbital trajectories, transfer arcs and rotating planets frame by frame with
+Pillow + numpy and pipes them straight into ffmpeg. Real Manim needs Cairo/Pango/LaTeX
+on every runner (minutes of setup); this renders a 5 s scene in a few seconds on a
+2-core GitHub runner so the whole Short stays inside its time budget.
+"""
+from __future__ import annotations
+
+import math
+import random
+import re
+import subprocess
+import time
+from pathlib import Path
+
+from .util import log
+
+W, H, FPS = 1080, 1920, 30
+KINDS = {
+    "transfer": re.compile(r"\b(slingshot|flyby|fly-by|gravity assist|transfer|trajectory|launch(ed)? to|route to|on (its|their) way|intercept|deflect|DART)\b", re.I),
+    "orbit": re.compile(r"\b(orbit\w*|circl\w+ the (sun|earth|planet)|year on|around the sun|ISS|space station|satellite\w*|moon\w*)\b", re.I),
+    "rotation": re.compile(r"\b(rotat\w*|spin\w*|axis|tilt\w*|day on|sunrise\w*|sunset\w*|turns? once)\b", re.I),
+}
+SPACE_THEMES = {"space", "earth", "curiosity", "science", "planets"}
+
+
+def kind_for(text: str) -> str | None:
+    for kind, rx in KINDS.items():
+        if rx.search(text or ""):
+            return kind
+    return None
+
+
+def _stars(draw, rng):
+    for _ in range(420):
+        x, y, b = rng.randrange(W), rng.randrange(H), rng.randint(70, 255)
+        r = 2 if b > 235 else 1
+        draw.ellipse((x - r, y - r, x + r, y + r), fill=(b, b, min(255, b + 20)))
+
+
+def _glow(img, xy, radius, color):
+    from PIL import Image, ImageDraw, ImageFilter
+    layer = Image.new("RGB", img.size, (0, 0, 0))
+    d = ImageDraw.Draw(layer)
+    x, y = xy
+    d.ellipse((x - radius, y - radius, x + radius, y + radius), fill=color)
+    layer = layer.filter(ImageFilter.GaussianBlur(radius * 0.6))
+    return Image.blend(img, Image.composite(layer, img, layer.convert("L")), 0.9)
+
+
+def _base(seed: int, kind: str):
+    """Static layer (stars + blurred glows) built once per clip; per-frame drawing stays cheap."""
+    from PIL import Image, ImageDraw
+    rng = random.Random(seed)
+    img = Image.new("RGB", (W, H), (3, 5, 16))
+    _stars(ImageDraw.Draw(img), rng)
+    if kind == "rotation":
+        return _glow(img, (W / 2 - 330, H / 2 - 720), 60, (255, 220, 150))
+    return _glow(img, (W / 2, H / 2), 70, (255, 200, 90))
+
+
+def _ellipse_pt(cx, cy, a, b, ang):
+    return cx + a * math.cos(ang), cy + b * math.sin(ang)
+
+
+def _frame(kind: str, bg, t: float, dur: float):
+    from PIL import ImageDraw
+    img = bg.copy()
+    d = ImageDraw.Draw(img, "RGBA")
+    p = t / dur
+    ease = 0.5 - 0.5 * math.cos(math.pi * p)
+    cx, cy = W / 2, H / 2
+    if kind == "rotation":
+        r = 380
+        d.ellipse((cx - r - 30, cy - r - 30, cx + r + 30, cy + r + 30), fill=(60, 140, 255, 40))  # atmosphere
+        d.ellipse((cx - r, cy - r, cx + r, cy + r), fill=(18, 60, 130))
+        d.pieslice((cx - r, cy - r, cx + r, cy + r), 90, 270, fill=(4, 12, 30, 170))  # night side
+        spin = 2 * math.pi * 0.35 * t
+        tilt = math.radians(23.4)
+        for k in range(12):  # meridians
+            lon = spin + k * math.pi / 6
+            if math.cos(lon) < 0:
+                continue
+            pts = []
+            for j in range(41):
+                lat = -math.pi / 2 + math.pi * j / 40
+                x, y = r * math.cos(lat) * math.sin(lon), -r * math.sin(lat)
+                pts.append((cx + x * math.cos(tilt) - y * math.sin(tilt), cy + x * math.sin(tilt) + y * math.cos(tilt)))
+            d.line(pts, fill=(140, 200, 255, 110), width=2)
+        for lat_deg in (-60, -30, 0, 30, 60):  # parallels
+            lat = math.radians(lat_deg)
+            pts = []
+            for j in range(41):
+                lon = -math.pi / 2 + math.pi * j / 40
+                x, y = r * math.cos(lat) * math.sin(lon), -r * math.sin(lat)
+                pts.append((cx + x * math.cos(tilt) - y * math.sin(tilt), cy + x * math.sin(tilt) + y * math.cos(tilt)))
+            d.line(pts, fill=(140, 200, 255, 90 if lat_deg else 160), width=2)
+        ax = r + 140  # rotation axis
+        d.line((cx + ax * math.sin(tilt), cy - ax * math.cos(tilt), cx - ax * math.sin(tilt), cy + ax * math.cos(tilt)),
+               fill=(255, 210, 120, 200), width=3)
+        return img
+    # orbit / transfer: star in the middle, ellipse paths, glowing body with fading trail
+    d.ellipse((cx - 45, cy - 45, cx + 45, cy + 45), fill=(255, 236, 180))
+    orbits = [(260, 230, (120, 200, 255)), (420, 380, (255, 150, 110))]
+    for a, b, col in orbits:
+        d.ellipse((cx - a, cy - b, cx + a, cy + b), outline=col + (90,), width=2)
+    bodies = []
+    for n, (a, b, col) in enumerate(orbits):
+        ang = -math.pi / 2 + 2 * math.pi * (0.55 if n == 0 else 0.3) * t
+        bodies.append((ang, a, b, col))
+        for k in range(28):  # trail
+            pa = ang - k * 0.035
+            x, y = _ellipse_pt(cx, cy, a, b, pa)
+            rr = max(1, 9 - k * 0.3)
+            d.ellipse((x - rr, y - rr, x + rr, y + rr), fill=col + (int(220 * (1 - k / 28)),))
+        x, y = _ellipse_pt(cx, cy, a, b, ang)
+        d.ellipse((x - 18, y - 18, x + 18, y + 18), fill=col + (255,))
+    if kind == "transfer":
+        a1, a2 = 260, 420
+        pts = [_ellipse_pt(cx, cy, a1 + (a2 - a1) * (s / 60), 230 + 150 * (s / 60), math.pi / 2 - math.pi * (s / 60) * ease)
+               for s in range(61)]
+        for i in range(0, 60, 3):  # dashed transfer arc
+            d.line((pts[i], pts[i + 1]), fill=(255, 255, 255, 220), width=4)
+        px, py = pts[-1]
+        d.polygon([(px, py - 16), (px - 10, py + 12), (px + 10, py + 12)], fill=(255, 255, 255))
+        for rr, al in ((34, 40), (24, 70)):
+            d.ellipse((px - rr, py - rr, px + rr, py + rr), fill=(180, 220, 255, al))
+    return img
+
+
+def render_clip(kind: str, dur: float, dst: Path, seed: int = 0) -> Path:
+    frames = max(int(dur * FPS), 2)
+    bg = _base(seed, kind)
+    proc = subprocess.Popen(
+        ["ffmpeg", "-y", "-v", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS),
+         "-i", "-", "-c:v", "libx264", "-preset", "veryfast", "-crf", "16", "-pix_fmt", "yuv420p", str(dst)],
+        stdin=subprocess.PIPE,
+    )
+    try:
+        for f in range(frames):
+            proc.stdin.write(_frame(kind, bg, f / FPS, dur).tobytes())
+    finally:
+        proc.stdin.close()
+        proc.wait()
+    if proc.returncode != 0 or not dst.exists():
+        raise RuntimeError(f"ffmpeg failed for {kind} animation")
+    return dst
+
+
+def animate(script: dict, images: list, segs: list, work: Path, cfg: dict | None) -> list:
+    """Swap up to `max_per_short` space/Earth scenes for orbit/rotation animations, within a time budget."""
+    opts = (cfg or {}).get("orbital_animations") or {}
+    if not opts.get("enabled") or script.get("theme") not in set(opts.get("themes", SPACE_THEMES)):
+        return segs
+    limit, budget = int(opts.get("max_per_short", 2)), float(opts.get("budget_seconds", 25))
+    visuals = script.get("visuals") or []
+    started, made, out = time.time(), 0, []
+    for path, start, end in segs:
+        idx = next((i for i, im in enumerate(images) if im is not None and str(im) == str(path)), None)
+        text = script["sentences"][idx] + " " + (visuals[idx] if idx is not None and idx < len(visuals) and visuals[idx] else "") \
+            if idx is not None else ""
+        kind = kind_for(text)
+        if kind and made < limit and time.time() - started < budget and end - start <= 9:
+            try:
+                clip = render_clip(kind, end - start, work / f"orbit_{idx:02d}.mp4", seed=idx)
+                out.append((clip, start, end))
+                made += 1
+                (script.setdefault("_sources", []) or []).append(f"orbital animation ({kind})")
+                continue
+            except Exception as exc:  # noqa: BLE001 - animations are optional
+                log(f"Orbital animation {idx + 1} failed ({exc}); keeping the picture")
+        out.append((path, start, end))
+    if made:
+        log(f"Orbital animations: {made} scene(s) in {time.time() - started:.1f}s")
+    return out
