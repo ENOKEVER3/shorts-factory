@@ -80,7 +80,7 @@
       "curiosity"
     ],
     "max_per_short": 2,
-    "budget_seconds": 25
+    "budget_seconds": 15
   },
-  "picture_budget_seconds": 150
+  "picture_budget_seconds": 60
 }
