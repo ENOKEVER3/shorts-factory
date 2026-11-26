@@ -163,6 +163,23 @@ To get failure emails, open GitHub **Settings -> Notifications -> Actions** and 
 music on/off, campaign length. Scripts: `content/scripts.json`. Each script has a title, 6-9 sentences and tags.
 Run tests with `python -m unittest discover tests`.
 
+### Orbital animations and render speed
+
+`config.json` keys that control how fast a Short is built and how space scenes look:
+
+- `orbital_animations` — `enabled`, `themes` (which script themes get them), `max_per_short`,
+  `budget_seconds`. When a sentence is about an orbit, a flyby or a spin, the scene is drawn as a
+  real animated trajectory (glowing orbit path, dashed transfer arc, tilted rotating planet with
+  latitude and longitude lines) instead of a still picture. Each clip takes about 2-3 s to draw.
+- `picture_budget_seconds` (default 150) — the free picture service only allows one image every
+  ~45 s, so a 9-scene script could otherwise spend 7 minutes waiting. After the budget, the
+  remaining scenes use instant locally drawn cards so the job finishes on time.
+- `video.preset` / `video.crf` — encoder speed vs quality (`fast` + 17 is the current balance).
+
+Rough timings on a GitHub runner: narration ~15 s, captions ~15 s, pictures up to the budget,
+video assembly ~30-60 s. A Short with studio scenes or NASA photos ready ends well under 2 minutes;
+one that waits on the free picture service is limited by that service, not by the renderer.
+
 ## Troubleshooting
 
 | Error in the Actions log | Fix |
@@ -187,6 +204,22 @@ The private Monthly Plan page shows a rolling 30-day schedule, two distinct scri
 `prepare.yml` renders and quality-checks one Short per run, up to 2 ready Shorts, with three scheduled checks daily. Posting downloads a prepared artifact instead of rendering when available. An empty queue falls back to live rendering; this is not a guarantee against service outages. Kokoro and Whisper run locally with no API fee, but model downloads and CPU inference consume runner time. The pinned PyAV dependency avoids the `metadata_errors` incompatibility. The Scenes summary records which engines actually ran.
 
 ## Channel optimization and analytics
+
+### Daily relevant search trends (both channels)
+
+`daily-seo.yml` checks both owned channels daily at 07:23 UTC (GitHub may delay runs).
+It reviews all bot-tracked Shorts and older videos up to three minutes, skips unchanged metadata,
+and updates at most 20 changed videos per channel per run to leave quota for uploads. Remaining
+changes wait for later daily checks. Backups and results stay in private 14-day Actions artifacts.
+Each upload also checks free Google Trends RSS for US, GB and CA, including already-rendered queue items.
+Only an exact trend phrase already in the video's title is eligible: no unrelated news, gaming or
+"viral" bait. One matching hashtag can appear in the title if it fits without cutting the title;
+keywords belong in YouTube's tags field, not as a list in the title. Description hashtags remain small.
+These are Google Search trends, **not verified YouTube search volume**. Often there is no relevant
+trend; evergreen topic tags remain instead. Failed feeds and data older than 24 hours add no trend tags.
+No paid service or key is needed; no search or recommendation improvement is guaranteed.
+Existing uploads still need video-editing authorization. If absent, the daily review reports the
+failure and stops editing; it does not replace tokens, change schedules, or stop the separate upload jobs.
 
 The guide site's Optimization and Performance pages are restricted to the approved channel account. `channel.yml` reads the channel daily and on request; private Actions artifacts hold snapshots and pre-edit backups for 14 days. Analytics are never committed to the public repository. Edits preserve category, language, privacy and video footage, and verify channel ownership and YouTube read-back. Future uploads use topic-matched tags instead of unrelated channel-wide defaults.
 
