@@ -1,1 +1,31 @@
-aW1wb3J0IHRlbXBmaWxlCmltcG9ydCB0aW1lCmltcG9ydCB1bml0dGVzdApmcm9tIHBhdGhsaWIgaW1wb3J0IFBhdGgKCmZyb20gc3JjIGltcG9ydCB0cmFqZWN0b3JpZXMKCgpjbGFzcyBUcmFqZWN0b3JpZXModW5pdHRlc3QuVGVzdENhc2UpOgogICAgZGVmIHRlc3Rfa2luZF9tYXRjaGluZyhzZWxmKToKICAgICAgICBzZWxmLmFzc2VydEVxdWFsKHRyYWplY3Rvcmllcy5raW5kX2ZvcigiVm95YWdlciB1c2VkIGEgZ3Jhdml0eSBhc3Npc3QgZnJvbSBKdXBpdGVyIiksICJ0cmFuc2ZlciIpCiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbCh0cmFqZWN0b3JpZXMua2luZF9mb3IoIlRoZSBJU1Mgb3JiaXRzIEVhcnRoIGV2ZXJ5IDkwIG1pbnV0ZXMiKSwgIm9yYml0IikKICAgICAgICBzZWxmLmFzc2VydEVxdWFsKHRyYWplY3Rvcmllcy5raW5kX2ZvcigiRWFydGggc3BpbnMgb24gYSB0aWx0ZWQgYXhpcyIpLCAicm90YXRpb24iKQogICAgICAgIHNlbGYuYXNzZXJ0SXNOb25lKHRyYWplY3Rvcmllcy5raW5kX2ZvcigiQmFuayByb2JiZXJzIGR1ZyBhIHR1bm5lbCIpKQoKICAgIGRlZiB0ZXN0X2Rpc2FibGVkX2Zvcl9vdGhlcl9jaGFubmVscyhzZWxmKToKICAgICAgICBzZWdzID0gWygiYS5qcGciLCAwLCAzKV0KICAgICAgICBzZWxmLmFzc2VydEVxdWFsKHRyYWplY3Rvcmllcy5hbmltYXRlKHsidGhlbWUiOiAiY3JpbWUiLCAic2VudGVuY2VzIjogWyJvcmJpdCJdfSwgWyJhLmpwZyJdLCBzZWdzLCBQYXRoKCIuIiksCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB7Im9yYml0YWxfYW5pbWF0aW9ucyI6IHsiZW5hYmxlZCI6IFRydWV9fSksIHNlZ3MpCiAgICAgICAgc2VsZi5hc3NlcnRFcXVhbCh0cmFqZWN0b3JpZXMuYW5pbWF0ZSh7InRoZW1lIjogInNwYWNlIiwgInNlbnRlbmNlcyI6IFsib3JiaXQiXX0sIFsiYS5qcGciXSwgc2VncywgUGF0aCgiLiIpLCB7fSksIHNlZ3MpCgogICAgZGVmIHRlc3RfY2xpcF9yZW5kZXJzX2Zhc3Qoc2VsZik6CiAgICAgICAgd2l0aCB0ZW1wZmlsZS5UZW1wb3JhcnlEaXJlY3RvcnkoKSBhcyBkOgogICAgICAgICAgICBzdGFydCA9IHRpbWUudGltZSgpCiAgICAgICAgICAgIG91dCA9IHRyYWplY3Rvcmllcy5yZW5kZXJfY2xpcCgib3JiaXQiLCAxLjAsIFBhdGgoZCkgLyAiby5tcDQiKQogICAgICAgICAgICBzZWxmLmFzc2VydFRydWUob3V0LmV4aXN0cygpKQogICAgICAgICAgICBzZWxmLmFzc2VydExlc3ModGltZS50aW1lKCkgLSBzdGFydCwgMTUpCgoKaWYgX19uYW1lX18gPT0gIl9fbWFpbl9fIjoKICAgIHVuaXR0ZXN0Lm1haW4oKQo=
+import tempfile
+import time
+import unittest
+from pathlib import Path
+
+from src import trajectories
+
+
+class Trajectories(unittest.TestCase):
+    def test_kind_matching(self):
+        self.assertEqual(trajectories.kind_for("Voyager used a gravity assist from Jupiter"), "transfer")
+        self.assertEqual(trajectories.kind_for("The ISS orbits Earth every 90 minutes"), "orbit")
+        self.assertEqual(trajectories.kind_for("Earth spins on a tilted axis"), "rotation")
+        self.assertIsNone(trajectories.kind_for("Bank robbers dug a tunnel"))
+
+    def test_disabled_for_other_channels(self):
+        segs = [("a.jpg", 0, 3)]
+        self.assertEqual(trajectories.animate({"theme": "crime", "sentences": ["orbit"]}, ["a.jpg"], segs, Path("."),
+                                              {"orbital_animations": {"enabled": True}}), segs)
+        self.assertEqual(trajectories.animate({"theme": "space", "sentences": ["orbit"]}, ["a.jpg"], segs, Path("."), {}), segs)
+
+    def test_clip_renders_fast(self):
+        with tempfile.TemporaryDirectory() as d:
+            start = time.time()
+            out = trajectories.render_clip("orbit", 1.0, Path(d) / "o.mp4")
+            self.assertTrue(out.exists())
+            self.assertLess(time.time() - start, 15)
+
+
+if __name__ == "__main__":
+    unittest.main()
