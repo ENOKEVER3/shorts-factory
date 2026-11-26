@@ -334,7 +334,7 @@ def _accept(path: Path, seen: list[int], label: str) -> bool:
     return ok
 
 
-def illustrate(script: dict, work: Path, seed_base: int, cfg: dict | None = None) -> list[Path | None]:
+def illustrate(script: dict, work: Path, seed_base: int, cfg: dict | None = None, started: float = 0.0) -> list[Path | None]:
     """Return one image path (or None on failure) per sentence. Order of preference:
     studio scene -> real free photo (when the plan says a photo fits) -> AI illustration of the
     planned scene -> local scene card. Photo credits are stored in script["_credits"]."""
@@ -345,6 +345,11 @@ def illustrate(script: dict, work: Path, seed_base: int, cfg: dict | None = None
     seen: list[int] = []
     ok = local = pre = photos = gem = 0
     budget = providers.Budget(cfg, script.get("id", ""))
+    # Time box: the free picture service allows one image every ~45 s, so a long script could
+    # otherwise stall the queue. After the budget, remaining scenes use instant local cards.
+    pic_secs = float((cfg or {}).get("picture_budget_seconds", 150))
+    t0 = started or time.time()
+    no_more_pics = False
     sources: list[str] = []
     use_gemini = bool(gemini.key()) and (cfg or {}).get("gemini_images", True) and budget.allow("gemini_image")
     for i, sentence in enumerate(script["sentences"]):
@@ -365,6 +370,17 @@ def illustrate(script: dict, work: Path, seed_base: int, cfg: dict | None = None
                 photos += 1
                 continue
         prompt = build_prompt(script["title"], sentence, visual, (cfg or {}).get("visual_style"))
+        if no_more_pics or (time.time() - t0) > pic_secs:
+            no_more_pics = True
+            try:
+                out.append(local_card(sentence, dst, seed_base + i))
+                sources.append("motion graphic card")
+                local += 1
+            except Exception as exc2:  # noqa: BLE001
+                log(f"Illustration {i + 1} skipped: {exc2}")
+                out.append(None)
+                sources.append("none")
+            continue
         if use_gemini:
             try:
                 _gemini_image(prompt, dst, cfg)
