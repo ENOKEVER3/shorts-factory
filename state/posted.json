@@ -286,6 +286,14 @@
       "video_id": "oxTVYyVMQeM",
       "title": "What would happen if Earth stopped spinning?",
       "uploaded_at": "2026-11-26T00:20:36+00:00"
+    },
+    {
+      "date": "2026-11-26",
+      "slot": "afternoon",
+      "script_id": "c-004-delete-data",
+      "video_id": "DSUoQW0m940",
+      "title": "Where your files really go when you press delete",
+      "uploaded_at": "2026-11-26T23:15:40+00:00"
     }
   ]
 }
