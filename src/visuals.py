@@ -347,7 +347,7 @@ def illustrate(script: dict, work: Path, seed_base: int, cfg: dict | None = None
     budget = providers.Budget(cfg, script.get("id", ""))
     # Time box: the free picture service allows one image every ~45 s, so a long script could
     # otherwise stall the queue. After the budget, remaining scenes use instant local cards.
-    pic_secs = float((cfg or {}).get("picture_budget_seconds", 150))
+    pic_secs = float((cfg or {}).get("picture_budget_seconds", 60))
     t0 = started or time.time()
     no_more_pics = False
     sources: list[str] = []
