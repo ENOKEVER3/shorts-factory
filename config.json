@@ -33,7 +33,9 @@
     "width": 1080,
     "height": 1920,
     "fps": 30,
-    "max_seconds": 58
+    "max_seconds": 58,
+    "preset": "fast",
+    "crf": 17
   },
   "music": true,
   "illustrations": true,
@@ -70,5 +72,15 @@
   "queue": {
     "target_ready": 2,
     "max_age_days": 10
-  }
+  },
+  "orbital_animations": {
+    "enabled": true,
+    "themes": [
+      "space",
+      "curiosity"
+    ],
+    "max_per_short": 2,
+    "budget_seconds": 25
+  },
+  "picture_budget_seconds": 150
 }
