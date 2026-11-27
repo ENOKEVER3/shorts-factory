@@ -25,10 +25,28 @@ class RealOnly(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d, \
              mock.patch.object(visuals, "find_photo", return_value=None), \
              mock.patch.object(visuals, "local_card") as card:
-            with self.assertRaisesRegex(RuntimeError, "No matching real photo"):
+            with self.assertRaisesRegex(RuntimeError, "No matching real photo for any scene"):
                 visuals.illustrate({"id": "x", "title": "Earth", "sentences": ["Earth spins."]},
                                    Path(d), 0, {"real_images_only": True})
             card.assert_not_called()
+
+    def test_missing_scene_holds_nearest_real_photo(self):
+        with tempfile.TemporaryDirectory() as d:
+            w = Path(d); real = w / "real.jpg"
+            visuals.local_card("x", real, 1)
+            calls = []
+            def fake(photo, dst, used):
+                calls.append(1)
+                if len(calls) == 2:
+                    return None
+                dst.write_bytes(real.read_bytes()); return "NASA"
+            script = {"id": "y", "title": "T", "sentences": ["Mars.", "Moon.", "Sun."],
+                      "photos": [{"source": "nasa", "query": q} for q in ("mars", "moon", "sun")]}
+            with mock.patch.object(visuals, "find_photo", side_effect=fake), \
+                 mock.patch.object(visuals.quality, "check_image", return_value=(True, "")):
+                out = visuals.illustrate(script, w, 0, {"real_images_only": True})
+            self.assertEqual(len(out), 3)
+            self.assertEqual(out[1], out[0])
 
     def test_rotation_is_a_real_earth_search(self):
         self.assertEqual(visuals.matching_photo("Earth's rotation makes a day.", None,
