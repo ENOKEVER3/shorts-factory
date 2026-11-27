@@ -419,7 +419,17 @@ def _real_photos(script: dict, plan: list, work: Path, cfg: dict) -> list[Path |
             out.append(accepted[json.dumps(requests[i], sort_keys=True)])
             sources.append("matching real picture held")
         else:
-            raise RuntimeError(f"No matching real photo for scene {i + 1}; Short held, never replaced with a drawn card.")
+            out.append(None)
+            sources.append("pending")
+    # A missed search holds the nearest real photo from this Short (never a drawn card).
+    real = [k for k, x in enumerate(out) if x is not None]
+    if not real:
+        raise RuntimeError("No matching real photo for any scene; Short held, never replaced with a drawn card.")
+    for k, x in enumerate(out):
+        if x is None:
+            near = min(real, key=lambda r: (abs(r - k), r > k))
+            out[k] = out[near]
+            sources[k] = "nearest real picture held"
     script["_sources"], script["_credits"] = sources, list(dict.fromkeys(credits))
     script["_photo_queries"] = requests
     script["_photo_seconds"] = round(time.monotonic() - started, 2)
