@@ -34,19 +34,22 @@ class RealOnly(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             w = Path(d); real = w / "real.jpg"
             visuals.local_card("x", real, 1)
-            calls = []
             def fake(photo, dst, used):
-                calls.append(1)
-                if len(calls) == 2:
+                # Searches run concurrently: target the missing subject, not call order.
+                if photo["query"] == "moon":
                     return None
                 dst.write_bytes(real.read_bytes()); return "NASA"
             script = {"id": "y", "title": "T", "sentences": ["Mars.", "Moon.", "Sun."],
                       "photos": [{"source": "nasa", "query": q} for q in ("mars", "moon", "sun")]}
-            with mock.patch.object(visuals, "find_photo", side_effect=fake), \
+            with mock.patch.object(visuals, "_pregenerated", return_value=None), \
+                 mock.patch.object(visuals, "find_photo", side_effect=fake), \
                  mock.patch.object(visuals.quality, "check_image", return_value=(True, "")):
                 out = visuals.illustrate(script, w, 0, {"real_images_only": True})
             self.assertEqual(len(out), 3)
+            self.assertEqual(out[0], w / "img_00.jpg")
             self.assertEqual(out[1], out[0])
+            self.assertEqual(out[2], w / "img_02.jpg")
+            self.assertEqual(script["_sources"][1], "nearest real picture held")
 
     def test_rotation_is_a_real_earth_search(self):
         self.assertEqual(visuals.matching_photo("Earth's rotation makes a day.", None,
