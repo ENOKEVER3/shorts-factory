@@ -1,30 +1,8 @@
 {
-  "generated_at": "2026-11-26T22:25:34.240664+00:00",
-  "start_date": "2026-11-26",
-  "end_date": "2026-12-25",
+  "generated_at": "2026-11-27T17:55:32.626475+00:00",
+  "start_date": "2026-11-27",
+  "end_date": "2026-12-26",
   "items": [
-    {
-      "date": "2026-11-26",
-      "slot": "afternoon",
-      "hour_utc": 16,
-      "script_id": "c-004-delete-data",
-      "title": "Where your files really go when you press delete",
-      "theme": "curiosity",
-      "ending": "Did you know your old phone might still remember?",
-      "ending_type": "question",
-      "status": "ready"
-    },
-    {
-      "date": "2026-11-26",
-      "slot": "evening",
-      "hour_utc": 21,
-      "script_id": "v3-054-why-a-humanoid-shape-is-not-proof-of-human-intelligence",
-      "title": "Why a humanoid shape is not proof of human intelligence",
-      "theme": "ai",
-      "ending": "Would a human-looking face make you trust a robot more or less?",
-      "ending_type": "question",
-      "status": "ready"
-    },
     {
       "date": "2026-11-27",
       "slot": "afternoon",
@@ -34,7 +12,7 @@
       "theme": "curiosity",
       "ending": "Next time a video loads, remember it may have crossed an ocean floor.",
       "ending_type": "payoff",
-      "status": "planned"
+      "status": "ready"
     },
     {
       "date": "2026-11-27",
@@ -660,6 +638,28 @@
       "title": "Machines That Suck Carbon Out of the Sky",
       "theme": "planet",
       "ending": "Experts say it can help, but cutting emissions still matters most.",
+      "ending_type": "payoff",
+      "status": "planned"
+    },
+    {
+      "date": "2026-12-26",
+      "slot": "afternoon",
+      "hour_utc": 16,
+      "script_id": "f-003-airbnb-cereal",
+      "title": "How cereal boxes saved Airbnb",
+      "theme": "founders",
+      "ending": "What crazy side hustle would you try to save your dream?",
+      "ending_type": "question",
+      "status": "planned"
+    },
+    {
+      "date": "2026-12-26",
+      "slot": "evening",
+      "hour_utc": 21,
+      "script_id": "v2-032-what-is-an-algorithm-the-youtube-and-tik",
+      "title": "What Is an Algorithm? The YouTube and TikTok Version",
+      "theme": "ai",
+      "ending": "Comment what AI word confuses you most.",
       "ending_type": "payoff",
       "status": "planned"
     }
