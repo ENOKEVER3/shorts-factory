@@ -13,7 +13,7 @@ import time
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
-from . import align, providers, queue, captions, content, metadata, quality, render, trajectories, tts, visuals, youtube, plan
+from . import align, providers, queue, captions, content, metadata, quality, render, trajectories, tts, visuals, youtube, plan, photo_plan
 from .util import STATE_DIR, CONFIG, ROOT, fail, load_json, log, save_json
 
 STATE = STATE_DIR / "posted.json"
@@ -97,6 +97,8 @@ def scene_report_md(s: dict) -> str:
 
 def produce(s: dict, index: int, cfg: dict) -> Path:
     started = time.time()
+    if cfg.get("real_images_only"):
+        photo_plan.ensure(s)
     work = OUT / "work"
     shutil.rmtree(work, ignore_errors=True)
     work.mkdir(parents=True)
