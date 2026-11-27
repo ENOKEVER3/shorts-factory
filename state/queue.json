@@ -126,6 +126,124 @@
         "_captions": "whisper word timing",
         "_production_seconds": 69.79
       }
+    },
+    {
+      "script_id": "v3-033-can-humans-regrow-a-whole-limb",
+      "run_id": "46066819783",
+      "created_at": "2026-11-27T20:56:36+00:00",
+      "script": {
+        "id": "v3-033-can-humans-regrow-a-whole-limb",
+        "kind": "whatif",
+        "title": "Can humans regrow a whole limb?",
+        "sentences": [
+          "Why can your body repair a cut but not routinely regrow a missing arm?",
+          "Healing and regeneration are related processes, but rebuilding a complex limb requires far more than closing a wound.",
+          "A limb contains coordinated arrangements of bone, muscle, nerves, blood vessels, and connective tissue with precise spatial organization.",
+          "Some animals regenerate complex structures, giving researchers ways to investigate the biological signals that guide that process.",
+          "Humans have limited regenerative abilities, including the liver’s ability to restore tissue mass after some injuries.",
+          "That does not mean scientists can currently make an adult human regrow an entire lost arm.",
+          "Regenerative medicine is promising, but a result in one tissue or species should not be exaggerated into universal replacement.",
+          "Which structure sounds hardest to reconnect: nerves or blood vessels?"
+        ],
+        "tags": [
+          "can humans regrow limbs",
+          "regenerative medicine",
+          "liver regeneration",
+          "limb regeneration"
+        ],
+        "hashtags": [
+          "#Science",
+          "#Technology",
+          "#Seunenoch"
+        ],
+        "theme": "biology",
+        "photos": [
+          {
+            "source": "pexels",
+            "query": "human hand"
+          },
+          {
+            "source": "pexels",
+            "query": "human hand"
+          },
+          {
+            "source": "pexels",
+            "query": "human hand"
+          },
+          {
+            "source": "pexels",
+            "query": "medical laboratory"
+          },
+          {
+            "source": "pexels",
+            "query": "medical laboratory"
+          },
+          {
+            "source": "pexels",
+            "query": "human hand"
+          },
+          {
+            "source": "pexels",
+            "query": "medical laboratory"
+          },
+          {
+            "source": "pexels",
+            "query": "medical laboratory"
+          }
+        ],
+        "_sources": [
+          "licensed photo (still, animated)",
+          "matching real picture held",
+          "matching real picture held",
+          "licensed photo (still, animated)",
+          "matching real picture held",
+          "matching real picture held",
+          "matching real picture held",
+          "matching real picture held"
+        ],
+        "_credits": [
+          "Photo by Jorge Rojas on Unsplash",
+          "Photo by Louis Reed on Unsplash"
+        ],
+        "_photo_queries": [
+          {
+            "source": "pexels",
+            "query": "human hand"
+          },
+          {
+            "source": "pexels",
+            "query": "human hand"
+          },
+          {
+            "source": "pexels",
+            "query": "human hand"
+          },
+          {
+            "source": "pexels",
+            "query": "medical laboratory"
+          },
+          {
+            "source": "pexels",
+            "query": "medical laboratory"
+          },
+          {
+            "source": "pexels",
+            "query": "human hand"
+          },
+          {
+            "source": "pexels",
+            "query": "medical laboratory"
+          },
+          {
+            "source": "pexels",
+            "query": "medical laboratory"
+          }
+        ],
+        "_photo_seconds": 1.25,
+        "_voice": "kokoro",
+        "_captions": "whisper word timing",
+        "_production_seconds": 55.27
+      }
     }
   ]
 }

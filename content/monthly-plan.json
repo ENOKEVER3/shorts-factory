@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-27T17:55:32.626475+00:00",
+  "generated_at": "2026-11-27T20:56:36.202069+00:00",
   "start_date": "2026-11-27",
   "end_date": "2026-12-26",
   "items": [
@@ -23,7 +23,7 @@
       "theme": "biology",
       "ending": "Which structure sounds hardest to reconnect: nerves or blood vessels?",
       "ending_type": "question",
-      "status": "planned"
+      "status": "ready"
     },
     {
       "date": "2026-11-28",
