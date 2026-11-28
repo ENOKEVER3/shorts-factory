@@ -1,436 +1,1411 @@
 [
- {
-  "id": "u-002",
-  "kind": "crime",
-  "title": "Catch Me If You Can Was Probably a Lie",
-  "theme": "con-artist",
-  "sentences": [
-   "Frank Abagnale became famous for saying he faked being a pilot, a doctor and a lawyer as a teenager.",
-   "His story became a bestselling book and a Hollywood film.",
-   "But in 2020, researcher Alan Logan dug through old records and found serious problems.",
-   "Records placed Abagnale in prison in the years he claimed he was flying around the world.",
-   "Former colleagues and documents contradicted many of his most famous adventures.",
-   "Abagnale did commit real fraud, but much of the legend appears to have been invented.",
-   "The greatest con may have been the story itself.",
-   "How much of a famous story do you just believe?"
-  ],
-  "visuals": [
-   "a vintage airline pilot uniform hanging in a dim room",
-   "a stack of bestselling books and a film reel",
-   "a researcher reading old newspaper archives under a lamp",
-   "a prison cell door with old paper records beside it",
-   "old documents with red question marks over them",
-   "a cracked golden trophy",
-   "a theatre mask resting on a pile of papers",
-   "a person reading a book with a sceptical look"
-  ],
-  "photos": [
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null
-  ],
-  "tags": [
-   "frank abagnale",
-   "catch me if you can true story",
-   "greatest con artist",
-   "famous con artists",
-   "con man true story"
-  ],
-  "search_title": "Was Catch Me If You Can a Lie? The Frank Abagnale Con"
- },
- {
-  "id": "u-004",
-  "kind": "crime",
-  "title": "3 Men Escaped Alcatraz Using Fake Heads Made of Soap",
-  "theme": "escape",
-  "sentences": [
-   "In June 1962, guards at Alcatraz found three prisoners asleep in their beds.",
-   "Except they were not prisoners at all, they were heads made from soap, paper and real hair.",
-   "Frank Morris and brothers John and Clarence Anglin had dug through their cell walls with sharpened spoons.",
-   "They climbed onto the roof and launched a raft made from more than fifty raincoats.",
-   "Then they disappeared into the cold waters of San Francisco Bay.",
-   "The FBI concluded they most likely drowned, but no bodies were ever found.",
-   "The case is still officially open with the US Marshals today.",
-   "Do you think they made it?"
-  ],
-  "visuals": [
-   "Alcatraz island at night in fog",
-   "a fake dummy head on a prison pillow",
-   "a hand scraping a cell wall with a spoon",
-   "a raft made of raincoats on a rooftop",
-   "a tiny raft on dark choppy water",
-   "an FBI file stamped with a question mark",
-   "a wanted poster pinned to a wooden board",
-   "foggy shoreline at dawn with footprints"
-  ],
-  "photos": [
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null
-  ],
-  "tags": [
-   "alcatraz escape",
-   "escape from alcatraz true story",
-   "frank morris",
-   "famous prison escapes",
-   "prison escape true story"
-  ],
-  "search_title": "How 3 Men Escaped Alcatraz Using Fake Heads"
- },
- {
-  "id": "u-006",
-  "kind": "crime",
-  "title": "Fake Doctor Performed Surgery on a Warship and Got Away With It",
-  "theme": "con-artist",
-  "sentences": [
-   "In 1951, a Canadian navy destroyer had a new doctor on board named Joseph Cyr.",
-   "During the Korean War, he operated on wounded soldiers and saved lives.",
-   "But he was not a doctor, he was an impostor named Ferdinand Waldo Demara.",
-   "He had borrowed the real doctor's identity and learned what he could from medical books.",
-   "His fame finally exposed him, when newspapers reported the doctor's heroics.",
-   "The real Joseph Cyr saw the story and realised someone was using his name.",
-   "Demara was sent home, and spent his life switching identities again and again.",
-   "Could you fake a job you never trained for?"
-  ],
-  "visuals": [
-   "a navy destroyer at sea in the 1950s",
-   "a makeshift ship operating room with lanterns",
-   "a man in a doctor's coat with a hidden shadow",
-   "a man reading a medical textbook by candlelight",
-   "a 1950s newspaper headline about a hero doctor",
-   "a real doctor reading a newspaper in shock",
-   "a man looking at many different ID cards",
-   "a stethoscope on top of a disguise kit"
-  ],
-  "photos": [
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null
-  ],
-  "tags": [
-   "great impostor",
-   "ferdinand demara",
-   "famous impostors",
-   "con man true story",
-   "fake doctor"
-  ],
-  "search_title": "The Fake Doctor Who Did Surgery on a Warship"
- },
- {
-  "id": "u-007",
-  "kind": "crime",
-  "title": "He Promised 50% Profit in 45 Days and Fooled Thousands",
-  "theme": "escape",
-  "sentences": [
-   "In 1920, Charles Ponzi promised investors in Boston a 50 percent return in just 45 days.",
-   "He claimed the money came from trading international postal coupons.",
-   "In reality, he paid early investors with money from new investors.",
-   "Thousands of people lined up, and he was taking in huge sums every day.",
-   "A newspaper investigation showed his business could never make that money.",
-   "Within months it collapsed, and Ponzi went to prison for fraud.",
-   "His name is still used for every scheme that works the same way.",
-   "Have you ever seen an offer that sounded too good?"
-  ],
-  "visuals": [
-   "1920s Boston street with crowds",
-   "old international postal coupons on a desk",
-   "money flowing from one hand to another in a chain",
-   "a long queue of people in hats outside an office",
-   "a newspaper reporter typing at night",
-   "an empty office with papers scattered",
-   "a dictionary page showing the word Ponzi",
-   "a glowing too-good-to-be-true advert"
-  ],
-  "photos": [
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null
-  ],
-  "tags": [
-   "ponzi scheme explained",
-   "charles ponzi",
-   "biggest scams in history",
-   "famous frauds",
-   "con man true story"
-  ],
-  "search_title": "How Charles Ponzi Fooled Thousands With 50% in 45 Days"
- },
- {
-  "id": "u-009",
-  "kind": "crime",
-  "title": "Innocent Man Jailed Twice Because He Had a Lookalike",
-  "theme": "case-mystery",
-  "sentences": [
-   "In 1896, London police arrested Adolf Beck after a woman said he had tricked her.",
-   "Several women identified him as a con man who stole their jewellery.",
-   "Beck said he was innocent, but he was convicted and sent to prison.",
-   "After his release, he was arrested and convicted again for the same kind of crime.",
-   "Then, while Beck was in custody, the real con man kept committing the crimes.",
-   "The real culprit, a man who looked like Beck, was caught, and Beck was pardoned.",
-   "The scandal helped lead to England's Court of Criminal Appeal in 1907.",
-   "Should one witness be enough to convict someone?"
-  ],
-  "visuals": [
-   "Victorian London street at night",
-   "witnesses pointing at a man in a line",
-   "a Victorian prison corridor",
-   "a man arrested twice, shown as two shadows",
-   "a lookalike man in a top hat slipping away",
-   "a royal pardon document",
-   "a historic English courtroom",
-   "a scale of justice tipping"
-  ],
-  "photos": [
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null
-  ],
-  "tags": [
-   "adolf beck",
-   "wrongful conviction",
-   "mistaken identity case",
-   "true crime stories",
-   "unsolved mystery"
-  ],
-  "search_title": "Innocent Man Jailed Twice Because of a Lookalike"
- },
- {
-  "id": "u-010",
-  "kind": "crime",
-  "title": "She Raised $700M With a Blood Test That Didn't Work",
-  "theme": "con-artist",
-  "sentences": [
-   "Elizabeth Holmes said her company, Theranos, could run hundreds of tests from a drop of blood.",
-   "Investors poured in hundreds of millions of dollars, and the company was valued at 9 billion.",
-   "But the machines did not work the way she claimed.",
-   "Many tests were secretly run on ordinary lab machines from other companies.",
-   "A Wall Street Journal reporter exposed the problems in 2015.",
-   "In 2022, Holmes was convicted of defrauding investors and later sentenced to over eleven years.",
-   "A whistleblower and a reporter brought down a billion-dollar lie.",
-   "Would you have invested?"
-  ],
-  "visuals": [
-   "a single drop of blood on a fingertip",
-   "a glowing billion-dollar valuation chart",
-   "a sleek lab machine with an error light",
-   "ordinary lab machines hidden behind a curtain",
-   "a newspaper reporter at a desk with documents",
-   "a courtroom gavel",
-   "a whistleblower in shadow holding papers",
-   "a stack of money crumbling"
-  ],
-  "photos": [
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null
-  ],
-  "tags": [
-   "theranos",
-   "elizabeth holmes",
-   "biggest scams in history",
-   "famous frauds",
-   "startup fraud"
-  ],
-  "search_title": "How Theranos Raised $700M With a Fake Blood Test"
- },
- {
-  "id": "u-011",
-  "kind": "crime",
-  "title": "76 Prisoners Escaped the Nazis Through a Tunnel Called Harry",
-  "theme": "escape",
-  "sentences": [
-   "In 1944, Allied airmen in a German prison camp called Stalag Luft Three dug three secret tunnels.",
-   "They named them Tom, Dick and Harry, so the guards would never hear the word tunnel.",
-   "Sand from digging was hidden in bags inside their trousers and shaken out in the gardens.",
-   "Bed boards held up the walls, and a hand-pumped air system kept the diggers breathing.",
-   "On the night of March 24th, 76 men crawled through Harry and out beyond the fence.",
-   "Almost all were caught, and only three made it all the way to freedom.",
-   "The story became the famous film The Great Escape.",
-   "Would you have crawled into that tunnel?"
-  ],
-  "visuals": [
-   "a snowy World War Two prison camp with watchtowers",
-   "three tunnel entrances hidden under a hut floor",
-   "a prisoner shaking sand out of his trouser leg in a garden",
-   "a narrow wooden-shored tunnel lit by a candle",
-   "men crawling out of a hole in the snow at night",
-   "searchlights sweeping over a forest",
-   "an old cinema film reel",
-   "a dark tunnel opening with a faint light at the end"
-  ],
-  "photos": [
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null
-  ],
-  "tags": [
-   "great escape true story",
-   "stalag luft iii",
-   "ww2 escape",
-   "famous prison escapes",
-   "tunnel escape"
-  ],
-  "search_title": "The Great Escape: 76 Men Tunneled Out of a Nazi Camp"
- },
- {
-  "id": "u-012",
-  "kind": "crime",
-  "title": "109 Officers Escaped Prison Through a Tunnel Dug With Spoons",
-  "theme": "escape",
-  "sentences": [
-   "In 1864, Union officers were held in Libby Prison, a crowded warehouse in Richmond, Virginia.",
-   "A group of them found a way into a rat-filled cellar the guards rarely checked.",
-   "For weeks, they dug a tunnel using knives, spoons and a wooden spittoon to drag out dirt.",
-   "On February 9th, 109 officers crawled through it and walked out into the city.",
-   "Guards did not notice until the morning roll call came up short.",
-   "Fifty-nine of them reached Union lines, one of the biggest prison breaks of the Civil War.",
-   "Would you trust a tunnel dug with spoons?"
-  ],
-  "visuals": [
-   "an old brick warehouse prison in the 1860s",
-   "men lowering a candle into a dark cellar with rats",
-   "hands digging dirt with a spoon",
-   "a line of soldiers crawling out of the ground at night",
-   "guards counting prisoners at dawn in shock",
-   "tired soldiers reaching a camp with flags",
-   "a rusty spoon lying in dirt"
-  ],
-  "photos": [
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null
-  ],
-  "tags": [
-   "libby prison escape",
-   "civil war escape",
-   "famous prison escapes",
-   "tunnel escape",
-   "prison break true story"
-  ],
-  "search_title": "109 Prisoners Escaped Libby Prison Through a Spoon Tunnel"
- },
- {
-  "id": "u-013",
-  "kind": "crime",
-  "title": "Robbers Came for $3M Cash and Found $35M in Gold",
-  "theme": "escape",
-  "sentences": [
-   "In November 1983, six robbers broke into the Brink's-Mat warehouse near Heathrow Airport in London.",
-   "They had inside help from a security guard, and expected to find about three million pounds in cash.",
-   "Instead, they found nearly 7,000 gold bars worth around 26 million pounds.",
-   "They loaded it all into a van and drove away.",
-   "Much of the gold was melted down and quietly sold back into the market.",
-   "Some robbers were caught, but most of the gold has never been found.",
-   "People say anyone wearing gold bought in Britain after 1983 might be wearing some of it.",
-   "Would you check your jewellery?"
-  ],
-  "visuals": [
-   "an airport warehouse at dawn in 1980s London",
-   "a security guard nervously glancing at a clock",
-   "stacks of gold bars glowing in a vault",
-   "a van loaded with heavy boxes driving through fog",
-   "gold being melted in a glowing furnace",
-   "an empty vault with police tape",
-   "gold rings and necklaces in a shop window",
-   "a gold ring under a magnifying glass"
-  ],
-  "photos": [
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null
-  ],
-  "tags": [
-   "brinks mat robbery",
-   "biggest heists in history",
-   "gold heist",
-   "heathrow heist",
-   "heist true story"
-  ],
-  "search_title": "Brink's-Mat Heist: Robbers Found $35M in Gold"
- },
- {
-  "id": "u-014",
-  "kind": "crime",
-  "title": "He Mailed Himself to Freedom in a Wooden Box",
-  "theme": "escape",
-  "sentences": [
-   "In 1849, Henry Brown was enslaved in Richmond, Virginia, and his family had been sold away.",
-   "He decided to escape in the most dangerous way possible: by shipping himself in a box.",
-   "The crate was about three feet long, with a few holes for air and a little water.",
-   "For about 27 hours, it travelled by wagon, train and steamboat, sometimes upside down.",
-   "It arrived at an anti-slavery office in Philadelphia, and when they opened it, he climbed out.",
-   "He became known as Henry Box Brown, and spoke across America and Britain about his escape.",
-   "Could you survive 27 hours in a box?"
-  ],
-  "visuals": [
-   "a quiet 1840s Virginia street",
-   "a man looking at a wooden shipping crate",
-   "a small wooden crate with tiny air holes",
-   "a crate on a steamboat deck, upside down",
-   "people opening a crate in an office and a man rising out",
-   "a man speaking to a large crowd in the 1850s",
-   "a small open wooden box in warm light"
-  ],
-  "photos": [
-   null,
-   null,
-   null,
-   null,
-   null,
-   null,
-   null
-  ],
-  "tags": [
-   "henry box brown",
-   "greatest escapes in history",
-   "escape from slavery",
-   "true story",
-   "history stories"
-  ],
-  "search_title": "He Mailed Himself to Freedom: Henry Box Brown's Escape"
- }
+  {
+    "id": "u-002",
+    "kind": "crime",
+    "title": "Catch Me If You Can Was Probably a Lie",
+    "theme": "con-artist",
+    "sentences": [
+      "Frank Abagnale became famous for saying he faked being a pilot, a doctor and a lawyer as a teenager.",
+      "His story became a bestselling book and a Hollywood film.",
+      "But in 2020, researcher Alan Logan dug through old records and found serious problems.",
+      "Records placed Abagnale in prison in the years he claimed he was flying around the world.",
+      "Former colleagues and documents contradicted many of his most famous adventures.",
+      "Abagnale did commit real fraud, but much of the legend appears to have been invented.",
+      "The greatest con may have been the story itself.",
+      "How much of a famous story do you just believe?"
+    ],
+    "visuals": [
+      "a vintage airline pilot uniform hanging in a dim room",
+      "a stack of bestselling books and a film reel",
+      "a researcher reading old newspaper archives under a lamp",
+      "a prison cell door with old paper records beside it",
+      "old documents with red question marks over them",
+      "a cracked golden trophy",
+      "a theatre mask resting on a pile of papers",
+      "a person reading a book with a sceptical look"
+    ],
+    "photos": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "tags": [
+      "frank abagnale",
+      "catch me if you can true story",
+      "greatest con artist",
+      "famous con artists",
+      "con man true story"
+    ],
+    "search_title": "Was Catch Me If You Can a Lie? The Frank Abagnale Con"
+  },
+  {
+    "id": "u-004",
+    "kind": "crime",
+    "title": "3 Men Escaped Alcatraz Using Fake Heads Made of Soap",
+    "theme": "escape",
+    "sentences": [
+      "In June 1962, guards at Alcatraz found three prisoners asleep in their beds.",
+      "Except they were not prisoners at all, they were heads made from soap, paper and real hair.",
+      "Frank Morris and brothers John and Clarence Anglin had dug through their cell walls with sharpened spoons.",
+      "They climbed onto the roof and launched a raft made from more than fifty raincoats.",
+      "Then they disappeared into the cold waters of San Francisco Bay.",
+      "The FBI concluded they most likely drowned, but no bodies were ever found.",
+      "The case is still officially open with the US Marshals today.",
+      "Do you think they made it?"
+    ],
+    "visuals": [
+      "Alcatraz island at night in fog",
+      "a fake dummy head on a prison pillow",
+      "a hand scraping a cell wall with a spoon",
+      "a raft made of raincoats on a rooftop",
+      "a tiny raft on dark choppy water",
+      "an FBI file stamped with a question mark",
+      "a wanted poster pinned to a wooden board",
+      "foggy shoreline at dawn with footprints"
+    ],
+    "photos": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "tags": [
+      "alcatraz escape",
+      "escape from alcatraz true story",
+      "frank morris",
+      "famous prison escapes",
+      "prison escape true story"
+    ],
+    "search_title": "How 3 Men Escaped Alcatraz Using Fake Heads"
+  },
+  {
+    "id": "u-006",
+    "kind": "crime",
+    "title": "Fake Doctor Performed Surgery on a Warship and Got Away With It",
+    "theme": "con-artist",
+    "sentences": [
+      "In 1951, a Canadian navy destroyer had a new doctor on board named Joseph Cyr.",
+      "During the Korean War, he operated on wounded soldiers and saved lives.",
+      "But he was not a doctor, he was an impostor named Ferdinand Waldo Demara.",
+      "He had borrowed the real doctor's identity and learned what he could from medical books.",
+      "His fame finally exposed him, when newspapers reported the doctor's heroics.",
+      "The real Joseph Cyr saw the story and realised someone was using his name.",
+      "Demara was sent home, and spent his life switching identities again and again.",
+      "Could you fake a job you never trained for?"
+    ],
+    "visuals": [
+      "a navy destroyer at sea in the 1950s",
+      "a makeshift ship operating room with lanterns",
+      "a man in a doctor's coat with a hidden shadow",
+      "a man reading a medical textbook by candlelight",
+      "a 1950s newspaper headline about a hero doctor",
+      "a real doctor reading a newspaper in shock",
+      "a man looking at many different ID cards",
+      "a stethoscope on top of a disguise kit"
+    ],
+    "photos": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "tags": [
+      "great impostor",
+      "ferdinand demara",
+      "famous impostors",
+      "con man true story",
+      "fake doctor"
+    ],
+    "search_title": "The Fake Doctor Who Did Surgery on a Warship"
+  },
+  {
+    "id": "u-007",
+    "kind": "crime",
+    "title": "He Promised 50% Profit in 45 Days and Fooled Thousands",
+    "theme": "escape",
+    "sentences": [
+      "In 1920, Charles Ponzi promised investors in Boston a 50 percent return in just 45 days.",
+      "He claimed the money came from trading international postal coupons.",
+      "In reality, he paid early investors with money from new investors.",
+      "Thousands of people lined up, and he was taking in huge sums every day.",
+      "A newspaper investigation showed his business could never make that money.",
+      "Within months it collapsed, and Ponzi went to prison for fraud.",
+      "His name is still used for every scheme that works the same way.",
+      "Have you ever seen an offer that sounded too good?"
+    ],
+    "visuals": [
+      "1920s Boston street with crowds",
+      "old international postal coupons on a desk",
+      "money flowing from one hand to another in a chain",
+      "a long queue of people in hats outside an office",
+      "a newspaper reporter typing at night",
+      "an empty office with papers scattered",
+      "a dictionary page showing the word Ponzi",
+      "a glowing too-good-to-be-true advert"
+    ],
+    "photos": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "tags": [
+      "ponzi scheme explained",
+      "charles ponzi",
+      "biggest scams in history",
+      "famous frauds",
+      "con man true story"
+    ],
+    "search_title": "How Charles Ponzi Fooled Thousands With 50% in 45 Days"
+  },
+  {
+    "id": "u-009",
+    "kind": "crime",
+    "title": "Innocent Man Jailed Twice Because He Had a Lookalike",
+    "theme": "case-mystery",
+    "sentences": [
+      "In 1896, London police arrested Adolf Beck after a woman said he had tricked her.",
+      "Several women identified him as a con man who stole their jewellery.",
+      "Beck said he was innocent, but he was convicted and sent to prison.",
+      "After his release, he was arrested and convicted again for the same kind of crime.",
+      "Then, while Beck was in custody, the real con man kept committing the crimes.",
+      "The real culprit, a man who looked like Beck, was caught, and Beck was pardoned.",
+      "The scandal helped lead to England's Court of Criminal Appeal in 1907.",
+      "Should one witness be enough to convict someone?"
+    ],
+    "visuals": [
+      "Victorian London street at night",
+      "witnesses pointing at a man in a line",
+      "a Victorian prison corridor",
+      "a man arrested twice, shown as two shadows",
+      "a lookalike man in a top hat slipping away",
+      "a royal pardon document",
+      "a historic English courtroom",
+      "a scale of justice tipping"
+    ],
+    "photos": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "tags": [
+      "adolf beck",
+      "wrongful conviction",
+      "mistaken identity case",
+      "true crime stories",
+      "unsolved mystery"
+    ],
+    "search_title": "Innocent Man Jailed Twice Because of a Lookalike"
+  },
+  {
+    "id": "u-010",
+    "kind": "crime",
+    "title": "She Raised $700M With a Blood Test That Didn't Work",
+    "theme": "con-artist",
+    "sentences": [
+      "Elizabeth Holmes said her company, Theranos, could run hundreds of tests from a drop of blood.",
+      "Investors poured in hundreds of millions of dollars, and the company was valued at 9 billion.",
+      "But the machines did not work the way she claimed.",
+      "Many tests were secretly run on ordinary lab machines from other companies.",
+      "A Wall Street Journal reporter exposed the problems in 2015.",
+      "In 2022, Holmes was convicted of defrauding investors and later sentenced to over eleven years.",
+      "A whistleblower and a reporter brought down a billion-dollar lie.",
+      "Would you have invested?"
+    ],
+    "visuals": [
+      "a single drop of blood on a fingertip",
+      "a glowing billion-dollar valuation chart",
+      "a sleek lab machine with an error light",
+      "ordinary lab machines hidden behind a curtain",
+      "a newspaper reporter at a desk with documents",
+      "a courtroom gavel",
+      "a whistleblower in shadow holding papers",
+      "a stack of money crumbling"
+    ],
+    "photos": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "tags": [
+      "theranos",
+      "elizabeth holmes",
+      "biggest scams in history",
+      "famous frauds",
+      "startup fraud"
+    ],
+    "search_title": "How Theranos Raised $700M With a Fake Blood Test"
+  },
+  {
+    "id": "u-011",
+    "kind": "crime",
+    "title": "76 Prisoners Escaped the Nazis Through a Tunnel Called Harry",
+    "theme": "escape",
+    "sentences": [
+      "In 1944, Allied airmen in a German prison camp called Stalag Luft Three dug three secret tunnels.",
+      "They named them Tom, Dick and Harry, so the guards would never hear the word tunnel.",
+      "Sand from digging was hidden in bags inside their trousers and shaken out in the gardens.",
+      "Bed boards held up the walls, and a hand-pumped air system kept the diggers breathing.",
+      "On the night of March 24th, 76 men crawled through Harry and out beyond the fence.",
+      "Almost all were caught, and only three made it all the way to freedom.",
+      "The story became the famous film The Great Escape.",
+      "Would you have crawled into that tunnel?"
+    ],
+    "visuals": [
+      "a snowy World War Two prison camp with watchtowers",
+      "three tunnel entrances hidden under a hut floor",
+      "a prisoner shaking sand out of his trouser leg in a garden",
+      "a narrow wooden-shored tunnel lit by a candle",
+      "men crawling out of a hole in the snow at night",
+      "searchlights sweeping over a forest",
+      "an old cinema film reel",
+      "a dark tunnel opening with a faint light at the end"
+    ],
+    "photos": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "tags": [
+      "great escape true story",
+      "stalag luft iii",
+      "ww2 escape",
+      "famous prison escapes",
+      "tunnel escape"
+    ],
+    "search_title": "The Great Escape: 76 Men Tunneled Out of a Nazi Camp"
+  },
+  {
+    "id": "u-012",
+    "kind": "crime",
+    "title": "109 Officers Escaped Prison Through a Tunnel Dug With Spoons",
+    "theme": "escape",
+    "sentences": [
+      "In 1864, Union officers were held in Libby Prison, a crowded warehouse in Richmond, Virginia.",
+      "A group of them found a way into a rat-filled cellar the guards rarely checked.",
+      "For weeks, they dug a tunnel using knives, spoons and a wooden spittoon to drag out dirt.",
+      "On February 9th, 109 officers crawled through it and walked out into the city.",
+      "Guards did not notice until the morning roll call came up short.",
+      "Fifty-nine of them reached Union lines, one of the biggest prison breaks of the Civil War.",
+      "Would you trust a tunnel dug with spoons?"
+    ],
+    "visuals": [
+      "an old brick warehouse prison in the 1860s",
+      "men lowering a candle into a dark cellar with rats",
+      "hands digging dirt with a spoon",
+      "a line of soldiers crawling out of the ground at night",
+      "guards counting prisoners at dawn in shock",
+      "tired soldiers reaching a camp with flags",
+      "a rusty spoon lying in dirt"
+    ],
+    "photos": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "tags": [
+      "libby prison escape",
+      "civil war escape",
+      "famous prison escapes",
+      "tunnel escape",
+      "prison break true story"
+    ],
+    "search_title": "109 Prisoners Escaped Libby Prison Through a Spoon Tunnel"
+  },
+  {
+    "id": "u-013",
+    "kind": "crime",
+    "title": "Robbers Came for $3M Cash and Found $35M in Gold",
+    "theme": "escape",
+    "sentences": [
+      "In November 1983, six robbers broke into the Brink's-Mat warehouse near Heathrow Airport in London.",
+      "They had inside help from a security guard, and expected to find about three million pounds in cash.",
+      "Instead, they found nearly 7,000 gold bars worth around 26 million pounds.",
+      "They loaded it all into a van and drove away.",
+      "Much of the gold was melted down and quietly sold back into the market.",
+      "Some robbers were caught, but most of the gold has never been found.",
+      "People say anyone wearing gold bought in Britain after 1983 might be wearing some of it.",
+      "Would you check your jewellery?"
+    ],
+    "visuals": [
+      "an airport warehouse at dawn in 1980s London",
+      "a security guard nervously glancing at a clock",
+      "stacks of gold bars glowing in a vault",
+      "a van loaded with heavy boxes driving through fog",
+      "gold being melted in a glowing furnace",
+      "an empty vault with police tape",
+      "gold rings and necklaces in a shop window",
+      "a gold ring under a magnifying glass"
+    ],
+    "photos": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "tags": [
+      "brinks mat robbery",
+      "biggest heists in history",
+      "gold heist",
+      "heathrow heist",
+      "heist true story"
+    ],
+    "search_title": "Brink's-Mat Heist: Robbers Found $35M in Gold"
+  },
+  {
+    "id": "u-014",
+    "kind": "crime",
+    "title": "He Mailed Himself to Freedom in a Wooden Box",
+    "theme": "escape",
+    "sentences": [
+      "In 1849, Henry Brown was enslaved in Richmond, Virginia, and his family had been sold away.",
+      "He decided to escape in the most dangerous way possible: by shipping himself in a box.",
+      "The crate was about three feet long, with a few holes for air and a little water.",
+      "For about 27 hours, it travelled by wagon, train and steamboat, sometimes upside down.",
+      "It arrived at an anti-slavery office in Philadelphia, and when they opened it, he climbed out.",
+      "He became known as Henry Box Brown, and spoke across America and Britain about his escape.",
+      "Could you survive 27 hours in a box?"
+    ],
+    "visuals": [
+      "a quiet 1840s Virginia street",
+      "a man looking at a wooden shipping crate",
+      "a small wooden crate with tiny air holes",
+      "a crate on a steamboat deck, upside down",
+      "people opening a crate in an office and a man rising out",
+      "a man speaking to a large crowd in the 1850s",
+      "a small open wooden box in warm light"
+    ],
+    "photos": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "tags": [
+      "henry box brown",
+      "greatest escapes in history",
+      "escape from slavery",
+      "true story",
+      "history stories"
+    ],
+    "search_title": "He Mailed Himself to Freedom: Henry Box Brown's Escape"
+  },
+  {
+    "id": "u-015",
+    "kind": "crime",
+    "title": "How Did the Mona Lisa Thief Hide It for Two Years?",
+    "search_title": "How Did the Mona Lisa Thief Hide It for Two Years?",
+    "theme": "escape",
+    "sentences": [
+      "The Mona Lisa disappeared from the Louvre in 1911, and the hunt even reached Pablo Picasso.",
+      "Police questioned famous artists, but the painting was with a former museum worker, Vincenzo Peruggia.",
+      "For more than two years, the masterpiece stayed missing while investigators chased the wrong people.",
+      "Then Peruggia tried to sell it to an art dealer in Florence in 1913.",
+      "That attempt exposed him, and the painting was recovered instead of disappearing into a private collection.",
+      "The twist was not an impossible hiding place: it was a thief finally trying to turn the painting into money.",
+      "Why did he think a famous stolen painting could be sold at all?"
+    ],
+    "visuals": [
+      "Documentary photograph of Louvre museum; illustrative setting, not crime evidence",
+      "Documentary photograph of Paris art gallery; illustrative setting, not crime evidence",
+      "Documentary photograph of antique painting frame; illustrative setting, not crime evidence",
+      "Documentary photograph of Florence Italy; illustrative setting, not crime evidence",
+      "Documentary photograph of museum painting; illustrative setting, not crime evidence",
+      "Documentary photograph of art dealer desk; illustrative setting, not crime evidence",
+      "Documentary photograph of Mona Lisa museum; illustrative setting, not crime evidence"
+    ],
+    "photos": [
+      {
+        "source": "pexels",
+        "query": "Louvre museum"
+      },
+      {
+        "source": "pexels",
+        "query": "Paris art gallery"
+      },
+      {
+        "source": "pexels",
+        "query": "antique painting frame"
+      },
+      {
+        "source": "pexels",
+        "query": "Florence Italy"
+      },
+      {
+        "source": "pexels",
+        "query": "museum painting"
+      },
+      {
+        "source": "pexels",
+        "query": "art dealer desk"
+      },
+      {
+        "source": "pexels",
+        "query": "Mona Lisa museum"
+      }
+    ],
+    "tags": [
+      "how did the mona lisa thief hide it for two years?",
+      "how did the mona lisa thief hide it for two years? explained",
+      "true story",
+      "famous escapes"
+    ],
+    "sources": [
+      "https://www.history.com/articles/10-daring-art-heists-museums"
+    ],
+    "fact_check_notes": "Picasso was questioned, not convicted; no invented dialogue or claim that he stole it."
+  },
+  {
+    "id": "u-016",
+    "kind": "crime",
+    "title": "Why Are the Gardner Museum Frames Still Empty?",
+    "search_title": "Why Are the Gardner Museum Frames Still Empty?",
+    "theme": "case-mystery",
+    "sentences": [
+      "Two men dressed as police entered a Boston museum in 1990, and thirteen artworks vanished.",
+      "At the Isabella Stewart Gardner Museum, the disguises made the intruders look like the people who should stop a robbery.",
+      "They took works by Rembrandt, Degas and Vermeer during a theft lasting about eighty-one minutes.",
+      "But the museum did not replace everything with another painting and pretend the loss was over.",
+      "Empty frames remained on display, making the missing works visible through their absence.",
+      "The FBI describes the paintings as still missing, not secretly recovered or proven destroyed.",
+      "Where could a famous Vermeer disappear when anyone selling it risks exposing the theft?"
+    ],
+    "visuals": [
+      "Documentary photograph of Boston museum; illustrative setting, not crime evidence",
+      "Documentary photograph of museum entrance; illustrative setting, not crime evidence",
+      "Documentary photograph of empty picture frame; illustrative setting, not crime evidence",
+      "Documentary photograph of art gallery wall; illustrative setting, not crime evidence",
+      "Documentary photograph of empty painting frame; illustrative setting, not crime evidence",
+      "Documentary photograph of museum corridor; illustrative setting, not crime evidence",
+      "Documentary photograph of art collection; illustrative setting, not crime evidence"
+    ],
+    "photos": [
+      {
+        "source": "pexels",
+        "query": "Boston museum"
+      },
+      {
+        "source": "pexels",
+        "query": "museum entrance"
+      },
+      {
+        "source": "pexels",
+        "query": "empty picture frame"
+      },
+      {
+        "source": "pexels",
+        "query": "art gallery wall"
+      },
+      {
+        "source": "pexels",
+        "query": "empty painting frame"
+      },
+      {
+        "source": "pexels",
+        "query": "museum corridor"
+      },
+      {
+        "source": "pexels",
+        "query": "art collection"
+      }
+    ],
+    "tags": [
+      "why are the gardner museum frames still empty?",
+      "why are the gardner museum frames still empty? explained",
+      "true story",
+      "history mystery"
+    ],
+    "sources": [
+      "https://www.fbi.gov/history/cases-and-criminals/isabella-stewart-gardner-museum-heist"
+    ],
+    "fact_check_notes": "Unresolved whereabouts; do not identify uncharged people as the thieves."
+  },
+  {
+    "id": "u-017",
+    "kind": "crime",
+    "title": "How Did a Fake Giant Fool Paying Crowds?",
+    "search_title": "How Did a Fake Giant Fool Paying Crowds?",
+    "theme": "con-artist",
+    "sentences": [
+      "A giant emerged from the ground in New York in 1869, but its discovery had been staged.",
+      "George Hull had arranged for a huge human figure to be carved from gypsum and buried near Cardiff.",
+      "When workers uncovered it, visitors paid to see what some believed was a petrified ancient man.",
+      "The crowd had a mystery, the promoters had ticket money, and scientists had serious doubts.",
+      "Hull eventually admitted the fraud, so the supposed ancient discovery became a modern deception.",
+      "Then showman P. T. Barnum commissioned a competing copy: even exposure did not end the spectacle.",
+      "Why would people keep paying to see a giant after learning it was fake?"
+    ],
+    "visuals": [
+      "Documentary photograph of stone sculpture; illustrative setting, not crime evidence",
+      "Documentary photograph of stone carving workshop; illustrative setting, not crime evidence",
+      "Documentary photograph of museum visitors; illustrative setting, not crime evidence",
+      "Documentary photograph of museum tickets; illustrative setting, not crime evidence",
+      "Documentary photograph of antique newspaper; illustrative setting, not crime evidence",
+      "Documentary photograph of giant statue; illustrative setting, not crime evidence",
+      "Documentary photograph of museum exhibition; illustrative setting, not crime evidence"
+    ],
+    "photos": [
+      {
+        "source": "pexels",
+        "query": "stone sculpture"
+      },
+      {
+        "source": "pexels",
+        "query": "stone carving workshop"
+      },
+      {
+        "source": "pexels",
+        "query": "museum visitors"
+      },
+      {
+        "source": "pexels",
+        "query": "museum tickets"
+      },
+      {
+        "source": "pexels",
+        "query": "antique newspaper"
+      },
+      {
+        "source": "pexels",
+        "query": "giant statue"
+      },
+      {
+        "source": "pexels",
+        "query": "museum exhibition"
+      }
+    ],
+    "tags": [
+      "how did a fake giant fool paying crowds?",
+      "how did a fake giant fool paying crowds? explained",
+      "true story",
+      "deception explained"
+    ],
+    "sources": [
+      "https://brucemuseum.org/discover/the-cardiff-giant/"
+    ],
+    "fact_check_notes": "No assertion that all scientists believed it; copy identified as a copy."
+  },
+  {
+    "id": "u-018",
+    "kind": "crime",
+    "title": "Why Did Royal Doctors Believe Mary Toft?",
+    "search_title": "Why Did Royal Doctors Believe Mary Toft?",
+    "theme": "con-artist",
+    "sentences": [
+      "In 1726, a claim so impossible it should have stopped an investigation instead reached royal doctors.",
+      "Mary Toft, a woman in Surrey, claimed she had given birth to rabbits.",
+      "Several medical men accepted the story, and an investigation connected to the royal court followed.",
+      "The dangerous part was not just the claim: respected people gave it credibility before it was established.",
+      "By December, the deception was exposed, turning a supposed medical marvel into a public scandal.",
+      "The case survived in satire and debate because the experts were part of the story, not merely its solution.",
+      "What happens when the person checking an extraordinary claim already wants to believe it?"
+    ],
+    "visuals": [
+      "Documentary photograph of antique medical book; illustrative setting, not crime evidence",
+      "Documentary photograph of Surrey village; illustrative setting, not crime evidence",
+      "Documentary photograph of historic doctor office; illustrative setting, not crime evidence",
+      "Documentary photograph of medical manuscript; illustrative setting, not crime evidence",
+      "Documentary photograph of old newspaper; illustrative setting, not crime evidence",
+      "Documentary photograph of museum engraving; illustrative setting, not crime evidence",
+      "Documentary photograph of library archive; illustrative setting, not crime evidence"
+    ],
+    "photos": [
+      {
+        "source": "pexels",
+        "query": "antique medical book"
+      },
+      {
+        "source": "pexels",
+        "query": "Surrey village"
+      },
+      {
+        "source": "pexels",
+        "query": "historic doctor office"
+      },
+      {
+        "source": "pexels",
+        "query": "medical manuscript"
+      },
+      {
+        "source": "pexels",
+        "query": "old newspaper"
+      },
+      {
+        "source": "pexels",
+        "query": "museum engraving"
+      },
+      {
+        "source": "pexels",
+        "query": "library archive"
+      }
+    ],
+    "tags": [
+      "why did royal doctors believe mary toft?",
+      "why did royal doctors believe mary toft? explained",
+      "true story",
+      "deception explained"
+    ],
+    "sources": [
+      "https://www.bbc.com/news/uk-england-43073391"
+    ],
+    "fact_check_notes": "Historical medical hoax, not a real biological event; no graphic details or procedural description."
+  },
+  {
+    "id": "u-019",
+    "kind": "crime",
+    "title": "How Did a Wooden Horse Conceal a Prison Escape?",
+    "search_title": "How Did a Wooden Horse Conceal a Prison Escape?",
+    "theme": "escape",
+    "sentences": [
+      "At a German prisoner-of-war camp in 1943, ordinary exercise concealed an escape effort.",
+      "Three Allied prisoners used a wooden vaulting horse as cover for a tunnel at Stalag Luft Three.",
+      "To an observer it belonged in the exercise yard, but it was part of something hidden beneath it.",
+      "Oliver Philpot and his two fellow escapees got out, then faced the harder problem of reaching safety.",
+      "Philpot travelled via Danzig and reached neutral Sweden, arriving in Stockholm on November fourth.",
+      "The story became The Wooden Horse, but this was not the later, famous Great Escape breakout.",
+      "How do you cross enemy territory after the prison fence is finally behind you?"
+    ],
+    "visuals": [
+      "Documentary photograph of wooden gymnastics horse; illustrative setting, not crime evidence",
+      "Documentary photograph of prison camp memorial; illustrative setting, not crime evidence",
+      "Documentary photograph of exercise yard; illustrative setting, not crime evidence",
+      "Documentary photograph of historic railway station; illustrative setting, not crime evidence",
+      "Documentary photograph of Stockholm waterfront; illustrative setting, not crime evidence",
+      "Documentary photograph of old book; illustrative setting, not crime evidence",
+      "Documentary photograph of European railway; illustrative setting, not crime evidence"
+    ],
+    "photos": [
+      {
+        "source": "pexels",
+        "query": "wooden gymnastics horse"
+      },
+      {
+        "source": "pexels",
+        "query": "prison camp memorial"
+      },
+      {
+        "source": "pexels",
+        "query": "exercise yard"
+      },
+      {
+        "source": "pexels",
+        "query": "historic railway station"
+      },
+      {
+        "source": "pexels",
+        "query": "Stockholm waterfront"
+      },
+      {
+        "source": "pexels",
+        "query": "old book"
+      },
+      {
+        "source": "pexels",
+        "query": "European railway"
+      }
+    ],
+    "tags": [
+      "how did a wooden horse conceal a prison escape?",
+      "how did a wooden horse conceal a prison escape? explained",
+      "true story",
+      "famous escapes"
+    ],
+    "sources": [
+      "https://www.iwm.org.uk/history/second-world-war/bombing/real-life-escape-attempts-by-allied-prisoners-of-war"
+    ],
+    "fact_check_notes": "1943 Wooden Horse escape distinguished from 1944 Great Escape; not a tunnel-building tutorial."
+  },
+  {
+    "id": "u-020",
+    "kind": "crime",
+    "title": "How Did Airey Neave Escape Colditz in Disguise?",
+    "search_title": "How Did Airey Neave Escape Colditz in Disguise?",
+    "theme": "escape",
+    "sentences": [
+      "Colditz held Allied officers considered likely to escape, yet one prisoner left disguised as the enemy.",
+      "Airey Neave was a British officer inside the German castle prison during the Second World War.",
+      "Rather than a dramatic battle, his successful escape involved dressing as a German soldier.",
+      "The disguise mattered because guards had to decide whether the person in front of them belonged there.",
+      "Neave escaped the castle, turning one of the war's best-known prison stories into a failure of recognition.",
+      "The National Archives records more than thirty successful escapes from Colditz, so escape-proof is a legend, not a fact.",
+      "Why did a prison full of experienced escape artists become famous for being impossible to escape?"
+    ],
+    "visuals": [
+      "Documentary photograph of Colditz castle; illustrative setting, not crime evidence",
+      "Documentary photograph of castle courtyard; illustrative setting, not crime evidence",
+      "Documentary photograph of historic military uniform; illustrative setting, not crime evidence",
+      "Documentary photograph of castle entrance; illustrative setting, not crime evidence",
+      "Documentary photograph of European landscape; illustrative setting, not crime evidence",
+      "Documentary photograph of archive documents; illustrative setting, not crime evidence",
+      "Documentary photograph of castle walls; illustrative setting, not crime evidence"
+    ],
+    "photos": [
+      {
+        "source": "pexels",
+        "query": "Colditz castle"
+      },
+      {
+        "source": "pexels",
+        "query": "castle courtyard"
+      },
+      {
+        "source": "pexels",
+        "query": "historic military uniform"
+      },
+      {
+        "source": "pexels",
+        "query": "castle entrance"
+      },
+      {
+        "source": "pexels",
+        "query": "European landscape"
+      },
+      {
+        "source": "pexels",
+        "query": "archive documents"
+      },
+      {
+        "source": "pexels",
+        "query": "castle walls"
+      }
+    ],
+    "tags": [
+      "how did airey neave escape colditz in disguise?",
+      "how did airey neave escape colditz in disguise? explained",
+      "true story",
+      "famous escapes"
+    ],
+    "sources": [
+      "https://www.nationalarchives.gov.uk/explore-the-collection/explore-by-time-period/second-world-war/escaping-colditz/"
+    ],
+    "fact_check_notes": "No invented checkpoint dialogue or universal escape-proof claim; successful castle escape distinguished from journey home."
+  },
+  {
+    "id": "u-021",
+    "kind": "crime",
+    "title": "How Did a Radio Listener Hear the Baker Street Heist?",
+    "search_title": "How Did a Radio Listener Hear the Baker Street Heist?",
+    "theme": "escape",
+    "sentences": [
+      "A stranger heard a bank robbery unfolding on his radio, but stopping it was another story.",
+      "In 1971, burglars reached a Lloyds Bank vault in London from a nearby shop.",
+      "An amateur radio listener unexpectedly picked up the gang's conversations while trying to tune in to Radio Luxembourg.",
+      "He contacted police, but his warning was not taken seriously at first.",
+      "The astonishing tension was real: somebody outside the gang could hear the crime while it was happening.",
+      "The Baker Street robbery went ahead despite that accidental witness, and parts of the case remained unresolved.",
+      "How do you convince police a robbery is real when your evidence is a voice on a radio?"
+    ],
+    "visuals": [
+      "Documentary photograph of vintage radio; illustrative setting, not crime evidence",
+      "Documentary photograph of London bank building; illustrative setting, not crime evidence",
+      "Documentary photograph of radio receiver; illustrative setting, not crime evidence",
+      "Documentary photograph of police station; illustrative setting, not crime evidence",
+      "Documentary photograph of radio dial; illustrative setting, not crime evidence",
+      "Documentary photograph of Baker Street London; illustrative setting, not crime evidence",
+      "Documentary photograph of radio microphone; illustrative setting, not crime evidence"
+    ],
+    "photos": [
+      {
+        "source": "pexels",
+        "query": "vintage radio"
+      },
+      {
+        "source": "pexels",
+        "query": "London bank building"
+      },
+      {
+        "source": "pexels",
+        "query": "radio receiver"
+      },
+      {
+        "source": "pexels",
+        "query": "police station"
+      },
+      {
+        "source": "pexels",
+        "query": "radio dial"
+      },
+      {
+        "source": "pexels",
+        "query": "Baker Street London"
+      },
+      {
+        "source": "pexels",
+        "query": "radio microphone"
+      }
+    ],
+    "tags": [
+      "how did a radio listener hear the baker street heist?",
+      "how did a radio listener hear the baker street heist? explained",
+      "true story",
+      "famous escapes"
+    ],
+    "sources": [
+      "https://www.bbc.com/news/articles/cwygxe102ydo"
+    ],
+    "fact_check_notes": "No unverified royal-photo conspiracy, exact loot valuation or criminal radio instructions."
+  },
+  {
+    "id": "u-022",
+    "kind": "crime",
+    "title": "How Did an Internet Photo Expose John Darwin?",
+    "search_title": "How Did an Internet Photo Expose John Darwin?",
+    "theme": "con-artist",
+    "sentences": [
+      "John Darwin returned from the dead, but an internet photograph helped expose what really happened.",
+      "He disappeared during a canoe trip off England in 2002 and was later declared dead.",
+      "His wife Anne collected insurance money while their sons believed they had lost their father.",
+      "In reality he had survived, hidden at home, and later moved with Anne to Panama.",
+      "When he returned to Britain claiming amnesia, a photograph of the couple in Panama undermined the story.",
+      "Both were jailed in 2008: the comeback was not a miracle, but an insurance fraud.",
+      "How do you rebuild trust when your own parents let you mourn someone still alive?"
+    ],
+    "visuals": [
+      "Documentary photograph of canoe beach; illustrative setting, not crime evidence",
+      "Documentary photograph of North Sea coast; illustrative setting, not crime evidence",
+      "Documentary photograph of family photograph frame; illustrative setting, not crime evidence",
+      "Documentary photograph of Panama City skyline; illustrative setting, not crime evidence",
+      "Documentary photograph of computer photo search; illustrative setting, not crime evidence",
+      "Documentary photograph of courthouse England; illustrative setting, not crime evidence",
+      "Documentary photograph of empty family table; illustrative setting, not crime evidence"
+    ],
+    "photos": [
+      {
+        "source": "pexels",
+        "query": "canoe beach"
+      },
+      {
+        "source": "pexels",
+        "query": "North Sea coast"
+      },
+      {
+        "source": "pexels",
+        "query": "family photograph frame"
+      },
+      {
+        "source": "pexels",
+        "query": "Panama City skyline"
+      },
+      {
+        "source": "pexels",
+        "query": "computer photo search"
+      },
+      {
+        "source": "pexels",
+        "query": "courthouse England"
+      },
+      {
+        "source": "pexels",
+        "query": "empty family table"
+      }
+    ],
+    "tags": [
+      "how did an internet photo expose john darwin?",
+      "how did an internet photo expose john darwin? explained",
+      "true story",
+      "deception explained"
+    ],
+    "sources": [
+      "https://www.bbc.co.uk/news/uk-england-tees-33560815"
+    ],
+    "fact_check_notes": "Sons treated as victims, not conspirators; photograph helped expose fraud, not sole evidence."
+  },
+  {
+    "id": "u-023",
+    "kind": "crime",
+    "title": "Why Did the Hatton Garden Heist Unravel?",
+    "search_title": "Why Did the Hatton Garden Heist Unravel?",
+    "theme": "escape",
+    "sentences": [
+      "The Hatton Garden thieves left a vault with millions, but their escape was not the end.",
+      "Over Easter in 2015, an ageing gang burgled a London safe-deposit business.",
+      "Gold, diamonds, jewellery and cash worth an estimated fourteen million pounds were stolen.",
+      "At first, missing security recordings and an absence of fingerprints made the case look difficult.",
+      "But detectives used other CCTV, phone-location evidence and surveillance to track the men.",
+      "Convictions followed: the thieves had planned for the vault more successfully than for the investigation afterwards.",
+      "Why did men with decades of criminal experience underestimate the evidence they could not see?"
+    ],
+    "visuals": [
+      "Documentary photograph of Hatton Garden London; illustrative setting, not crime evidence",
+      "Documentary photograph of safe deposit vault; illustrative setting, not crime evidence",
+      "Documentary photograph of diamond jewellery; illustrative setting, not crime evidence",
+      "Documentary photograph of security camera; illustrative setting, not crime evidence",
+      "Documentary photograph of London street camera; illustrative setting, not crime evidence",
+      "Documentary photograph of court building; illustrative setting, not crime evidence",
+      "Documentary photograph of old mobile phone; illustrative setting, not crime evidence"
+    ],
+    "photos": [
+      {
+        "source": "pexels",
+        "query": "Hatton Garden London"
+      },
+      {
+        "source": "pexels",
+        "query": "safe deposit vault"
+      },
+      {
+        "source": "pexels",
+        "query": "diamond jewellery"
+      },
+      {
+        "source": "pexels",
+        "query": "security camera"
+      },
+      {
+        "source": "pexels",
+        "query": "London street camera"
+      },
+      {
+        "source": "pexels",
+        "query": "court building"
+      },
+      {
+        "source": "pexels",
+        "query": "old mobile phone"
+      }
+    ],
+    "tags": [
+      "why did the hatton garden heist unravel?",
+      "why did the hatton garden heist unravel? explained",
+      "true story",
+      "famous escapes"
+    ],
+    "sources": [
+      "https://www.bbc.com/news/uk-england-london-35267787"
+    ],
+    "fact_check_notes": "Loot valuation is an estimate; no drilling instructions or claim that entire haul was recovered."
+  },
+  {
+    "id": "u-024",
+    "kind": "crime",
+    "title": "Why Were the Millennium Dome Diamonds Already Fake?",
+    "search_title": "Why Were the Millennium Dome Diamonds Already Fake?",
+    "theme": "escape",
+    "sentences": [
+      "The robbers came for spectacular diamonds, but the trap was waiting before they arrived.",
+      "In November 2000, a gang targeted a diamond exhibition at London's Millennium Dome.",
+      "The intended prize included the enormous Millennium Star, and a boat was waiting for the escape.",
+      "What the gang did not know was that police had already placed them under surveillance.",
+      "The real gemstones were replaced with fakes, and officers took the place of exhibition staff.",
+      "The raid ended in arrests, not a disappearing fortune: the thieves had walked into a prepared police operation.",
+      "How long would you keep following a plan if the room itself had become a trap?"
+    ],
+    "visuals": [
+      "Documentary photograph of Millennium Dome London; illustrative setting, not crime evidence",
+      "Documentary photograph of diamond exhibition; illustrative setting, not crime evidence",
+      "Documentary photograph of large diamond; illustrative setting, not crime evidence",
+      "Documentary photograph of London police; illustrative setting, not crime evidence",
+      "Documentary photograph of museum display case; illustrative setting, not crime evidence",
+      "Documentary photograph of police vehicle; illustrative setting, not crime evidence",
+      "Documentary photograph of River Thames; illustrative setting, not crime evidence"
+    ],
+    "photos": [
+      {
+        "source": "pexels",
+        "query": "Millennium Dome London"
+      },
+      {
+        "source": "pexels",
+        "query": "diamond exhibition"
+      },
+      {
+        "source": "pexels",
+        "query": "large diamond"
+      },
+      {
+        "source": "pexels",
+        "query": "London police"
+      },
+      {
+        "source": "pexels",
+        "query": "museum display case"
+      },
+      {
+        "source": "pexels",
+        "query": "police vehicle"
+      },
+      {
+        "source": "pexels",
+        "query": "River Thames"
+      }
+    ],
+    "tags": [
+      "why were the millennium dome diamonds already fake?",
+      "why were the millennium dome diamonds already fake? explained",
+      "true story",
+      "famous escapes"
+    ],
+    "sources": [
+      "https://www.bbc.com/news/newsbeat-32216873"
+    ],
+    "fact_check_notes": "Diamond values vary by estimate; no tactical attack detail; no invented confrontation."
+  },
+  {
+    "id": "u-025",
+    "kind": "crime",
+    "title": "How Did Robert Smalls Sail a Confederate Ship to Freedom?",
+    "search_title": "How Did Robert Smalls Sail a Confederate Ship to Freedom?",
+    "theme": "escape",
+    "sentences": [
+      "Before dawn in 1862, Robert Smalls took a Confederate steamer towards the very ships it was meant to oppose.",
+      "He and fellow freedom seekers commandeered the Planter in Charleston Harbor on May thirteenth.",
+      "The vessel normally transported Confederate troops and arms, so its departure could look like military business.",
+      "The escape party mimicked Confederate signals as they passed the harbor defenses.",
+      "Beyond those defenses waited the Union blockade, which became their destination rather than their enemy.",
+      "They reached it and secured their freedom: a ship serving slavery had carried people out of it.",
+      "How do you keep moving when every checkpoint could turn a bid for freedom into capture?"
+    ],
+    "visuals": [
+      "Documentary photograph of Charleston harbor; illustrative setting, not crime evidence",
+      "Documentary photograph of historic paddle steamer; illustrative setting, not crime evidence",
+      "Documentary photograph of American Civil War ship; illustrative setting, not crime evidence",
+      "Documentary photograph of Charleston waterfront; illustrative setting, not crime evidence",
+      "Documentary photograph of historic naval ship; illustrative setting, not crime evidence",
+      "Documentary photograph of Robert Smalls memorial; illustrative setting, not crime evidence",
+      "Documentary photograph of harbor lighthouse; illustrative setting, not crime evidence"
+    ],
+    "photos": [
+      {
+        "source": "pexels",
+        "query": "Charleston harbor"
+      },
+      {
+        "source": "pexels",
+        "query": "historic paddle steamer"
+      },
+      {
+        "source": "pexels",
+        "query": "American Civil War ship"
+      },
+      {
+        "source": "pexels",
+        "query": "Charleston waterfront"
+      },
+      {
+        "source": "pexels",
+        "query": "historic naval ship"
+      },
+      {
+        "source": "pexels",
+        "query": "Robert Smalls memorial"
+      },
+      {
+        "source": "pexels",
+        "query": "harbor lighthouse"
+      }
+    ],
+    "tags": [
+      "how did robert smalls sail a confederate ship to freedom?",
+      "how did robert smalls sail a confederate ship to freedom? explained",
+      "true story",
+      "famous escapes"
+    ],
+    "sources": [
+      "https://www.nps.gov/reer/learn/historyculture/the-planter-a-strike-for-freedom.htm"
+    ],
+    "fact_check_notes": "Freedom seekers, not ordinary criminals; no invented dialogue or modern navigation tutorial."
+  },
+  {
+    "id": "u-026",
+    "kind": "crime",
+    "title": "How Did Operation Mincemeat Create a Man Who Never Existed?",
+    "search_title": "How Did Operation Mincemeat Create a Man Who Never Existed?",
+    "theme": "con-artist",
+    "sentences": [
+      "British intelligence sent Germany a secret invasion story in 1943, carried by an officer who never existed.",
+      "The fictitious Royal Marines major was called William Martin, and his identity was part of Operation Mincemeat.",
+      "A deceased man was given that identity and documents suggesting Greece and Sardinia were the invasion targets.",
+      "The body was released off southern Spain on April thirtieth, where the planted papers could be discovered.",
+      "The documents were photographed and passed to German intelligence, exactly the audience the deception was built for.",
+      "The Allies actually invaded Sicily: the papers were a carefully constructed false trail, not a leaked real plan.",
+      "What small details make a completely invented person seem trustworthy to an intelligence service?"
+    ],
+    "visuals": [
+      "Documentary photograph of vintage passport; illustrative setting, not crime evidence",
+      "Documentary photograph of Royal Marines memorial; illustrative setting, not crime evidence",
+      "Documentary photograph of wartime documents; illustrative setting, not crime evidence",
+      "Documentary photograph of Spanish coastline; illustrative setting, not crime evidence",
+      "Documentary photograph of intelligence archive; illustrative setting, not crime evidence",
+      "Documentary photograph of Sicily coastline; illustrative setting, not crime evidence",
+      "Documentary photograph of old identity papers; illustrative setting, not crime evidence"
+    ],
+    "photos": [
+      {
+        "source": "pexels",
+        "query": "vintage passport"
+      },
+      {
+        "source": "pexels",
+        "query": "Royal Marines memorial"
+      },
+      {
+        "source": "pexels",
+        "query": "wartime documents"
+      },
+      {
+        "source": "pexels",
+        "query": "Spanish coastline"
+      },
+      {
+        "source": "pexels",
+        "query": "intelligence archive"
+      },
+      {
+        "source": "pexels",
+        "query": "Sicily coastline"
+      },
+      {
+        "source": "pexels",
+        "query": "old identity papers"
+      }
+    ],
+    "tags": [
+      "how did operation mincemeat create a man who never existed?",
+      "how did operation mincemeat create a man who never existed? explained",
+      "true story",
+      "deception explained"
+    ],
+    "sources": [
+      "https://www.iwm.org.uk/history/second-world-war/intelligence/the-war-on-paper-operation-mincemeat"
+    ],
+    "fact_check_notes": "Non-graphic account; does not claim this operation alone won the war or prove every German decision."
+  },
+  {
+    "id": "u-027",
+    "kind": "crime",
+    "title": "How Did the Antwerp Diamond Heist Start Inside the Building?",
+    "search_title": "How Did the Antwerp Diamond Heist Start Inside the Building?",
+    "theme": "escape",
+    "sentences": [
+      "A diamond vault was emptied in Antwerp in 2003, but the story began before the break-in.",
+      "Belgian police said the gang had rented an office inside the Diamond Centre through a phantom company.",
+      "They were not merely strangers staring at a locked door: they had a foothold in the building.",
+      "Over the weekend of February fifteenth and sixteenth, one hundred twenty-three safe-deposit compartments were emptied.",
+      "Police valued the haul at more than one hundred million euros, a staggering loss in a world built around security.",
+      "The investigation exposed the office arrangement behind the burglary, showing that access had begun with an apparently legitimate tenant.",
+      "Why can a convincing business identity be more dangerous than an obvious intruder?"
+    ],
+    "visuals": [
+      "Documentary photograph of Antwerp diamond district; illustrative setting, not crime evidence",
+      "Documentary photograph of office building reception; illustrative setting, not crime evidence",
+      "Documentary photograph of diamond trading office; illustrative setting, not crime evidence",
+      "Documentary photograph of safe deposit boxes; illustrative setting, not crime evidence",
+      "Documentary photograph of diamond collection; illustrative setting, not crime evidence",
+      "Documentary photograph of empty office; illustrative setting, not crime evidence",
+      "Documentary photograph of business documents; illustrative setting, not crime evidence"
+    ],
+    "photos": [
+      {
+        "source": "pexels",
+        "query": "Antwerp diamond district"
+      },
+      {
+        "source": "pexels",
+        "query": "office building reception"
+      },
+      {
+        "source": "pexels",
+        "query": "diamond trading office"
+      },
+      {
+        "source": "pexels",
+        "query": "safe deposit boxes"
+      },
+      {
+        "source": "pexels",
+        "query": "diamond collection"
+      },
+      {
+        "source": "pexels",
+        "query": "empty office"
+      },
+      {
+        "source": "pexels",
+        "query": "business documents"
+      }
+    ],
+    "tags": [
+      "how did the antwerp diamond heist start inside the building?",
+      "how did the antwerp diamond heist start inside the building? explained",
+      "true story",
+      "famous escapes"
+    ],
+    "sources": [
+      "http://news.bbc.co.uk/2/hi/europe/3364911.stm"
+    ],
+    "fact_check_notes": "Police valuation in euros, not dollars; no alarm-bypass techniques or claim every diamond remains missing."
+  },
+  {
+    "id": "u-028",
+    "kind": "crime",
+    "title": "How Did the Fortaleza Bank Theft Become 28 Criminal Cases?",
+    "search_title": "How Did the Fortaleza Bank Theft Become 28 Criminal Cases?",
+    "theme": "escape",
+    "sentences": [
+      "Brazilian bank staff faced a staggering discovery in 2005: a fortune had disappeared through the ground.",
+      "At Banco Central in Fortaleza, burglars stole one hundred sixty-four point seven million reais.",
+      "The route was a tunnel connecting a rented house to the vault, according to federal prosecutors.",
+      "But getting the cash out did not mean the crime ended when the tunnel was found.",
+      "The investigation expanded into twenty-eight criminal proceedings involving one hundred twenty-nine people.",
+      "Nearly one hundred were convicted for roles ranging from planning to money laundering, revealing a much larger network.",
+      "How do you hide a fortune when every person needed to move it becomes another possible witness?"
+    ],
+    "visuals": [
+      "Documentary photograph of Fortaleza Brazil; illustrative setting, not crime evidence",
+      "Documentary photograph of Brazilian banknotes; illustrative setting, not crime evidence",
+      "Documentary photograph of underground tunnel; illustrative setting, not crime evidence",
+      "Documentary photograph of bank building; illustrative setting, not crime evidence",
+      "Documentary photograph of court records; illustrative setting, not crime evidence",
+      "Documentary photograph of Brazil courthouse; illustrative setting, not crime evidence",
+      "Documentary photograph of money counting; illustrative setting, not crime evidence"
+    ],
+    "photos": [
+      {
+        "source": "pexels",
+        "query": "Fortaleza Brazil"
+      },
+      {
+        "source": "pexels",
+        "query": "Brazilian banknotes"
+      },
+      {
+        "source": "pexels",
+        "query": "underground tunnel"
+      },
+      {
+        "source": "pexels",
+        "query": "bank building"
+      },
+      {
+        "source": "pexels",
+        "query": "court records"
+      },
+      {
+        "source": "pexels",
+        "query": "Brazil courthouse"
+      },
+      {
+        "source": "pexels",
+        "query": "money counting"
+      }
+    ],
+    "tags": [
+      "how did the fortaleza bank theft become 28 criminal cases?",
+      "how did the fortaleza bank theft become 28 criminal cases? explained",
+      "true story",
+      "famous escapes"
+    ],
+    "sources": [
+      "https://linhadotempo.mpf.mp.br/www/linha-do-tempo-pr-ce/furto-ao-banco-central"
+    ],
+    "fact_check_notes": "Currency is Brazilian reais; proceedings and convictions are prosecutor historical totals, not a claim every defendant was guilty."
+  },
+  {
+    "id": "u-029",
+    "kind": "crime",
+    "title": "How Did The Scream Disappear on the Olympics Opening Day?",
+    "search_title": "How Did The Scream Disappear on the Olympics Opening Day?",
+    "theme": "escape",
+    "sentences": [
+      "As Norway opened the Winter Olympics in 1994, one of its most famous paintings disappeared.",
+      "On February twelfth, thieves took Edvard Munch's The Scream from Oslo's National Gallery.",
+      "The timing made an international celebration the backdrop to an extraordinary cultural loss.",
+      "The painting was removed in its frame, leaving investigators to find something instantly recognizable but easy to conceal.",
+      "On May seventh, police recovered it in a hotel room in Asgardstrand, south of Oslo.",
+      "It was reported in good condition: the nightmare ended in recovery, not the destruction of the artwork.",
+      "Why was this not the last time a version of The Scream would make art-theft headlines?"
+    ],
+    "visuals": [
+      "Documentary photograph of Lillehammer Norway; illustrative setting, not crime evidence",
+      "Documentary photograph of Oslo National Gallery; illustrative setting, not crime evidence",
+      "Documentary photograph of winter Olympic stadium; illustrative setting, not crime evidence",
+      "Documentary photograph of empty painting frame; illustrative setting, not crime evidence",
+      "Documentary photograph of Asgardstrand Norway; illustrative setting, not crime evidence",
+      "Documentary photograph of Munch museum; illustrative setting, not crime evidence",
+      "Documentary photograph of art museum security; illustrative setting, not crime evidence"
+    ],
+    "photos": [
+      {
+        "source": "pexels",
+        "query": "Lillehammer Norway"
+      },
+      {
+        "source": "pexels",
+        "query": "Oslo National Gallery"
+      },
+      {
+        "source": "pexels",
+        "query": "winter Olympic stadium"
+      },
+      {
+        "source": "pexels",
+        "query": "empty painting frame"
+      },
+      {
+        "source": "pexels",
+        "query": "Asgardstrand Norway"
+      },
+      {
+        "source": "pexels",
+        "query": "Munch museum"
+      },
+      {
+        "source": "pexels",
+        "query": "art museum security"
+      }
+    ],
+    "tags": [
+      "how did the scream disappear on the olympics opening day?",
+      "how did the scream disappear on the olympics opening day? explained",
+      "true story",
+      "famous escapes"
+    ],
+    "sources": [
+      "https://www.upi.com/Archives/1994/05/07/The-Scream-recovered-in-Norway/1525768283200"
+    ],
+    "fact_check_notes": "1994 National Gallery theft, not 2004 Munch Museum theft; 2004 follow-up is a different version. Recovery report says good condition."
+  }
 ]
